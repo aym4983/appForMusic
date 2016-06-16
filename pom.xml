@@ -135,6 +135,19 @@
         <artifactId>log4j</artifactId>
         <version>1.2.17</version>
     </dependency>
+    
+    <!-- http://mvnrepository.com/artifact/ro.isdc.wro4j/wro4j-maven-plugin -->
+<dependency>
+        <groupId>ro.isdc.wro4j</groupId>
+        <artifactId>wro4j-core</artifactId>
+        <version>1.8.0</version>
+    </dependency>
+    <dependency>
+        <groupId>ro.isdc.wro4j</groupId>
+        <artifactId>wro4j-extensions</artifactId>
+        <version>1.8.0</version>
+    </dependency>
+    
     </dependencies>
     
     <build>

@@ -3,11 +3,9 @@ package fr.imie.appformusic.configuration;
 import java.util.Locale;
 
 import org.apache.commons.dbcp.BasicDataSource;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.LocaleResolver;
@@ -20,6 +18,8 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
+
+import ro.isdc.wro.http.ConfigurableWroFilter;
 
 @Configuration
 @EnableWebMvc
@@ -94,5 +94,12 @@ public class DispatcherInitializer extends WebMvcConfigurerAdapter  {
 	LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
 	interceptor.setParamName("mylocale");
 	registry.addInterceptor(interceptor);
+    }
+    
+    @Bean
+    public ConfigurableWroFilter wroFilter (){
+    	ConfigurableWroFilter filter = new ConfigurableWroFilter();
+    	filter.setDebug(true);
+    	return filter;
     }
 }

@@ -1,5 +1,10 @@
 package fr.imie.appformusic.configuration;
 
+import javax.servlet.FilterRegistration;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class Web extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -22,4 +27,11 @@ public class Web extends AbstractAnnotationConfigDispatcherServletInitializer {
 		return new String[]{"/"};
 	}
 
+	@Override
+	public void onStartup(ServletContext servletContext) throws ServletException {
+		FilterRegistration.Dynamic fr = servletContext.addFilter("webResourceOptimizer", new DelegatingFilterProxy("wroFilter"));
+		fr.addMappingForUrlPatterns(null, true, "/wro/*");
+		
+		super.onStartup(servletContext);
+	}
 }

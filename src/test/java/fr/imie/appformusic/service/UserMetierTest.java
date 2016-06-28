@@ -1,12 +1,17 @@
 package fr.imie.appformusic.service;
 
+import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.replay;
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.easymock.EasyMockRunner;
 import org.easymock.Mock;
 import org.easymock.TestSubject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.easymock.EasyMock.*;
-import static org.junit.Assert.*;
 
 import fr.imie.appformusic.dao.UserDao;
 import fr.imie.appformusic.domain.User;
@@ -34,6 +39,25 @@ public class UserMetierTest {
 		
 		User userResult = service.findUserById(user.getId());
 		assertEquals(userResult.getName(), user.getName());
+	}
+	
+	@Test
+	public void testFindAllUsersOk(){
+		List<User> userList = new ArrayList<>();
+		
+		for (int i=0; i<5; i++){
+			User u = new User();
+			u.setId(i);
+			userList.add(u);
+		}
+		
+		expect(daoMock.findAllUsers()).andReturn(userList);
+		replay(daoMock);
+		
+		List<User> result = service.findAllUsers();
+		
+		assertEquals(result.size(), 5);
+		assertEquals(result.get(1).getId(), 1);
 	}
 	
 }

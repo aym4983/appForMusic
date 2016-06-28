@@ -14,7 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.web.servlet.ModelAndView;
 
-import fr.imie.appformusic.domaine.User;
+import fr.imie.appformusic.domain.User;
 import fr.imie.appformusic.service.UserMetier;
 
 @RunWith(EasyMockRunner.class)

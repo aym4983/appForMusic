@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import fr.imie.appformusic.domaine.User;
+import fr.imie.appformusic.domain.User;
 
 /*
  * Non implémenté car exemple pour test driven development

@@ -1,5 +1,7 @@
 package fr.imie.appformusic.dao;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import fr.imie.appformusic.domain.User;
@@ -8,6 +10,10 @@ import fr.imie.appformusic.domain.User;
 public class UserDao {
 
 	public User findUserById(int userId){
+		return null;
+	}
+	
+	public List<User> findAllUsers(){
 		return null;
 	}
 	

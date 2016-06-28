@@ -26,7 +26,7 @@ public class UserMetier {
 	}
 	
 	public List<User> findAllUsers(){
-		return null;
+		return userDao.findAllUsers();
 	}
 	
 }

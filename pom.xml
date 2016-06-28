@@ -180,6 +180,7 @@
 		      <excludes>
 		          <exclude>fr/imie/appformusic/domain/*</exclude>
 		          <exclude>fr/imie/appformusic/configuration/*</exclude>
+		          <exclude>fr/imie/appformusic/exceptions/*</exclude>
 		      </excludes>
 		    </configuration>
 		    <executions>

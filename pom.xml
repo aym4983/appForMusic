@@ -178,7 +178,7 @@
 		    <version>0.7.6.201602180812</version>
 		    <configuration>
 		      <excludes>
-		          <exclude>fr/imie/appformusic/domaine/*</exclude>
+		          <exclude>fr/imie/appformusic/domain/*</exclude>
 		          <exclude>fr/imie/appformusic/configuration/*</exclude>
 		      </excludes>
 		    </configuration>

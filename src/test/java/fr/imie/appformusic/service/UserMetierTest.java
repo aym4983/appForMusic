@@ -13,7 +13,7 @@ import org.easymock.TestSubject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import fr.imie.appformusic.dao.UserDao;
+import fr.imie.appformusic.dao.IUserDao;
 import fr.imie.appformusic.domain.User;
 import fr.imie.appformusic.exceptions.BusinessException;
 
@@ -21,7 +21,7 @@ import fr.imie.appformusic.exceptions.BusinessException;
 public class UserMetierTest {
 
 	@Mock
-	private UserDao daoMock;
+	private IUserDao daoMock;
 	
 	@TestSubject
 	private UserMetier service = new UserMetier();

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.imie.appformusic.dao.UserDao;
+import fr.imie.appformusic.dao.IUserDao;
 import fr.imie.appformusic.domain.User;
 import fr.imie.appformusic.exceptions.BusinessException;
 
@@ -16,7 +16,7 @@ import fr.imie.appformusic.exceptions.BusinessException;
 public class UserMetier {
 
 	@Autowired
-	private UserDao userDao;
+	private IUserDao userDao;
 	
 	public User findUserById(int userId) throws BusinessException{
 		// contrôles métier si nécessaire

@@ -1,6 +1,7 @@
 package fr.imie.appformusic.domain;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Classe représentant un événement.
@@ -14,6 +15,8 @@ public class Event {
 	private Date endDate;
 	private String[] genres;
 	private boolean published;
+	private ProfessionalPlace place;
+	private List<Boeuf> boeufs;
 	
 	/**
 	 * Obtient l'identifiant numérique de l'événement.
@@ -84,6 +87,34 @@ public class Event {
 	 */
 	public void setPublished(boolean published) {
 		this.published = published;
+	}
+	/**
+	 * Obtient l'établissement professionnel dans lequel se déroule l'événement.
+	 * @return L'établissement professionnel dans lequel se déroule l'événement.
+	 */
+	public ProfessionalPlace getPlace() {
+		return place;
+	}
+	/**
+	 * Définit l'établissement professionnel dans lequel se déroule l'événement.
+	 * @param place L'établissement professionnel à définir.
+	 */
+	public void setPlace(ProfessionalPlace place) {
+		this.place = place;
+	}
+	/**
+	 * Obtient la liste des boeufs de l'événement.
+	 * @return La liste des boeufs de l'événement.
+	 */
+	public List<Boeuf> getBoeufs() {
+		return boeufs;
+	}
+	/**
+	 * Définit la liste des boeufs de l'événement.
+	 * @param boeufs La liste des boeufs à définir.
+	 */
+	public void setBoeufs(List<Boeuf> boeufs) {
+		this.boeufs = boeufs;
 	}
 
 }

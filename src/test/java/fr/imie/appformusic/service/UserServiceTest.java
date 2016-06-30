@@ -28,7 +28,7 @@ public class UserServiceTest {
 	private IUserService service = new UserService();
 	
 	@Test
-	public void testFindUserByIdOk() throws BusinessException{
+	public void testFindUserByIdOk() throws BusinessException {
 		User user = new User();
 		user.setEmail("user@mail.com");
 		user.setPassword("userpass");
@@ -41,7 +41,7 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	public void testFindAllUsersOk(){
+	public void testFindAllUsersOk() throws BusinessException {
 		List<User> userList = new ArrayList<>();
 		
 		for (int i=0; i<5; i++){

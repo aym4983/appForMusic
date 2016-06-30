@@ -14,7 +14,7 @@ public class User {
 	private String password;
 	private String firstName;
 	private String lastName;
-	private boolean isProfessional;
+	private boolean professional;
 	private String[] instruments;
 	private List<Place> places;
 	private List<Boeuf> ownedBoeufs;
@@ -80,17 +80,17 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	/** Obtient une valeur précisant si l'utilisateur est un prefessionnel.
-	 * @return the isProfessional
+	/** Obtient la donnée précisant si l'utilisateur est un prefessionnel.
+	 * @return the professional
 	 */
 	public boolean isProfessional() {
-		return isProfessional;
+		return professional;
 	}
-	/** Définit une valeur précisant si l'utilisateur est un professionnel.
-	 * @param isProfessional the isProfessional to set
+	/** Définit la donnée précisant si l'utilisateur est un professionnel.
+	 * @param professional the professional to set
 	 */
-	public void setProfessional(boolean isProfessional) {
-		this.isProfessional = isProfessional;
+	public void setProfessional(boolean professional) {
+		this.professional = professional;
 	}
 	/** Obtient la liste des instruments joués par l'utilisateur.
 	 * @return the instruments

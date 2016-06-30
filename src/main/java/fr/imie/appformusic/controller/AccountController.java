@@ -27,7 +27,7 @@ public class AccountController {
 	 */
 	@RequestMapping(Routes.SIGNUP)
 	public ModelAndView signUpForm() {
-		return new ModelAndView("sign-in");
+		return new ModelAndView("sign-up");
 	}
 
 	/**

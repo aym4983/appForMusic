@@ -20,14 +20,14 @@ public class User {
 	private List<Boeuf> ownedBoeufs;
 	private List<Boeuf> playedBoeufs;
 	
-	/** Obtient le pseudonyme de l'utilisateur.
-	 * @return the userName
+	/** Obtient l'identifiant de l'utilisateur.
+	 * @return L'identifiant de l'utilisateur.
 	 */
 	public String getUserName() {
 		return userName;
 	}
-	/** Définit le pseudonyme de l'utilisateur.
-	 * @param userName the userName to set
+	/** Définit l'identifiant de l'utilisateur.
+	 * @param L'identifiant à définir.
 	 */
 	public void setUserName(String userName) {
 		this.userName = userName;

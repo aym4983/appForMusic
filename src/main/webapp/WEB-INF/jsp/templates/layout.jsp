@@ -6,7 +6,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>appForMusic</title>
-    <script src="<c:url value="/"/>/wro/common.js"></script>
+    <link rel="stylesheet" href="<c:url value="/"/>/wro/common_css.css"/>
+    <script src="<c:url value="/"/>/wro/common_js.js"></script>
 </head>
 <body>
 

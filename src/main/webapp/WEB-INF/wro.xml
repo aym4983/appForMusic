@@ -3,8 +3,15 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.isdc.ro/wro wro.xsd">
         
-   <group name="common">
-        <js>/js/lib/jquery-2.2.4.js</js> 
+   <group name="common_js">
+        <js>/js/lib/jquery-2.2.4.js</js>
+        <js>/js/lib/bootstrap.js</js>
+        <js>/js/lib/npm.js</js>
+   </group>
+   
+   <group name="common_css">
+        <css>/css/bootstrap-theme.css</css>
+        <css>/css/bootstrap.css</css>
    </group>     
         
 </groups>

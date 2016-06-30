@@ -36,8 +36,6 @@ public class MainControllerTest {
 	public void testGetAllUsersOk() throws Exception {
 		List<User> listUsers = new ArrayList<>();
 		User user = new User();
-		user.setId(1);
-		user.setName("userTest");
 		user.setEmail("userTest");
 		listUsers.add(user);
 		
@@ -50,7 +48,7 @@ public class MainControllerTest {
 		
 		// assertions
 		assertEquals(resultList.size(), 1);
-		assertEquals(resultList.get(0).getName(), "userTest");
+		assertEquals(resultList.get(0).getEmail(), "userTest");
 	}
 	
 	/*

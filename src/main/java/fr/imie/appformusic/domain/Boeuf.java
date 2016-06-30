@@ -17,6 +17,7 @@ public class Boeuf {
 	private int maxMusicians;
 	private String[] genres;
 	private String[] instruments;
+	private boolean published;
 	private User owner;
 	private List<User> musicians;
 	private Place place;
@@ -104,6 +105,20 @@ public class Boeuf {
 	 */
 	public void setInstruments(String[] instruments) {
 		this.instruments = instruments;
+	}
+	/**
+	 * Obtient la donnée précisant si le boeuf est publié.
+	 * @return La donnée précisant si le boeuf est publié.
+	 */
+	public boolean isPublished() {
+		return published;
+	}
+	/**
+	 * Définit la donnée précisant si le boeuf est publié.
+	 * @param published La donnée à définir.
+	 */
+	public void setPublished(boolean published) {
+		this.published = published;
 	}
 	/** Obtient l'utilisateur propriétaire du boeuf.
 	 * @return L'utilisateur propriétaire du boeuf.

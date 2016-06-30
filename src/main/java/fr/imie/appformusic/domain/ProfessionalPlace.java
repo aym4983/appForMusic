@@ -1,5 +1,7 @@
 package fr.imie.appformusic.domain;
 
+import java.util.List;
+
 /**
  * Classe représentant un établissement professionnel.
  * @author Dorian
@@ -9,8 +11,10 @@ public class ProfessionalPlace extends Place {
 	
 	private String publicName;
 	private String siret;
-	private boolean isValidated;
+	private boolean validated;
+	private boolean published;
 	private String googlePlaceId;
+	private List<Event> Events;
 	
 	/** Obtient le nom public de l'établissement professionnel.
 	 * @return Le nom public de l'établissement professionnel.
@@ -36,17 +40,29 @@ public class ProfessionalPlace extends Place {
 	public void setSiret(String siret) {
 		this.siret = siret;
 	}
-	/** Obtient la valeur précisant si l'établissement professionnel a été validé.
-	 * @return La valeur précisant si l'établissement professionnel a été validé.
+	/** Obtient la donnée précisant si l'établissement professionnel a été validé.
+	 * @return La donnée précisant si l'établissement professionnel a été validé.
 	 */
 	public boolean isValidated() {
-		return isValidated;
+		return validated;
 	}
-	/** Définit la valeur précisant si l'établissement professionnel a été validé.
-	 * @param isValidated La valeur à définir.
+	/** Définit la donnée précisant si l'établissement professionnel a été validé.
+	 * @param validated La donnée à définir.
 	 */
-	public void setValidated(boolean isValidated) {
-		this.isValidated = isValidated;
+	public void setValidated(boolean validated) {
+		this.validated = validated;
+	}
+	/** Obtient la donnée précisant si l'établissement professionnel est publié.
+	 * @return La donnée précisant si l'établissement professionnel est publié.
+	 */
+	public boolean isPublished() {
+		return published;
+	}
+	/** Définit la donnée précisant si l'établissement professionnel est publié.
+	 * @param published La donnée à définir.
+	 */
+	public void setPublished(boolean published) {
+		this.published = published;
 	}
 	/** Obtient l'identifiant de lieu Google.
 	 * @return L'identifiant de lieu Google.
@@ -59,6 +75,18 @@ public class ProfessionalPlace extends Place {
 	 */
 	public void setGooglePlaceId(String googlePlaceId) {
 		this.googlePlaceId = googlePlaceId;
+	}
+	/** Obtient la liste des événements de l'établissement professionnel.
+	 * @return La liste des événements de l'établissement professionnel.
+	 */
+	public List<Event> getEvents() {
+		return Events;
+	}
+	/** Définit la liste des événements de l'établissement professionnel.
+	 * @param events La liste des événements à définir.
+	 */
+	public void setEvents(List<Event> events) {
+		Events = events;
 	}
 
 }

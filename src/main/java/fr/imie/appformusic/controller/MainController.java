@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.imie.appformusic.domain.User;
-import fr.imie.appformusic.service.UserMetier;
+import fr.imie.appformusic.service.UserService;
 
 @Controller
 public class MainController {
 
 	@Autowired
-	private UserMetier service;
+	private UserService service;
 	
 	@RequestMapping("/main")
 	public ModelAndView init(){

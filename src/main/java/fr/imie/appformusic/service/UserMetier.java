@@ -18,11 +18,11 @@ public class UserMetier {
 	@Autowired
 	private IUserDao userDao;
 	
-	public User findUserById(int userId) throws BusinessException{
+	public User findByUserName(String userId) throws BusinessException{
 		// contrôles métier si nécessaire
 		
 		// appel de la dao
-		return userDao.findUserById(userId);
+		return userDao.findByUserName(userId);
 	}
 	
 	public List<User> findAllUsers(){

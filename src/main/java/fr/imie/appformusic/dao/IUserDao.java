@@ -6,7 +6,6 @@ import fr.imie.appformusic.domain.User;
 import fr.imie.appformusic.exceptions.TechnicalException;
 
 public interface IUserDao {
-
-	public User findUserById(int userId)throws TechnicalException;
+	public User findByUserName(String userName)throws TechnicalException;
 	public List<User> findAllUsers() throws TechnicalException;
 }

@@ -32,6 +32,8 @@ public class Web extends AbstractAnnotationConfigDispatcherServletInitializer {
 		FilterRegistration.Dynamic fr = servletContext.addFilter("webResourceOptimizer", new DelegatingFilterProxy("wroFilter"));
 		fr.addMappingForUrlPatterns(null, true, "/wro/*");
 		
+		fr = servletContext.addFilter("springSecurityFilterChain", new DelegatingFilterProxy());
+		fr.addMappingForUrlPatterns(null, true, "/*");
 		super.onStartup(servletContext);
 	}
 }

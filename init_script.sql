@@ -14,8 +14,106 @@ CREATE ROLE loic WITH SUPERUSER CREATEDB LOGIN PASSWORD 'loic';
 
 CREATE DATABASE appformusic;
 
-CREATE TABLE test (
-    id SERIAL,
-    nom VARCHAR(50),
-    CONSTRAINT test_pk PRIMARY KEY (id)
+
+
+CREATE DATABASE IF NOT EXISTS appformusic;
+
+USE appformusic;
+
+
+CREATE TABLE IF NOT EXISTS Genre (
+  id VARCHAR(10) NOT NULL,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS Instrument (
+  id VARCHAR(100) NOT NULL,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS User  (
+  userName VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  password  VARCHAR(255) NOT NULL,
+  enabled BOOL NOT NULL,
+  firstName VARCHAR(60) NOT NULL,
+  lastName VARCHAR(60) NOT NULL,
+  isProfessional BOOL NOT NULL,
+  phone VARCHAR(10) NULL,
+  PRIMARY KEY(userName)
+);
+
+CREATE TABLE IF NOT EXISTS Place (
+  id INTEGER NOT NULL AUTO_INCREMENT,
+  userName VARCHAR(255) NOT NULL,
+  label VARCHAR(255) NOT NULL,
+  address VARCHAR(255) NOT NULL,
+  cp VARCHAR(5) NOT NULL,
+  city VARCHAR(255) NOT NULL,
+  capacity INTEGER NOT NULL,
+  latitude DOUBLE NOT NULL,
+  longitude DOUBLE NOT NULL,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS ProfessionalPlace (
+  id INTEGER NOT NULL AUTO_INCREMENT,
+  idPlace INTEGER NOT NULL,
+  siret VARCHAR(255) NULL,
+  isValidated BOOL NULL,
+  googlePlaceId VARCHAR(255) NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY(idPlace) REFERENCES Place(id) 
+);
+
+CREATE TABLE IF NOT EXISTS Event (
+  id INTEGER NOT NULL AUTO_INCREMENT,
+  idGenre VARCHAR(10) NOT NULL,
+  startDate DATETIME NOT NULL,
+  endDate DATETIME NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY(idGenre) REFERENCES Genre(id)
+);
+
+CREATE TABLE IF NOT EXISTS PlayedInstruments (
+  userName VARCHAR(255) NOT NULL,
+  idInstrument VARCHAR(100) NOT NULL,
+  PRIMARY KEY(idInstrument, userName),
+  FOREIGN KEY(userName) REFERENCES User(userName),
+  FOREIGN KEY(idInstrument) REFERENCES Instrument(id)
+);
+
+CREATE TABLE IF NOT EXISTS Boeuf (
+  id INTEGER NOT NULL,
+  idGenre VARCHAR(10) NOT NULL,
+  idEvent INTEGER NOT NULL,
+  userName VARCHAR(255) NOT NULL,
+  label VARCHAR(255) NOT NULL,
+  maxMusicians INTEGER NOT NULL,
+  startDate DATETIME NOT NULL,
+  endDate DATETIME NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY(idGenre) REFERENCES Genre(id),
+  FOREIGN KEY(idEvent) REFERENCES Event(id),
+  FOREIGN KEY(userName) REFERENCES User(userName)
+);
+
+CREATE TABLE IF NOT EXISTS Participate (
+  idInstrument VARCHAR(100) NOT NULL,
+  userName VARCHAR(255) NOT NULL,
+  idBoeuf INTEGER NOT NULL,
+  PRIMARY KEY(idInstrument,userName,idBoeuf),
+  FOREIGN KEY(idBoeuf) REFERENCES Boeuf(id),
+  FOREIGN KEY(idInstrument) REFERENCES Instrument(id),
+  FOREIGN KEY(userName) REFERENCES User(userName)
+);
+
+CREATE TABLE IF NOT EXISTS Created  (
+  idPlace INTEGER NOT NULL,
+  idInstrument VARCHAR(100) NOT NULL,
+  userName VARCHAR(255) NOT NULL,
+  PRIMARY KEY(idPlace, idInstrument,userName),
+  FOREIGN KEY(idPlace) REFERENCES Place(id),
+  FOREIGN KEY(idInstrument) REFERENCES Instrument(id),
+  FOREIGN KEY(userName) REFERENCES User(userName)
 );

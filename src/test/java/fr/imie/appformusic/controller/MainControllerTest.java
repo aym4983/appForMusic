@@ -15,13 +15,13 @@ import org.junit.runner.RunWith;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.imie.appformusic.domain.User;
-import fr.imie.appformusic.service.UserMetier;
+import fr.imie.appformusic.service.UserService;
 
 @RunWith(EasyMockRunner.class)
 public class MainControllerTest {
 
 	@Mock
-	private UserMetier serviceMock;
+	private UserService serviceMock;
 	
 	@TestSubject
 	private MainController controller = new MainController();

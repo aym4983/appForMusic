@@ -11,6 +11,7 @@ import java.util.List;
 public class Boeuf {
 	
 	private int id;
+	private String label;
 	private Date startDate;
 	private Date endDate;
 	private int maxMusicians;
@@ -19,6 +20,7 @@ public class Boeuf {
 	private User owner;
 	private List<User> musicians;
 	private Place place;
+	
 	/** Obtient l'identifiant numérique du boeuf.
 	 * @return L'identifiant du boeuf.
 	 */
@@ -30,6 +32,18 @@ public class Boeuf {
 	 */
 	public void setId(int id) {
 		this.id = id;
+	}
+	/** Obtient le libellé du boeuf.
+	 * @return Le libellé du boeuf.
+	 */
+	public String getLabel() {
+		return label;
+	}
+	/** Définit le libellé du boeuf.
+	 * @param label Le libellé à définir.
+	 */
+	public void setLabel(String label) {
+		this.label = label;
 	}
 	/** Obtient la date de début du boeuf.
 	 * @return La date de début du boeuf.

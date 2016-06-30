@@ -14,7 +14,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 public class TestDispatcherConfig {
 
 	@Bean
-	public BasicDataSource dataSource(){
+	public BasicDataSource datasource(){
 		BasicDataSource ds = new BasicDataSource();
 		ds.setDriverClassName("org.hsqldb.jdbcDriver");
 		ds.setUrl("jdbc:hsqldb:mem:test_base");
@@ -26,7 +26,7 @@ public class TestDispatcherConfig {
 	@Bean
 	public DataSourceTransactionManager txManager(){
 		DataSourceTransactionManager tx = new DataSourceTransactionManager();
-		tx.setDataSource(this.dataSource());
+		tx.setDataSource(this.datasource());
 		return tx;
 	}
 	

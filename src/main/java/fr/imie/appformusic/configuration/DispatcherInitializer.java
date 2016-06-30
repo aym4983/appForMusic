@@ -6,6 +6,7 @@ import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.LocaleResolver;
@@ -23,7 +24,8 @@ import ro.isdc.wro.http.ConfigurableWroFilter;
 
 @Configuration
 @EnableWebMvc
-@EnableTransactionManagement()
+@EnableTransactionManagement
+@Import(SecurityConfig.class)
 @ComponentScan(basePackages = {"fr.imie.appformusic.controller", "fr.imie.appformusic.dao", "fr.imie.appformusic.service"})
 public class DispatcherInitializer extends WebMvcConfigurerAdapter  {
 

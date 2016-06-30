@@ -19,7 +19,7 @@ import fr.imie.appformusic.exceptions.TechnicalException;
 public class UserDaoImpl implements IUserDao {
 
 	@Autowired
-	@Qualifier(value="dataSource")
+	@Qualifier(value="datasource")
 	private DataSource ds;
 	
 	@Override

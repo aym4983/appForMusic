@@ -2,6 +2,8 @@ package fr.imie.appformusic.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import fr.imie.appformusic.domain.User;
 import fr.imie.appformusic.exceptions.TechnicalException;
 
@@ -10,6 +12,7 @@ import fr.imie.appformusic.exceptions.TechnicalException;
  * @author Dorian
  *
  */
+@Repository
 public class UserDaoImpl implements IUserDao {
 
 	@Override

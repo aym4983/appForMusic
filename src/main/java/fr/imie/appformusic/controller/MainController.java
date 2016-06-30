@@ -28,5 +28,4 @@ public class MainController {
 	public List<User> getAllUsers(){
 		return service.findAllUsers();
  	}
-	
 }

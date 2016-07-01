@@ -7,15 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Place")
-public class Place {
+public class Places {
 		
 	/** Attributes **/
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,8 +23,7 @@ public class Place {
 	private int id;
 	
 	@ManyToOne
-	@JoinColumn(name="userName")
-	private Users user;
+	private Users users;
 	
 	@Column(name="label",nullable=false,length=255)
 	private String label;
@@ -48,14 +47,14 @@ public class Place {
 	private double longtitude;
 	
 	@OneToOne
-	@JoinColumn(name="id",nullable=true)
-	private ProfessionalPlace professionalplace;
+	@PrimaryKeyJoinColumn
+	private ProfessionalsPlaces professionalplace;
 	
 	@OneToMany(mappedBy="place")
-	private Set<Created> listCreated;
+	private Set<Organize> listOrganize;
 	
 	/** Constructeurs **/
-	public Place(){
+	public Places(){
 		
 	}
 	
@@ -68,10 +67,10 @@ public class Place {
 	}
 	
 	public Users getUser() {
-		return user;
+		return users;
 	}
 	public void setUser(Users user) {
-		this.user = user;
+		this.users = user;
 	}
 	
 	public String getLabel() {
@@ -123,10 +122,10 @@ public class Place {
 		this.longtitude = longtitude;
 	}
 
-	public ProfessionalPlace getProfessionalplace() {
+	public ProfessionalsPlaces getProfessionalplace() {
 		return professionalplace;
 	}
-	public void setProfessionalplace(ProfessionalPlace professionalplace) {
+	public void setProfessionalplace(ProfessionalsPlaces professionalplace) {
 		this.professionalplace = professionalplace;
 	}
 }

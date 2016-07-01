@@ -1,7 +1,6 @@
 package fr.imie.appformusic.dao.entities;
 
 import java.sql.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -9,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -28,7 +26,7 @@ public class Events {
 	private int id;
 	
 	@ManyToOne
-	private Genre genre;
+	private Genres genre;
 	
 	@Column(name="startDate",nullable=false)
 	private Date startDate;
@@ -37,10 +35,10 @@ public class Events {
 	private Date endDate;
 	
 	@OneToMany(mappedBy="event")
-	private Set<Boeuf> ListBoeuf;
+	private Set<Boeufs> listBoeuf;
 	
 	@OneToMany(mappedBy="event")
-	private Set<Created> listCreated;
+	private Set<Organize> listOrganize;
 	
 	/** Constructeur **/
 	public Events(){
@@ -55,10 +53,10 @@ public class Events {
 		this.id = id;
 	}
 
-	public Genre getGenre() {
+	public Genres getGenre() {
 		return genre;
 	}
-	public void setGenre(Genre genre) {
+	public void setGenre(Genres genre) {
 		this.genre = genre;
 	}
 
@@ -76,10 +74,4 @@ public class Events {
 		this.endDate = endDate;
 	}
 	
-	public void addBoeuf(Boeuf b){
-		ListBoeuf.add(b);
-	}
-	public Set<Boeuf> getListBoeuf(){
-		return ListBoeuf;
-	}
 }

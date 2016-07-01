@@ -1,12 +1,10 @@
 package fr.imie.appformusic.dao.entities;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -46,16 +44,22 @@ public class Users {
 	@Column(name="phone", nullable=false,length=10)
 	private String phone;
 	
-	@OneToMany
-	@JoinColumn(name="id")
-	private Set<Boeuf> ListBoeuf = new HashSet<Boeuf>();
+	@OneToMany(mappedBy="users")
+	private Set<Boeufs> listBoeuf;
 	
-	@OneToMany
-	@JoinColumn(name="id")
-	private Set<Place> ListPlace = new HashSet<Place>();
+	@OneToMany(mappedBy="users")
+	private Set<Places> listPlace;
 	
-	@OneToMany(mappedBy="user")
-	private Set<Created> listCreated;
+	@OneToMany(mappedBy="users")
+	private Set<Organize> listCreated;
+	
+	@OneToMany(mappedBy="users")
+	private Set<Participate> listParticipate;
+	
+	@OneToMany(mappedBy="users")
+	private Set<Users_authorization> listUsers_authorization;
+	
+	
 	
 	/** Constructeur **/
 	public Users(){
@@ -118,11 +122,5 @@ public class Users {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
-	public void addBoeuf(Boeuf b){
-		ListBoeuf.add(b);
-	}
-	public Set<Boeuf> getListBoeuf(){
-		return ListBoeuf;
-	}
+
 }

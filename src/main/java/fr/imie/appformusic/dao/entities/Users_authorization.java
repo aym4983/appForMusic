@@ -9,27 +9,28 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="PlayedInstruments")
-public class PlayedInstruments {
+@Table(name="Users_authorization")
+public class Users_authorization {
 
-	/** Attributes **/ 
+	/** Attributes **/
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="id",nullable=false,unique=true)
-	private int id;
+	@Column(name="id",nullable=false,unique=true)	
+	private int user_role_id;
 	
 	@ManyToOne
 	private Users users;
 	
-	@ManyToOne
-	private Instruments instrument;
+	@Column(name="role", nullable=false, length=30)
+	private String role;
 	
-	/** Constructeurs **/
-	public PlayedInstruments()
-	{
-		
-	}
-
 	/** Getters and Setters **/
+	public int getUser_role_id() {
+		return user_role_id;
+	}
+	public void setUser_role_id(int user_role_id) {
+		this.user_role_id = user_role_id;
+	}
+	
 	public Users getUser() {
 		return users;
 	}
@@ -37,10 +38,11 @@ public class PlayedInstruments {
 		this.users = user;
 	}
 	
-	public Instruments getInstrument() {
-		return instrument;
+	public String getRole() {
+		return role;
 	}
-	public void setInstrument(Instruments instrument) {
-		this.instrument = instrument;
+	public void setRole(String role) {
+		this.role = role;
 	}
+	
 }

@@ -14,7 +14,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Genre")
-public class Genre {
+public class Genres {
 
 	/** Attributes **/
 	@Id
@@ -22,13 +22,13 @@ public class Genre {
 	private String id;
 	
 	@OneToMany(mappedBy="genre")
-	private Set<Boeuf> ListBoeuf;
+	private Set<Boeufs> listBoeuf;
 	
 	@OneToMany(mappedBy="genre")
-	private Set<Events> ListEvents;
+	private Set<Events> listEvents;
 	
 	/** Constructeur **/
-	public Genre(){
+	public Genres(){
 		
 	}
 
@@ -39,19 +39,5 @@ public class Genre {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
-	public Set<Boeuf> getListBoeuf() {
-		return ListBoeuf;
-	}
-	public void setListBoeuf(Set<Boeuf> listBoeuf) {
-		ListBoeuf = listBoeuf;
-	}
 
-	public Set<Events> getListEvents() {
-		return ListEvents;
-	}
-	public void setListEvents(Set<Events> listEvents) {
-		ListEvents = listEvents;
-	}
-	
 }

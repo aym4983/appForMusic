@@ -2,18 +2,20 @@ package fr.imie.appformusic.dao.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="ProfessionalPlace")
-public class ProfessionalPlace {
+public class ProfessionalsPlaces {
 
 	/** Attributes **/
-	@Id 
-	@Column(name="id",nullable=false,unique=true)
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="id",nullable=false,unique=true)	
 	private int id;
 	
 	@Column(name="siret",nullable=false,length=255)
@@ -25,12 +27,12 @@ public class ProfessionalPlace {
 	@Column(name="googlePlaceId",nullable=false,length=255)
 	private String googlePlaceId;
 	
-	@OneToOne
-	@JoinColumn(name="id",nullable=true)
-	private Place place;
+	@OneToOne(mappedBy="professionalplace")
+	@PrimaryKeyJoinColumn
+	private Places place;
 
 	/** Constructeurs **/
-	public ProfessionalPlace(){
+	public ProfessionalsPlaces(){
 		
 	}
 	
@@ -63,10 +65,10 @@ public class ProfessionalPlace {
 		this.googlePlaceId = googlePlaceId;
 	}
 	
-	public Place getPlace() {
+	public Places getPlace() {
 		return place;
 	}
-	public void setPlace(Place place) {
+	public void setPlace(Places place) {
 		this.place = place;
 	}
 }

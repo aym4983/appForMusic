@@ -1,8 +1,11 @@
 package fr.imie.appformusic.dao.entities;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 /**
  * 
@@ -17,7 +20,13 @@ public class Instruments {
 	@Id 
 	@Column(name="id",nullable=false,unique=true)
 	private String id;
+	
+	@OneToMany(mappedBy="instrument")
+	private Set<PlayedInstruments> listPlayedInstruments;
 
+	@OneToMany(mappedBy="instrument")
+	private Set<Participate> listParticipate;
+	
 	/** Constructeurs **/
 	public Instruments(){
 		
@@ -30,6 +39,5 @@ public class Instruments {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
-	
+
 }

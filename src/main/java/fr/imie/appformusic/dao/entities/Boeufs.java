@@ -1,14 +1,15 @@
 package fr.imie.appformusic.dao.entities;
 
 import java.sql.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -19,7 +20,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Boeuf")
-public class Boeuf {
+public class Boeufs {
 	
 	/** Attributes **/
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,7 +28,7 @@ public class Boeuf {
 	private int id;
 	
 	@ManyToOne
-	private Genre genre;
+	private Genres genre;
 	
 	@ManyToOne
 	private Events event;
@@ -47,8 +48,11 @@ public class Boeuf {
 	@Column(name="endDate",nullable=false)
 	private Date endDate;
 	
+	@OneToMany(mappedBy="boeuf")
+	private Set<Participate> listParticipate;
+	
 	/** Constructeur **/
-	public Boeuf(){
+	public Boeufs(){
 		
 	}
 	

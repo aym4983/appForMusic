@@ -27,4 +27,10 @@ public class UserDaoImpl implements IUserDao {
 		return null;
 	}
 
+	@Override
+	public User findByEmail(String email) throws TechnicalException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

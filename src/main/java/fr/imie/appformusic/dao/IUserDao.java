@@ -8,4 +8,5 @@ import fr.imie.appformusic.exceptions.TechnicalException;
 public interface IUserDao {
 	public User findByUserName(String userName)throws TechnicalException;
 	public List<User> findAllUsers() throws TechnicalException;
+	public User findByEmail(String email) throws TechnicalException;
 }

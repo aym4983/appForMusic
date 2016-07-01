@@ -26,18 +26,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configAuthentification(AuthenticationManagerBuilder auth)throws Exception{
 		auth.jdbcAuthentication().dataSource(datasource)
-			.usersByUsernameQuery("select identifiant, mdp, enabled from utilisateur where identifiant=?");
+			.usersByUsernameQuery("select userName, password, enabled from Users where userName=?")
+			.authoritiesByUsernameQuery("select userName, role from Users_authorization where userName=?");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/register").permitAll()
+			.antMatchers("/sign-up").permitAll()
 			.anyRequest().authenticated()
 			.and()
-			.formLogin()
-			.usernameParameter("identifiant")
-			.passwordParameter("mdp")
+			.formLogin().permitAll()
+			.usernameParameter("username")
+			.passwordParameter("password")
 			.and()
 			.logout()
 			.and()

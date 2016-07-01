@@ -42,6 +42,14 @@ CREATE TABLE Users(
   PRIMARY KEY(userName)
 );
 
+CREATE TABLE Users_authorization(
+    user_role_id SERIAL,
+    userName VARCHAR(255) NOT NULL,
+    role VARCHAR(30) NOT NULL,
+    PRIMARY KEY(user_role_id),
+    FOREIGN KEY (userName) REFERENCES Users(userName)
+);
+
 CREATE TABLE Place (
   id SERIAL NOT NULL,
   userName VARCHAR(255) NOT NULL,

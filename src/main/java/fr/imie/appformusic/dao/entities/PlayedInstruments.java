@@ -1,6 +1,11 @@
 package fr.imie.appformusic.dao.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -8,7 +13,14 @@ import javax.persistence.Table;
 public class PlayedInstruments {
 
 	/** Attributes **/ 
-	private Users user;
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="id",nullable=false,unique=true)
+	private int id;
+	
+	@ManyToOne
+	private Users users;
+	
+	@ManyToOne
 	private Instruments instrument;
 	
 	/** Constructeurs **/
@@ -16,13 +28,13 @@ public class PlayedInstruments {
 	{
 		
 	}
-	
+
 	/** Getters and Setters **/
 	public Users getUser() {
-		return user;
+		return users;
 	}
 	public void setUser(Users user) {
-		this.user = user;
+		this.users = user;
 	}
 	
 	public Instruments getInstrument() {

@@ -20,12 +20,12 @@ GRANT CONNECT ON DATABASE appformusic TO admini;
 
 \connect appformusic;
 
-CREATE TABLE Genre (
+CREATE TABLE Genres (
   id VARCHAR(10) NOT NULL,
   PRIMARY KEY(id)
 );
 
-CREATE TABLE Instrument (
+CREATE TABLE Instruments (
   id VARCHAR(100) NOT NULL,
   PRIMARY KEY(id)
 );
@@ -44,15 +44,15 @@ CREATE TABLE Users(
 
 CREATE TABLE Users_authorization(
     user_role_id SERIAL,
-    userName VARCHAR(255) NOT NULL,
+    users VARCHAR(255) NOT NULL,
     role VARCHAR(30) NOT NULL,
     PRIMARY KEY(user_role_id),
-    FOREIGN KEY (userName) REFERENCES Users(userName)
+    FOREIGN KEY (users) REFERENCES Users(userName)
 );
 
-CREATE TABLE Place (
+CREATE TABLE Places (
   id SERIAL NOT NULL,
-  userName VARCHAR(255) NOT NULL,
+  users VARCHAR(255) NOT NULL,
   label VARCHAR(255) NOT NULL,
   address VARCHAR(255) NOT NULL,
   cp VARCHAR(5) NOT NULL,
@@ -61,66 +61,70 @@ CREATE TABLE Place (
   latitude DECIMAL NOT NULL,
   longitude DECIMAL NOT NULL,
   PRIMARY KEY(id)
+  FOREIGN KEY(users) REFERENCES Users(userName)
 );
 
-CREATE TABLE ProfessionalPlace (
+CREATE TABLE ProfessionalsPlaces (
   id SERIAL NOT NULL ,
-  idPlace INTEGER NOT NULL,
+  place INTEGER NOT NULL,
   siret VARCHAR(255) NULL,
   isValidated BOOL NULL,
   googlePlaceId VARCHAR(255) NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(idPlace) REFERENCES Place(id) 
+  FOREIGN KEY(place) REFERENCES Places(id) 
 );
 
 CREATE TABLE Events (
   id SERIAL NOT NULL,
-  idGenre VARCHAR(10) NOT NULL,
+  genre VARCHAR(10) NOT NULL,
   startDate TIMESTAMP NOT NULL,
   endDate TIMESTAMP NOT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(idGenre) REFERENCES Genre(id)
+  FOREIGN KEY(genre) REFERENCES Genres(id)
 );
 
 CREATE TABLE PlayedInstruments (
-  userName VARCHAR(255) NOT NULL,
-  idInstrument VARCHAR(100) NOT NULL,
-  PRIMARY KEY(idInstrument, userName),
-  FOREIGN KEY(userName) REFERENCES Users(userName),
-  FOREIGN KEY(idInstrument) REFERENCES Instrument(id)
+  id SERIAL NOT NULL,
+  users VARCHAR(255) NOT NULL,
+  instrument VARCHAR(100) NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY(users) REFERENCES Users(userName),
+  FOREIGN KEY(instrument) REFERENCES Instruments(id)
 );
 
-CREATE TABLE Boeuf (
+CREATE TABLE Boeufs (
   id INTEGER NOT NULL,
-  idGenre VARCHAR(10) NOT NULL,
-  idEvent INTEGER NOT NULL,
-  userName VARCHAR(255) NOT NULL,
+  genre VARCHAR(10) NOT NULL,
+  event INTEGER NOT NULL,
+  users VARCHAR(255) NOT NULL,
   label VARCHAR(255) NOT NULL,
   maxMusicians INTEGER NOT NULL,
   startDate TIMESTAMP NOT NULL,
   endDate TIMESTAMP NOT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(idGenre) REFERENCES Genre(id),
-  FOREIGN KEY(idEvent) REFERENCES Events(id),
-  FOREIGN KEY(userName) REFERENCES Users(userName)
+  FOREIGN KEY(genre) REFERENCES Genres(id),
+  FOREIGN KEY(event) REFERENCES Events(id),
+  FOREIGN KEY(users) REFERENCES Users(userName)
 );
 
 CREATE TABLE Participate (
-  idInstrument VARCHAR(100) NOT NULL,
-  userName VARCHAR(255) NOT NULL,
-  idBoeuf INTEGER NOT NULL,
-  PRIMARY KEY(idInstrument,userName,idBoeuf),
-  FOREIGN KEY(idBoeuf) REFERENCES Boeuf(id),
-  FOREIGN KEY(idInstrument) REFERENCES Instrument(id),
-  FOREIGN KEY(userName) REFERENCES Users(userName)
+  id SERIAL NOT NULL,
+  instrument VARCHAR(100) NOT NULL,
+  users VARCHAR(255) NOT NULL,
+  boeuf INTEGER NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY(boeuf) REFERENCES Boeufs(id),
+  FOREIGN KEY(instrument) REFERENCES Instruments(id),
+  FOREIGN KEY(users) REFERENCES Users(userName)
 );
 
-CREATE TABLE Organise  (
-  idPlace INTEGER NOT NULL,
-  idInstrument VARCHAR(100) NOT NULL,
-  userName VARCHAR(255) NOT NULL,
-  PRIMARY KEY(idPlace, idInstrument,userName),
-  FOREIGN KEY(idPlace) REFERENCES Place(id),
-  FOREIGN KEY(idInstrument) REFERENCES Instrument(id),
-  FOREIGN KEY(userName) REFERENCES Users(userName)
+CREATE TABLE Organize  (
+  id SERIAL NOT NULL,
+  place INTEGER NOT NULL,
+  instrument VARCHAR(100) NOT NULL,
+  users VARCHAR(255) NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY(place) REFERENCES Places(id),
+  FOREIGN KEY(instrument) REFERENCES Instruments(id),
+  FOREIGN KEY(users) REFERENCES Users(userName)
 );

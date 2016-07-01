@@ -1,8 +1,6 @@
 package fr.imie.appformusic.dao;
 
-import javax.sql.DataSource;
-
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.After;
 import org.junit.Before;

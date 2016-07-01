@@ -54,7 +54,7 @@ public class DispatcherInitializer extends WebMvcConfigurerAdapter  {
 	public BasicDataSource datasource(){
 		BasicDataSource ds = new BasicDataSource();
 		ds.setDriverClassName("org.postgresql.Driver");
-		ds.setUrl("jdbc:postgresql://localhost:5433/jee_db");
+		ds.setUrl("jdbc:postgresql://192.168.99.100:32770/appformusic");
 		ds.setUsername("loic");
 		ds.setPassword("loic");
 		ds.setInitialSize(4);

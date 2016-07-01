@@ -22,5 +22,10 @@ public class AccountControllerTest {
 		ModelAndView mav = controller.signUpForm();
 		assertThat(mav.getViewName()).contains("sign-up");
 	}
+	
+	@Test
+	public void testSignUpSubmit(){
+		
+	}
 
 }

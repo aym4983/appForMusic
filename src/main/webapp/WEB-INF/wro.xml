@@ -7,6 +7,9 @@
         <js>/js/lib/jquery-2.2.4.js</js>
         <js>/js/lib/bootstrap.js</js>
         <js>/js/lib/npm.js</js>
+        
+        <!-- Placer ici les js de l'application -->
+        <js>/js/app.js</js>
    </group>
    
    <group name="common_css">

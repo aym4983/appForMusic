@@ -36,7 +36,7 @@ public class AccountController {
 	 * @param request 	La requête HTTP.
 	 * @return 			Une redirection vers la page d'accueil du site.
 	 */
-	@RequestMapping(value=Routes.SIGNUP, method=RequestMethod.POST)
+	@RequestMapping(value=Routes.SIGNUP+"/submit", method=RequestMethod.POST)
 	public ModelAndView signUpSubmit(User user, HttpServletRequest request) {
 		Locale local = request.getLocale();
 		try {
@@ -52,5 +52,6 @@ public class AccountController {
 		}
 		return new ModelAndView("redirect:" + Routes.HOME);
 	}
+	
 
 }

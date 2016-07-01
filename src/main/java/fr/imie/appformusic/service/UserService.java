@@ -2,8 +2,10 @@ package fr.imie.appformusic.service;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.imie.appformusic.dao.IUserDao;
 import fr.imie.appformusic.domain.User;
@@ -13,6 +15,7 @@ import fr.imie.appformusic.exceptions.BusinessException;
  * Non implémenté car exemple pour test driven development
  */
 @Service
+@Transactional
 public class UserService implements IUserService {
 
 	@Autowired
@@ -28,10 +31,11 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public User findByEmail(String email) 
-			throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+	public User findByEmail(String email) throws BusinessException {
+		if(StringUtils.isEmpty(email)){
+			throw new BusinessException("email is empty");
+		}
+		return userDao.findByEmail(email);
 	}
 	
 	@Override

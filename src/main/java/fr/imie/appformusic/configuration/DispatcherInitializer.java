@@ -2,12 +2,18 @@ package fr.imie.appformusic.configuration;
 
 import java.util.Locale;
 
-import org.apache.commons.dbcp.BasicDataSource;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
+import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -27,15 +33,14 @@ import ro.isdc.wro.http.ConfigurableWroFilter;
 @EnableTransactionManagement
 @Import(SecurityConfig.class)
 @ComponentScan(basePackages = {"fr.imie.appformusic.controller", "fr.imie.appformusic.dao", "fr.imie.appformusic.service"})
+@PropertySources({
+	@PropertySource("classpath:database.properties"),
+	@PropertySource("classpath:hibernate.properties")
+})
 public class DispatcherInitializer extends WebMvcConfigurerAdapter  {
 
-//	@Bean
-//	public InternalResourceViewResolver viewResolver (){
-//		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-//		resolver.setPrefix("/WEB-INF/jsp/");
-//		resolver.setSuffix(".jsp");
-//		return resolver;
-//	}
+	@Autowired
+	private Environment env;
 	
 	@Bean
 	public UrlBasedViewResolver tilesResolver(){
@@ -51,20 +56,29 @@ public class DispatcherInitializer extends WebMvcConfigurerAdapter  {
 	}
 	
 	@Bean
-	public BasicDataSource datasource(){
-		BasicDataSource ds = new BasicDataSource();
-		ds.setDriverClassName("org.postgresql.Driver");
-		ds.setUrl("jdbc:postgresql://192.168.99.100:32770/appformusic");
-		ds.setUsername("loic");
-		ds.setPassword("loic");
-		ds.setInitialSize(4);
+	public DriverManagerDataSource datasource(){
+		DriverManagerDataSource ds = new DriverManagerDataSource();
+		ds.setDriverClassName(env.getProperty("jdbc.driver"));
+		ds.setUrl(env.getProperty("jdbc.url"));
+		ds.setUsername(env.getProperty("jdbc.username"));
+		ds.setPassword(env.getProperty("jdbc.password"));
 		return ds;
 	}
 	
 	@Bean
-	public DataSourceTransactionManager txManager(){
-		DataSourceTransactionManager tx = new DataSourceTransactionManager();
-		tx.setDataSource(this.datasource());
+	public SessionFactory sessionFactory(){
+		LocalSessionFactoryBuilder sessionFactory = new LocalSessionFactoryBuilder(datasource());
+		sessionFactory.scanPackages("fr.imie.appformusic.dao.entities");
+		sessionFactory.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+		sessionFactory.setProperty("hibernate.show_sql", "true");
+		return sessionFactory.buildSessionFactory();
+	}
+	
+	@Autowired
+	@Bean
+	public HibernateTransactionManager txManager(SessionFactory sessionFactory){
+		HibernateTransactionManager tx = new HibernateTransactionManager();
+		tx.setSessionFactory(sessionFactory);
 		return tx;
 	}
 	

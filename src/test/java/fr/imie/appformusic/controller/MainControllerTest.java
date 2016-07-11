@@ -15,6 +15,7 @@ import org.junit.runner.RunWith;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.imie.appformusic.domain.User;
+import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.service.UserService;
 
 @RunWith(EasyMockRunner.class)
@@ -55,7 +56,7 @@ public class MainControllerTest {
 	 * Si la méthode du service lance une exception
 	 */
 	@Test(expected=Exception.class)
-	public void testGetAllUsersKo(){
+	public void testGetAllUsersKo() throws BusinessException{
 		expect(serviceMock.findAllUsers()).andThrow(new Exception("Erreur")).times(1);
 		replay(serviceMock);
 		

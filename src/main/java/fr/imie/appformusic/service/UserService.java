@@ -46,7 +46,7 @@ public class UserService implements IUserService {
 	@Override
 	public void create(User user) 
 			throws BusinessException {
-		// TODO Auto-generated method stub
+		userDao.create(user);
 		
 	}
 

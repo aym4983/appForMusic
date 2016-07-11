@@ -33,4 +33,10 @@ public class UserDaoImpl implements IUserDao {
 		return null;
 	}
 
+	@Override
+	public void create(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

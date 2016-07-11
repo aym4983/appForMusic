@@ -3,7 +3,7 @@ package fr.imie.appformusic.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.replay;
-import static org.junit.Assert.assertEquals;
+import static org.easymock.EasyMock.expectLastCall;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +80,16 @@ public class UserServiceTest {
 	@Test(expected=BusinessException.class)
 	public void testFindByEmailKo() throws BusinessException{
 		service.findByEmail("");
+	}
+	
+	@Test
+	public void testCreerUser() throws BusinessException{
+		User user = new User();
+		daoMock.create(user);
+		expectLastCall().times(1);
+		replay(daoMock);
+		service.create(user);
+		
 	}
 	
 }

@@ -1,11 +1,11 @@
-create table utilisateur (
+create table Users (
     id int primary key,
-    nom varchar(200),
-    mdp varchar(200),
-    email varchar(200)
+    Username varchar(200),
+    Password varchar(200),
+    Email varchar(200)
 );
 
-insert into utilisateur (id, nom, mdp, email) values (
+insert into Users (id, Username, Password, Email) values (
     1,
     'nomTest',
     'mdpTest',

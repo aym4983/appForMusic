@@ -1,24 +1,49 @@
 package fr.imie.appformusic.domain;
 
-import java.util.List;
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Classe représentant un utilisateur.
  * @author Dorian
  *
  */
-public class User {
+@Entity
+@Table(name="Users")
+public class User implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5219643569000183378L;
+	
+	@Id @Column
+	private int id;
+	@Column(name="Username")
 	private String userName;
+	@Column(name="Email")
 	private String email;
+	@Column(name="Password")
 	private String password;
-	private String firstName;
-	private String lastName;
-	private boolean professional;
-	private String[] instruments;
-	private List<Place> places;
-	private List<Boeuf> ownedBoeufs;
-	private List<Boeuf> playedBoeufs;
+	//private String firstName;
+	//private String lastName;
+	//private boolean professional;
+	//private String[] instruments;
+	//private List<Place> places;
+	//private List<Boeuf> ownedBoeufs;
+	//private List<Boeuf> playedBoeufs;
+	
+	public User(){}
+	public User(int id, String username, String email, String password){
+		this.id = id;
+		this.userName = username;
+		this.email = email;
+		this.password = password;
+	}
 	
 	/** Obtient l'identifiant de l'utilisateur.
 	 * @return L'identifiant de l'utilisateur.
@@ -59,86 +84,12 @@ public class User {
 	/** Obtient le prénom de l'utilisateur.
 	 * @return the firstName
 	 */
-	public String getFirstName() {
-		return firstName;
+	
+	public int getId() {
+		return id;
 	}
-	/** Définit le prénom de l'utilisateur.
-	 * @param firstName the firstName to set
-	 */
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	/** Obtient le nom de famille de l'utilisateur.
-	 * @return the lastName
-	 */
-	public String getLastName() {
-		return lastName;
-	}
-	/** Définit le nom de famille de l'utilisateur.
-	 * @param lastName the lastName to set
-	 */
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	/** Obtient la donnée précisant si l'utilisateur est un prefessionnel.
-	 * @return the professional
-	 */
-	public boolean isProfessional() {
-		return professional;
-	}
-	/** Définit la donnée précisant si l'utilisateur est un professionnel.
-	 * @param professional the professional to set
-	 */
-	public void setProfessional(boolean professional) {
-		this.professional = professional;
-	}
-	/** Obtient la liste des instruments joués par l'utilisateur.
-	 * @return the instruments
-	 */
-	public String[] getInstruments() {
-		return instruments;
-	}
-	/** Définit la liste des instruments joués par l'utilisateur.
-	 * @param instruments the instruments to set
-	 */
-	public void setInstruments(String[] instruments) {
-		this.instruments = instruments;
-	}
-	/** Obtient la liste des lieux enregistrés par l'utilisateur.
-	 * @return the places
-	 */
-	public List<Place> getPlaces() {
-		return places;
-	}
-	/** Définit la liste des lieux enregistrés par l'utilisateur.
-	 * @param places the places to set
-	 */
-	public void setPlaces(List<Place> places) {
-		this.places = places;
-	}
-	/** Obtient la liste des boeufs organisés par l'utilisateur.
-	 * @return the ownedBoeufs
-	 */
-	public List<Boeuf> getOwnedBoeufs() {
-		return ownedBoeufs;
-	}
-	/** Définit la liste des boeufs organisés par l'utilisateur.
-	 * @param ownedBoeufs the ownedBoeufs to set
-	 */
-	public void setOwnedBoeufs(List<Boeuf> ownedBoeufs) {
-		this.ownedBoeufs = ownedBoeufs;
-	}
-	/** Obtient la liste des boeufs dans lesquels l'utilisateur joue.
-	 * @return the playedBoeufs
-	 */
-	public List<Boeuf> getPlayedBoeufs() {
-		return playedBoeufs;
-	}
-	/** Définit la liste des boeufs dans lesquels l'utilisateur joue.
-	 * @param playedBoeufs the playedBoeufs to set
-	 */
-	public void setPlayedBoeufs(List<Boeuf> playedBoeufs) {
-		this.playedBoeufs = playedBoeufs;
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

@@ -2,6 +2,8 @@ package fr.imie.appformusic.dao;
 
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fr.imie.appformusic.domain.User;
@@ -15,6 +17,9 @@ import fr.imie.appformusic.exceptions.TechnicalException;
 @Repository
 public class UserDaoImpl implements IUserDao {
 
+	@Autowired
+	private SessionFactory sessionFactory;
+	
 	@Override
 	public User findByUserName(String userName) throws TechnicalException {
 		// TODO Auto-generated method stub
@@ -23,8 +28,8 @@ public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public List<User> findAllUsers() throws TechnicalException {
-		// TODO Auto-generated method stub
-		return null;
+		List<User> list = sessionFactory.getCurrentSession().createQuery("from User", User.class).getResultList();
+		return list;
 	}
 
 	@Override

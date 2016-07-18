@@ -2,9 +2,12 @@ package fr.imie.appformusic.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -21,7 +24,7 @@ public class User implements Serializable {
 	 */
 	private static final long serialVersionUID = 5219643569000183378L;
 	
-	@Id @Column
+	@Id @Column(name="IdUser")
 	private int id;
 	@Column(name="Username")
 	private String userName;
@@ -29,22 +32,28 @@ public class User implements Serializable {
 	private String email;
 	@Column(name="Password")
 	private String password;
-	//private String firstName;
-	//private String lastName;
-	//private boolean professional;
-	//private String[] instruments;
-	//private List<Place> places;
-	//private List<Boeuf> ownedBoeufs;
-	//private List<Boeuf> playedBoeufs;
+	@Column(name="Rank")
+	private int rank;
+	@Column(name="Firstname")
+	private String firstName;
+	@Column(name="Lastname")
+	private String lastName;
+	@OneToOne(mappedBy="user", cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.LAZY)
+	private Place place;
 	
 	public User(){}
-	public User(int id, String username, String email, String password){
+	
+	public User(int id, String userName, String email, String password, int rank, String firstName, String lastName) {
+		super();
 		this.id = id;
-		this.userName = username;
+		this.userName = userName;
 		this.email = email;
 		this.password = password;
+		this.rank = rank;
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
-	
+
 	/** Obtient l'identifiant de l'utilisateur.
 	 * @return L'identifiant de l'utilisateur.
 	 */
@@ -81,15 +90,38 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	/** Obtient le prénom de l'utilisateur.
-	 * @return the firstName
-	 */
 	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public int getRank() {
+		return rank;
+	}
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+
+	public Place getPlace() {
+		return place;
+	}
+
+	public void setPlace(Place place) {
+		this.place = place;
 	}
 	
 }

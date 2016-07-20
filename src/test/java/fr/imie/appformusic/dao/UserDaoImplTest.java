@@ -18,6 +18,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.imie.appformusic.configuration.TestDispatcherConfig;
+import fr.imie.appformusic.domain.Place;
 import fr.imie.appformusic.domain.User;
 
 /**
@@ -52,6 +53,17 @@ public class UserDaoImplTest {
 		assertThat(listUser).isNotNull();
 		assertThat(listUser.get(0).getUserName()).isEqualTo("test");
 		assertThat(listUser.get(0).getPlace().getIdPlace()).isEqualTo(2);
+	}
+	
+	@Test
+	@Transactional
+	public void testCreateUser(){
+		User user = new User(2, "user", "usermail", "mdp", 5, "loic", "chaucheprat");
+		Place place = new Place(1, "placename", "blablabla");
+		user.setPlace(place);
+		
+		userDao.create(user);
+		
 	}
 
 	@After

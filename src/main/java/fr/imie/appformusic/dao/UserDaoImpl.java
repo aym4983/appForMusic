@@ -2,6 +2,8 @@ package fr.imie.appformusic.dao;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -40,8 +42,8 @@ public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public void create(User user) {
-		// TODO Auto-generated method stub
-		
+		EntityManager em = sessionFactory.createEntityManager();
+		em.persist(user);
 	}
 
 }

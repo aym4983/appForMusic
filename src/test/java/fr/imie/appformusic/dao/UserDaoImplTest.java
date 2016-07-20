@@ -2,9 +2,10 @@ package fr.imie.appformusic.dao;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.imie.appformusic.configuration.TestDispatcherConfig;
+import fr.imie.appformusic.domain.User;
 
 /**
  * 
@@ -45,9 +47,11 @@ public class UserDaoImplTest {
 	
 	@Test
 	@Transactional
-	@Ignore
-	public void test(){
-		assertThat(userDao.findAllUsers()).isNotNull();
+	public void testFindAllUsers(){
+		List<User> listUser = userDao.findAllUsers();
+		assertThat(listUser).isNotNull();
+		assertThat(listUser.get(0).getUserName()).isEqualTo("test");
+		assertThat(listUser.get(0).getPlace().getIdPlace()).isEqualTo(2);
 	}
 
 	@After

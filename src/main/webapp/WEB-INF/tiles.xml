@@ -15,13 +15,13 @@
         <put-attribute name="footer" value=""/>
     </definition>
     
-    <definition name="signIn" extends="baseDefinition">
+    <definition name="sign-in" extends="baseDefinition">
         <put-attribute name="header" value="/WEB-INF/jsp/blocs/header.jsp"/>
         <put-attribute name="body" value="/WEB-INF/jsp/pages/sign-in.jsp"/>
         <put-attribute name="footer" value=""/>
     </definition>
     
-    <definition name="signUp" extends="baseDefinition">
+    <definition name="sign-up" extends="baseDefinition">
         <put-attribute name="header" value="/WEB-INF/jsp/blocs/header.jsp"/>
         <put-attribute name="body" value="/WEB-INF/jsp/pages/sign-up.jsp"/>
         <put-attribute name="footer" value=""/>

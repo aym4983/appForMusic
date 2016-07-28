@@ -1,7 +1,5 @@
 package fr.imie.appformusic.controller;
 
-import java.util.Locale;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +18,23 @@ public class AccountController {
 	
 	@Autowired
 	private IUserService userService;
-	
+
 	/**
 	 * Affiche le formulaire d'inscription.
 	 * @return La vue du formulaire d'inscription.
 	 */
 	@RequestMapping(Routes.SIGNUP)
-	public ModelAndView signUpForm() {
+	public ModelAndView showSignUpForm() {
 		return new ModelAndView("sign-up");
+	}
+	
+	/**
+	 * Affiche le formulaire de connexion.
+	 * @return La vue du formulaire de connexion.
+	 */
+	@RequestMapping(Routes.SIGNIN)
+	public ModelAndView showSignInForm() {
+		return new ModelAndView("sign-in");
 	}
 
 	/**
@@ -38,7 +45,6 @@ public class AccountController {
 	 */
 	@RequestMapping(value=Routes.SIGNUP+"/submit", method=RequestMethod.POST)
 	public ModelAndView signUpSubmit(AppUser user, HttpServletRequest request) {
-		Locale local = request.getLocale();
 		try {
 			userService.create(user);
 		} catch (BusinessException e) {

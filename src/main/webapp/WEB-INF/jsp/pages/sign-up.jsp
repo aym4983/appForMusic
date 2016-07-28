@@ -2,9 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
-<c:url name="url.base" value="/" />
-
-<form:form action="${ url.base }" method="post">
+<form:form action="" method="post">
 
 	<p class="form-group">
 		<form:label path="userName"></form:label>
@@ -22,6 +20,7 @@
 		<form:label path="password-confirm"></form:label>
 		<form:input path="password-confirm" id="signup-password-confirm" class="form-control"/></p>
 	
-	<p><input type="submit" name="signup" value="Connexion" class="btn btn-primary" /></p>
+	<p><input type="submit" name="signup" value="Inscription" class="btn btn-primary" />
+		<a href="${ url.signIn }" class="btn btn-default">J'ai déjà un compte.</a></p>
 	
 </form:form>

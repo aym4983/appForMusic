@@ -126,13 +126,13 @@ public class UserService implements IUserService, UserDetailsService {
 	
 	// Converts AppUser user to
 		// org.springframework.security.core.userdetails.User
-		private User buildUserForAuthentication(AppUser user, 
+		protected User buildUserForAuthentication(AppUser user, 
 			List<GrantedAuthority> authorities) {
 			return new User(user.getUserName(), user.getPassword(), 
 				user.isEnabled(), true, true, true, authorities);
 		}
 	
-	private List<GrantedAuthority> buildUserAuthority(Set<UserRole> userRoles) {
+	protected List<GrantedAuthority> buildUserAuthority(Set<UserRole> userRoles) {
 
 		Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
 

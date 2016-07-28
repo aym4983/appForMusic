@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,7 @@ public class UserDaoImplTest {
 		List<User> listUser = userDao.findAllUsers();
 		assertThat(listUser).isNotNull();
 		assertThat(listUser.get(0).getUserName()).isEqualTo("test");
-		assertThat(listUser.get(0).getPlace().getIdPlace()).isEqualTo(2);
+		assertThat(listUser.get(0).getPlace().getPlaceId()).isEqualTo(2);
 	}
 
 	@After

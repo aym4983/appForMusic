@@ -1,4 +1,4 @@
-package fr.imie.appformusic.dao;
+package fr.imie.appformusic.dao.impl;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import fr.imie.appformusic.dao.IUserDao;
 import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.exceptions.TechnicalException;
 
@@ -18,7 +19,7 @@ import fr.imie.appformusic.exceptions.TechnicalException;
  *
  */
 @Repository
-public class UserDaoImpl implements IUserDao {
+public class UserDao implements IUserDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;

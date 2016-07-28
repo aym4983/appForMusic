@@ -3,10 +3,7 @@ package fr.imie.appformusic.domain;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -25,9 +22,6 @@ public class AppUser implements Serializable {
 	private static final long serialVersionUID = 5219643569000183378L;
 	
 	@Id
-	@Column(name="userId")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	private int id;
 	private String userName;
 	private String email;
 	private String password;
@@ -38,21 +32,7 @@ public class AppUser implements Serializable {
 	private Set<Place> places;
 	@OneToOne
 	private UserRole role;
-
-	/** Obtient l'identifiant numérique de l'utilisateur.
-	 * @return L'identifiant numérique de l'utilisateur.
-	 */
-	public int getId() {
-		return id;
-	}
-
-	/** Définit l'identifiant numérique de l'utilisateur.
-	 * @param id L'identifiant numérique de l'utilisateur à définir
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	
 	/** Obtient l'identifiant de l'utilisateur.
 	 * @return L'identifiant de l'utilisateur.
 	 */

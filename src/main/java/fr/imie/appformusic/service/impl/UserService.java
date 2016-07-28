@@ -34,7 +34,7 @@ public class UserService implements IUserService {
 	@Override
 	public AppUser findByEmail(String email) throws BusinessException {
 		if(StringUtils.isEmpty(email)){
-			throw new BusinessException("email is empty");
+			throw new BusinessException(BusinessException.Code.EMAIL_EMPTY);
 		}
 		return userDao.findByEmail(email);
 	}

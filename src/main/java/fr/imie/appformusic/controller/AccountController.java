@@ -1,7 +1,5 @@
 package fr.imie.appformusic.controller;
 
-import java.util.Locale;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,30 +18,38 @@ public class AccountController {
 	
 	@Autowired
 	private IUserService userService;
-	
+
 	/**
 	 * Affiche le formulaire d'inscription.
 	 * @return La vue du formulaire d'inscription.
 	 */
 	@RequestMapping(Routes.SIGNUP)
-	public ModelAndView signUpForm() {
+	public ModelAndView showSignUpForm() {
 		return new ModelAndView("sign-up");
+	}
+	
+	/**
+	 * Affiche le formulaire de connexion.
+	 * @return La vue du formulaire de connexion.
+	 */
+	@RequestMapping(Routes.SIGNIN)
+	public ModelAndView showSignInForm() {
+		return new ModelAndView("sign-in");
 	}
 
 	/**
 	 * Traite les données soumises du formulaire d'inscription.
 	 * @param user 		L'utilisateur à créer.
 	 * @param request 	La requête HTTP.
-	 * @return 			Une redirection vers la page d'accueil du site.
+	 * @return 			Une redirection vers la page d'accueil du site en cas de réussite, sinon vers le formulaire.
 	 */
 	@RequestMapping(value=Routes.SIGNUP+"/submit", method=RequestMethod.POST)
 	public ModelAndView signUpSubmit(AppUser user, HttpServletRequest request) {
-		Locale local = request.getLocale();
 		try {
 			userService.create(user);
 		} catch (BusinessException e) {
 			switch (e.getCode()) {
-				case "":
+				case EMAIL_EMPTY:
 					
 				default:
 					break;

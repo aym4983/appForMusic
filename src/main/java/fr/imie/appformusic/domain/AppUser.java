@@ -32,6 +32,7 @@ public class AppUser implements Serializable {
 	private Set<Place> places;
 	@OneToMany
 	private Set<UserRole> roles;
+	private boolean enabled;
 	
 	/** Obtient l'identifiant de l'utilisateur.
 	 * @return L'identifiant de l'utilisateur.
@@ -143,6 +144,20 @@ public class AppUser implements Serializable {
 	 */
 	public void setRoles(Set<UserRole> roles) {
 		this.roles = roles;
+	}
+
+	/** Obtient la valeur précisant si l'utilisateur est actif.
+	 * @return La valeur précisant si l'utilisateur est actif.
+	 */
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	/** Définit la valeur précisant si l'utilisateur est actif.
+	 * @param enabled La valeur à définir.
+	 */
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 	
 }

@@ -49,19 +49,12 @@ public class AccountController {
 	public ModelAndView submitSignUpForm(
 			AppUser user, 
 			@RequestParam(name="password-confirm") String passwordConfirm, 
-			HttpServletRequest request) {
+			HttpServletRequest request)
+	throws BusinessException {
 		try {
 			userService.create(user);
 		} catch (BusinessException e) {
-			switch (e.getCode()) {
-				case USERNAME_EMPTY:
-				case EMAIL_EMPTY:
-				case PASSWORD_EMPTY:
-				case PASSWORD_CONFIRM_EMPTY:
-				default:
-					break;
-			}
-			return new ModelAndView("redirect:/" + Routes.SIGNUP);
+			throw e;
 		}
 		return new ModelAndView("redirect:/" + Routes.HOME);
 	}

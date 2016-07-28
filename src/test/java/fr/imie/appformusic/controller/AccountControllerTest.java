@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import fr.imie.appformusic.configuration.constants.Routes;
 import fr.imie.appformusic.configuration.constants.Views;
 import fr.imie.appformusic.domain.AppUser;
+import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.service.IUserService;
 
 @RunWith(EasyMockRunner.class)
@@ -41,7 +42,7 @@ public class AccountControllerTest {
 
 	/** Teste la validation de la méthode submitSignUpForm. */
 	@Test
-	public void testSubmitSignUpFormOK() {
+	public void testSubmitSignUpFormOK() throws BusinessException {
 		String userName = "userName";
 		String email = "email@email.com";
 		String password = "password";
@@ -58,7 +59,7 @@ public class AccountControllerTest {
 	
 	/** Teste l'invalidation de la méthode submitSignUpForm. */
 	@Test
-	public void testSubmitSignUpFormKO() {
+	public void testSubmitSignUpFormKO() throws BusinessException {
 		String userName = "userName";
 		String email = "email@email.com";
 		String password = "password";

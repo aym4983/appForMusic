@@ -3,17 +3,22 @@ package fr.imie.appformusic.exceptions;
 @SuppressWarnings("serial")
 public class BusinessException extends Exception {
 
-	private String code;
+	private Code code;
 	
-	public BusinessException(String code){
+	public static enum Code {
+		/** L'adresse e-mail est vide. */
+		EMAIL_EMPTY
+	}
+	
+	public BusinessException(Code code){
 		this.code = code;
 	}
 
-	public String getCode() {
+	public Code getCode() {
 		return code;
 	}
 
-	public void setCode(String code) {
+	public void setCode(Code code) {
 		this.code = code;
 	}
 	

@@ -41,7 +41,7 @@ public class AccountController {
 	 * Traite les données soumises du formulaire d'inscription.
 	 * @param user 		L'utilisateur à créer.
 	 * @param request 	La requête HTTP.
-	 * @return 			Une redirection vers la page d'accueil du site.
+	 * @return 			Une redirection vers la page d'accueil du site en cas de réussite, sinon vers le formulaire.
 	 */
 	@RequestMapping(value=Routes.SIGNUP+"/submit", method=RequestMethod.POST)
 	public ModelAndView signUpSubmit(AppUser user, HttpServletRequest request) {
@@ -49,7 +49,7 @@ public class AccountController {
 			userService.create(user);
 		} catch (BusinessException e) {
 			switch (e.getCode()) {
-				case "":
+				case EMAIL_EMPTY:
 					
 				default:
 					break;

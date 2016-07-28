@@ -7,8 +7,8 @@
 <form:form action="${ url.base }" method="post">
 
 	<p class="form-group">
-		<form:label path="username"></form:label>
-		<form:input path="username" id="signup-username" class="form-control"/></p>
+		<form:label path="userName"></form:label>
+		<form:input path="userName" id="signup-username" class="form-control"/></p>
 	
 	<p class="form-group">
 		<form:label path="email"></form:label>

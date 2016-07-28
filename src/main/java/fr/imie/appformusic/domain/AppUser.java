@@ -30,8 +30,8 @@ public class AppUser implements Serializable {
 	private String lastName;
 	@OneToMany
 	private Set<Place> places;
-	@OneToOne
-	private UserRole role;
+	@OneToMany
+	private Set<UserRole> roles;
 	
 	/** Obtient l'identifiant de l'utilisateur.
 	 * @return L'identifiant de l'utilisateur.
@@ -129,6 +129,20 @@ public class AppUser implements Serializable {
 	 */
 	public void setPlaces(Set<Place> places) {
 		this.places = places;
+	}
+
+	/** Obtient la liste des rôle de l'utilisateur.
+	 * @return Les rôles de de l'utilisateur.
+	 */
+	public Set<UserRole> getRoles() {
+		return roles;
+	}
+
+	/** Définit la liste des rôles de l'utilisateur.
+	 * @param roles La liste des rôles à définir.
+	 */
+	public void setRoles(Set<UserRole> roles) {
+		this.roles = roles;
 	}
 	
 }

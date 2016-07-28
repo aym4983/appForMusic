@@ -25,7 +25,7 @@ public class Place implements Serializable {
 	@Column(name="Description")
 	private String description;
 	@OneToOne(mappedBy="place", cascade=CascadeType.ALL)
-	private User user;
+	private AppUser user;
 
 	public Place(){};
 	
@@ -62,11 +62,11 @@ public class Place implements Serializable {
 		this.description = description;
 	}
 
-	public User getUser() {
+	public AppUser getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(AppUser user) {
 		this.user = user;
 	}
 }

@@ -1,14 +1,23 @@
 package fr.imie.appformusic.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.imie.appformusic.dao.IUserDao;
 import fr.imie.appformusic.domain.AppUser;
+import fr.imie.appformusic.domain.UserRole;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.service.IUserService;
 
@@ -17,7 +26,7 @@ import fr.imie.appformusic.service.IUserService;
  */
 @Service
 @Transactional
-public class UserService implements IUserService {
+public class UserService implements IUserService, UserDetailsService {
 
 	@Autowired
 	private IUserDao userDao;
@@ -104,6 +113,28 @@ public class UserService implements IUserService {
 			throws BusinessException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		AppUser user = userDao.findByUserName(username);
+		List<GrantedAuthority> authorities = buildUserAuthority(null);
+		
+		return null;
+	}
+	
+	private List<GrantedAuthority> buildUserAuthority(Set<UserRole> userRoles) {
+
+		Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
+
+		// Build user's authorities
+		for (UserRole userRole : userRoles) {
+			setAuths.add(new SimpleGrantedAuthority(userRole.getRole()));
+		}
+
+		List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
+
+		return Result;
 	}
 	
 }

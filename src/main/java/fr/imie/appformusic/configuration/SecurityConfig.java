@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("sign-in", "/sign-up").permitAll()
 			.anyRequest().authenticated()
 			.and()
-			.formLogin().permitAll()
+			.formLogin().permitAll() /** .loginpage() pour insérer sa propre page **/
 			.defaultSuccessUrl("/home")
 			.usernameParameter("username")
 			.passwordParameter("password")

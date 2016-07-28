@@ -36,9 +36,7 @@ public class UserDao implements IUserDao {
 
 	@Override
 	public List<AppUser> findAllUsers() throws TechnicalException {
-		EntityManager em = sessionFactory.createEntityManager();
-		Query query = em.createQuery("from AppUser");
-		return query.getResultList();
+		return null;
 	}
 
 	@Override

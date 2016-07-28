@@ -121,7 +121,7 @@ public class UserService implements IUserService, UserDetailsService {
 		AppUser user = userDao.findByUserName(username);
 		List<GrantedAuthority> authorities = buildUserAuthority(user.getRoles());
 		
-		return null;
+		return buildUserForAuthentication(user, authorities);
 	}
 	
 	// Converts AppUser user to

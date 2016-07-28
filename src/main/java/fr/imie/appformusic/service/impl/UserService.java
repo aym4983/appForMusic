@@ -9,6 +9,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -118,10 +119,18 @@ public class UserService implements IUserService, UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		AppUser user = userDao.findByUserName(username);
-		List<GrantedAuthority> authorities = buildUserAuthority(null);
+		List<GrantedAuthority> authorities = buildUserAuthority(user.getRoles());
 		
 		return null;
 	}
+	
+	// Converts AppUser user to
+		// org.springframework.security.core.userdetails.User
+		private User buildUserForAuthentication(AppUser user, 
+			List<GrantedAuthority> authorities) {
+			return new User(user.getUserName(), user.getPassword(), 
+				user.isEnabled(), true, true, true, authorities);
+		}
 	
 	private List<GrantedAuthority> buildUserAuthority(Set<UserRole> userRoles) {
 

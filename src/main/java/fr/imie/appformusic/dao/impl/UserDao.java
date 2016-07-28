@@ -3,7 +3,6 @@ package fr.imie.appformusic.dao.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +25,17 @@ public class UserDao implements IUserDao {
 	
 	@Override
 	public AppUser findByUserName(String userName) throws TechnicalException {
-		// TODO Auto-generated method stub
-		return null;
+		AppUser result = (AppUser) sessionFactory.getCurrentSession()
+				.createQuery("from appUser where username = ?")
+				.setParameter(0, userName)
+				.getSingleResult();
+		
+		return result;
 	}
 
 	@Override
 	public List<AppUser> findAllUsers() throws TechnicalException {
-		EntityManager em = sessionFactory.createEntityManager();
-		Query query = em.createQuery("from AppUser");
-		return query.getResultList();
+		return null;
 	}
 
 	@Override

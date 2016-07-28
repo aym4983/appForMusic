@@ -26,8 +26,12 @@ public class UserDao implements IUserDao {
 	
 	@Override
 	public AppUser findByUserName(String userName) throws TechnicalException {
-		// TODO Auto-generated method stub
-		return null;
+		AppUser result = (AppUser) sessionFactory.getCurrentSession()
+				.createQuery("from appUser where username = ?")
+				.setParameter(0, userName)
+				.getSingleResult();
+		
+		return result;
 	}
 
 	@Override

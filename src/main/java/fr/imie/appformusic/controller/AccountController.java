@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.imie.appformusic.configuration.constants.Routes;
+import fr.imie.appformusic.configuration.constants.Views;
 import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.service.IUserService;
@@ -25,7 +26,7 @@ public class AccountController {
 	 */
 	@RequestMapping(Routes.SIGNUP)
 	public ModelAndView showSignUpForm() {
-		return new ModelAndView("sign-up");
+		return new ModelAndView(Views.SIGNUP);
 	}
 	
 	/**
@@ -34,7 +35,7 @@ public class AccountController {
 	 */
 	@RequestMapping(Routes.SIGNIN)
 	public ModelAndView showSignInForm() {
-		return new ModelAndView("sign-in");
+		return new ModelAndView(Views.SIGNIN);
 	}
 
 	/**
@@ -43,8 +44,8 @@ public class AccountController {
 	 * @param request 	La requête HTTP.
 	 * @return 			Une redirection vers la page d'accueil du site en cas de réussite, sinon vers le formulaire.
 	 */
-	@RequestMapping(value=Routes.SIGNUP+"/submit", method=RequestMethod.POST)
-	public ModelAndView signUpSubmit(AppUser user, HttpServletRequest request) {
+	@RequestMapping(value=Routes.SIGNUP, method=RequestMethod.POST)
+	public ModelAndView submitSignUpForm(AppUser user, HttpServletRequest request) {
 		try {
 			userService.create(user);
 		} catch (BusinessException e) {
@@ -55,6 +56,28 @@ public class AccountController {
 					break;
 			}
 			return new ModelAndView("redirect:" + Routes.SIGNUP);
+		}
+		return new ModelAndView("redirect:" + Routes.HOME);
+	}
+
+	/**
+	 * Traite les données soumises du formulaire de connexion.
+	 * @param user 		L'utilisateur à connecter.
+	 * @param request 	La requête HTTP.
+	 * @return 			Une redirection vers la page d'accueil du site en cas de réussite, sinon vers le formulaire.
+	 */
+	@RequestMapping(value=Routes.SIGNIN, method=RequestMethod.POST)
+	public ModelAndView submitSignInForm(AppUser user, HttpServletRequest request) {
+		try {
+			userService.create(user);
+		} catch (BusinessException e) {
+			switch (e.getCode()) {
+				case EMAIL_EMPTY:
+					
+				default:
+					break;
+			}
+			return new ModelAndView("redirect:" + Routes.SIGNIN);
 		}
 		return new ModelAndView("redirect:" + Routes.HOME);
 	}

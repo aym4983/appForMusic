@@ -45,6 +45,7 @@ public class Place implements Serializable {
 	@JoinColumn(name="UserId")
 	private AppUser user;
 
+
 	/** Constructors **/
 	public Place(){};
 	

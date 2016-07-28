@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.imie.appformusic.configuration.constants.Routes;
@@ -45,19 +46,24 @@ public class AccountController {
 	 * @return 			Une redirection vers la page d'accueil du site en cas de réussite, sinon vers le formulaire.
 	 */
 	@RequestMapping(value=Routes.SIGNUP, method=RequestMethod.POST)
-	public ModelAndView submitSignUpForm(AppUser user, HttpServletRequest request) {
+	public ModelAndView submitSignUpForm(
+			AppUser user, 
+			@RequestParam(name="password-confirm") String passwordConfirm, 
+			HttpServletRequest request) {
 		try {
 			userService.create(user);
 		} catch (BusinessException e) {
 			switch (e.getCode()) {
+				case USERNAME_EMPTY:
 				case EMAIL_EMPTY:
-					
+				case PASSWORD_EMPTY:
+				case PASSWORD_CONFIRM_EMPTY:
 				default:
 					break;
 			}
-			return new ModelAndView("redirect:" + Routes.SIGNUP);
+			return new ModelAndView("redirect:/" + Routes.SIGNUP);
 		}
-		return new ModelAndView("redirect:" + Routes.HOME);
+		return new ModelAndView("redirect:/" + Routes.HOME);
 	}
 
 	/**
@@ -77,9 +83,9 @@ public class AccountController {
 				default:
 					break;
 			}
-			return new ModelAndView("redirect:" + Routes.SIGNIN);
+			return new ModelAndView("redirect:/" + Routes.SIGNIN);
 		}
-		return new ModelAndView("redirect:" + Routes.HOME);
+		return new ModelAndView("redirect:/" + Routes.HOME);
 	}
 	
 

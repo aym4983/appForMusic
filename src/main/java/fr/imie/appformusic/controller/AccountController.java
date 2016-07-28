@@ -49,20 +49,9 @@ public class AccountController {
 	public ModelAndView submitSignUpForm(
 			AppUser user, 
 			@RequestParam(name="password-confirm") String passwordConfirm, 
-			HttpServletRequest request) {
-		try {
-			userService.create(user);
-		} catch (BusinessException e) {
-			switch (e.getCode()) {
-				case USERNAME_EMPTY:
-				case EMAIL_EMPTY:
-				case PASSWORD_EMPTY:
-				case PASSWORD_CONFIRM_EMPTY:
-				default:
-					break;
-			}
-			return new ModelAndView("redirect:/" + Routes.SIGNUP);
-		}
+			HttpServletRequest request)
+	throws BusinessException {
+		userService.create(user);
 		return new ModelAndView("redirect:/" + Routes.HOME);
 	}
 
@@ -74,17 +63,7 @@ public class AccountController {
 	 */
 	@RequestMapping(value=Routes.SIGNIN, method=RequestMethod.POST)
 	public ModelAndView submitSignInForm(AppUser user, HttpServletRequest request) {
-		try {
-			userService.create(user);
-		} catch (BusinessException e) {
-			switch (e.getCode()) {
-				case EMAIL_EMPTY:
-					
-				default:
-					break;
-			}
-			return new ModelAndView("redirect:/" + Routes.SIGNIN);
-		}
+		//TODO Connexion de l'utilisateur.
 		return new ModelAndView("redirect:/" + Routes.HOME);
 	}
 	

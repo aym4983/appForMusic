@@ -1,6 +1,7 @@
 package fr.imie.appformusic.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.easymock.EasyMock.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import fr.imie.appformusic.configuration.constants.Routes;
 import fr.imie.appformusic.configuration.constants.Views;
 import fr.imie.appformusic.domain.AppUser;
+import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.service.IUserService;
 
 @RunWith(EasyMockRunner.class)
@@ -25,7 +27,7 @@ public class AccountControllerTest {
 	@Mock
 	private IUserService userServiceMock;
 	@Mock
-	private HttpServletRequest request;
+	private HttpServletRequest requestMock;
 	
 	/** Teste la méthode showSignUpForm. */
 	@Test
@@ -41,7 +43,7 @@ public class AccountControllerTest {
 
 	/** Teste la validation de la méthode submitSignUpForm. */
 	@Test
-	public void testSubmitSignUpFormOK() {
+	public void testSubmitSignUpFormOK() throws BusinessException {
 		String userName = "userName";
 		String email = "email@email.com";
 		String password = "password";
@@ -52,31 +54,28 @@ public class AccountControllerTest {
 		user.setEmail(email);
 		user.setPassword(password);
 		
-		ModelAndView mav = accountController.submitSignUpForm(user, passwordConfirm, request);
+		ModelAndView mav = accountController.submitSignUpForm(user, passwordConfirm, requestMock);
 		assertThat(mav.getViewName()).isEqualTo("redirect:/" + Routes.HOME);
 	}
 	
 	/** Teste l'invalidation de la méthode submitSignUpForm. */
-	@Test
-	public void testSubmitSignUpFormKO() {
-		String userName = "userName";
-		String email = "email@email.com";
-		String password = "password";
-		String passwordConfirm = "password";
-		
-		AppUser user = new AppUser();
-		user.setUserName(userName);
-		user.setEmail(email);
-		user.setPassword(password);
-		
-		ModelAndView mav = accountController.submitSignUpForm(user, passwordConfirm, request);
-		assertThat(mav.getViewName()).isEqualTo("redirect:/" + Routes.HOME);
+	@Test(expected=BusinessException.class)
+	public void testSubmitSignUpFormKO() throws BusinessException {
+		userServiceMock.create(null);
+		expectLastCall().andThrow(new BusinessException(null));
+		replay(userServiceMock);
+		accountController.submitSignUpForm(null, "", requestMock);
 	}
 
-	/** Teste la méthode submitSignInForm. */
+	/** Teste la validation de la méthode submitSignInForm. */
 	@Test
-	public void testSubmitSignInForm() {
+	public void testSubmitSignInFormOK() throws BusinessException {
+		AppUser user = new AppUser();
+		user.setUserName("userName");
+		user.setPassword("password");
 		
+		ModelAndView mav = accountController.submitSignInForm(user, requestMock);
+		assertThat(mav.getViewName()).isEqualTo("redirect:/" + Routes.HOME);
 	}
 
 }

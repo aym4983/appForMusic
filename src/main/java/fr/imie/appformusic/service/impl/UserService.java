@@ -1,4 +1,4 @@
-package fr.imie.appformusic.service;
+package fr.imie.appformusic.service.impl;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.imie.appformusic.dao.IUserDao;
 import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.exceptions.BusinessException;
+import fr.imie.appformusic.service.IUserService;
 
 /*
  * Non implémenté car exemple pour test driven development

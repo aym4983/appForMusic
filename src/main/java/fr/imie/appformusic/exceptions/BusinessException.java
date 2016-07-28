@@ -1,9 +1,10 @@
 package fr.imie.appformusic.exceptions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SuppressWarnings("serial")
 public class BusinessException extends Exception {
-
-	private Code code;
 	
 	public static enum Code {
 		/** Le nom d'utilisateur est vide. */
@@ -15,17 +16,24 @@ public class BusinessException extends Exception {
 		/** La confirmation de mot de passe est vide. */
 		PASSWORD_CONFIRM_EMPTY
 	}
+
+	private List<Code> codes;
 	
-	public BusinessException(Code code){
-		this.code = code;
+	public BusinessException(Code code) {
+		List<Code> codes = new ArrayList<Code>();
+		codes.add(code);
+		this.codes = codes;
+	}
+	
+	public BusinessException(List<Code> codes) {
+		this.codes = codes;
 	}
 
-	public Code getCode() {
-		return code;
-	}
-
-	public void setCode(Code code) {
-		this.code = code;
+	/** Obtient la liste des codes de l'exception.
+	 * @return Les codes de l'exception.
+	 */
+	public List<Code> getCodes() {
+		return codes;
 	}
 	
 }

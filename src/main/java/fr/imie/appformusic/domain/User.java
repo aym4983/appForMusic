@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -26,19 +27,13 @@ public class User implements Serializable {
 	
 	@Id @Column(name="IdUser")
 	private int id;
-	@Column(name="Username")
 	private String userName;
-	@Column(name="Email")
 	private String email;
-	@Column(name="Password")
 	private String password;
-	@Column(name="Rank")
 	private int rank;
-	@Column(name="Firstname")
 	private String firstName;
-	@Column(name="Lastname")
 	private String lastName;
-	@OneToOne(mappedBy="user", cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.LAZY)
+	@OneToOne
 	private Place place;
 	
 	public User(){}

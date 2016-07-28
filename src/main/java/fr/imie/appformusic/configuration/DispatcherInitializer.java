@@ -68,7 +68,7 @@ public class DispatcherInitializer extends WebMvcConfigurerAdapter  {
 	@Bean
 	public SessionFactory sessionFactory(){
 		LocalSessionFactoryBuilder sessionFactory = new LocalSessionFactoryBuilder(datasource());
-		sessionFactory.scanPackages("fr.imie.appformusic.domain");
+		sessionFactory.scanPackages("fr.imie.appformusic.domaine");
 		sessionFactory.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL94Dialect");
 		sessionFactory.setProperty("hibernate.show_sql", "true");
 		return sessionFactory.buildSessionFactory();

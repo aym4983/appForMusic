@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.service.IUserService;
-import fr.imie.appformusic.service.UserService;
+import fr.imie.appformusic.service.impl.UserService;
 
 @Controller
 public class MainController {

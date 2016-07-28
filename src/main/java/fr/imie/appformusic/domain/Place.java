@@ -10,15 +10,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Place")
 public class Place implements Serializable {
 
-	/**
-	 *  Entity Place
-	 */
-	private static final long serialVersionUID = 1L;
-	
 	/** Members **/ 
+	private static final long serialVersionUID = 6450129037706488936L;
+	
 	@Id @Column
 	private int placeId;
 	

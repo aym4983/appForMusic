@@ -14,7 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.web.servlet.ModelAndView;
 
-import fr.imie.appformusic.domain.User;
+import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.service.UserService;
 
@@ -35,8 +35,8 @@ public class MainControllerTest {
 
 	@Test
 	public void testGetAllUsersOk() throws Exception {
-		List<User> listUsers = new ArrayList<>();
-		User user = new User();
+		List<AppUser> listUsers = new ArrayList<>();
+		AppUser user = new AppUser();
 		user.setEmail("userTest");
 		listUsers.add(user);
 		
@@ -45,7 +45,7 @@ public class MainControllerTest {
 		replay(serviceMock);
 		
 		// Appel de la méthode à tester
-		List<User>resultList = controller.getAllUsers();
+		List<AppUser>resultList = controller.getAllUsers();
 		
 		// assertions
 		assertEquals(resultList.size(), 1);

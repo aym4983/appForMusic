@@ -15,7 +15,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import fr.imie.appformusic.dao.IUserDao;
-import fr.imie.appformusic.domain.User;
+import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.exceptions.BusinessException;
 
 @RunWith(EasyMockRunner.class)
@@ -32,7 +32,7 @@ public class UserServiceTest {
 	
 	@Test
 	public void testFindUserByIdOk() throws BusinessException {
-		User user = new User();
+		AppUser user = new AppUser();
 		user.setUserName(USERNAME);
 		user.setEmail(EMAIL);
 		user.setPassword("userpass");
@@ -40,16 +40,16 @@ public class UserServiceTest {
 		expect(daoMock.findByUserName(user.getUserName())).andReturn(user);
 		replay(daoMock);
 		
-		User userResult = service.findByUserName(user.getUserName());
+		AppUser userResult = service.findByUserName(user.getUserName());
 		assertThat(userResult.getUserName()).contains(USERNAME);
 	}
 	
 	@Test
 	public void testFindAllUsersOk() throws BusinessException {
-		List<User> userList = new ArrayList<>();
+		List<AppUser> userList = new ArrayList<>();
 		
 		for (int i=0; i<5; i++){
-			User u = new User();
+			AppUser u = new AppUser();
 			u.setUserName(USERNAME + "_" + i);
 			userList.add(u);
 		}
@@ -57,7 +57,7 @@ public class UserServiceTest {
 		expect(daoMock.findAllUsers()).andReturn(userList);
 		replay(daoMock);
 		
-		List<User> result = service.findAllUsers();
+		List<AppUser> result = service.findAllUsers();
 		
 		assertThat(result).isNotNull();
 		assertThat(result.size()).isEqualTo(5);
@@ -66,13 +66,13 @@ public class UserServiceTest {
 	
 	@Test
 	public void testFindByEmail() throws BusinessException{
-		User user = new User();
+		AppUser user = new AppUser();
 		user.setUserName(USERNAME);
 		
 		expect(daoMock.findByEmail(EMAIL)).andReturn(user);
 		replay(daoMock);
 		
-		User result = service.findByEmail(EMAIL);
+		AppUser result = service.findByEmail(EMAIL);
 		assertThat(result.getUserName()).isNotEmpty().contains(USERNAME);
 		
 	}
@@ -84,7 +84,7 @@ public class UserServiceTest {
 	
 	@Test
 	public void testCreerUser() throws BusinessException{
-		User user = new User();
+		AppUser user = new AppUser();
 		daoMock.create(user);
 		expectLastCall().times(1);
 		replay(daoMock);

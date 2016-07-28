@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.imie.appformusic.configuration.constants.Routes;
-import fr.imie.appformusic.domain.User;
+import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.service.IUserService;
 
@@ -37,7 +37,7 @@ public class AccountController {
 	 * @return 			Une redirection vers la page d'accueil du site.
 	 */
 	@RequestMapping(value=Routes.SIGNUP+"/submit", method=RequestMethod.POST)
-	public ModelAndView signUpSubmit(User user, HttpServletRequest request) {
+	public ModelAndView signUpSubmit(AppUser user, HttpServletRequest request) {
 		Locale local = request.getLocale();
 		try {
 			userService.create(user);

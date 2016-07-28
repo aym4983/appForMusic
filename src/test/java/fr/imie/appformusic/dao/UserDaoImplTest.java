@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.imie.appformusic.configuration.TestDispatcherConfig;
 import fr.imie.appformusic.domain.Place;
-import fr.imie.appformusic.domain.User;
+import fr.imie.appformusic.domain.AppUser;
 
 /**
  * 
@@ -50,7 +50,7 @@ public class UserDaoImplTest {
 	@Ignore
 	@Transactional
 	public void testFindAllUsers(){
-		List<User> listUser = userDao.findAllUsers();
+		List<AppUser> listUser = userDao.findAllUsers();
 		assertThat(listUser).isNotNull();
 		assertThat(listUser.get(0).getUserName()).isEqualTo("test");
 		assertThat(listUser.get(0).getPlace().getIdPlace()).isEqualTo(2);
@@ -59,7 +59,7 @@ public class UserDaoImplTest {
 	@Test
 	@Transactional
 	public void testCreateUser(){
-		User user = new User(2, "user", "usermail", "mdp", 5, "loic", "chaucheprat");
+		AppUser user = new AppUser(2, "user", "usermail", "mdp", 5, "loic", "chaucheprat");
 		Place place = new Place(1, "placename", "blablabla");
 		user.setPlace(place);
 		place.setUser(user);

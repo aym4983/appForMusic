@@ -2,12 +2,12 @@ package fr.imie.appformusic.dao;
 
 import java.util.List;
 
-import fr.imie.appformusic.domain.User;
+import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.exceptions.TechnicalException;
 
 public interface IUserDao {
-	public User findByUserName(String userName)throws TechnicalException;
-	public List<User> findAllUsers() throws TechnicalException;
-	public User findByEmail(String email) throws TechnicalException;
-	public void create(User user);
+	public AppUser findByUserName(String userName)throws TechnicalException;
+	public List<AppUser> findAllUsers() throws TechnicalException;
+	public AppUser findByEmail(String email) throws TechnicalException;
+	public void create(AppUser user);
 }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import fr.imie.appformusic.domain.User;
+import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.service.IUserService;
 import fr.imie.appformusic.service.UserService;
@@ -27,7 +27,7 @@ public class MainController {
 	 * Méthode d'exemple pour tests unitaire
 	 */
 	@RequestMapping("/main/all")
-	public List<User> getAllUsers() throws BusinessException{
+	public List<AppUser> getAllUsers() throws BusinessException{
 		return service.findAllUsers();
  	}
 }

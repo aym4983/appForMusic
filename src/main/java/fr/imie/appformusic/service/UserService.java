@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.imie.appformusic.dao.IUserDao;
-import fr.imie.appformusic.domain.User;
+import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.exceptions.BusinessException;
 
 /*
@@ -22,7 +22,7 @@ public class UserService implements IUserService {
 	private IUserDao userDao;
 	
 	@Override
-	public User findByUserName(String userName) 
+	public AppUser findByUserName(String userName) 
 			throws BusinessException {
 		// contrôles métier si nécessaire
 		
@@ -31,7 +31,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public User findByEmail(String email) throws BusinessException {
+	public AppUser findByEmail(String email) throws BusinessException {
 		if(StringUtils.isEmpty(email)){
 			throw new BusinessException("email is empty");
 		}
@@ -39,27 +39,27 @@ public class UserService implements IUserService {
 	}
 	
 	@Override
-	public List<User> findAllUsers(){
+	public List<AppUser> findAllUsers(){
 		return userDao.findAllUsers();
 	}
 
 	@Override
-	public void create(User user) 
+	public void create(AppUser user) 
 			throws BusinessException {
 		userDao.create(user);
 		
 	}
 
 	@Override
-	public void remove(User user) 
+	public void remove(AppUser user) 
 			throws BusinessException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public User updateUser(
-			User user, 
+	public AppUser updateUser(
+			AppUser user, 
 			String newUserName, 
 			String newEmail,
 			String newPassword, 
@@ -71,35 +71,35 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public User updateUserName(User user, String newUserName)
+	public AppUser updateUserName(AppUser user, String newUserName)
 			throws BusinessException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User updateEmail(User user, String newEmail)
+	public AppUser updateEmail(AppUser user, String newEmail)
 			throws BusinessException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User updatePassword(User user, String newPassword)
+	public AppUser updatePassword(AppUser user, String newPassword)
 			throws BusinessException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User updateFirstName(User user, String newFirstName)
+	public AppUser updateFirstName(AppUser user, String newFirstName)
 			throws BusinessException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User updateLastName(User user, String newLastName)
+	public AppUser updateLastName(AppUser user, String newLastName)
 			throws BusinessException {
 		// TODO Auto-generated method stub
 		return null;

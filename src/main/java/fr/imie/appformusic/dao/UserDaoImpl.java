@@ -9,7 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import fr.imie.appformusic.domain.User;
+import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.exceptions.TechnicalException;
 
 /**
@@ -24,26 +24,26 @@ public class UserDaoImpl implements IUserDao {
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public User findByUserName(String userName) throws TechnicalException {
+	public AppUser findByUserName(String userName) throws TechnicalException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<User> findAllUsers() throws TechnicalException {
+	public List<AppUser> findAllUsers() throws TechnicalException {
 		EntityManager em = sessionFactory.createEntityManager();
-		Query query = em.createQuery("from User");
+		Query query = em.createQuery("from AppUser");
 		return query.getResultList();
 	}
 
 	@Override
-	public User findByEmail(String email) throws TechnicalException {
+	public AppUser findByEmail(String email) throws TechnicalException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void create(User user) {
+	public void create(AppUser user) {
 		EntityManager em = sessionFactory.createEntityManager();
 		em.persist(user);
 	}

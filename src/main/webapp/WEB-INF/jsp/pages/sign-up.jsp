@@ -2,6 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
+<c:url value="${ url.signIn }" var="url.signIn" />
+
 <form:form action="" method="post">
 
 	<p class="form-group">

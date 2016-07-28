@@ -27,7 +27,9 @@ public class AccountController {
 	 */
 	@RequestMapping(Routes.SIGNUP)
 	public ModelAndView showSignUpForm() {
-		return new ModelAndView(Views.SIGNUP);
+		ModelAndView mav = new ModelAndView(Views.SIGNUP);
+		mav.addObject("url.signIn", Routes.SIGNIN);
+		return mav; 
 	}
 	
 	/**
@@ -36,7 +38,9 @@ public class AccountController {
 	 */
 	@RequestMapping(Routes.SIGNIN)
 	public ModelAndView showSignInForm() {
-		return new ModelAndView(Views.SIGNIN);
+		ModelAndView mav = new ModelAndView(Views.SIGNIN);
+		mav.addObject("url.signUn", Routes.SIGNUP);
+		return mav; 
 	}
 
 	/**

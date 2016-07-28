@@ -2,11 +2,10 @@ package fr.imie.appformusic.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -25,8 +24,7 @@ public class Place implements Serializable {
 	private String placeName;
 	@Column(name="Description")
 	private String description;
-	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="IdUser")
+	@OneToOne(mappedBy="place", cascade=CascadeType.ALL)
 	private User user;
 
 	public Place(){};

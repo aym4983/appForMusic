@@ -31,6 +31,8 @@ public class TestDispatcherConfig {
 		sessionFactory.scanPackages("fr.imie.appformusic.domain");
 		sessionFactory.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
 		sessionFactory.setProperty("hibernate.show_sql", "true");
+		sessionFactory.setProperty("hibernate.use_sql_comments", "true");
+		sessionFactory.setProperty("hibernate.hbm2ddl.auto", "create");
 		return sessionFactory.buildSessionFactory();
 	}
 	

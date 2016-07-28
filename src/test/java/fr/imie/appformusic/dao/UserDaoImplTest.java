@@ -42,7 +42,6 @@ public class UserDaoImplTest {
 		database = new EmbeddedDatabaseBuilder()
 				.setType(EmbeddedDatabaseType.HSQL)
 				.setName("test_base")
-				.addScripts("init_script.sql")
 				.build();
 	}
 	
@@ -61,9 +60,9 @@ public class UserDaoImplTest {
 		User user = new User(2, "user", "usermail", "mdp", 5, "loic", "chaucheprat");
 		Place place = new Place(1, "placename", "blablabla");
 		user.setPlace(place);
+		place.setUser(user);
 		
 		userDao.create(user);
-		
 	}
 
 	@After

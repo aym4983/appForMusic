@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import fr.imie.appformusic.configuration.constants.Routes;
+
 /**
  * 
  * @author Loïc
@@ -33,11 +35,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("sign-in", "/sign-up").permitAll()
+			.antMatchers("/" + Routes.SIGNIN, "/" + Routes.SIGNUP).permitAll()
 			.anyRequest().authenticated()
 			.and()
-			.formLogin().permitAll() /** .loginpage() pour insérer sa propre page **/
-			.defaultSuccessUrl("/home")
+			.formLogin().permitAll()
+			.defaultSuccessUrl("/" + Routes.HOME)
 			.usernameParameter("username")
 			.passwordParameter("password")
 			.and()

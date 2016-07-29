@@ -45,7 +45,7 @@ public class AccountControllerTest {
 	/** Teste la méthode showSignInForm. */
 	@Test
 	public void testShowSignInForm() {
-		assertThat(accountController.showSignInForm().getViewName()).isEqualTo(Views.SIGNIN);
+		assertThat(accountController.showSignInForm(model).getViewName()).isEqualTo(Views.SIGNIN);
 	}
 
 	/** Teste la validation de la méthode submitSignUpForm. */

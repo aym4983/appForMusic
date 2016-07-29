@@ -30,19 +30,21 @@ public class AccountController {
 	@RequestMapping(Routes.SIGNUP)
 	public ModelAndView showSignUpForm(Model model) {
 		ModelAndView mav = new ModelAndView(Views.SIGNUP);
-		mav.addObject("url.signIn", Routes.SIGNIN);
+		mav.addObject("urlSignIn", Routes.SIGNIN);
 		model.addAttribute(new AppUser());
 		return mav; 
 	}
 	
 	/**
 	 * Affiche le formulaire de connexion.
+	 * @param model Le modèle utilisé par la page. 
 	 * @return La vue du formulaire de connexion.
 	 */
 	@RequestMapping(Routes.SIGNIN)
-	public ModelAndView showSignInForm() {
+	public ModelAndView showSignInForm(Model model) {
 		ModelAndView mav = new ModelAndView(Views.SIGNIN);
 		mav.addObject("url.signUn", Routes.SIGNUP);
+		model.addAttribute(new AppUser());
 		return mav; 
 	}
 

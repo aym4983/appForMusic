@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
-<c:url value="${ url.signIn }" var="url.signIn" />
+<c:url value="${ urlSignIn }" var="urlSignIn" />
 
 <form:form action="" method="post" modelAttribute="appUser" id="signup">
 
@@ -23,6 +23,6 @@
 		<input type="password" name="passwordConfirm" id="signup-password-confirm" class="form-control" placeholder="Confirmation mot de passe"/></p>
 	
 	<p><input type="submit" name="signup" value="Inscription" class="btn btn-primary" />
-		<a href="${ url.signIn }" class="btn btn-default">J'ai déjà un compte.</a></p>
+		<a href="${ urlSignIn }" class="btn btn-default">J'ai déjà un compte.</a></p>
 	
 </form:form>

@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,23 +24,27 @@ public class AccountController {
 
 	/**
 	 * Affiche le formulaire d'inscription.
+	 * @param model Le modèle utilisé par la page. 
 	 * @return La vue du formulaire d'inscription.
 	 */
 	@RequestMapping(Routes.SIGNUP)
-	public ModelAndView showSignUpForm() {
+	public ModelAndView showSignUpForm(Model model) {
 		ModelAndView mav = new ModelAndView(Views.SIGNUP);
-		mav.addObject("url.signIn", Routes.SIGNIN);
+		mav.addObject("urlSignIn", Routes.SIGNIN);
+		model.addAttribute(new AppUser());
 		return mav; 
 	}
 	
 	/**
 	 * Affiche le formulaire de connexion.
+	 * @param model Le modèle utilisé par la page. 
 	 * @return La vue du formulaire de connexion.
 	 */
 	@RequestMapping(Routes.SIGNIN)
-	public ModelAndView showSignInForm() {
+	public ModelAndView showSignInForm(Model model) {
 		ModelAndView mav = new ModelAndView(Views.SIGNIN);
-		mav.addObject("url.signUn", Routes.SIGNUP);
+		mav.addObject("urlSignUp", Routes.SIGNUP);
+		model.addAttribute(new AppUser());
 		return mav; 
 	}
 

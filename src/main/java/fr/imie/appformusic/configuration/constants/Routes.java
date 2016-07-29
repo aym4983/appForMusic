@@ -8,10 +8,10 @@ package fr.imie.appformusic.configuration.constants;
 public interface Routes {
 	
 	/** Page d'accueil du site. */
-	public String HOME = "";
+	public String HOME = "/";
 	/** Page de formulaire de connexion. */
-	public String SIGNIN = "sign-in";
+	public String SIGNIN = "/sign-in";
 	/** Page de formulaire d'inscription. */
-	public String SIGNUP = "sign-up";
+	public String SIGNUP = "/sign-up";
 
 }

@@ -13,7 +13,7 @@ import fr.imie.appformusic.service.UserService;
 @Controller
 public class MainController {
 
-	@Autowired
+//	@Autowired
 	private UserService service;
 	
 	@RequestMapping("/main")

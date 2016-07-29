@@ -52,6 +52,6 @@ public class AccountController {
 		}
 		return new ModelAndView("redirect:" + Routes.HOME);
 	}
-	
+
 
 }

@@ -43,7 +43,7 @@ public class AccountController {
 	@RequestMapping(Routes.SIGNIN)
 	public ModelAndView showSignInForm(Model model) {
 		ModelAndView mav = new ModelAndView(Views.SIGNIN);
-		mav.addObject("url.signUn", Routes.SIGNUP);
+		mav.addObject("urlSignUp", Routes.SIGNUP);
 		model.addAttribute(new AppUser());
 		return mav; 
 	}

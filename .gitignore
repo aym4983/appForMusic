@@ -1,3 +1,4 @@
+<<<<<<< Upstream, based on origin/master
 #################
 ## Project
 #################
@@ -226,3 +227,6 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+=======
+/target/
+>>>>>>> 9ca058d commit gitignore

@@ -4,23 +4,23 @@
 
 <c:url value="${ url.signIn }" var="url.signIn" />
 
-<form:form action="" method="post">
+<form:form action="" method="post" modelAttribute="appUser" id="signup">
 
 	<p class="form-group">
-		<form:label path="userName"></form:label>
-		<form:input path="userName" id="signup-username" class="form-control"/></p>
+		<form:label path="userName">Identifiant</form:label>
+		<form:input path="userName" id="signup-username" class="form-control" placeholder="Identifiant"/></p>
 	
 	<p class="form-group">
 		<form:label path="email"></form:label>
-		<form:input path="email" id="signup-email" class="form-control"/></p>
+		<form:input path="email" id="signup-email" class="form-control" placeholder="Adresse e-mail"/></p>
 	
 	<p class="form-group">
 		<form:label path="password"></form:label>
-		<form:input path="password" id="signup-password" class="form-control"/></p>
+		<form:password path="password" id="signup-password" class="form-control" placeholder="Mot de passe"/></p>
 	
 	<p class="form-group">
-		<form:label path="password-confirm"></form:label>
-		<form:input path="password-confirm" id="signup-password-confirm" class="form-control"/></p>
+		<label for="signup-password-confirm"></label>
+		<input type="password" id="signup-password-confirm" class="form-control" placeholder="Confirmation"/></p>
 	
 	<p><input type="submit" name="signup" value="Inscription" class="btn btn-primary" />
 		<a href="${ url.signIn }" class="btn btn-default">J'ai déjà un compte.</a></p>

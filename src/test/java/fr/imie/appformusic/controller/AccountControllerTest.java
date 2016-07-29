@@ -13,6 +13,7 @@ import org.easymock.Mock;
 import org.easymock.TestSubject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.imie.appformusic.configuration.constants.Routes;
@@ -32,11 +33,13 @@ public class AccountControllerTest {
 	private IUserService userServiceMock;
 	@Mock
 	private HttpServletRequest requestMock;
+	@Mock
+	private Model model;
 	
 	/** Teste la méthode showSignUpForm. */
 	@Test
 	public void testShowSignUpForm() {
-		assertThat(accountController.showSignUpForm().getViewName()).isEqualTo(Views.SIGNUP);
+		assertThat(accountController.showSignUpForm(model).getViewName()).isEqualTo(Views.SIGNUP);
 	}
 
 	/** Teste la méthode showSignInForm. */

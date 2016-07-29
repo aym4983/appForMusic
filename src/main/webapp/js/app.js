@@ -5,7 +5,7 @@
 /** Méthode d'init pour Calendar Js */
 function initCalendar (){
 	$('#calendar').fullCalendar({
-		// ajouter options si besoin
+		// ajouter options 
 	});
 }
 

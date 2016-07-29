@@ -121,7 +121,7 @@ public class DispatcherInitializer extends WebMvcConfigurerAdapter  {
 		registry.addInterceptor(interceptor);
     }
     
-    @Bean
+    @Bean(name="wroFilter")
     public ConfigurableWroFilter wroFilter (){
     	ConfigurableWroFilter filter = new ConfigurableWroFilter();
     	filter.setDebug(true);

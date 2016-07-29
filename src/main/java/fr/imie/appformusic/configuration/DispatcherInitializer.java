@@ -77,9 +77,9 @@ public class DispatcherInitializer extends WebMvcConfigurerAdapter  {
 		LocalSessionFactoryBuilder sessionFactory = new LocalSessionFactoryBuilder(datasource());
 		sessionFactory.scanPackages("fr.imie.appformusic.domain");
 		sessionFactory.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL94Dialect");
-		sessionFactory.setProperty("hibernate.show_sql", "true");
-		sessionFactory.setProperty("hibernate.hbm2ddl.auto", "create-drop");
 		
+		sessionFactory.setProperty("hibernate.show_sql", "true");
+		sessionFactory.setProperty("hibernate.hbm2ddl.auto", "update");
 		return sessionFactory.buildSessionFactory();
 	}
 	

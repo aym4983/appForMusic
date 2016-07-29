@@ -1,5 +1,7 @@
 package fr.imie.appformusic.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -9,8 +11,11 @@ import javax.persistence.Embeddable;
  */
 
 @Embeddable
-public class OwnsPK {
+public class OwnsPK implements Serializable{
+
 	/** Members **/
+	private static final long serialVersionUID = 1078387525574164822L;
+	
 	@Column(name="userId")
 	private int userId;
 	

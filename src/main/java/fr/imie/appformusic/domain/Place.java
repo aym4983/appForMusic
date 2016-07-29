@@ -9,6 +9,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ * Entity Place
+ * @author Tiphanie
+ *
+ */
+
 @Entity
 public class Place implements Serializable {
 
@@ -36,9 +42,9 @@ public class Place implements Serializable {
 	@Column(name="longitude", nullable = false)
 	private double longitude;
 	
-	@OneToOne(mappedBy="place")
+	/*@OneToOne(mappedBy="place")
 	@JoinColumn(name="UserId")
-	private AppUser user;
+	private AppUser UserId;*/
 
 
 	/** Constructors **/
@@ -112,12 +118,13 @@ public class Place implements Serializable {
 		this.longitude = longitude;
 	}
 
+	/*
 	public AppUser getUser() {
 		return user;
 	}
 
 	public void setUser(AppUser user) {
 		this.user = user;
-	}
+	}*/
 
 }

@@ -1,5 +1,7 @@
 package fr.imie.appformusic.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -9,8 +11,11 @@ import javax.persistence.Embeddable;
  */
 
 @Embeddable
-public class BorrowsPK {
+public class BorrowsPK implements Serializable{
+
 	/** Members **/
+	private static final long serialVersionUID = -3153871927486861135L;
+	
 	@Column(name="userId")
 	private int userId;
 	

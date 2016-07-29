@@ -70,6 +70,6 @@ public class AccountController {
 		//TODO Connexion de l'utilisateur.
 		return new ModelAndView("redirect:/" + Routes.HOME);
 	}
-	
+
 
 }

@@ -60,7 +60,7 @@ public class DispatcherInitializer extends WebMvcConfigurerAdapter  {
 		DriverManagerDataSource ds = new DriverManagerDataSource();
 		ds.setDriverClassName(env.getProperty("jdbc.driver"));
 		ds.setUrl(env.getProperty("jdbc.url"));
-		ds.setUsername(env.getProperty("jdbc.username"));
+		ds.setUsername(env.getProperty("jdbc.user"));
 		ds.setPassword(env.getProperty("jdbc.password"));
 		return ds;
 	}
@@ -68,10 +68,11 @@ public class DispatcherInitializer extends WebMvcConfigurerAdapter  {
 	@Bean
 	public SessionFactory sessionFactory(){
 		LocalSessionFactoryBuilder sessionFactory = new LocalSessionFactoryBuilder(datasource());
-		sessionFactory.scanPackages("fr.imie.appformusic.domaine");
+		sessionFactory.scanPackages("fr.imie.appformusic.domain");
 		sessionFactory.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL94Dialect");
 		sessionFactory.setProperty("hibernate.show_sql", "true");
-		sessionFactory.setProperty("hibernate.hbmddl.auto", "update");
+		sessionFactory.setProperty("hibernate.hbm2ddl.auto", "update");
+		
 		return sessionFactory.buildSessionFactory();
 	}
 	

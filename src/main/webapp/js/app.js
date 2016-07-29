@@ -5,3 +5,14 @@
 var app = {
 		
 }
+
+
+//$(document).ready(function() {
+//
+//	$('#calendar').fullCalendar({
+//		// ajouter options si besoin
+//	});
+//
+//});
+
+

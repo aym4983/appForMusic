@@ -19,7 +19,7 @@ public class Picture implements Serializable {
 	/** Members **/ 
 	private static final long serialVersionUID = -8785577158010174641L;
 	
-	@Id @Column(name="pictureId")
+	@Id @Column(name="pictureid")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int pictureId;
 	

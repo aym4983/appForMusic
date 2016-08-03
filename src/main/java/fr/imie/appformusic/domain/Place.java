@@ -1,12 +1,14 @@
 package fr.imie.appformusic.domain;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -16,12 +18,13 @@ import javax.persistence.Table;
  */
 
 @Entity
+@Table(name="place")
 public class Place implements Serializable {
 
 	/** Members **/ 
 	private static final long serialVersionUID = 6450129037706488936L;
 	
-	@Id @Column
+	@Id @GeneratedValue(strategy=GenerationType.AUTO) @Column(name="placeid")
 	private int placeId;
 	
 	@Column(name="label", length = 50, nullable = false)
@@ -42,9 +45,17 @@ public class Place implements Serializable {
 	@Column(name="longitude", nullable = false)
 	private double longitude;
 	
-	/*@OneToOne(mappedBy="place")
-	@JoinColumn(name="UserId")
-	private AppUser UserId;*/
+	@OneToMany(mappedBy="place")
+	private Set<Borrows> borrows;
+	
+	@OneToMany(mappedBy="place")
+	private Set<Favourites> favourites;
+	
+	@OneToMany(mappedBy="place")
+	private Set<Favourites> owns;
+	
+	@OneToMany(mappedBy="place")
+	private Set<Proposes> proposes;
 
 
 	/** Constructors **/
@@ -60,8 +71,7 @@ public class Place implements Serializable {
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
-	
-	/** Getters and setters **/
+
 	public int getPlaceId() {
 		return placeId;
 	}
@@ -117,14 +127,5 @@ public class Place implements Serializable {
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
-
-	/*
-	public AppUser getUser() {
-		return user;
-	}
-
-	public void setUser(AppUser user) {
-		this.user = user;
-	}*/
 
 }

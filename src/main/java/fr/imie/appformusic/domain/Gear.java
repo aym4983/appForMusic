@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Entity Gear
@@ -14,12 +15,13 @@ import javax.persistence.Id;
  */
 
 @Entity
+@Table(name="gear")
 public class Gear implements Serializable{
 
 	/** Members **/
 	private static final long serialVersionUID = -1819250623420683484L;
 	
-	@Id @Column(name="gearId")
+	@Id @Column(name="gearid")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int gearId;
 	

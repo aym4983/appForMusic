@@ -57,7 +57,7 @@ public class AccountControllerTest {
 		String passwordConfirm = "password";
 		
 		AppUser user = new AppUser();
-		user.setUserName(userName);
+		user.setUsername(userName);
 		user.setEmail(email);
 		user.setPassword(password);
 		
@@ -78,7 +78,7 @@ public class AccountControllerTest {
 	@Test
 	public void testSubmitSignInFormOK() throws BusinessException {
 		AppUser user = new AppUser();
-		user.setUserName("userName");
+		user.setUsername("userName");
 		user.setPassword("password");
 		
 		ModelAndView mav = accountController.submitSignInForm(user, requestMock);

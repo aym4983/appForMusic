@@ -38,11 +38,9 @@ public class UserServiceTest {
 		Set<UserRole> roles = new HashSet<>();
 		user.setRoles(roles);
 		user.getRoles().add(role);
-		user.setUserName("toto");
+		user.setUsername("toto");
 		user.setPassword("passwd");
 		user.setEnabled(true);
-		
-		role.setId(1);
 		role.setRole("user");
 
 		// comportement du mock

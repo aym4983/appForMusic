@@ -3,9 +3,11 @@ package fr.imie.appformusic.domain;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * Classe représentant un utilisateur.
@@ -13,150 +15,138 @@ import javax.persistence.OneToMany;
  *
  */
 @Entity
+@Table(name="appuser")
 public class AppUser implements Serializable {
-
-	/**
-	 * 
-	 */
+	
+	/** Members **/ 
 	private static final long serialVersionUID = 5219643569000183378L;
 	
 	@Id
-	private String userName;
+	private String username;
+	
+	@Column(name="email", nullable = false, length = 100)
 	private String email;
+	
+	@Column(name="password", nullable = false, length = 255)
 	private String password;
+	
+	@Column(name="salt")
 	private String salt;
-	private String firstName;
-	private String lastName;
-	@OneToMany
-	private Set<Place> places;
-	@OneToMany
+	
+	@Column(name="firstname")
+	private String firstname;
+	
+	@Column(name="lastname")
+	private String lastname;
+	
+	@OneToMany(mappedBy="user")
+	private Set<Borrows> borrows;
+	
+	@OneToMany(mappedBy="user")
+	private Set<Favourites> favourites;
+	
+	@OneToMany(mappedBy="user")
+	private Set<Owns> owns;
+	
+	@OneToMany(mappedBy="user")
 	private Set<UserRole> roles;
+	
+	@OneToMany(mappedBy="userbeingrated")
+	private Set<Rates> ratesbeingrated;
+	
+	@OneToMany(mappedBy="user")
+	private Set<Rates> rates;
+	
+	@Column(name="enabled")
 	private boolean enabled;
+
+	/** Constructors **/
+	public AppUser(){}
 	
-	/** Obtient l'identifiant de l'utilisateur.
-	 * @return L'identifiant de l'utilisateur.
-	 */
-	public String getUserName() {
-		return userName;
+	public AppUser(String username, String email, String password, String salt, String firstname, String lastname,
+			Set<Borrows> borrows, Set<UserRole> roles, boolean enabled) {
+		super();
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.salt = salt;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.borrows = borrows;
+		this.roles = roles;
+		this.enabled = enabled;
 	}
-	
-	/** Définit l'identifiant de l'utilisateur.
-	 * @param L'identifiant à définir.
-	 */
-	public void setUserName(String userName) {
-		this.userName = userName;
+
+	/** Getters and Setters **/ 
+	public String getUsername() {
+		return username;
 	}
-	
-	/** Obtient l'adresse e-mail de l'utilisateur.
-	 * @return L'adresse e-mail de l'utilisateur.
-	 */
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	public String getEmail() {
 		return email;
 	}
-	
-	/** Définit l'adresse e-mail de l'utilisateur.
-	 * @param email L'adresse e-mail à définnir.
-	 */
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	/** Obtient le mot de passe de l'utilisateur.
-	 * @return Le mot de passe de l'utilisateur.
-	 */
+
 	public String getPassword() {
 		return password;
 	}
-	
-	/** Définit le mot de passe de l'utilisateur.
-	 * @param password Le mot de passe à définir.
-	 */
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	/** Obtient le sal du mot de passe de l'utilisateur.
-	 * @return Le sel du mot de passe de l'utilisateur.
-	 */
 	public String getSalt() {
 		return salt;
 	}
 
-	/** Définit le sel du mot de passe de l'utilisateur.
-	 * @param salt Le sel à définir.
-	 */
 	public void setSalt(String salt) {
 		this.salt = salt;
 	}
 
-	/** Obtient le prénom de l'utilisateur.
-	 * @return Le prénom de l'utilisateur.
-	 */
-	public String getFirstName() {
-		return firstName;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	/** Définit le prénom de l'utilisateur.
-	 * @param firstName Le prénom à définir
-	 */
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
-	/** Obtient le nom de famille de l'utilisateur.
-	 * @return Le nom de famille de l'utilisateur.
-	 */
-	public String getLastName() {
-		return lastName;
-	}
-	
-	/** Définit le nom de famille de l'utilisateur.
-	 * @param lastName Le nom de famille à définir.
-	 */
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public String getLastname() {
+		return lastname;
 	}
 
-	/** Obtient la liste des lieux possédés par l'utilisateur.
-	 * @return La liste des lieux possédés par l'utilisateur.
-	 */
-	public Set<Place> getPlaces() {
-		return places;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
-	/** Définit la liste des lieux possédés par l'utilisateur.
-	 * @param places La liste des lieux à définir.
-	 */
-	public void setPlaces(Set<Place> places) {
-		this.places = places;
+	public Set<Borrows> getBorrows() {
+		return borrows;
 	}
 
-	/** Obtient la liste des rôle de l'utilisateur.
-	 * @return Les rôles de de l'utilisateur.
-	 */
+	public void setBorrows(Set<Borrows> borrows) {
+		this.borrows = borrows;
+	}
+
 	public Set<UserRole> getRoles() {
 		return roles;
 	}
 
-	/** Définit la liste des rôles de l'utilisateur.
-	 * @param roles La liste des rôles à définir.
-	 */
 	public void setRoles(Set<UserRole> roles) {
 		this.roles = roles;
 	}
 
-	/** Obtient la valeur précisant si l'utilisateur est actif.
-	 * @return La valeur précisant si l'utilisateur est actif.
-	 */
 	public boolean isEnabled() {
 		return enabled;
 	}
 
-	/** Définit la valeur précisant si l'utilisateur est actif.
-	 * @param enabled La valeur à définir.
-	 */
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-	
 }

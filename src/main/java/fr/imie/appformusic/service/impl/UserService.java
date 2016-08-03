@@ -128,7 +128,7 @@ public class UserService implements IUserService, UserDetailsService {
 		// org.springframework.security.core.userdetails.User
 		protected User buildUserForAuthentication(AppUser user, 
 			List<GrantedAuthority> authorities) {
-			return new User(user.getUserName(), user.getPassword(), 
+			return new User(user.getUsername(), user.getPassword(), 
 				user.isEnabled(), true, true, true, authorities);
 		}
 	

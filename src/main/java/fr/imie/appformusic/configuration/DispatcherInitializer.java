@@ -57,11 +57,18 @@ public class DispatcherInitializer extends WebMvcConfigurerAdapter  {
 	
 	@Bean
 	public DriverManagerDataSource datasource(){
+		//Contenu de database.properties
+		/*
+		db.driver=org.postgresql.Driver
+		db.url=jdbc:postgresql://localhost:5432/appformusic
+		db.username=tiphanie
+		db.password=tiphanie
+		 */
 		DriverManagerDataSource ds = new DriverManagerDataSource();
-		ds.setDriverClassName("org.postgresql.Driver");
-		ds.setUrl("jdbc:postgresql://localhost:5432/appformusic");
-		ds.setUsername("tiphanie");
-		ds.setPassword("tiphanie");
+		ds.setDriverClassName(env.getProperty("db.driver"));
+		ds.setUrl(env.getProperty("db.url"));
+		ds.setUsername(env.getProperty("db.username"));
+		ds.setPassword(env.getProperty("db.password"));
 		return ds;
 	}
 	

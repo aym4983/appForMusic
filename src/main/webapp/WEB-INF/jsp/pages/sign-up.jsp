@@ -7,8 +7,8 @@
 <form:form action="" method="post" modelAttribute="appUser" id="signup">
 
 	<p class="form-group">
-		<form:label path="userName" for="signup-username">Identifiant</form:label>
-		<form:input path="userName" id="signup-username" class="form-control" placeholder="Identifiant"/></p>
+		<form:label path="username" for="signup-username">Identifiant</form:label>
+		<form:input path="username" id="signup-username" class="form-control" placeholder="Identifiant"/></p>
 	
 	<p class="form-group">
 		<form:label path="email" for="signup-email">Adresse e-mail</form:label>

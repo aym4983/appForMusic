@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.imie.appformusic.dao.IUserDao;
 import fr.imie.appformusic.domain.AppUser;
@@ -51,6 +52,7 @@ public class UserDao implements IUserDao {
 	}
 
 	@Override
+	@Transactional
 	public void create(AppUser user) {
 		try {
 			EntityManager em = sessionFactory.createEntityManager();

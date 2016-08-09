@@ -27,7 +27,7 @@ public class AppUser implements Serializable {
 	@Column(name="email", nullable = false, length = 100)
 	private String email;
 	
-	@Column(name="password", nullable = false, length = 512)
+	@Column(name="passwordHash", nullable = false, length = 512)
 	private String passwordHash;
 	
 	@Column(name="salt")

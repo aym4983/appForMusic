@@ -15,8 +15,8 @@
 		<form:input path="email" id="signup-email" class="form-control" placeholder="Adresse e-mail"/></p>
 	
 	<p class="form-group">
-		<form:label path="password" for="signup-password">Mot de passe</form:label>
-		<form:password path="password" id="signup-password" class="form-control" placeholder="Mot de passe"/></p>
+		<label for="signup-password">Mot de passe</label>
+		<input type="password" name="password" id="signup-password" class="form-control" placeholder="Mot de passe"/></p>
 	
 	<p class="form-group">
 		<label for="signup-password-confirm">Confirmation mot de passe</label>

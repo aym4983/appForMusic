@@ -14,7 +14,9 @@ public class BusinessException extends Exception {
 		/** Le mot de passe est vide. */
 		PASSWORD_EMPTY,
 		/** La confirmation de mot de passe est vide. */
-		PASSWORD_CONFIRM_EMPTY
+		PASSWORD_CONFIRM_EMPTY,
+		/** Les mots de passe sont différents. */
+		DIFFERENT_PASSWORDS
 	}
 
 	private List<Code> codes;

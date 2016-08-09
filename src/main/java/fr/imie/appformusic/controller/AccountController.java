@@ -57,10 +57,11 @@ public class AccountController {
 	@RequestMapping(value=Routes.SIGNUP, method=RequestMethod.POST)
 	public ModelAndView submitSignUpForm(
 			AppUser user, 
+			@RequestParam(name="password") String password, 
 			@RequestParam(name="password-confirm") String passwordConfirm, 
 			HttpServletRequest request)
 	throws BusinessException {
-		userService.create(user);
+		userService.create(user, password, passwordConfirm);
 		return new ModelAndView("redirect:/" + Routes.HOME);
 	}
 

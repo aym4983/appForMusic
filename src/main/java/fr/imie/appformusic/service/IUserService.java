@@ -34,7 +34,7 @@ public interface IUserService {
 	 * Crée un utilisateur.
 	 * @param user L'utilisateur à créer.
 	 */
-	public void create(AppUser user) throws BusinessException;
+	public void create(AppUser user, String password, String confirmPassword) throws BusinessException;
 	
 	/**
 	 * Supprime l'utilisateur spécifié.

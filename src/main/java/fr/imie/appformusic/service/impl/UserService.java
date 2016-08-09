@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.domain.UserRole;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.service.IUserService;
+import fr.imie.appformusic.utils.Security;
 
 /*
  * Non implémenté car exemple pour test driven development
@@ -55,10 +57,16 @@ public class UserService implements IUserService, UserDetailsService {
 	}
 
 	@Override
-	public void create(AppUser user) 
+	public void create(AppUser user, String password, String confirmPassword) 
 			throws BusinessException {
-		userDao.create(user);
-		
+		if (password.equals(confirmPassword)) {
+			String salt = UUID.randomUUID().toString();
+			user.setSalt(salt);
+			user.setPasswordHash(Security.hashPassword(password, salt));
+			userDao.create(user);
+		} else {
+			throw new BusinessException(BusinessException.Code.DIFFERENT_PASSWORDS);
+		}
 	}
 
 	@Override
@@ -128,7 +136,7 @@ public class UserService implements IUserService, UserDetailsService {
 		// org.springframework.security.core.userdetails.User
 		protected User buildUserForAuthentication(AppUser user, 
 			List<GrantedAuthority> authorities) {
-			return new User(user.getUsername(), user.getPassword(), 
+			return new User(user.getUsername(), user.getPasswordHash(), 
 				user.isEnabled(), true, true, true, authorities);
 		}
 	

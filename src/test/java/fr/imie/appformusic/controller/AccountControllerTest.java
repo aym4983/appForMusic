@@ -59,19 +59,18 @@ public class AccountControllerTest {
 		AppUser user = new AppUser();
 		user.setUsername(userName);
 		user.setEmail(email);
-		user.setPassword(password);
 		
-		ModelAndView mav = accountController.submitSignUpForm(user, passwordConfirm, requestMock);
+		ModelAndView mav = accountController.submitSignUpForm(user, password, passwordConfirm, requestMock);
 		assertThat(mav.getViewName()).isEqualTo("redirect:/" + Routes.HOME);
 	}
 	
 	/** Teste l'invalidation de la méthode submitSignUpForm. */
 	@Test(expected=BusinessException.class)
 	public void testSubmitSignUpFormKO() throws BusinessException {
-		userServiceMock.create(null);
+		userServiceMock.create(null, "", "");
 		expectLastCall().andThrow(new BusinessException(new ArrayList<Code>()));
 		replay(userServiceMock);
-		accountController.submitSignUpForm(null, "", requestMock);
+		accountController.submitSignUpForm(null, "", "", requestMock);
 	}
 
 	/** Teste la validation de la méthode submitSignInForm. */
@@ -79,7 +78,7 @@ public class AccountControllerTest {
 	public void testSubmitSignInFormOK() throws BusinessException {
 		AppUser user = new AppUser();
 		user.setUsername("userName");
-		user.setPassword("password");
+		user.setPasswordHash("password");
 		
 		ModelAndView mav = accountController.submitSignInForm(user, requestMock);
 		assertThat(mav.getViewName()).isEqualTo("redirect:/" + Routes.HOME);

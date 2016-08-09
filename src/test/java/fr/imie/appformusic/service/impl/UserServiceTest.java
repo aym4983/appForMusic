@@ -39,7 +39,7 @@ public class UserServiceTest {
 		user.setRoles(roles);
 		user.getRoles().add(role);
 		user.setUsername("toto");
-		user.setPassword("passwd");
+		user.setPasswordHash("passwd");
 		user.setEnabled(true);
 		role.setRole("user");
 

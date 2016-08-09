@@ -52,8 +52,12 @@ public class UserDao implements IUserDao {
 
 	@Override
 	public void create(AppUser user) {
-		EntityManager em = sessionFactory.createEntityManager();
-		em.persist(user);
+		try {
+			EntityManager em = sessionFactory.createEntityManager();
+			em.persist(user);
+		} catch (Exception e) {
+			throw new TechnicalException(e);
+		}
 	}
 
 }

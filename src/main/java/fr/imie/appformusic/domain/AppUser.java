@@ -28,7 +28,7 @@ public class AppUser implements Serializable {
 	private String email;
 	
 	@Column(name="password", nullable = false, length = 512)
-	private String password;
+	private String passwordHash;
 	
 	@Column(name="salt")
 	private String salt;
@@ -68,7 +68,7 @@ public class AppUser implements Serializable {
 		super();
 		this.username = username;
 		this.email = email;
-		this.password = password;
+		this.passwordHash = password;
 		this.salt = salt;
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -94,12 +94,12 @@ public class AppUser implements Serializable {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getPasswordHash() {
+		return passwordHash;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
 	}
 
 	public String getSalt() {

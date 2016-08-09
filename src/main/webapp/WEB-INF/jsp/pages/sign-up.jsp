@@ -20,7 +20,7 @@
 	
 	<p class="form-group">
 		<label for="signup-password-confirm">Confirmation mot de passe</label>
-		<input type="password" name="passwordConfirm" id="signup-password-confirm" class="form-control" placeholder="Confirmation mot de passe"/></p>
+		<input type="password" name="password-confirm" id="signup-password-confirm" class="form-control" placeholder="Confirmation mot de passe"/></p>
 	
 	<p><input type="submit" name="signup" value="Inscription" class="btn btn-primary" />
 		<a href="${ urlSignIn }" class="btn btn-default">J'ai déjà un compte.</a></p>

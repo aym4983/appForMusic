@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  * Classe représentant un utilisateur.
@@ -15,28 +16,29 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="appuser")
+@Table(name="appuser", uniqueConstraints=@UniqueConstraint(columnNames = { "email" }))
 public class AppUser implements Serializable {
 	
 	/** Members **/ 
 	private static final long serialVersionUID = 5219643569000183378L;
 	
 	@Id
+	@Column(name="username", length = 32)
 	private String username;
 	
-	@Column(name="email", nullable = false, length = 100)
+	@Column(name="email", nullable = false, length = 256)
 	private String email;
 	
-	@Column(name="passwordHash", nullable = false, length = 512)
+	@Column(name="passwordhash", nullable = false, length = 512)
 	private String passwordHash;
 	
-	@Column(name="salt")
+	@Column(name="salt", nullable = false, length = 512)
 	private String salt;
 	
-	@Column(name="firstname")
+	@Column(name="firstname", length = 32)
 	private String firstname;
 	
-	@Column(name="lastname")
+	@Column(name="lastname", length = 32)
 	private String lastname;
 	
 	@OneToMany(mappedBy="user")

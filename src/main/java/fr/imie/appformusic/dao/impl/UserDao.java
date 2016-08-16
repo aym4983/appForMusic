@@ -7,6 +7,7 @@ import javax.persistence.Query;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.NativeQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,11 +53,9 @@ public class UserDao implements IUserDao {
 	}
 
 	@Override
-	@Transactional
 	public void create(AppUser user) {
 		try {
-			EntityManager em = sessionFactory.createEntityManager();
-			em.persist(user);
+			sessionFactory.getCurrentSession().persist(user);
 		} catch (Exception e) {
 			throw new TechnicalException(e);
 		}

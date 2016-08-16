@@ -52,7 +52,6 @@ public class UserDao implements IUserDao {
 	}
 
 	@Override
-	@Transactional
 	public void create(AppUser user) {
 		try {
 			EntityManager em = sessionFactory.createEntityManager();

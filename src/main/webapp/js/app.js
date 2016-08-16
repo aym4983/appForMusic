@@ -13,6 +13,8 @@ $(document).ready(function() {
 		// ajouter options si besoin
 	});
 
+	console.log("loaded");
+	
 });
 
 

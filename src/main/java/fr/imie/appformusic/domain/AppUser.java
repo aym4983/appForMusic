@@ -23,21 +23,22 @@ public class AppUser implements Serializable {
 	private static final long serialVersionUID = 5219643569000183378L;
 	
 	@Id
+	@Column(name="username", length = 32)
 	private String username;
 	
 	@Column(name="email", nullable = false, length = 256)
 	private String email;
 	
-	@Column(name="passwordHash", nullable = false, length = 512)
+	@Column(name="passwordhash", nullable = false, length = 512)
 	private String passwordHash;
 	
-	@Column(name="salt")
+	@Column(name="salt", nullable = false, length = 512)
 	private String salt;
 	
-	@Column(name="firstname")
+	@Column(name="firstname", length = 32)
 	private String firstname;
 	
-	@Column(name="lastname")
+	@Column(name="lastname", length = 32)
 	private String lastname;
 	
 	@OneToMany(mappedBy="user")

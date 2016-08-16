@@ -83,7 +83,6 @@ public class DispatcherInitializer extends WebMvcConfigurerAdapter  {
 		return sessionFactory.buildSessionFactory();
 	}
 	
-	@Autowired
 	@Bean
 	public HibernateTransactionManager txManager(SessionFactory sessionFactory){
 		HibernateTransactionManager tx = new HibernateTransactionManager();
@@ -107,18 +106,19 @@ public class DispatcherInitializer extends WebMvcConfigurerAdapter  {
 //	}
 	
 	@Bean
-    public LocaleResolver localeResolver(){
-	CookieLocaleResolver resolver = new CookieLocaleResolver();
-	resolver.setDefaultLocale(new Locale("fr"));
-	resolver.setCookieName("myLocaleCookie");
-	resolver.setCookieMaxAge(4800);
-	return resolver;
+	    public LocaleResolver localeResolver(){
+		CookieLocaleResolver resolver = new CookieLocaleResolver();
+		resolver.setDefaultLocale(new Locale("fr"));
+		resolver.setCookieName("myLocaleCookie");
+		resolver.setCookieMaxAge(4800);
+		return resolver;
     }
+	
     @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-	LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
-	interceptor.setParamName("mylocale");
-	registry.addInterceptor(interceptor);
+	    public void addInterceptors(InterceptorRegistry registry) {
+		LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
+		interceptor.setParamName("mylocale");
+		registry.addInterceptor(interceptor);
     }
     
     @Bean

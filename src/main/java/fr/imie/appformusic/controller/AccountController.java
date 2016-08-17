@@ -64,6 +64,7 @@ public class AccountController {
 		AppUser user = new AppUser();
 		user.setUsername(userForm.getUsername());
 		user.setEmail(userForm.getEmail());
+		
 		userService.create(user, userForm.getPassword(), userForm.getPasswordConfirm());
 		return new ModelAndView("redirect:/" + Routes.HOME);
 	}

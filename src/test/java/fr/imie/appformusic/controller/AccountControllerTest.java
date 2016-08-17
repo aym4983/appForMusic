@@ -49,13 +49,4 @@ public class AccountControllerTest {
 		assertThat(accountController.showSignInForm(model).getViewName()).isEqualTo(Views.SIGNIN);
 	}
 
-	/** Teste l'invalidation de la méthode submitSignUpForm. */
-	@Test(expected=BusinessException.class)
-	public void testSubmitSignUpFormKO() throws BusinessException {
-		userServiceMock.create(null, "", "");
-		expectLastCall().andThrow(new BusinessException(new ArrayList<Code>()));
-		replay(userServiceMock);
-		accountController.submitSignUpForm(null, requestMock);
-	}
-
 }

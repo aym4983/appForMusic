@@ -18,10 +18,10 @@
 	</head>
 	
 	<body>
-		<div id="wrapper" class="container-fluid">
+		<div id="wrapper">
 			<tiles:insertAttribute name="navigation" />
 			
-			<div id="page-content-wrapper">
+			<div id="page-content-wrapper" class="container-fluid">
 				<tiles:insertAttribute name="header" />
 				<tiles:insertAttribute name="body" />
 				<tiles:insertAttribute name="footer" />

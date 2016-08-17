@@ -17,7 +17,7 @@
 	</head>
 	
 	<body>
-		<div id="wrapper" class="container-fluid">
+		<div class="container-fluid">
 			<tiles:insertAttribute name="body" />
 		</div>
 	</body>

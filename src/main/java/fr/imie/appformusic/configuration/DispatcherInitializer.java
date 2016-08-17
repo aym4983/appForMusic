@@ -72,7 +72,7 @@ public class DispatcherInitializer extends WebMvcConfigurerAdapter  {
 		sessionFactory.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL94Dialect");
 		
 		sessionFactory.setProperty("hibernate.show_sql", "true");
-		sessionFactory.setProperty("hibernate.hbm2ddl.auto", "update");
+		sessionFactory.setProperty("hibernate.hbm2ddl.auto", "create-drop");
 		return sessionFactory.buildSessionFactory();
 	}
 	
@@ -118,6 +118,7 @@ public class DispatcherInitializer extends WebMvcConfigurerAdapter  {
     public ConfigurableWroFilter wroFilter (){
     	ConfigurableWroFilter filter = new ConfigurableWroFilter();
     	filter.setDebug(true);
+    	
     	return filter;
     }
 }

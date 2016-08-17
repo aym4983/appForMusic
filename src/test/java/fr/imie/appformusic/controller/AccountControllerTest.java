@@ -21,6 +21,7 @@ import fr.imie.appformusic.configuration.constants.Views;
 import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.exceptions.BusinessException.Code;
+import fr.imie.appformusic.form.UserForm;
 import fr.imie.appformusic.service.IUserService;
 
 @RunWith(EasyMockRunner.class)
@@ -46,42 +47,6 @@ public class AccountControllerTest {
 	@Test
 	public void testShowSignInForm() {
 		assertThat(accountController.showSignInForm(model).getViewName()).isEqualTo(Views.SIGNIN);
-	}
-
-	/** Teste la validation de la méthode submitSignUpForm. */
-	@Test
-	public void testSubmitSignUpFormOK() throws BusinessException {
-		String userName = "userName";
-		String email = "email@email.com";
-		String password = "password";
-		String passwordConfirm = "password";
-		
-		AppUser user = new AppUser();
-		user.setUsername(userName);
-		user.setEmail(email);
-		
-		ModelAndView mav = accountController.submitSignUpForm(user, password, passwordConfirm, requestMock);
-		assertThat(mav.getViewName()).isEqualTo("redirect:/" + Routes.HOME);
-	}
-	
-	/** Teste l'invalidation de la méthode submitSignUpForm. */
-	@Test(expected=BusinessException.class)
-	public void testSubmitSignUpFormKO() throws BusinessException {
-		userServiceMock.create(null, "", "");
-		expectLastCall().andThrow(new BusinessException(new ArrayList<Code>()));
-		replay(userServiceMock);
-		accountController.submitSignUpForm(null, "", "", requestMock);
-	}
-
-	/** Teste la validation de la méthode submitSignInForm. */
-	@Test
-	public void testSubmitSignInFormOK() throws BusinessException {
-		AppUser user = new AppUser();
-		user.setUsername("userName");
-		user.setPasswordHash("password");
-		
-		ModelAndView mav = accountController.submitSignInForm(user, requestMock);
-		assertThat(mav.getViewName()).isEqualTo("redirect:/" + Routes.HOME);
 	}
 
 }

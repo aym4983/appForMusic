@@ -27,8 +27,8 @@ public class UserDao implements IUserDao {
 	@Override
 	public AppUser findByUserName(String userName) throws TechnicalException {
 		AppUser result = (AppUser) sessionFactory.getCurrentSession()
-				.createQuery("from appUser where username = ?")
-				.setParameter(0, userName)
+				.createQuery("from AppUser u where u.username = :name")
+				.setParameter("name", userName)
 				.getSingleResult();
 		
 		return result;
@@ -37,7 +37,7 @@ public class UserDao implements IUserDao {
 	@Override
 	public List<AppUser> findAllUsers() throws TechnicalException {
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from AppUser");
+		Query query = session.createQuery("from appuser");
 		
 		List<AppUser> listUser = query.getResultList();
 		return listUser;

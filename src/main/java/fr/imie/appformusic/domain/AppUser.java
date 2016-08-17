@@ -32,9 +32,6 @@ public class AppUser implements Serializable {
 	@Column(name="passwordhash", nullable = false, length = 512)
 	private String passwordHash;
 	
-	@Column(name="salt", nullable = false, length = 512)
-	private String salt;
-	
 	@Column(name="firstname", length = 32)
 	private String firstname;
 	
@@ -65,13 +62,12 @@ public class AppUser implements Serializable {
 	/** Constructors **/
 	public AppUser(){}
 	
-	public AppUser(String username, String email, String password, String salt, String firstname, String lastname,
+	public AppUser(String username, String email, String password, String firstname, String lastname,
 			Set<Borrows> borrows, Set<UserRole> roles, boolean enabled) {
 		super();
 		this.username = username;
 		this.email = email;
 		this.passwordHash = password;
-		this.salt = salt;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.borrows = borrows;
@@ -102,14 +98,6 @@ public class AppUser implements Serializable {
 
 	public void setPasswordHash(String passwordHash) {
 		this.passwordHash = passwordHash;
-	}
-
-	public String getSalt() {
-		return salt;
-	}
-
-	public void setSalt(String salt) {
-		this.salt = salt;
 	}
 
 	public String getFirstname() {

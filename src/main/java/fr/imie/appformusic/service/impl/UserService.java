@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,9 +61,8 @@ public class UserService implements IUserService, UserDetailsService {
 	public void create(AppUser user, String password, String confirmPassword) 
 			throws BusinessException {
 		if (password.equals(confirmPassword)) {
-			String salt = UUID.randomUUID().toString();
-			user.setSalt(salt);
-			user.setPasswordHash(Security.hashPassword(password, salt));
+			BCryptPasswordEncoder passEncoder = new BCryptPasswordEncoder();
+			user.setPasswordHash(passEncoder.encode(password));
 			userDao.create(user);
 		} else {
 			throw new BusinessException(BusinessException.Code.DIFFERENT_PASSWORDS);

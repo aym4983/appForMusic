@@ -9,5 +9,5 @@ public interface IUserDao {
 	public AppUser findByUserName(String userName)throws TechnicalException;
 	public List<AppUser> findAllUsers() throws TechnicalException;
 	public AppUser findByEmail(String email) throws TechnicalException;
-	public void create(AppUser user);
+	public void create(AppUser user) throws TechnicalException;
 }

@@ -57,13 +57,6 @@ public class DispatcherInitializer extends WebMvcConfigurerAdapter  {
 	
 	@Bean
 	public DriverManagerDataSource datasource(){
-		//Contenu de database.properties
-		/*
-		db.driver=org.postgresql.Driver
-		db.url=jdbc:postgresql://localhost:5432/appformusic
-		db.username=tiphanie
-		db.password=tiphanie
-		 */
 		DriverManagerDataSource ds = new DriverManagerDataSource();
 		ds.setDriverClassName(env.getProperty("db.driver"));
 		ds.setUrl(env.getProperty("db.url"));
@@ -77,9 +70,9 @@ public class DispatcherInitializer extends WebMvcConfigurerAdapter  {
 		LocalSessionFactoryBuilder sessionFactory = new LocalSessionFactoryBuilder(datasource());
 		sessionFactory.scanPackages("fr.imie.appformusic.domain");
 		sessionFactory.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL94Dialect");
+		
 		sessionFactory.setProperty("hibernate.show_sql", "true");
 		sessionFactory.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-		
 		return sessionFactory.buildSessionFactory();
 	}
 	
@@ -121,10 +114,11 @@ public class DispatcherInitializer extends WebMvcConfigurerAdapter  {
 		registry.addInterceptor(interceptor);
     }
     
-    @Bean
+    @Bean(name="wroFilter")
     public ConfigurableWroFilter wroFilter (){
     	ConfigurableWroFilter filter = new ConfigurableWroFilter();
     	filter.setDebug(true);
+    	
     	return filter;
     }
 }

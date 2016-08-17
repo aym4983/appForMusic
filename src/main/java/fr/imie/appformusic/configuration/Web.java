@@ -29,9 +29,10 @@ public class Web extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
-		FilterRegistration.Dynamic fr = servletContext.addFilter("webResourceOptimizer", new DelegatingFilterProxy("wroFilter"));
+		FilterRegistration.Dynamic fr = servletContext.addFilter("webResourceOptimizer", new DelegatingFilterProxy());
+		fr.setInitParameter("targetBeanName", "wroFilter");
+		fr.setInitParameter("targetFilterLifecycle", "true");
 		fr.addMappingForUrlPatterns(null, true, "/wro/*");
-		
 		super.onStartup(servletContext);
 	}
 }

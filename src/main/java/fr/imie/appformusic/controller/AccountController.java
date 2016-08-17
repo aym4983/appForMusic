@@ -76,5 +76,17 @@ public class AccountController {
 	public ModelAndView submitSignInForm(AppUser user, HttpServletRequest request) {
 		return new ModelAndView("redirect:/" + Routes.HOME);
 	}
-		
+
+
+	
+	/**
+	 * Affiche la vue du calendar
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(Routes.CALENDAR)
+	public ModelAndView showCalendar(Model model) {
+		ModelAndView mav = new ModelAndView(Views.CALENDAR);
+		return mav;
+	}
 }

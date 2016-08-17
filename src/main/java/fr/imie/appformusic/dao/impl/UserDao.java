@@ -50,7 +50,7 @@ public class UserDao implements IUserDao {
 	}
 
 	@Override
-	public void create(AppUser user) {
+	public void create(AppUser user) throws TechnicalException {
 		try {
 			sessionFactory.getCurrentSession().persist(user);
 		} catch (Exception e) {

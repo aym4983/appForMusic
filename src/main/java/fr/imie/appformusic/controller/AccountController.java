@@ -15,6 +15,7 @@ import fr.imie.appformusic.configuration.constants.Session;
 import fr.imie.appformusic.configuration.constants.Views;
 import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.exceptions.BusinessException;
+import fr.imie.appformusic.form.UserForm;
 import fr.imie.appformusic.service.IUserService;
 
 @Controller
@@ -32,7 +33,7 @@ public class AccountController {
 	public ModelAndView showSignUpForm(Model model) {
 		ModelAndView mav = new ModelAndView(Views.SIGNUP);
 		mav.addObject("urlSignIn", Routes.SIGNIN);
-		model.addAttribute(new AppUser());
+		model.addAttribute(new UserForm());
 		return mav; 
 	}
 	
@@ -57,24 +58,29 @@ public class AccountController {
 	 */
 	@RequestMapping(value=Routes.SIGNUP, method=RequestMethod.POST)
 	public ModelAndView submitSignUpForm(
-			AppUser user, 
+			UserForm userForm, 
 			@RequestParam(name="password") String password, 
 			@RequestParam(name="password-confirm") String passwordConfirm, 
 			HttpServletRequest request)
 	throws BusinessException {
+		// mapping
+		AppUser user = new AppUser();
+		user.setUsername(userForm.getUsername());
 		userService.create(user, password, passwordConfirm);
 		return new ModelAndView("redirect:/" + Routes.HOME);
 	}
 
-	/**
-	 * Traite les données soumises du formulaire de connexion.
-	 * @param user 		L'utilisateur à connecter.
-	 * @param request 	La requête HTTP.
-	 * @return 			Une redirection vers la page d'accueil du site en cas de réussite, sinon vers le formulaire.
-	 */
-	@RequestMapping(value=Routes.SIGNIN, method=RequestMethod.POST)
-	public ModelAndView submitSignInForm(AppUser user, HttpServletRequest request) {
-		return new ModelAndView("redirect:/" + Routes.HOME);
-	}
-		
+//	/**
+//	 * Traite les données soumises du formulaire de connexion.
+//	 * @param user 		L'utilisateur à connecter.
+//	 * @param request 	La requête HTTP.
+//	 * @return 			Une redirection vers la page d'accueil du site en cas de réussite, sinon vers le formulaire.
+//	 */
+//	@RequestMapping(value=Routes.SIGNIN, method=RequestMethod.POST)
+//	public ModelAndView submitSignInForm(UserForm userForm, HttpServletRequest request) {
+//		//TODO Connexion de l'utilisateur.
+//		return new ModelAndView("redirect:/" + Routes.HOME);
+//	}
+
+
 }

@@ -37,4 +37,10 @@
         <put-attribute name="footer" value=""/>
     </definition>
     
+    <definition name="search" extends="baseDefinition">
+        <put-attribute name="header" value="/WEB-INF/jsp/blocs/header.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/pages/search.jsp"/>
+        <put-attribute name="footer" value=""/>
+    </definition>
+    
 </tiles-definitions>

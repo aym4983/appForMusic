@@ -9,8 +9,8 @@
     <h2>Connexion</h2>
 
 	<p class="form-group">
-		<form:label path="username" for="signup-username">Identifiant</form:label>
-		<form:input path="username" id="signup-username" class="form-control" placeholder="Identifiant"/></p>
+		<label for="signup-username">Identifiant</label>
+		<input name="username" id="signup-username" class="form-control" placeholder="Identifiant"/></p>
 	
 	<p class="form-group">
 		<label for="signup-password">Mot de passe</label>

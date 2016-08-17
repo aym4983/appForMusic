@@ -35,7 +35,13 @@ public class Role implements Serializable {
 	private Set<UserRole> roles;
 	
 	/** Constructors **/
+	public Role(String id, String label){
+		this.id = id;
+		this.label = label;
+	}
+	
 	public Role(){
+		
 	}
 	
 	/*** Getters and setters **/

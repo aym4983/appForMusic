@@ -15,184 +15,200 @@
     </properties>
 
     <dependencies>
+    
         <!-- tests -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-        <groupId>org.easymock</groupId>
-        <artifactId>easymock</artifactId>
-        <version>3.4</version>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
-	<dependency>
-	    <groupId>org.assertj</groupId>
-	    <artifactId>assertj-core</artifactId>
-	    <version>3.4.1</version>
-	</dependency>
-    
-    <dependency>
-        <groupId>org.hsqldb</groupId>
-        <artifactId>hsqldb</artifactId>
-        <version>2.3.3</version>
-        <scope>test</scope>
-    </dependency>
-    
-    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
-	<dependency>
-	    <groupId>org.springframework.security</groupId>
-	    <artifactId>spring-security-core</artifactId>
-	    <version>4.1.1.RELEASE</version>
-	</dependency>
+	    <dependency>
+	      <groupId>junit</groupId>
+	      <artifactId>junit</artifactId>
+	      <version>4.12</version>
+	      <scope>test</scope>
+	    </dependency>
 	
-	<dependency>
-	   <groupId>org.springframework.security</groupId>
-	   <artifactId>spring-security-web</artifactId>
-	   <version>4.1.1.RELEASE</version>
-	</dependency>
-    
-    <dependency>
-       <groupId>org.springframework.security</groupId>
-       <artifactId>spring-security-config</artifactId>
-       <version>4.1.1.RELEASE</version>
-    </dependency>
-    
-	<dependency>
-	   <groupId>org.hibernate</groupId>
-	   <artifactId>hibernate-core</artifactId>
-	   <version>5.2.0.Final</version>
-	</dependency>
-    
-    <!-- servlet et jstl -->
-    <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>javax.servlet-api</artifactId>
-        <version>3.1.0</version>
-        <scope>provided</scope>
-    </dependency>
-    <dependency>
-        <groupId>jstl</groupId>
-        <artifactId>jstl</artifactId>
-        <version>1.2</version>
-    </dependency>
-    
-    
-    <!-- dépendances spring -->
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-context</artifactId>
-        <version>4.3.1.RELEASE</version>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-web</artifactId>
-        <version>4.3.1.RELEASE</version>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-webmvc</artifactId>
-        <version>4.3.1.RELEASE</version>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-test</artifactId>
-        <version>4.3.1.RELEASE</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
-	<dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-orm</artifactId>
-	    <version>4.3.1.RELEASE</version>
-	</dependency>
-    
-    
-    <!-- jackson -->
-    <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-core</artifactId>
-        <version>2.7.3</version>
-    </dependency>
-    <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-databind</artifactId>
-        <version>2.7.3</version>
-    </dependency>
-    
-    <!-- apache commons -->
-    <dependency>
-        <groupId>commons-collections</groupId>
-        <artifactId>commons-collections</artifactId>
-        <version>3.2.2</version>
-    </dependency>
-    <dependency>
-        <groupId>commons-dbcp</groupId>
-        <artifactId>commons-dbcp</artifactId>
-        <version>1.4</version>
-    </dependency>
-    
-        <!-- http://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-    <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-lang3</artifactId>
-        <version>3.4</version>
-    </dependency>
-    
-        <!-- http://mvnrepository.com/artifact/commons-validator/commons-validator -->
-    <dependency>
-        <groupId>commons-validator</groupId>
-        <artifactId>commons-validator</artifactId>
-        <version>1.5.1</version>
-    </dependency>
-    
-    <!-- jdbc -->
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-jdbc</artifactId>
-        <version>4.2.5.RELEASE</version>
-    </dependency>
-    <!-- http://mvnrepository.com/artifact/org.postgresql/postgresql -->
-    <dependency>
-        <groupId>org.postgresql</groupId>
-        <artifactId>postgresql</artifactId>
-        <version>9.4.1208</version>
-    </dependency>
-    
-    <!-- tiles 3 -->
-    <dependency>
-        <groupId>org.apache.tiles</groupId>
-        <artifactId>tiles-core</artifactId>
-        <version>3.0.5</version>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.tiles</groupId>
-        <artifactId>tiles-extras</artifactId>
-        <version>3.0.5</version>
-    </dependency>
-    
-    <!--  log4J -->
-    <!-- http://mvnrepository.com/artifact/log4j/log4j -->
-    <dependency>
-        <groupId>log4j</groupId>
-        <artifactId>log4j</artifactId>
-        <version>1.2.17</version>
-    </dependency>
-    
-    <!-- http://mvnrepository.com/artifact/ro.isdc.wro4j/wro4j-maven-plugin -->
-<dependency>
-        <groupId>ro.isdc.wro4j</groupId>
-        <artifactId>wro4j-core</artifactId>
-        <version>1.8.0</version>
-    </dependency>
-    <dependency>
-        <groupId>ro.isdc.wro4j</groupId>
-        <artifactId>wro4j-extensions</artifactId>
-        <version>1.8.0</version>
-    </dependency>
+	    <dependency>
+	        <groupId>org.easymock</groupId>
+	        <artifactId>easymock</artifactId>
+	        <version>3.4</version>
+	    </dependency>
+	
+	    <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
+		<dependency>
+		    <groupId>org.assertj</groupId>
+		    <artifactId>assertj-core</artifactId>
+		    <version>3.4.1</version>
+		</dependency>
+	    
+	    <dependency>
+	        <groupId>org.hsqldb</groupId>
+	        <artifactId>hsqldb</artifactId>
+	        <version>2.3.3</version>
+	        <scope>test</scope>
+	    </dependency>
+	    
+	    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-core</artifactId>
+		    <version>4.1.1.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+		   <groupId>org.springframework.security</groupId>
+		   <artifactId>spring-security-web</artifactId>
+		   <version>4.1.1.RELEASE</version>
+		</dependency>
+	    
+	    <dependency>
+	       <groupId>org.springframework.security</groupId>
+	       <artifactId>spring-security-config</artifactId>
+	       <version>4.1.1.RELEASE</version>
+	    </dependency>
+	    
+		<dependency>
+		   <groupId>org.hibernate</groupId>
+		   <artifactId>hibernate-core</artifactId>
+		   <version>5.2.0.Final</version>
+		</dependency>
+	    
+	    <!-- servlet et jstl -->
+	    <dependency>
+	        <groupId>javax.servlet</groupId>
+	        <artifactId>javax.servlet-api</artifactId>
+	        <version>3.1.0</version>
+	        <scope>provided</scope>
+	    </dependency>
+	    
+	    <dependency>
+	        <groupId>jstl</groupId>
+	        <artifactId>jstl</artifactId>
+	        <version>1.2</version>
+	    </dependency>
+	    
+	    <!-- dépendances spring -->
+	    <dependency>
+	        <groupId>org.springframework</groupId>
+	        <artifactId>spring-context</artifactId>
+	        <version>4.3.1.RELEASE</version>
+	    </dependency>
+	    
+	    <dependency>
+	        <groupId>org.springframework</groupId>
+	        <artifactId>spring-web</artifactId>
+	        <version>4.3.1.RELEASE</version>
+	    </dependency>
+	    
+	    <dependency>
+	        <groupId>org.springframework</groupId>
+	        <artifactId>spring-webmvc</artifactId>
+	        <version>4.3.1.RELEASE</version>
+	    </dependency>
+	    
+	    <dependency>
+	        <groupId>org.springframework</groupId>
+	        <artifactId>spring-test</artifactId>
+	        <version>4.3.1.RELEASE</version>
+	    </dependency>
+	    
+	    <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-orm</artifactId>
+		    <version>4.3.1.RELEASE</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-taglibs</artifactId>
+		    <version>4.1.2.RELEASE</version>
+		</dependency>
+		
+	    <!-- jackson -->
+	    <dependency>
+	        <groupId>com.fasterxml.jackson.core</groupId>
+	        <artifactId>jackson-core</artifactId>
+	        <version>2.7.3</version>
+	    </dependency>
+	    
+	    <dependency>
+	        <groupId>com.fasterxml.jackson.core</groupId>
+	        <artifactId>jackson-databind</artifactId>
+	        <version>2.7.3</version>
+	    </dependency>
+	    
+	    <!-- apache commons -->
+	    <dependency>
+	        <groupId>commons-collections</groupId>
+	        <artifactId>commons-collections</artifactId>
+	        <version>3.2.2</version>
+	    </dependency>
+	    
+	    <dependency>
+	        <groupId>commons-dbcp</groupId>
+	        <artifactId>commons-dbcp</artifactId>
+	        <version>1.4</version>
+	    </dependency>
+	    
+	        <!-- http://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+	    <dependency>
+	        <groupId>org.apache.commons</groupId>
+	        <artifactId>commons-lang3</artifactId>
+	        <version>3.4</version>
+	    </dependency>
+	    
+	        <!-- http://mvnrepository.com/artifact/commons-validator/commons-validator -->
+	    <dependency>
+	        <groupId>commons-validator</groupId>
+	        <artifactId>commons-validator</artifactId>
+	        <version>1.5.1</version>
+	    </dependency>
+	    
+	    <!-- jdbc -->
+	    <dependency>
+	        <groupId>org.springframework</groupId>
+	        <artifactId>spring-jdbc</artifactId>
+	        <version>4.2.5.RELEASE</version>
+	    </dependency>
+	    
+	    <!-- http://mvnrepository.com/artifact/org.postgresql/postgresql -->
+	    <dependency>
+	        <groupId>org.postgresql</groupId>
+	        <artifactId>postgresql</artifactId>
+	        <version>9.4.1208</version>
+	    </dependency>
+	    
+	    <!-- tiles 3 -->
+	    <dependency>
+	        <groupId>org.apache.tiles</groupId>
+	        <artifactId>tiles-core</artifactId>
+	        <version>3.0.5</version>
+	    </dependency>
+	    
+	    <dependency>
+	        <groupId>org.apache.tiles</groupId>
+	        <artifactId>tiles-extras</artifactId>
+	        <version>3.0.5</version>
+	    </dependency>
+	    
+	    <!--  log4J -->
+	    <!-- http://mvnrepository.com/artifact/log4j/log4j -->
+	    <dependency>
+	        <groupId>log4j</groupId>
+	        <artifactId>log4j</artifactId>
+	        <version>1.2.17</version>
+	    </dependency>
+	    
+	    <!-- http://mvnrepository.com/artifact/ro.isdc.wro4j/wro4j-maven-plugin -->
+		<dependency>
+	        <groupId>ro.isdc.wro4j</groupId>
+	        <artifactId>wro4j-core</artifactId>
+	        <version>1.8.0</version>
+	    </dependency>
+	    
+	    <dependency>
+	        <groupId>ro.isdc.wro4j</groupId>
+	        <artifactId>wro4j-extensions</artifactId>
+	        <version>1.8.0</version>
+	    </dependency>
     
     </dependencies>
     

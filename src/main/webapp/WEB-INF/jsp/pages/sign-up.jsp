@@ -4,7 +4,7 @@
 
 <c:url value="${ urlSignIn }" var="urlSignIn" />
 
-<form:form action="" method="post" modelAttribute="appUser" id="signup">
+<form:form action="" method="post" modelAttribute="appUser" id="signup" class="col-md-2 col-md-offset-5">
 
 	<p class="form-group">
 		<form:label path="username" for="signup-username">Identifiant</form:label>

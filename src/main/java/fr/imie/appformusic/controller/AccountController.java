@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.imie.appformusic.configuration.constants.Routes;
+import fr.imie.appformusic.configuration.constants.Session;
 import fr.imie.appformusic.configuration.constants.Views;
 import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.exceptions.BusinessException;
@@ -73,9 +74,7 @@ public class AccountController {
 	 */
 	@RequestMapping(value=Routes.SIGNIN, method=RequestMethod.POST)
 	public ModelAndView submitSignInForm(AppUser user, HttpServletRequest request) {
-		//TODO Connexion de l'utilisateur.
 		return new ModelAndView("redirect:/" + Routes.HOME);
 	}
-
-
+		
 }

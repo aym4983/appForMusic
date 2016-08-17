@@ -31,6 +31,13 @@ public interface IUserService {
 	public List<AppUser> findAllUsers() throws BusinessException;
 	
 	/**
+	 * Trouve tous les utilisateurs dont le username est proche de celui spécifié.
+	 * @return La liste des utilisateurs dont le username est proche de celui spécifié.
+	 * @throws BusinessException
+	 */
+	public List<AppUser> findUsersLike(String username) throws BusinessException;
+	
+	/**
 	 * Crée un utilisateur.
 	 * @param user L'utilisateur à créer.
 	 */

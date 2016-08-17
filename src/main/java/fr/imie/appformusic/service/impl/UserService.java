@@ -56,6 +56,11 @@ public class UserService implements IUserService, UserDetailsService {
 	}
 
 	@Override
+	public List<AppUser> findUsersLike(String username) throws BusinessException {
+		return userDao.findUsersLike(username);
+	}
+
+	@Override
 	public void create(AppUser user, String password, String confirmPassword) 
 			throws BusinessException {
 		if (password.equals(confirmPassword)) {

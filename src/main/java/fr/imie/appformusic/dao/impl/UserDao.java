@@ -2,9 +2,6 @@ package fr.imie.appformusic.dao.impl;
 
 import java.util.List;
 
-import javax.persistence.Query;
-
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,24 +20,22 @@ public class UserDao implements IUserDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+
+	@Override
+	public void create(AppUser user) throws TechnicalException {
+		try {
+			sessionFactory.getCurrentSession().persist(user);
+		} catch (Exception e) {
+			throw new TechnicalException(e);
+		}
+	}
 	
 	@Override
 	public AppUser findByUserName(String userName) throws TechnicalException {
-		AppUser result = (AppUser) sessionFactory.getCurrentSession()
-				.createQuery("from AppUser u where u.username = :name")
+		return sessionFactory.getCurrentSession()
+				.createQuery("from AppUser u where u.username = :name", AppUser.class)
 				.setParameter("name", userName)
 				.getSingleResult();
-		
-		return result;
-	}
-
-	@Override
-	public List<AppUser> findAllUsers() throws TechnicalException {
-		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from appuser");
-		
-		List<AppUser> listUser = query.getResultList();
-		return listUser;
 	}
 
 	@Override
@@ -50,12 +45,18 @@ public class UserDao implements IUserDao {
 	}
 
 	@Override
-	public void create(AppUser user) throws TechnicalException {
-		try {
-			sessionFactory.getCurrentSession().persist(user);
-		} catch (Exception e) {
-			throw new TechnicalException(e);
-		}
+	public List<AppUser> findAllUsers() throws TechnicalException {
+		return sessionFactory.getCurrentSession()
+				.createQuery("from appuser", AppUser.class)
+				.getResultList();
+	}
+
+	@Override
+	public List<AppUser> findUsersLike(String username) throws TechnicalException {
+		return sessionFactory.getCurrentSession()
+				.createQuery("from appuser where username ilike :username", AppUser.class)
+				.setParameter("username", "%" + username + "%")
+				.getResultList();
 	}
 
 }

@@ -6,6 +6,8 @@
 
 <form:form action="" method="post" modelAttribute="appUser" id="signin" class="col-md-4 col-md-offset-4 col-lg-2 col-lg-offset-5">
 
+    <h2>Connexion</h2>
+
 	<p class="form-group">
 		<form:label path="username" for="signup-username">Identifiant</form:label>
 		<form:input path="username" id="signup-username" class="form-control" placeholder="Identifiant"/></p>
@@ -14,7 +16,7 @@
 		<label for="signup-password">Mot de passe</label>
 		<input type="password" id="signup-password" class="form-control" placeholder="Mot de passe"/></p>
 	
-	<p><input type="submit" name="signup" value="Connexion" class="btn btn-primary" />
-		<a href="${ urlSignUp }" class="btn btn-default">Je n'ai pas de compte.</a></p>
+	<p><input type="submit" name="signup" value="Connexion" class="btn btn-block btn-primary" />
+		<a href="${ urlSignUp }" class="btn btn-block btn-default">Je n'ai pas de compte.</a></p>
 	
 </form:form>

@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import fr.imie.appformusic.dao.IUserDao;
 import fr.imie.appformusic.domain.AppUser;
+import fr.imie.appformusic.domain.Role;
 import fr.imie.appformusic.domain.UserRole;
 
 @RunWith(EasyMockRunner.class)
@@ -34,6 +35,7 @@ public class UserServiceTest {
 		// Création d'un AppUser
 		AppUser user = new AppUser();
 		UserRole role = new UserRole();
+		Role roletab = new Role("1","admin");
 		
 		Set<UserRole> roles = new HashSet<>();
 		user.setRoles(roles);
@@ -41,7 +43,10 @@ public class UserServiceTest {
 		user.setUsername("toto");
 		user.setPasswordHash("passwd");
 		user.setEnabled(true);
-		role.setRole("user");
+
+		role.setUser(user);
+		role.setRole(roletab);
+
 
 		// comportement du mock
 		expect(daoMock.findByUserName("toto")).andReturn(user);

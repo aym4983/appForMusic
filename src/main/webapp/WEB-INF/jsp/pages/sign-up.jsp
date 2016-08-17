@@ -4,7 +4,7 @@
 
 <c:url value="${ urlSignIn }" var="urlSignIn" />
 
-<form:form action="" method="post" modelAttribute="appUser" id="signup" class="col-md-4 col-md-offset-4 col-lg-2 col-lg-offset-5">
+<form:form action="" method="post" modelAttribute="appUser" id="signup" class="col-md-4 col-md-offset-4">
 
     <h2>Inscription</h2>
 

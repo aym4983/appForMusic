@@ -1,0 +1,1 @@
+insert into role (id, label) values ('user', 'user')

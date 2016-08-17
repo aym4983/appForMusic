@@ -19,32 +19,38 @@ public class UserRole {
 
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-	private String label;
 	
 	@ManyToOne
 	private AppUser user;
 	
+	@ManyToOne
+	private Role role;
 	
 	public UserRole(){}
-	/** Obtient l'identifiant numérique du rôle.
-	 * @return L'identifiant numérique du rôle.
-	 */
+	
+
 	public long getId() {
 		return id;
 	}
 
-	/** Obtient le libellé du rôle.
-	 * @return Le libellé du rôle.
-	 */
-	public String getRole() {
-		return label;
+	public void setId(long id) {
+		this.id = id;
 	}
-	
-	/** Définit le libellé du rôle.
-	 * @param label Le libellé à définir.
-	 */
-	public void setRole(String label) {
-		this.label = label;
+
+	public AppUser getUser() {
+		return user;
+	}
+
+	public void setUser(AppUser user) {
+		this.user = user;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 }

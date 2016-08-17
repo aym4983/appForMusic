@@ -144,7 +144,7 @@ public class UserService implements IUserService, UserDetailsService {
 
 		// Build user's authorities
 		for (UserRole userRole : userRoles) {
-			setAuths.add(new SimpleGrantedAuthority(userRole.getRole()));
+			setAuths.add(new SimpleGrantedAuthority(userRole.getRole().getId()));
 		}
 
 		List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);

@@ -1,9 +1,16 @@
-package fr.imie.appformusic.domain;
+package fr.imie.appformusic.responses;
 
-public class ResponseBody {
+public abstract class Response {
 	
 	private boolean succeeded;
-	private int status;
+	
+	public Response() {
+		succeeded = true;
+	}
+	
+	public Response(boolean succeeded) {
+		this.succeeded = succeeded;
+	}
 
 	public boolean isSucceeded() {
 		return succeeded;
@@ -11,14 +18,6 @@ public class ResponseBody {
 
 	public void setSucceeded(boolean succeeded) {
 		this.succeeded = succeeded;
-	}
-
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
 	}
 
 }

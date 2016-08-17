@@ -82,4 +82,16 @@ public class AccountController {
 //	}
 
 
+	
+	/**
+	 * Affiche la vue du calendar
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(Routes.CALENDAR)
+	public ModelAndView showCalendar(Model model) {
+		ModelAndView mav = new ModelAndView(Views.CALENDAR);
+		return mav;
+	}
+
 }

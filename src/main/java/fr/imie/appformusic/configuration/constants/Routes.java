@@ -15,5 +15,7 @@ public interface Routes {
 	public String SIGNUP = "/sign-up";
 	/** Page de recherche si login success */
 	public String SEARCH = "/search";
+	/** Page de test calendrier. */
+	public String CALENDAR = "/calendar";
 
 }

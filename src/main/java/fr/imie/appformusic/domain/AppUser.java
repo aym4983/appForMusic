@@ -45,9 +45,6 @@ public class AppUser implements Serializable {
 	private Set<Favourites> favourites;
 	
 	@OneToMany(mappedBy="user")
-	private Set<Owns> owns;
-	
-	@OneToMany(mappedBy="user")
 	private Set<UserRole> roles;
 	
 	@OneToMany(mappedBy="userbeingrated")

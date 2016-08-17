@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,8 +29,11 @@ public class Place implements Serializable {
 	@Id @GeneratedValue(strategy=GenerationType.AUTO) @Column(name="placeid")
 	private int placeId;
 	
-	@Column(name="label", length = 50, nullable = false)
-	private String label;
+	@Column(name="privatelabel", length = 50, nullable = false)
+	private String privateLabel;
+	
+	@Column(name="publiclabel", length = 50, nullable = false)
+	private String publicLabel;
 	
 	@Column(name="street", length = 255, nullable = false)
 	private String street;
@@ -45,14 +50,15 @@ public class Place implements Serializable {
 	@Column(name="longitude", nullable = false)
 	private double longitude;
 	
+	@ManyToOne
+	@JoinColumn(name="owner", nullable = false)
+	private AppUser owner;
+	
 	@OneToMany(mappedBy="place")
 	private Set<Borrows> borrows;
 	
 	@OneToMany(mappedBy="place")
 	private Set<Favourites> favourites;
-	
-	@OneToMany(mappedBy="place")
-	private Set<Favourites> owns;
 	
 	@OneToMany(mappedBy="place")
 	private Set<Proposes> proposes;
@@ -64,7 +70,7 @@ public class Place implements Serializable {
 	public Place(int placeId, String label, String city, String street, String zipcode, double latitude, double longitude) {
 		super();
 		this.placeId = placeId;
-		this.label = label;
+		this.privateLabel = label;
 		this.street = street;
 		this.city = city;
 		this.zipcode = zipcode;
@@ -80,12 +86,20 @@ public class Place implements Serializable {
 		this.placeId = placeId;
 	}
 
-	public String getLabel() {
-		return label;
+	public String getPrivateLabel() {
+		return privateLabel;
 	}
 
-	public void setLabel(String label) {
-		this.label = label;
+	public void setPrivateLabel(String privateLabel) {
+		this.privateLabel = privateLabel;
+	}
+
+	public String getPublicLabel() {
+		return publicLabel;
+	}
+
+	public void setPublicLabel(String publicLabel) {
+		this.publicLabel = publicLabel;
 	}
 
 	public String getStreet() {
@@ -126,6 +140,14 @@ public class Place implements Serializable {
 
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
+	}
+
+	public AppUser getOwner() {
+		return owner;
+	}
+
+	public void setOwner(AppUser user) {
+		this.owner = user;
 	}
 
 }

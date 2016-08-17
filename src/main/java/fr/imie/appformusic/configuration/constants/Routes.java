@@ -13,5 +13,7 @@ public interface Routes {
 	public String SIGNIN = "/sign-in";
 	/** Page de formulaire d'inscription. */
 	public String SIGNUP = "/sign-up";
+	/** Page de recherche si login success */
+	public String SEARCH = "/search";
 
 }

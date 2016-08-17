@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.imie.appformusic.configuration.constants.Routes;
@@ -59,14 +58,13 @@ public class AccountController {
 	@RequestMapping(value=Routes.SIGNUP, method=RequestMethod.POST)
 	public ModelAndView submitSignUpForm(
 			UserForm userForm, 
-			@RequestParam(name="password") String password, 
-			@RequestParam(name="password-confirm") String passwordConfirm, 
 			HttpServletRequest request)
 	throws BusinessException {
 		// mapping
 		AppUser user = new AppUser();
 		user.setUsername(userForm.getUsername());
-		userService.create(user, password, passwordConfirm);
+		user.setEmail(userForm.getEmail());
+		userService.create(user, userForm.getPassword(), userForm.getPasswordConfirm());
 		return new ModelAndView("redirect:/" + Routes.HOME);
 	}
 

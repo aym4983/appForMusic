@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,6 @@ import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.domain.UserRole;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.service.IUserService;
-import fr.imie.appformusic.utils.Security;
 
 /*
  * Non implémenté car exemple pour test driven development

@@ -22,6 +22,8 @@
 			<tiles:insertAttribute name="body" />
 			<tiles:insertAttribute name="footer" />
 		</div>
+		
+		<script>var app = new App();</script>
 	</body>
 	
 </html>

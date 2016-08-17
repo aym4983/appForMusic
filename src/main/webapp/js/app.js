@@ -2,19 +2,11 @@
  * Mettre dans app.js le javascript commun à toutes les pages
  */
 
-var app = {
-		
-}
-
-
-$(document).ready(function() {
-
+/** Méthode d'init pour Calendar Js */
+function initCalendar (){
 	$('#calendar').fullCalendar({
 		// ajouter options si besoin
 	});
-
-	console.log("loaded");
-	
-});
+}
 
 

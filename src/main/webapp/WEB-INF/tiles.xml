@@ -2,29 +2,33 @@
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+       
 <tiles-definitions>
+
     <definition name="baseDefinition" template="/WEB-INF/jsp/templates/layout.jsp">
-        <put-attribute name="header" value=""/>
+        <put-attribute name="header" 		value=""/>
+        <put-attribute name="navigation" 	value=""/>
+        <put-attribute name="body" 			value=""/>
+        <put-attribute name="footer" 		value=""/>
+    </definition>
+
+    <definition name="loggedOutLayout" template="/WEB-INF/jsp/templates/logged-out-layout.jsp">
         <put-attribute name="body" value=""/>
-        <put-attribute name="footer" value=""/>
     </definition>
     
     <definition name="main" extends="baseDefinition">
-        <put-attribute name="header" value="/WEB-INF/jsp/blocs/header.jsp"/>
-        <put-attribute name="body" value="/WEB-INF/jsp/pages/main.jsp"/>
-        <put-attribute name="footer" value=""/>
+        <put-attribute name="navigation" 	value="/WEB-INF/jsp/blocs/nav.jsp"/>
+        <put-attribute name="header" 		value="/WEB-INF/jsp/blocs/header.jsp"/>
+        <put-attribute name="body" 			value="/WEB-INF/jsp/pages/main.jsp"/>
+        <put-attribute name="footer" 		value=""/>
     </definition>
     
-    <definition name="sign-in" extends="baseDefinition">
-        <put-attribute name="header" value="/WEB-INF/jsp/blocs/header.jsp"/>
+    <definition name="sign-in" extends="loggedOutLayout">
         <put-attribute name="body" value="/WEB-INF/jsp/pages/sign-in.jsp"/>
-        <put-attribute name="footer" value=""/>
     </definition>
     
-    <definition name="sign-up" extends="baseDefinition">
-        <put-attribute name="header" value="/WEB-INF/jsp/blocs/header.jsp"/>
+    <definition name="sign-up" extends="loggedOutLayout">
         <put-attribute name="body" value="/WEB-INF/jsp/pages/sign-up.jsp"/>
-        <put-attribute name="footer" value=""/>
     </definition>
     
     <definition name="home" extends="baseDefinition">

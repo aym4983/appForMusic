@@ -43,9 +43,10 @@ public class UserServiceTest {
 		user.setUsername("toto");
 		user.setPasswordHash("passwd");
 		user.setEnabled(true);
-		
+
 		role.setUser(user);
 		role.setRole(roletab);
+
 
 		// comportement du mock
 		expect(daoMock.findByUserName("toto")).andReturn(user);

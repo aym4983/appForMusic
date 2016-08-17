@@ -28,7 +28,7 @@
 			</div>
 		</div>
 		
-		<script>var app = new App();</script>
+		<script>var app = new App();</script>	
 	</body>
 	
 </html>

@@ -80,7 +80,7 @@ public class AccountController {
 
 	
 	/**
-	 * Affiche la vue du calendar
+	 * Affiche la vue calendar
 	 * @param model
 	 * @return
 	 */

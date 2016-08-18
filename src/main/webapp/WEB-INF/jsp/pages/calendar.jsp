@@ -5,5 +5,5 @@
 <c:url value="${ urlCalendar }" var="urlCalendar" />
 
 
- 	<h2>Calendar</h2>
+ 	<h2>Calendrier</h2>
  	<div id='calendar'></div>	

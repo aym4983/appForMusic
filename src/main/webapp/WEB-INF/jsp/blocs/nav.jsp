@@ -10,6 +10,7 @@
 <c:url var="urlPlaces" value="/places" />
 <c:url var="urlSettings" value="/settings" />
 <c:url var="urlHelp" value="/help" />
+<c:url var="urlCalendar" value="/calendar" />
 
 <nav id="main-menu">
 

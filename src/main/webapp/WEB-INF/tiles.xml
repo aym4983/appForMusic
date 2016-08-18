@@ -5,6 +5,8 @@
        
 <tiles-definitions>
 
+	<!-- Layouts -->
+
     <definition name="baseDefinition" template="/WEB-INF/jsp/templates/layout.jsp">
         <put-attribute name="header" 		value=""/>
         <put-attribute name="navigation" 	value=""/>
@@ -16,12 +18,7 @@
         <put-attribute name="body" value=""/>
     </definition>
     
-    <definition name="main" extends="baseDefinition">
-        <put-attribute name="navigation" 	value="/WEB-INF/jsp/blocs/nav.jsp"/>
-        <put-attribute name="header" 		value="/WEB-INF/jsp/blocs/header.jsp"/>
-        <put-attribute name="body" 			value="/WEB-INF/jsp/pages/main.jsp"/>
-        <put-attribute name="footer" 		value=""/>
-    </definition>
+    <!-- Pages -->
     
     <definition name="sign-in" extends="loggedOutLayout">
         <put-attribute name="body" value="/WEB-INF/jsp/pages/sign-in.jsp"/>
@@ -29,6 +26,13 @@
     
     <definition name="sign-up" extends="loggedOutLayout">
         <put-attribute name="body" value="/WEB-INF/jsp/pages/sign-up.jsp"/>
+    </definition>
+    
+    <definition name="main" extends="baseDefinition">
+        <put-attribute name="navigation" 	value="/WEB-INF/jsp/blocs/nav.jsp"/>
+        <put-attribute name="header" 		value="/WEB-INF/jsp/blocs/header.jsp"/>
+        <put-attribute name="body" 			value="/WEB-INF/jsp/pages/main.jsp"/>
+        <put-attribute name="footer" 		value=""/>
     </definition>
     
     <definition name="home" extends="baseDefinition">

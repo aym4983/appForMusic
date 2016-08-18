@@ -1,6 +1,7 @@
 package fr.imie.appformusic.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,8 @@ import fr.imie.appformusic.responses.Response;
 import fr.imie.appformusic.service.IPlaceService;
 import fr.imie.appformusic.service.IUserService;
 
+@Controller
+@RequestMapping(value = Routes.SEARCH, method = RequestMethod.GET)
 public class SearchController {
 	
 	@Autowired
@@ -23,18 +26,18 @@ public class SearchController {
 	@Autowired
 	private IPlaceService placeService;
 
-	@RequestMapping(name = Routes.SEARCH, method = RequestMethod.GET)
 	@ResponseBody
-	public GlobalSearchResponse searchGlobally(
+	@RequestMapping("/all")
+	public GlobalSearchResponse searchAll(
 			@RequestParam(name="search") String search
 	) throws BusinessException {
 		GlobalSearchResponse response = new GlobalSearchResponse();
 		response.setUsers(userService.findUsersLike(search));
 		response.setPlaces(placeService.findPlacesLike(search));
-		return response;
+		return null;
 	}
 
-	@ExceptionHandler
+	@ExceptionHandler(Throwable.class)
 	public Response error() {
 		return new FailureResponse();
 	}

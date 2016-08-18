@@ -6,6 +6,9 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -44,8 +47,11 @@ public class AppUser implements Serializable {
 	@OneToMany(mappedBy="user")
 	private Set<Favourites> favourites;
 	
-	@OneToMany(mappedBy="user")
-	private Set<UserRole> roles;
+	@ManyToMany
+	@JoinTable(name = "user_role",
+		joinColumns = @JoinColumn(name = "username", referencedColumnName = "username"), 
+		inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+	private Set<Role> roles;
 	
 	@OneToMany(mappedBy="userbeingrated")
 	private Set<Rates> ratesbeingrated;
@@ -60,7 +66,7 @@ public class AppUser implements Serializable {
 	public AppUser(){}
 	
 	public AppUser(String username, String email, String password, String firstname, String lastname,
-			Set<Borrows> borrows, Set<UserRole> roles, boolean enabled) {
+			Set<Borrows> borrows, Set<Role> roles, boolean enabled) {
 		super();
 		this.username = username;
 		this.email = email;
@@ -121,11 +127,11 @@ public class AppUser implements Serializable {
 		this.borrows = borrows;
 	}
 
-	public Set<UserRole> getRoles() {
+	public Set<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Set<UserRole> roles) {
+	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
 

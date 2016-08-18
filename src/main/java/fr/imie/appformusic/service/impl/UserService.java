@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.imie.appformusic.dao.IUserDao;
 import fr.imie.appformusic.domain.AppUser;
-import fr.imie.appformusic.domain.UserRole;
+import fr.imie.appformusic.domain.Role;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.service.IUserService;
 
@@ -143,13 +143,13 @@ public class UserService implements IUserService, UserDetailsService {
 				user.isEnabled(), true, true, true, authorities);
 		}
 	
-	protected List<GrantedAuthority> buildUserAuthority(Set<UserRole> userRoles) {
+	protected List<GrantedAuthority> buildUserAuthority(Set<Role> userRoles) {
 
 		Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
 
 		// Build user's authorities
-		for (UserRole userRole : userRoles) {
-			setAuths.add(new SimpleGrantedAuthority(userRole.getRole().getId()));
+		for (Role role : userRoles) {
+			setAuths.add(new SimpleGrantedAuthority(role.getLabel()));
 		}
 
 		List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);

@@ -13,11 +13,8 @@ public interface Routes {
 	public String SIGNIN = "/sign-in";
 	/** Page de formulaire d'inscription. */
 	public String SIGNUP = "/sign-up";
-<<<<<<< HEAD
 	/** Page de recherche si login success */
 	public String SEARCH = "/search";
-=======
->>>>>>> refs/remotes/origin/master_lila
 	/** Page de test calendrier. */
 	public String CALENDAR = "/calendar";
 

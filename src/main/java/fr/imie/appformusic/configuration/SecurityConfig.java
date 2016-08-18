@@ -25,7 +25,7 @@ import fr.imie.appformusic.configuration.constants.Routes;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	UserDetailsService userService;
+	private UserDetailsService userService;
 	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{

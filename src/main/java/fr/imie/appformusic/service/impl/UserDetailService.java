@@ -33,7 +33,8 @@ public class UserDetailService implements UserDetailsService {
 			grantedAuthority.add(new SimpleGrantedAuthority(role.getLabel()));
 		}
 		
-		return new User(appUser.getUsername(), appUser.getPasswordHash(), grantedAuthority);
+		User user = new User(appUser.getUsername(), appUser.getPasswordHash(),grantedAuthority);
+		return user;
 	}
 
 }

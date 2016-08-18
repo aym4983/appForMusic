@@ -14,7 +14,7 @@
 	
 	<p class="form-group">
 		<label for="signup-password">Mot de passe</label>
-		<input type="password" id="signup-password" class="form-control" placeholder="Mot de passe"/></p>
+		<input type="password" name="password" id="signup-password" class="form-control" placeholder="Mot de passe"/></p>
 	
 	<p><input type="submit" name="signup" value="Connexion" class="btn btn-block btn-primary" />
 		<a href="${ urlSignUp }" class="btn btn-block btn-default">Je n'ai pas de compte.</a></p>

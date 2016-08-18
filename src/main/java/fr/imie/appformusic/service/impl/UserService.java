@@ -1,34 +1,21 @@
 package fr.imie.appformusic.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.imie.appformusic.dao.IUserDao;
 import fr.imie.appformusic.domain.AppUser;
-import fr.imie.appformusic.domain.Role;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.service.IUserService;
 
-/*
- * Non implémenté car exemple pour test driven development
- */
 @Service
 @Transactional
-public class UserService implements IUserService, UserDetailsService {
+public class UserService implements IUserService {
 
 	@Autowired
 	private IUserDao userDao;
@@ -126,35 +113,4 @@ public class UserService implements IUserService, UserDetailsService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		AppUser user = userDao.findByUserName(username);
-		List<GrantedAuthority> authorities = buildUserAuthority(user.getRoles());
-		
-		return buildUserForAuthentication(user, authorities);
-	}
-	
-	// Converts AppUser user to
-		// org.springframework.security.core.userdetails.User
-		protected User buildUserForAuthentication(AppUser user, 
-			List<GrantedAuthority> authorities) {
-			return new User(user.getUsername(), user.getPasswordHash(), 
-				user.isEnabled(), true, true, true, authorities);
-		}
-	
-	protected List<GrantedAuthority> buildUserAuthority(Set<Role> userRoles) {
-
-		Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
-
-		// Build user's authorities
-		for (Role role : userRoles) {
-			setAuths.add(new SimpleGrantedAuthority(role.getLabel()));
-		}
-
-		List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
-
-		return Result;
-	}
-	
 }

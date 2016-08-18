@@ -7,6 +7,7 @@
 package fr.imie.appformusic.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -14,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -32,7 +34,9 @@ public class Role implements Serializable {
 	private String label;
 	
 	@ManyToMany(mappedBy = "roles")
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name = "username", referencedColumnName = "username"))
 	private Set<AppUser> users;
+
 	
 	/** Constructors **/
 	

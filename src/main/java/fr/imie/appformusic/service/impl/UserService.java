@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.imie.appformusic.dao.IRoleDao;
 import fr.imie.appformusic.dao.IUserDao;
 import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.domain.Role;
@@ -23,7 +24,11 @@ public class UserService implements IUserService {
 	@Autowired
 	private IUserDao userDao;
 
+	@Autowired
+	private IRoleDao roleDao;
+
 	@Override
+	@Transactional(rollbackFor = Throwable.class)
 	public void create(AppUser user, String password, String confirmPassword) 
 			throws BusinessException {
 		if (password.equals(confirmPassword)) {
@@ -31,7 +36,7 @@ public class UserService implements IUserService {
 			user.setPasswordHash(passEncoder.encode(password));
 			
 			Set<Role> roles = new HashSet<Role>();
-			roles.add(new Role("user"));
+			roles.add(roleDao.findByLabel("user"));
 			
 			userDao.create(user);
 		} else {

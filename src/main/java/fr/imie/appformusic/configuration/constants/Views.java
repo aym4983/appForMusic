@@ -15,5 +15,8 @@ public interface Views {
 	
 	/** Vue du formulaire de connexion. */
 	public String SIGNIN = "sign-in";
+
+	/** Vue du calendrier */
+	public String CALENDAR = "calendar";
 	
 }

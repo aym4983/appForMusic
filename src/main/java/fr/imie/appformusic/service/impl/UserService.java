@@ -1,6 +1,8 @@
 package fr.imie.appformusic.service.impl;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.imie.appformusic.dao.IUserDao;
 import fr.imie.appformusic.domain.AppUser;
+import fr.imie.appformusic.domain.Role;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.service.IUserService;
 

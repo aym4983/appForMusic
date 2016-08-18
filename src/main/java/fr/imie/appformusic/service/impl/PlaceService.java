@@ -3,6 +3,7 @@ package fr.imie.appformusic.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import fr.imie.appformusic.dao.IPlaceDao;
 import fr.imie.appformusic.domain.AppUser;
@@ -10,6 +11,7 @@ import fr.imie.appformusic.domain.Place;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.service.IPlaceService;
 
+@Service
 public class PlaceService implements IPlaceService {
 	
 	@Autowired

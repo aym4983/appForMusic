@@ -1,6 +1,7 @@
 package fr.imie.appformusic.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import fr.imie.appformusic.responses.Response;
 import fr.imie.appformusic.service.IPlaceService;
 import fr.imie.appformusic.service.IUserService;
 
+@Controller
 public class SearchController {
 	
 	@Autowired

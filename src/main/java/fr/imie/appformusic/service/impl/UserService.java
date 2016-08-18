@@ -1,6 +1,8 @@
 package fr.imie.appformusic.service.impl;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +10,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.imie.appformusic.dao.IRoleDao;
 import fr.imie.appformusic.dao.IUserDao;
 import fr.imie.appformusic.domain.AppUser;
+import fr.imie.appformusic.domain.Role;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.service.IUserService;
 
@@ -19,6 +23,28 @@ public class UserService implements IUserService {
 
 	@Autowired
 	private IUserDao userDao;
+
+	@Autowired
+	private IRoleDao roleDao;
+
+	@Override
+	@Transactional(rollbackFor = Throwable.class)
+	public void create(AppUser user, String password, String confirmPassword) 
+			throws BusinessException {
+		if (password.equals(confirmPassword)) {
+			BCryptPasswordEncoder passEncoder = new BCryptPasswordEncoder();
+			
+			Set<Role> roles = new HashSet<Role>();
+			roles.add(roleDao.findByLabel("user"));
+			
+			user.setPasswordHash(passEncoder.encode(password));
+			user.setRoles(roles);
+			
+			userDao.create(user);
+		} else {
+			throw new BusinessException(BusinessException.Code.DIFFERENT_PASSWORDS);
+		}
+	}
 	
 	@Override
 	public AppUser findByUserName(String userName) 
@@ -45,18 +71,6 @@ public class UserService implements IUserService {
 	@Override
 	public List<AppUser> findUsersLike(String username) throws BusinessException {
 		return userDao.findUsersLike(username);
-	}
-
-	@Override
-	public void create(AppUser user, String password, String confirmPassword) 
-			throws BusinessException {
-		if (password.equals(confirmPassword)) {
-			BCryptPasswordEncoder passEncoder = new BCryptPasswordEncoder();
-			user.setPasswordHash(passEncoder.encode(password));
-			userDao.create(user);
-		} else {
-			throw new BusinessException(BusinessException.Code.DIFFERENT_PASSWORDS);
-		}
 	}
 
 	@Override

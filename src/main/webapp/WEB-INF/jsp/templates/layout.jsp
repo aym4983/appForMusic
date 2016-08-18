@@ -14,7 +14,10 @@
 	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	    <title><c:out value="${ pageTitle }" /> &#124; App for music</title>
 	    <link rel="stylesheet" type="text/css" href="${ commonCSS }"/>
+	    <link rel="stylesheet" type="text/css" href="./css/simple-sidebar-theme.css"/>
+	    <link rel="stylesheet" type="text/css" href="./css/app.css"/>
 	    <script type="text/javascript" src="${ commonJS }"></script>
+	    <script type="text/javascript" src="./js/app.js"></script>
 	</head>
 	
 	<body>

@@ -6,12 +6,12 @@
 	<group name="common_js">
 		<js>/js/lib/jquery-2.2.4.js</js>
 		<js>/js/lib/bootstrap.js</js>
-		<js>/js/lib/npm.js</js>
+		<!-- <js>/js/lib/npm.js</js>  -->
 		<js>/js/lib/moment.js</js>
 		<js>/js/lib/fullcalendar.js</js>
 		
 		<!-- Placer ici les js de l'application -->
-		<js>/js/app.js</js>
+		<!-- <js>/js/app.js</js> -->
 	</group>
 	
 	<group name="common_css">
@@ -21,8 +21,8 @@
 		<css>/css/fullcalendar.css</css>
 		
 		<!-- Placer ici les css de l'application -->
-		<css>/css/simple-sidebar-theme.css</css>
-		<css>/css/app.css</css>
+		<!-- <css>/css/simple-sidebar-theme.css</css>
+		<css>/css/app.css</css> -->
 	</group>     
            
 </groups>

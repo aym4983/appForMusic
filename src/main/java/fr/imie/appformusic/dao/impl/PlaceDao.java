@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import fr.imie.appformusic.dao.IPlaceDao;
 import fr.imie.appformusic.domain.Place;
 import fr.imie.appformusic.exceptions.TechnicalException;
 
+@Repository
 public class PlaceDao implements IPlaceDao {
 
 	@Autowired

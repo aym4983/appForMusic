@@ -33,10 +33,12 @@ public class UserService implements IUserService {
 			throws BusinessException {
 		if (password.equals(confirmPassword)) {
 			BCryptPasswordEncoder passEncoder = new BCryptPasswordEncoder();
-			user.setPasswordHash(passEncoder.encode(password));
 			
 			Set<Role> roles = new HashSet<Role>();
 			roles.add(roleDao.findByLabel("user"));
+			
+			user.setPasswordHash(passEncoder.encode(password));
+			user.setRoles(roles);
 			
 			userDao.create(user);
 		} else {

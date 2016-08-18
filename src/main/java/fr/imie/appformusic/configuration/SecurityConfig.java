@@ -35,12 +35,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/" + Routes.SIGNIN, "/" + Routes.SIGNUP,"/calendar", "/main", "/wro/*").permitAll()
+			.antMatchers("/wro/*", "/fonts/*", "/img/*", Routes.SIGNIN, Routes.SIGNUP, Routes.CALENDAR, "/main", "/test").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.formLogin().permitAll().loginPage(Routes.SIGNIN)
+<<<<<<< Upstream, based on origin/master
 			.failureUrl("/404")
 			.defaultSuccessUrl("/" + Routes.SEARCH)
+=======
+			.defaultSuccessUrl(Routes.SEARCH)
+>>>>>>> 695cbcc Ajout des ressources fonts et img à la configuration.
 			.usernameParameter("username")
 			.passwordParameter("password")
 			.and()

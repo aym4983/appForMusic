@@ -53,6 +53,8 @@ public class DispatcherInitializer extends WebMvcConfigurerAdapter  {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/css/**").addResourceLocations("/css/");
 		registry.addResourceHandler("/js/**").addResourceLocations("/js/");
+		registry.addResourceHandler("/fonts/**").addResourceLocations("/fonts/");
+		registry.addResourceHandler("/img/**").addResourceLocations("/img/");
 	}
 	
 	@Bean

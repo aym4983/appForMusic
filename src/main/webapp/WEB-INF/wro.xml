@@ -7,7 +7,7 @@
 		<js>/js/lib/jquery-2.2.4.js</js>
 		<js>/js/lib/bootstrap.js</js>
 		<!-- <js>/js/lib/npm.js</js>  -->
-		<js>/js/lib/moment.js</js>
+		<js>/js/lib/moment.min.js</js>
 		<js>/js/lib/fullcalendar.js</js>
 		
 		<!-- Placer ici les js de l'application -->

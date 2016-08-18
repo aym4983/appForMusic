@@ -4,7 +4,7 @@
 
 $(function() {
 	
-	initCalendar;
+	initCalendar();
 	
 	$( "#siderbar-toggler" ).click(function() {
 		console.log("toggle menu");

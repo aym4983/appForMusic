@@ -8,6 +8,12 @@ import fr.imie.appformusic.exceptions.BusinessException;
 public interface IUserService {
 	
 	/**
+	 * Crée un utilisateur.
+	 * @param user L'utilisateur à créer.
+	 */
+	public void create(AppUser user, String password, String confirmPassword) throws BusinessException;
+	
+	/**
 	 * Trouve un utilisateur via son identifiant.
 	 * @param userName 	L'identifiant de l'utilisateur.
 	 * @return 			L'utilisateur recherché.
@@ -36,12 +42,6 @@ public interface IUserService {
 	 * @throws BusinessException
 	 */
 	public List<AppUser> findUsersLike(String username) throws BusinessException;
-	
-	/**
-	 * Crée un utilisateur.
-	 * @param user L'utilisateur à créer.
-	 */
-	public void create(AppUser user, String password, String confirmPassword) throws BusinessException;
 	
 	/**
 	 * Supprime l'utilisateur spécifié.

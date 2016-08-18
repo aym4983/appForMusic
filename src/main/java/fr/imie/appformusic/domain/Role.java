@@ -35,13 +35,20 @@ public class Role implements Serializable {
 	private Set<AppUser> users;
 	
 	/** Constructors **/
+	
+	public Role() {}
+
+	public Role(byte id){
+		this.id = id;
+	}
+
+	public Role(String label){
+		this.label = label;
+	}
 
 	public Role(byte id, String label){
 		this.id = id;
 		this.label = label;
-	}
-	
-	public Role(){
 	}
 	
 	/*** Getters and setters **/

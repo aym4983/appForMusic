@@ -19,6 +19,22 @@ public class UserService implements IUserService {
 
 	@Autowired
 	private IUserDao userDao;
+
+	@Override
+	public void create(AppUser user, String password, String confirmPassword) 
+			throws BusinessException {
+		if (password.equals(confirmPassword)) {
+			BCryptPasswordEncoder passEncoder = new BCryptPasswordEncoder();
+			user.setPasswordHash(passEncoder.encode(password));
+			
+			Set<Role> roles = new HashSet<Role>();
+			roles.add(new Role("user"));
+			
+			userDao.create(user);
+		} else {
+			throw new BusinessException(BusinessException.Code.DIFFERENT_PASSWORDS);
+		}
+	}
 	
 	@Override
 	public AppUser findByUserName(String userName) 
@@ -45,18 +61,6 @@ public class UserService implements IUserService {
 	@Override
 	public List<AppUser> findUsersLike(String username) throws BusinessException {
 		return userDao.findUsersLike(username);
-	}
-
-	@Override
-	public void create(AppUser user, String password, String confirmPassword) 
-			throws BusinessException {
-		if (password.equals(confirmPassword)) {
-			BCryptPasswordEncoder passEncoder = new BCryptPasswordEncoder();
-			user.setPasswordHash(passEncoder.encode(password));
-			userDao.create(user);
-		} else {
-			throw new BusinessException(BusinessException.Code.DIFFERENT_PASSWORDS);
-		}
 	}
 
 	@Override

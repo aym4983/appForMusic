@@ -13,9 +13,6 @@ import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.service.IUserService;
 
-/*
- * Non implémenté car exemple pour test driven development
- */
 @Service
 @Transactional
 public class UserService implements IUserService {

@@ -1,5 +1,8 @@
 package fr.imie.appformusic.service.impl;
 
+import static org.easymock.EasyMock.*;
+import static org.assertj.core.api.Assertions.*;
+
 import org.easymock.EasyMockRunner;
 import org.easymock.Mock;
 import org.easymock.TestSubject;
@@ -7,10 +10,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import fr.imie.appformusic.dao.IUserDao;
+import fr.imie.appformusic.domain.AppUser;
+import fr.imie.appformusic.exceptions.BusinessException;
 
 @RunWith(EasyMockRunner.class)
 public class UserServiceTest {
 
+	private final String EMAIL = "email";
+	
 	@Mock
 	private IUserDao daoMock;
 	
@@ -18,32 +25,34 @@ public class UserServiceTest {
 	private UserService service = new UserService();
 	
 	@Test
-	public void testLoadUserByUsername() throws Exception {
+	public void testFindByEmail() throws BusinessException{
 		
-//		// Création d'un AppUser
-//		AppUser user = new AppUser();
-//		UserRole role = new UserRole();
-//		Role roletab = new Role("1","admin");
-//		
-//		Set<UserRole> roles = new HashSet<>();
-//		user.setUsers(roles);
-//		user.getRoles().add(role);
-//		user.setUsername("toto");
-//		user.setPasswordHash("passwd");
-//		user.setEnabled(true);
-//
-//		role.setUser(user);
-//		role.setRole(roletab);
-//
-//
-//		// comportement du mock
-//		expect(daoMock.findByUserName("toto")).andReturn(user);
-//		replay(daoMock);
-//		
-//		UserDetails details = service.loadUserByUsername("toto");
-//		assertThat(details.getUsername()).isEqualTo("toto");
-//		assertThat(details.isEnabled()).isEqualTo(true);
+		AppUser user = createAppUser();
+
+		expect(daoMock.findByEmail(EMAIL)).andReturn(user);
+		replay(daoMock);
+		
+		AppUser userResult = service.findByEmail(EMAIL);
+		assertThat(userResult.getUsername()).isEqualTo(user.getUsername());
 		
 	}
-
+	
+	@Test(expected=BusinessException.class)
+	public void testFindByEmailKo() throws BusinessException {
+		AppUser user = createAppUser();
+		
+		expect(daoMock.findByEmail(EMAIL)).andReturn(user);
+		replay(daoMock);
+		
+		service.findByEmail("");
+	}
+	
+	private AppUser createAppUser(){
+		AppUser user = new AppUser();
+		user.setEmail(EMAIL);
+		user.setUsername("user");
+		user.setPasswordHash("password");
+		return user;
+	}
+	
 }

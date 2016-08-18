@@ -42,6 +42,7 @@
         <put-attribute name="footer" 		value=""/>
     </definition>
     
+<<<<<<< Upstream, based on origin/master
     <definition name="search" extends="baseDefinition">
         <put-attribute name="navigation" 	value="/WEB-INF/jsp/blocs/nav.jsp"/>
         <put-attribute name="header" 		value="/WEB-INF/jsp/blocs/header.jsp"/>
@@ -49,6 +50,8 @@
         <put-attribute name="footer" 		value=""/>
     </definition>
 
+=======
+>>>>>>> 9ec853f tiles
     <definition name="calendar" extends="baseDefinition">
         <put-attribute name="navigation" 	value="/WEB-INF/jsp/blocs/nav.jsp"/>
    		<put-attribute name="header" 		value="/WEB-INF/jsp/blocs/header.jsp"/>

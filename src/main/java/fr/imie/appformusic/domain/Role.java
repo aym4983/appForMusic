@@ -14,8 +14,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -33,10 +31,7 @@ public class Role implements Serializable {
 	@Column(name="label", nullable = false, length = 256)
 	private String label;
 	
-	@ManyToMany
-	@JoinTable(name = "user_role", 
-		joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),
-		inverseJoinColumns = @JoinColumn(name = "username", referencedColumnName = "username"))
+	@ManyToMany(mappedBy = "roles")
 	private Set<AppUser> users;
 	
 	/** Constructors **/

@@ -25,7 +25,7 @@ public class Borrows implements Serializable{
 	/** Members **/ 
 	private static final long serialVersionUID = 1077164344082542652L;
 	
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
 	@Column(name="validate")

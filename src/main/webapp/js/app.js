@@ -134,7 +134,18 @@ function initSearchNav() {
 	
 	/** Méthode d'init pour Calendar Js */
 	function initCalendar (){
-		$('#calendar').fullCalendar();
+		$('#calendar').fullCalendar({
+		 header: {
+             left: 'prev,next today',
+             center: 'title',
+             right: 'month,agendaWeek,agendaDay'
+         },
+		lang: 'fr',
+		selectable: true,
+//		dayClick: function(date, allDay, jsEvent, view) {
+//	        calendar.fullCalendar('renderEvent', { title: 'YOUR TITLE', start: date, allDay: true }, true );
+//	    }
+	});
 	}
 }
 

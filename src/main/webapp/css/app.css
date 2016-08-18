@@ -1,0 +1,13 @@
+#search-container {
+	display: none;
+}
+
+#search-container.toggled {
+	background-color: white;
+	bottom: 0;
+	display: block;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+}

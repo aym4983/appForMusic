@@ -13,7 +13,21 @@ $(function() {
 	
 	$( "#search-toggler" ).click(function() {
 		console.log("toggle search");
-		//$( "#wrapper" ).toggleClass("toggled");
+		$( "#search-container" ).toggleClass("toggled");
+	});
+	
+	$( "#search-input" ).keyup(function() {
+		if ($( this ).val().length >= 3) {
+			console.log("searching for \"" + $( this ).val() + "\"");
+			var $form = $( this ).closest( 'form' );
+			$.ajax({
+				url: $form.attr( 'action' ),
+				complete: function(jqXHR, textStatus) {
+					console.log( "status: " + textStatus );
+					console.log( "jqXHR: " + jqXHR );
+				}
+			});
+		}
 	});
 	
 });

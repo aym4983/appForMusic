@@ -14,9 +14,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name="role")
@@ -31,8 +31,9 @@ public class Role implements Serializable {
 	@Column(name="label", nullable = false, length = 256)
 	private String label;
 	
-	@OneToMany(mappedBy="role")
-	private Set<UserRole> roles;
+	@ManyToMany
+	@JoinColumn(name="appuser", nullable = false)
+	private Set<AppUser> users;
 	
 	/** Constructors **/
 
@@ -61,12 +62,12 @@ public class Role implements Serializable {
 		this.label = label;
 	}
 
-	public Set<UserRole> getRoles() {
-		return roles;
+	public Set<AppUser> getUsers() {
+		return users;
 	}
 
-	public void setRoles(Set<UserRole> roles) {
-		this.roles = roles;
+	public void setUsers(Set<AppUser> users) {
+		this.users = users;
 	}
 	
 }

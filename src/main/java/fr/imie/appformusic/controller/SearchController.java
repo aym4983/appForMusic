@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import fr.imie.appformusic.configuration.constants.Routes;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.responses.FailureResponse;
 import fr.imie.appformusic.responses.GlobalSearchResponse;
@@ -22,7 +23,7 @@ public class SearchController {
 	@Autowired
 	private IPlaceService placeService;
 
-	@RequestMapping(name = "/", method = RequestMethod.GET)
+	@RequestMapping(name = Routes.SEARCH, method = RequestMethod.GET)
 	@ResponseBody
 	public GlobalSearchResponse searchGlobally(
 			@RequestParam(name="search") String search

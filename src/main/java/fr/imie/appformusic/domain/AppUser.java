@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -47,7 +48,9 @@ public class AppUser implements Serializable {
 	private Set<Favourites> favourites;
 	
 	@ManyToMany
-	@JoinColumn(name="role", nullable = false)
+	@JoinTable(name = "user_role",
+		joinColumns = @JoinColumn(name = "username", referencedColumnName = "username"), 
+		inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
 	private Set<Role> roles;
 	
 	@OneToMany(mappedBy="userbeingrated")

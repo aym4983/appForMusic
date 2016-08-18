@@ -1,9 +1,29 @@
 #sidebar-header {
-	
+	background-color: #333;
+	position: relative;
+	width: 250px;
 }
 
 #sidebar-header::before {
+	content: "";
 	display: block;
 	height: 0;
 	padding-top: 56.25%;
+}
+
+#profile-picture {
+	background-color: #666;
+	border-radius: 50%;
+	bottom: -40px;
+	display: block;
+	height: 80px;
+	left: 85px;
+	margin: auto;
+	position: absolute;
+	width: 80px;
+}
+
+.sidebar-nav {
+	margin-top: 60px;
+	position: static;
 }

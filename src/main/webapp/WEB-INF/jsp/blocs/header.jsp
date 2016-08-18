@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <header id="main-header">
-	<button id="siderbar-toggler"></button>
+	<button id="siderbar-toggler" class="btn btn-default glyphicon glyphicon-menu-hamburger pull-left"></button>
 	<h1><c:out value="${ pageTitle }" /></h1>
-	<button id="search-toggler"></button>
+	<button id="search-toggler" class="btn btn-default glyphicon glyphicon-search pull-right"></button>
 </header>

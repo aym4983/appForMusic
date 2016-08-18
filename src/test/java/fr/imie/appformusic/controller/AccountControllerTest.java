@@ -1,10 +1,6 @@
 package fr.imie.appformusic.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.easymock.EasyMock.expectLastCall;
-import static org.easymock.EasyMock.replay;
-
-import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,14 +10,8 @@ import org.easymock.TestSubject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.ui.Model;
-import org.springframework.web.servlet.ModelAndView;
 
-import fr.imie.appformusic.configuration.constants.Routes;
 import fr.imie.appformusic.configuration.constants.Views;
-import fr.imie.appformusic.domain.AppUser;
-import fr.imie.appformusic.exceptions.BusinessException;
-import fr.imie.appformusic.exceptions.BusinessException.Code;
-import fr.imie.appformusic.form.UserForm;
 import fr.imie.appformusic.service.IUserService;
 
 @RunWith(EasyMockRunner.class)

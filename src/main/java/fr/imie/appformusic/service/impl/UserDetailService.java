@@ -1,6 +1,10 @@
 package fr.imie.appformusic.service.impl;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -8,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.imie.appformusic.dao.IUserDao;
+import fr.imie.appformusic.domain.AppUser;
+import fr.imie.appformusic.domain.Role;
 
 @Service
 public class UserDetailService implements UserDetailsService {
@@ -18,7 +24,11 @@ public class UserDetailService implements UserDetailsService {
 	@Override
 	@Transactional(readOnly=true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
+		AppUser appUser = userDao.findByUserName(username);
+		
+		Set<GrantedAuthority> grantedAuthority = new HashSet<>();
+		for (Role role : appUser.getRoles())
+		
 		return null;
 	}
 

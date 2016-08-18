@@ -28,11 +28,9 @@
 			</div>
 		</div>
 		
-<<<<<<< Upstream, based on origin/master
+
 		<script>var app = {};</script>
-=======
-		<script>var app = new App();</script>	
->>>>>>> 70da399 calendar intégration
+
 	</body>
 	
 </html>

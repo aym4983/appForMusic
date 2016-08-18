@@ -93,5 +93,16 @@ public class AccountController {
 		ModelAndView mav = new ModelAndView(Views.CALENDAR);
 		return mav;
 	}
+	
+	/**
+	 * Affiche la vue calendar
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(Routes.CALENDAR)
+	public ModelAndView showCalendar(Model model) {
+		ModelAndView mav = new ModelAndView(Views.CALENDAR);
+		return mav;
+	}
 
 }

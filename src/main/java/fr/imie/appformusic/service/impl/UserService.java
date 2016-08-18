@@ -39,6 +39,7 @@ public class UserService implements IUserService {
 			
 			user.setPasswordHash(passEncoder.encode(password));
 			user.setRoles(roles);
+			user.setEnabled(true);
 			
 			userDao.create(user);
 		} else {

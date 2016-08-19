@@ -6,7 +6,7 @@
 
 <form:form action="" method="post" modelAttribute="appUser" id="signin" class="col-md-4 col-md-offset-4">
 
-    <h2>Connexion</h2>
+    <h2 id="title-sign-in">Connexion</h2>
 
 	<p class="form-group">
 		<label for="signup-username">Identifiant</label>

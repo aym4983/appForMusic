@@ -141,8 +141,40 @@ function initSearchNav() {
              right: 'month,agendaWeek,agendaDay'
          },
 		lang: 'fr',
-		selectable: true
-
+		selectable: true,
+		
+		events: function(start, end, callback) {
+	        $.ajax({
+	            url: 'myxmlfeed.php',
+	            dataType: 'xml',
+	            data: {
+	                // our hypothetical feed requires UNIX timestamps
+	                start: Math.round(start.getTime() / 1000),
+	                end: Math.round(end.getTime() / 1000)
+	            },
+	            success: function(doc) {
+	                var events = [];
+	                $(doc).find('event').each(function() {
+	                    events.push({
+	                        title: $(this).attr('title'),
+	                        start: $(this).attr('start') // will be parsed
+	                    });
+	                });
+	                callback(events);
+	            }
+	        });
+	    }
+		
+		
+//		dayClick: function(date, jsEvent, view) {
+//			  if(view.name != 'month')
+//			    return;
+//
+//			  $('#calendar').fullCalendar('changeView', 'agendaDay');
+//			  $('#calendar').fullCalendar('gotoDate', date);
+//			  $('#calendar').fullCalendar( 'renderEvent', event);
+//			}
+		
 	});
 	}
 }

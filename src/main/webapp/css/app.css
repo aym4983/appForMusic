@@ -7,9 +7,7 @@ body {
 }
 
 #main-header {
-	background-color: rgba(255, 255, 255, 0.8);
 	margin-bottom: 20px;
-	overflow: auto; /* Prévient une hauteur de 0 à cause des éléments flottants */
 }
 
 #main-header form {
@@ -26,4 +24,27 @@ body {
 
 .btn.glyphicon {
 	top: 0;
+}
+
+.result-set ul {
+	list-style: none;
+	padding: 0;
+}
+
+.result-set li a {
+	display: block;
+	text-decoration: none;
+}
+
+.result-set li a:hover,
+.result-set li a:focus {
+	background-color: #eee;
+	outline: none;
+}
+
+.result-set li img {
+	background-color: #ddd;
+	height: 48px;
+	margin-right: 8px;
+	width: 48px;
 }

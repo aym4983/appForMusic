@@ -1,13 +1,16 @@
 package fr.imie.appformusic.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import fr.imie.appformusic.dao.IRoleDao;
 import fr.imie.appformusic.dao.IUserDao;
 import fr.imie.appformusic.domain.AppUser;
+import fr.imie.appformusic.domain.Role;
 import fr.imie.appformusic.exceptions.TechnicalException;
 
 /**
@@ -20,6 +23,9 @@ public class UserDao implements IUserDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+
+	@Autowired
+	private IRoleDao roleDao;
 
 	@Override
 	public void create(AppUser user) throws TechnicalException {
@@ -53,10 +59,19 @@ public class UserDao implements IUserDao {
 
 	@Override
 	public List<AppUser> findUsersLike(String username) throws TechnicalException {
-		return sessionFactory.getCurrentSession()
+		List<AppUser> users = new ArrayList<AppUser>();
+		users = sessionFactory.getCurrentSession()
 				.createQuery("from AppUser u where u.username like :username", AppUser.class)
 				.setParameter("username", "%" + username + "%")
 				.getResultList();
+		
+		for (AppUser appUser : users) {
+			for (Role role : appUser.getRoles()) {
+				role = roleDao.findById(role.getId());
+			}
+		}
+		
+		return users;
 	}
 
 }

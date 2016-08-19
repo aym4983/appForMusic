@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import fr.imie.appformusic.configuration.constants.Routes;
 import fr.imie.appformusic.exceptions.BusinessException;
@@ -29,7 +30,11 @@ public class SearchController {
 	@Autowired
 	private IPlaceService placeService;
 
-	@ResponseBody
+	@RequestMapping("")
+	public ModelAndView init(){
+		return new ModelAndView("search");
+	}
+	
 	@RequestMapping("/all")
 	public GlobalSearchResponse searchAll(
 			@RequestParam(name="search") String search

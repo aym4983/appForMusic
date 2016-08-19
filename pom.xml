@@ -290,6 +290,8 @@
 		    </executions>
         </plugin>
         
+        <!-- pour l'exécution des tests d'intégration -->
+        
         <plugin>
         <groupId>com.github.klieber</groupId>
         <artifactId>phantomjs-maven-plugin</artifactId>
@@ -306,6 +308,64 @@
           <version>1.9.7</version>
         </configuration>
       </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>2.19.1</version>
+        <configuration>
+            
+            <systemPropertyVariables>
+                <phantomjs.binary.path>${phantomjs.binary}</phantomjs.binary.path>
+            </systemPropertyVariables>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>9.2.2.v20140723</version>
+        <configuration>
+            <scanIntervalSeconds>10</scanIntervalSeconds>
+            <stopPort>8085</stopPort>
+            <stopKey>STOP</stopKey>
+            <webAppConfig>
+                <_contextPath>/appForMusic</_contextPath>
+            </webAppConfig>
+        </configuration>
+        <executions>
+            <execution>
+                <id>start-jetty</id>
+                <phase>pre-integration-test</phase>
+                <goals>
+                    <goal>stop</goal>
+                    <goal>run-war</goal>
+                </goals>
+                <configuration>
+                    <scanIntervalSeconds>0</scanIntervalSeconds>
+                    <daemon>true</daemon>
+                </configuration>
+            </execution>
+            <execution>
+                <id>stop-jetty</id>
+                <phase>post-integration-test</phase>
+                <goals>
+                    <goal>stop</goal>
+                </goals>
+            </execution>
+        </executions>
+        
+      </plugin>
+      
+      <!-- pour l'exécution des tests unitaires -->
       
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

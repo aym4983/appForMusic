@@ -1,5 +1,6 @@
 package fr.imie.appformusic.controller;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,6 +21,8 @@ import fr.imie.appformusic.service.IUserService;
 @RequestMapping(value = Routes.SEARCH, method = RequestMethod.GET)
 public class SearchController {
 	
+	private Logger logger = Logger.getLogger(SearchController.class);
+	
 	@Autowired
 	private IUserService userService;
 	
@@ -34,11 +37,13 @@ public class SearchController {
 		GlobalSearchResponse response = new GlobalSearchResponse();
 		response.setUsers(userService.findUsersLike(search));
 		response.setPlaces(placeService.findPlacesLike(search));
-		return null;
+		return response;
 	}
 
+	@ResponseBody
 	@ExceptionHandler(Throwable.class)
-	public Response error() {
+	public Response error(Throwable t) {
+		logger.error(t.getMessage(), t);
 		return new FailureResponse();
 	}
 

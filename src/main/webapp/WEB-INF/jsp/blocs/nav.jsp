@@ -4,6 +4,7 @@
 <c:url var="urlSignOut" value="/sign-out" />
 <c:url var="urlProfil" value="/profile" />
 <c:url var="urlHome" value="/" />
+<<<<<<< Upstream, based on origin/master
 <c:url var="urlPlaces" value="/places" />
 <c:url var="urlContacts" value="/contacts" />
 <c:url var="urlPlaces" value="/places" />
@@ -36,5 +37,10 @@
 			<li><a href="${ urlHelp }" title="Aide">Aide</a></li>
 		</ul>
 	</section>
-	
+	<ul class="sidebar-nav">
+		<li><a href="${ urlHome }">Accueil</a></li>
+		<li><a href="${ urlProfile }">Mon Profil</a></li>
+		<li><a href="${ urlPlace }">Mes Lieux</a></li>
+		<li><a href="${ urlContact }">Contact</a></li>
+	</ul>
 </nav>

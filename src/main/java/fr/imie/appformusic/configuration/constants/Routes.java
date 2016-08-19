@@ -26,6 +26,9 @@ public interface Routes {
 	
 	/** URL du calendrier. */
 	public String CALENDAR = "/calendar";
+	
+	/** Page de gestion des lieux. */
+	public String PLACE = "/place";
 
 	/** Page d'erreur **/
 	public String ERROR = "/error";

@@ -133,8 +133,8 @@ function initSearchNav() {
 
 	
 	/** Méthode d'init pour Calendar Js */
-	function initCalendar (){
-		$('#calendar').fullCalendar({
+function initCalendar (){    
+	$('#calendar').fullCalendar({
 		 header: {
              left: 'prev,next today',
              center: 'title',
@@ -142,41 +142,80 @@ function initSearchNav() {
          },
 		lang: 'fr',
 		selectable: true,
+		editable: true,
+		loading: function(bool) {
+			if (bool) {
+				$('#loading').show();
+			}else{
+				$('#loading').hide();
+			}
+		},
 		
-		events: function(start, end, callback) {
-	        $.ajax({
-	            url: 'myxmlfeed.php',
-	            dataType: 'xml',
-	            data: {
-	                // our hypothetical feed requires UNIX timestamps
-	                start: Math.round(start.getTime() / 1000),
-	                end: Math.round(end.getTime() / 1000)
-	            },
-	            success: function(doc) {
-	                var events = [];
-	                $(doc).find('event').each(function() {
-	                    events.push({
-	                        title: $(this).attr('title'),
-	                        start: $(this).attr('start') // will be parsed
-	                    });
-	                });
-	                callback(events);
-	            }
-	        });
-	    }
-		
-		
-//		dayClick: function(date, jsEvent, view) {
-//			  if(view.name != 'month')
-//			    return;
-//
-//			  $('#calendar').fullCalendar('changeView', 'agendaDay');
-//			  $('#calendar').fullCalendar('gotoDate', date);
-//			  $('#calendar').fullCalendar( 'renderEvent', event);
-//			}
+		dayClick: function(date, jsEvent, view) {
+			  if(view.name != 'month')
+			    return;
+
+			  $('#calendar').fullCalendar('changeView', 'agendaDay');
+			  $('#calendar').fullCalendar('gotoDate', date);
+			  $('#calendar').fullCalendar( 'renderEvent', event);
+			},
+         
+         selectHelper: true,
+			select: function(start, end) {
+				var title = prompt('Event Title:');
+				var eventData;
+				if (title) {
+					eventData = {
+						title: title,
+						start: start,
+						end: end
+					};
+					$('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+				}
+				$('#calendar').fullCalendar('unselect');
+			},
+			editable: true,
+			eventLimit: true, // allow "more" link when too many events
+			events: [
+
+				{
+					title: 'Long Event',
+					start: '2016-06-07',
+					end: '2016-06-10'
+				}
+			]
 		
 	});
-	}
+}
+
+
+/** Méthode pour ajout d'un évènement */
+function addCalanderEvent(id, startdate, enddate, title){
+    var eventObject = {
+	    title: title,
+	    start: startdate,
+	    end: enddate,
+	    id: id,
+    };
+
+    $('#calendar').fullCalendar('renderEvent', eventObject, true);
+    return eventObject;
+}
+
+
+/** Méthode pour modifier un évènement */
+function updateCalanderEvent(id, start, end, title, colour){
+    var eventObject = $('#calendar').fullCalendar( 'clientEvents', id )
+
+    if (eventObject != null){
+        eventObject.title = title;
+        eventObject.start = start;
+        eventObject.end = end;
+        eventObject.color = colour;
+
+        $('#calendar').fullCalendar( 'updateEvent', eventObject );
+    }
+    return eventObject;
 }
 
 function closeMainSearch() {

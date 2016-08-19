@@ -28,7 +28,6 @@
 			
 			<div id="page-content-wrapper" class="container-fluid">
 				<tiles:insertAttribute name="header" />
-				<tiles:insertAttribute name="search" />
 				<tiles:insertAttribute name="body" />
 				<tiles:insertAttribute name="footer" />
 			</div>

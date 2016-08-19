@@ -2,27 +2,27 @@ package fr.imie.appformusic.responses;
 
 import java.util.List;
 
-import fr.imie.appformusic.domain.AppUser;
-import fr.imie.appformusic.domain.Place;
+import fr.imie.appformusic.domain.json.PlaceJson;
+import fr.imie.appformusic.domain.json.UserJson;
 
 public class GlobalSearchResponse extends Response {
 
-	private List<AppUser> users;
-	private List<Place> places;
+	private List<UserJson> users;
+	private List<PlaceJson> places;
 	
-	public List<AppUser> getUsers() {
+	public List<UserJson> getUsers() {
 		return users;
 	}
 	
-	public void setUsers(List<AppUser> users) {
+	public void setUsers(List<UserJson> users) {
 		this.users = users;
 	}
 	
-	public List<Place> getPlaces() {
+	public List<PlaceJson> getPlaces() {
 		return places;
 	}
 	
-	public void setPlaces(List<Place> places) {
+	public void setPlaces(List<PlaceJson> places) {
 		this.places = places;
 	}
 

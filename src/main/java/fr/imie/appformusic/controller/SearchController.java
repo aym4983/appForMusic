@@ -1,5 +1,8 @@
 package fr.imie.appformusic.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import fr.imie.appformusic.configuration.constants.Routes;
 import fr.imie.appformusic.configuration.constants.Views;
+import fr.imie.appformusic.domain.AppUser;
+import fr.imie.appformusic.domain.Place;
+import fr.imie.appformusic.domain.json.PlaceJson;
+import fr.imie.appformusic.domain.json.UserJson;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.responses.FailureResponse;
 import fr.imie.appformusic.responses.GlobalSearchResponse;
@@ -35,14 +42,27 @@ public class SearchController {
 	public ModelAndView init(){
 		return new ModelAndView(Views.SEARCH);
 	}
-	
+
+	@ResponseBody
 	@RequestMapping("/all")
 	public GlobalSearchResponse searchAll(
 			@RequestParam(name="search") String search
 	) throws BusinessException {
 		GlobalSearchResponse response = new GlobalSearchResponse();
-		response.setUsers(userService.findUsersLike(search));
-		response.setPlaces(placeService.findPlacesLike(search));
+		
+		List<UserJson> users = new ArrayList<UserJson>();
+		for (AppUser user : userService.findUsersLike(search)) {
+			users.add(new UserJson(user));
+		}
+		
+		List<PlaceJson> places = new ArrayList<PlaceJson>();
+		for (Place place : placeService.findPlacesLike(search)) {
+			places.add(new PlaceJson(place));
+		}
+		
+		response.setUsers(users);
+		response.setPlaces(places);
+		
 		return response;
 	}
 

@@ -7,17 +7,19 @@ package fr.imie.appformusic.configuration.constants;
  */
 public interface Routes {
 	
-	/** Page d'accueil du site. */
+	/** URL d'accueil du site. */
 	public String HOME = "/";
-	/** Page de formulaire de connexion. */
+	/** URL de connexion. */
 	public String SIGNIN = "/sign-in";
-	/** Page de formulaire d'inscription. */
+	/** URL d'inscription. */
 	public String SIGNUP = "/sign-up";
-	/** Page de recherche si login success */
+	/** URL de désinscription. */
+	public String SIGNOUT = "/sign-out";
+	/** URL de recherche */
 	public String SEARCH = "/search";
 	/** Page de recherche */
 	public String SEARCH_ALL = "/search/all";
-	/** Page de test calendrier. */
+	/** URL du calendrier. */
 	public String CALENDAR = "/calendar";
 
 }

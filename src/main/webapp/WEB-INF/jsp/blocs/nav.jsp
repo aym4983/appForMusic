@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<c:url var="urlSignOut" value="/sign-out" />
 <c:url var="urlProfil" value="/profile" />
 <c:url var="urlHome" value="/" />
 <c:url var="urlPlaces" value="/places" />
@@ -12,6 +13,7 @@
 <nav id="sidebar-wrapper">
 
 	<header id="sidebar-header">
+		<a href="${ urlSignOut }" title="Déconnexion">Déconnexion</a>
 		<a id="profile-picture" href="${ urlProfil }" title="Mon profil">
 			<img src="" alt="" /></a>
 	</header>

@@ -48,6 +48,7 @@ public class UserService implements IUserService {
 	}
 	
 	@Override
+	@Transactional(readOnly = true)
 	public AppUser findByUserName(String userName) 
 			throws BusinessException {
 		// contrôles métier si nécessaire
@@ -57,6 +58,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public AppUser findByEmail(String email) throws BusinessException {
 		if(StringUtils.isEmpty(email)){
 			throw new BusinessException(BusinessException.Code.EMAIL_EMPTY);
@@ -65,16 +67,19 @@ public class UserService implements IUserService {
 	}
 	
 	@Override
+	@Transactional(readOnly = true)
 	public List<AppUser> findAllUsers(){
 		return userDao.findAllUsers();
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<AppUser> findUsersLike(String username) throws BusinessException {
 		return userDao.findUsersLike(username);
 	}
 
 	@Override
+	@Transactional(rollbackFor = Throwable.class)
 	public void remove(AppUser user) 
 			throws BusinessException {
 		// TODO Auto-generated method stub
@@ -82,6 +87,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
+	@Transactional(rollbackFor = Throwable.class)
 	public AppUser updateUser(
 			AppUser user, 
 			String newUserName, 
@@ -95,6 +101,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
+	@Transactional(rollbackFor = Throwable.class)
 	public AppUser updateUserName(AppUser user, String newUserName)
 			throws BusinessException {
 		// TODO Auto-generated method stub
@@ -102,6 +109,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
+	@Transactional(rollbackFor = Throwable.class)
 	public AppUser updateEmail(AppUser user, String newEmail)
 			throws BusinessException {
 		// TODO Auto-generated method stub
@@ -109,6 +117,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
+	@Transactional(rollbackFor = Throwable.class)
 	public AppUser updatePassword(AppUser user, String newPassword)
 			throws BusinessException {
 		// TODO Auto-generated method stub
@@ -116,6 +125,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
+	@Transactional(rollbackFor = Throwable.class)
 	public AppUser updateFirstName(AppUser user, String newFirstName)
 			throws BusinessException {
 		// TODO Auto-generated method stub
@@ -123,6 +133,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
+	@Transactional(rollbackFor = Throwable.class)
 	public AppUser updateLastName(AppUser user, String newLastName)
 			throws BusinessException {
 		// TODO Auto-generated method stub

@@ -17,13 +17,15 @@
 			<button class="skill-delete"> Supprimer</button>
 		</div>
 	</c:forEach>
+	
+	<button id="place-add" class="Ajouter"> Ajouter </button>
 </p>
 
 <h2>Créer un lieu</h2>
-<form:form action="" method="post" modelAttribute="placeForm" id="createPlace" class="col-md-4 col-md-offset-4">
+<form:form action="" method="post" modelAttribute="placeForm" id="createPlace hidden" class="col-md-4 col-md-offset-4">
 	<p class="form-group">
-		<form:label path="publiclabel" for="place-publiclabel">Titre</form:label>
-		<form:input path="publiclabel" id="place-publiclabel" class="form-control" placeholder="Titre"/></p>
+		<form:label path="publicLabel" for="place-publiclabel">Titre</form:label>
+		<form:input path="publicLabel" id="place-publiclabel" class="form-control" placeholder="Titre"/></p>
 	
 	<p class="form-group">
 		<form:label path="street" for="place-street">Rue</form:label>
@@ -36,6 +38,9 @@
 	<p class="form-group">
 		<form:label path="city" for="place-city">Ville</form:label>
 		<form:input path="city" id="place-city" class="form-control" placeholder="Ville"/></p>
+	
+	<input type="radio" name="place-type" value="private"> Privé 
+	<input type="radio" name="place-type" value="public" checked> Public
 	
 	<p><input type="submit" name="place" value="Ajouter" class="btn btn-block btn-primary" />
 </form:form>

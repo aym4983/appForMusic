@@ -10,6 +10,7 @@
 		<js>/js/lib/moment.min.js</js>
 		<js>/js/lib/fullcalendar.js</js>
 		<js>/js/lib/mustache.js</js>
+		<js>/js/lib/place.js</js>
 		
 		<!-- Placer ici les js de l'application -->
 		<!-- <js>/js/app.js</js> -->

@@ -13,27 +13,11 @@ import javax.persistence.Id;
 
 public class PlaceForm {
 	
-	private String privateLabel;
 	private String publicLabel;
 	private String street;
 	private String zipcode;
 	private String city;
-	private double latitude;
-	private double longitude;
-	private int placeId;
 	
-	public int getPlaceId() {
-		return placeId;
-	}
-	public void setPlaceId(int placeId) {
-		this.placeId = placeId;
-	}
-	public String getPrivateLabel() {
-		return privateLabel;
-	}
-	public void setPrivateLabel(String privateLabel) {
-		this.privateLabel = privateLabel;
-	}
 	public String getPublicLabel() {
 		return publicLabel;
 	}
@@ -57,18 +41,6 @@ public class PlaceForm {
 	}
 	public void setCity(String city) {
 		this.city = city;
-	}
-	public double getLatitude() {
-		return latitude;
-	}
-	public void setLatitude(double latitude) {
-		this.latitude = latitude;
-	}
-	public double getLongitude() {
-		return longitude;
-	}
-	public void setLongitude(double longitude) {
-		this.longitude = longitude;
-	}
+	}	
 
 }

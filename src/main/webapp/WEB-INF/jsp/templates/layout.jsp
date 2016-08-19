@@ -20,6 +20,7 @@
 	    <link rel="stylesheet" type="text/css" href="./css/app.css"/>
 	    <script type="text/javascript" src="${ commonJS }"></script>
 	    <script type="text/javascript" src="./js/app.js"></script>
+	    <script type="text/javascript" src="./js/place.js"></script>
 	</head>
 	
 	<body>

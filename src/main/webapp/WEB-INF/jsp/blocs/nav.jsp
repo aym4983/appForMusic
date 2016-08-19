@@ -4,7 +4,6 @@
 <c:url var="urlSignOut" value="/sign-out" />
 <c:url var="urlProfil" value="/profile" />
 <c:url var="urlHome" value="/" />
-<<<<<<< Upstream, based on origin/master
 <c:url var="urlPlaces" value="/places" />
 <c:url var="urlContacts" value="/contacts" />
 <c:url var="urlPlaces" value="/places" />

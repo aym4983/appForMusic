@@ -1,24 +1,33 @@
 package fr.imie.appformusic.itests.scenarii;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.io.File;
+
 import org.fluentlenium.adapter.FluentTest;
 import org.fluentlenium.core.annotation.Page;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 import fr.imie.appformusic.itests.pages.SignUpPage;
 
-/** Garder l'annotation ignore pour l'instant, sinon çà va planter fort !! */
 
-@Ignore
-public class SignUpTest extends FluentTest {
+public class SignUpTestIT extends FluentTest {
 
-	private WebDriver driver = getDefaultDriver();
+	public WebDriver driver = getDefaultDriver();
 	
 	
 	@Page
 	private SignUpPage signUp;
+	
+	@Test
+	  public void shouldHavePhantomJsBinary() {
+	    String binary = System.getProperty("phantomjs.binary.path");
+	    assertNotNull(binary);
+	    assertTrue(new File(binary).exists());
+	  }
 	
 	@Test
 	public void testSignIn(){
@@ -28,7 +37,6 @@ public class SignUpTest extends FluentTest {
 
 	@Override
 	public WebDriver getDefaultDriver() {
-		//System.setProperty("webdriver.chrome.driver", "C:/PROGRAMJAVA/chromedriver.exe");
 		WebDriver driver = new PhantomJSDriver();
 		return driver;
 	}

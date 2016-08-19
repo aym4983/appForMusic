@@ -24,7 +24,7 @@
 		<form:label path="passwordConfirm" for="signup-password-confirm">Confirmation mot de passe</form:label>
 		<form:password path="passwordConfirm" id="signup-password-confirm" class="form-control" placeholder="Confirmation mot de passe"/></p>
 	
-	<p><input type="submit" name="signup" value="Inscription" class="btn btn-block btn-primary" />
+	<p><input type="submit" name="signup" value="Inscription" class="btn btn-block btn-primary" id="submit" />
 		<a href="${ urlSignIn }" class="btn btn-block btn-default">J'ai déjà un compte.</a></p>
 	
 </form:form>

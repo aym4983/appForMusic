@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
+import fr.imie.appformusic.itests.pages.SignInPage;
 import fr.imie.appformusic.itests.pages.SignUpPage;
 
 
@@ -21,6 +22,8 @@ public class SignUpTestIT extends FluentTest {
 	
 	@Page
 	private SignUpPage signUp;
+	@Page
+	private SignInPage signIn;
 	
 	@Test
 	  public void shouldHavePhantomJsBinary() {
@@ -33,10 +36,20 @@ public class SignUpTestIT extends FluentTest {
 	public void testSignIn(){
 		goTo(signUp);
 		signUp.isAt();
+		
+		signUp.setUsername("toto");
+		signUp.setEmail("toto@test.com");
+		signUp.setPassword("toto");
+		signUp.setPasswordConfirm("toto");
+		signUp.submitForm();
+		
+		// on vérifie que l'on arrive bien sur la page signIn
+		signIn.isAt();
 	}
 
 	@Override
 	public WebDriver getDefaultDriver() {
+		System.setProperty("phantomjs.binary.path", "C:/PROGRAMJAVA/phantomjs-2.1.1-windows/bin/phantomjs.exe");
 		WebDriver driver = new PhantomJSDriver();
 		return driver;
 	}

@@ -140,7 +140,8 @@ function initSearchNav() {
              center: 'title',
              right: 'month,agendaWeek,agendaDay'
          },
-		lang: 'fr'
+		lang: 'fr',
+		selectable: true
 
 	});
 	}

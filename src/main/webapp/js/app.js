@@ -140,11 +140,8 @@ function initSearchNav() {
              center: 'title',
              right: 'month,agendaWeek,agendaDay'
          },
-		lang: 'fr',
-		selectable: true,
-//		dayClick: function(date, allDay, jsEvent, view) {
-//	        calendar.fullCalendar('renderEvent', { title: 'YOUR TITLE', start: date, allDay: true }, true );
-//	    }
+		lang: 'fr'
+
 	});
 	}
 }

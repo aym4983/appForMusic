@@ -1,0 +1,43 @@
+<<<<<<< HEAD
+html {
+	height: 100%;
+}
+
+body {
+	min-height: 100%;
+}
+
+#main-header {
+	background-color: rgba(255, 255, 255, 0.8);
+	margin-bottom: 20px;
+	overflow: auto; /* Prévient une hauteur de 0 à cause des éléments flottants */
+}
+
+#main-header form {
+	padding: 0;
+}
+
+#search-results {
+	display: none;
+}
+
+#search-results.toggled {
+	display: block;
+}
+
+.btn.glyphicon {
+=======
+#search-container {
+	display: none;
+}
+
+#search-container.toggled {
+	background-color: white;
+	bottom: 0;
+	display: block;
+	left: 0;
+	position: absolute;
+	right: 0;
+>>>>>>> refs/remotes/origin/master_dhe
+	top: 0;
+}

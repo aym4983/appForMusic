@@ -11,7 +11,9 @@
 <html>
 
 	<head>
-	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	    <meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 	    <title><c:out value="${ pageTitle }" /> &#124; App for music</title>
 	    <link rel="stylesheet" type="text/css" href="${ commonCSS }"/>
 	    <link rel="stylesheet" type="text/css" href="./css/simple-sidebar-theme.css"/>
@@ -26,6 +28,7 @@
 			
 			<div id="page-content-wrapper" class="container-fluid">
 				<tiles:insertAttribute name="header" />
+				<tiles:insertAttribute name="search" />
 				<tiles:insertAttribute name="body" />
 				<tiles:insertAttribute name="footer" />
 			</div>

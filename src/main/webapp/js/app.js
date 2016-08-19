@@ -6,14 +6,32 @@ $(function() {
 	
 	initCalendar();
 	
-	$( "#siderbar-toggler" ).click(function() {
+	$("#siderbar-toggler").click(function() {
 		console.log("toggle menu");
-		$( "#wrapper" ).toggleClass("toggled");
+		$("#wrapper").toggleClass("toggled");
 	});
 	
-	$( "#search-toggler" ).click(function() {
-		console.log("toggle search");
-		//$( "#wrapper" ).toggleClass("toggled");
+	$("#main-search").keyup(function() {
+		var $input = $(this);
+		var $form = $(this).closest("form");
+		
+		if ($input.val().length >= 3) {
+			console.log("search for: '" + $(this).val() + "'");
+			
+			$("#search-results").addClass("toggled");
+			
+			$.ajax({
+				url: $form.attr("action"),
+				data: {search: $input.val()},
+				dataType: "json",
+				success: function(data, textStatus, jqXHR) {
+					console.log(data)
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					console.log(jqXHR)
+				}
+			});
+		}
 	});
 	
 });

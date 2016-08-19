@@ -17,4 +17,5 @@
 	
 </header>
 	
-<section id="search-results"></section>
+<section id="search-results">
+</section>

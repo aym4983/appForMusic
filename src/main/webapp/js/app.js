@@ -25,7 +25,9 @@ $(function() {
 				data: {search: $input.val()},
 				dataType: "json",
 				success: function(data, textStatus, jqXHR) {
-					console.log(data)
+					if (data.succeeded) {
+						
+					}
 				},
 				error: function(jqXHR, textStatus, errorThrown) {
 					console.log(jqXHR)

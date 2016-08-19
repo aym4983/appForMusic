@@ -47,14 +47,14 @@ public class UserDao implements IUserDao {
 	@Override
 	public List<AppUser> findAllUsers() throws TechnicalException {
 		return sessionFactory.getCurrentSession()
-				.createQuery("from appuser", AppUser.class)
+				.createQuery("from AppUser", AppUser.class)
 				.getResultList();
 	}
 
 	@Override
 	public List<AppUser> findUsersLike(String username) throws TechnicalException {
 		return sessionFactory.getCurrentSession()
-				.createQuery("from appuser where username ilike :username", AppUser.class)
+				.createQuery("from AppUser u where u.username like :username", AppUser.class)
 				.setParameter("username", "%" + username + "%")
 				.getResultList();
 	}

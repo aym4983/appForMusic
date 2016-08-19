@@ -50,11 +50,11 @@ public class PlaceDao implements IPlaceDao {
 	}
 
 	@Override
-	public List<Place> findPlacesLike(String likePublicName) throws TechnicalException {
+	public List<Place> findPlacesLike(String likePublicLabel) throws TechnicalException {
 		return sessionFactory
 				.getCurrentSession()
-				.createQuery("from Place where publicName like :publicName", Place.class)
-				.setParameter("publicName", "%" + likePublicName + "%")
+				.createQuery("from Place where publicLabel like :publicLabel", Place.class)
+				.setParameter("publicLabel", "%" + likePublicLabel + "%")
 				.getResultList();
 	}
 
@@ -68,12 +68,12 @@ public class PlaceDao implements IPlaceDao {
 	}
 
 	@Override
-	public List<Place> findUserPlacesLike(String username, String likePrivateName) throws TechnicalException {
+	public List<Place> findUserPlacesLike(String username, String likePrivateLabel) throws TechnicalException {
 		return sessionFactory
 				.getCurrentSession()
-				.createQuery("from Place where owner = :username and privateName like :publicName", Place.class)
+				.createQuery("from Place where owner = :username and privateLabel like :publicLabel", Place.class)
 				.setParameter("username", username)
-				.setParameter("publicName", "%" + likePrivateName + "%")
+				.setParameter("publicLabel", "%" + likePrivateLabel + "%")
 				.getResultList();
 	}
 

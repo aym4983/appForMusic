@@ -31,7 +31,7 @@ public class SearchController {
 	@Autowired
 	private IPlaceService placeService;
 
-	@RequestMapping("/")
+	@RequestMapping("")
 	public ModelAndView init(){
 		return new ModelAndView(Views.SEARCH);
 	}

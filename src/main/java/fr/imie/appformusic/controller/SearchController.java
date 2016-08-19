@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.imie.appformusic.configuration.constants.Routes;
+import fr.imie.appformusic.configuration.constants.Views;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.responses.FailureResponse;
 import fr.imie.appformusic.responses.GlobalSearchResponse;
@@ -30,9 +31,9 @@ public class SearchController {
 	@Autowired
 	private IPlaceService placeService;
 
-	@RequestMapping("")
+	@RequestMapping("/")
 	public ModelAndView init(){
-		return new ModelAndView("search");
+		return new ModelAndView(Views.SEARCH);
 	}
 	
 	@RequestMapping("/all")

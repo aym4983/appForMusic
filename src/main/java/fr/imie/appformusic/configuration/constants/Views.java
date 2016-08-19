@@ -19,4 +19,6 @@ public interface Views {
 	/** Vue du calendrier */
 	public String CALENDAR = "calendar";
 	
+	public String SEARCH = "search";
+	
 }

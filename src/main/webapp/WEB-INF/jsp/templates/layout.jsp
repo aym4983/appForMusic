@@ -33,9 +33,17 @@
 			</div>
 		</div>
 		
+		<script type="text/javascript">
+			var app = {};
+			var map;
 
-		<script>var app = {};</script>
-
+			function initGoogleMap() {
+				map = new google.maps.Map(document.getElementById("places-maps"), {
+					center: new google.maps.LatLng(47.4698, -0.5593)
+				});
+			}
+		</script>
+	    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH8dHLUHMkDTWfuiLOxhySJpQtXTp7mFU&callback=initGoogleMap"></script>
 	</body>
 	
 </html>

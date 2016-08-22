@@ -1,36 +1,25 @@
 package fr.imie.appformusic.itests.scenarii;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-import java.io.File;
-
-import org.fluentlenium.adapter.FluentTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 import fr.imie.appformusic.itests.pages.SignInPage;
 import fr.imie.appformusic.itests.pages.SignUpPage;
+import fr.imie.appformusic.itests.utils.AppForMusicPageTest;
+import fr.imie.support.Browser;
+import fr.imie.support.BrowserSize;
 
 
-public class SignUpTestIT extends FluentTest {
+public class SignUpTestIT extends AppForMusicPageTest {
 
-	public WebDriver driver = getDefaultDriver();
-	
+	public SignUpTestIT(Browser browser, BrowserSize size) {
+		super(browser, size);
+	}
 	
 	@Page
 	private SignUpPage signUp;
 	@Page
 	private SignInPage signIn;
-	
-	@Test
-	  public void shouldHavePhantomJsBinary() {
-	    String binary = System.getProperty("phantomjs.binary.path");
-	    assertNotNull(binary);
-	    assertTrue(new File(binary).exists());
-	  }
 	
 	@Test
 	public void testSignIn(){
@@ -46,14 +35,4 @@ public class SignUpTestIT extends FluentTest {
 		// on vérifie que l'on arrive bien sur la page signIn
 		signIn.isAt();
 	}
-
-	@Override
-	public WebDriver getDefaultDriver() {
-		System.setProperty("phantomjs.binary.path", "C:/PROGRAMJAVA/phantomjs-2.1.1-windows/bin/phantomjs.exe");
-		WebDriver driver = new PhantomJSDriver();
-		return driver;
-	}
-	
-	
-	
 }

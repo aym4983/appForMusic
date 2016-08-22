@@ -3,6 +3,7 @@ package fr.imie.appformusic.dao.impl;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -28,53 +29,56 @@ public class PlaceDao implements IPlaceDao {
 	@Override
 	public Place findById(int placeId) throws TechnicalException {
 		try {
-			return sessionFactory
-					.getCurrentSession()
-					.createQuery("from Place where placeId = :placeId", Place.class)
-					.setParameter("placeId", placeId).getSingleResult();
+			return (Place) sessionFactory
+					.getCurrentSession().createCriteria(Place.class)
+					.add(Restrictions.idEq(placeId));
 		} catch (Exception e) {
 			throw new TechnicalException(e);
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Place> findAllPlaces() throws TechnicalException {
 		try {
-			return sessionFactory
+			List <Place> places = sessionFactory
 					.getCurrentSession()
-					.createQuery("from Place", Place.class)
-					.getResultList();
+					.createCriteria(Place.class).list();
+			return places;
 		} catch (Exception e) {
 			throw new TechnicalException(e);
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Place> findPlacesLike(String likePublicLabel) throws TechnicalException {
 		return sessionFactory
 				.getCurrentSession()
-				.createQuery("from Place where publicLabel like :publicLabel", Place.class)
-				.setParameter("publicLabel", "%" + likePublicLabel + "%")
-				.getResultList();
+				.createCriteria(Place.class)
+				.add(Restrictions.like("publicLabel", "%"+likePublicLabel+"%"))
+				.list();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Place> FindUserPlaces(String username) throws TechnicalException {
 		return sessionFactory
 				.getCurrentSession()
-				.createQuery("from Place where owner = :username", Place.class)
-				.setParameter("username", username)
-				.getResultList();
+				.createCriteria(Place.class)
+				.add(Restrictions.eq("owner", username))
+				.list();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Place> findUserPlacesLike(String username, String likePrivateLabel) throws TechnicalException {
 		return sessionFactory
 				.getCurrentSession()
-				.createQuery("from Place where owner = :username and privateLabel like :publicLabel", Place.class)
-				.setParameter("username", username)
-				.setParameter("publicLabel", "%" + likePrivateLabel + "%")
-				.getResultList();
+				.createCriteria(Place.class)
+				.add(Restrictions.eq("owner", username))
+				.add(Restrictions.and(Restrictions.like("privateLabel", "%"+likePrivateLabel+"%")))
+				.list();
 	}
 
 }

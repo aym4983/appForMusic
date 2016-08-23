@@ -16,17 +16,17 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 	    <title><c:out value="${ pageTitle }" /> &#124; App for music</title>
 	    <link rel="stylesheet" type="text/css" href="${ commonCSS }"/>
-	    <link rel="stylesheet" type="text/css" href="./css/simple-sidebar-theme.css"/>
+	    <link rel="stylesheet" type="text/css" href="./css/main-menu.css"/>
 	    <link rel="stylesheet" type="text/css" href="./css/app.css"/>
 	    <script type="text/javascript" src="${ commonJS }"></script>
 	    <script type="text/javascript" src="./js/app.js"></script>
 	</head>
 	
 	<body>
-		<div id="wrapper">
+		<div id="main-wrapper">
 			<tiles:insertAttribute name="navigation" />
 			
-			<div id="page-content-wrapper" class="container-fluid">
+			<div id="main-container">
 				<tiles:insertAttribute name="header" />
 				<tiles:insertAttribute name="body" />
 				<tiles:insertAttribute name="footer" />
@@ -38,8 +38,9 @@
 			var map;
 
 			function initGoogleMap() {
-				map = new google.maps.Map(document.getElementById("places-maps"), {
-					center: new google.maps.LatLng(47.4698, -0.5593)
+				map = new google.maps.Map(document.getElementById("places-map"), {
+					center: new google.maps.LatLng(47.4698, -0.5593),
+					zoom: 8
 				});
 			}
 		</script>

@@ -6,11 +6,6 @@ $(function() {
 	
 	initCalendar();
 	
-	$("#siderbar-toggler").click(function() {
-		console.log("toggle menu");
-		$("#wrapper").toggleClass("toggled");
-	});
-	
 	$("#main-search").keyup(function(event) {
 		var $input = $(this);
 		var $form = $(this).closest("form");

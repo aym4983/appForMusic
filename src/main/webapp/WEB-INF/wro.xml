@@ -18,11 +18,9 @@
 	<group name="common_css">
 		<css>/css/bootstrap-theme.css</css>
 		<css>/css/bootstrap.css</css>
-		<css>/css/simple-sidebar.css</css>
 		<css>/css/fullcalendar.css</css>
 		
 		<!-- Placer ici les css de l'application -->
-		<!-- <css>/css/simple-sidebar-theme.css</css>
 		<css>/css/app.css</css> -->
 	</group>     
            

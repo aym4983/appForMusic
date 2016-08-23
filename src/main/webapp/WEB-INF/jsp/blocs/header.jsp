@@ -9,7 +9,6 @@
 <header id="main-header">
 	
 	<section class="clearfix">
-		<button id="siderbar-toggler" class="btn btn-default pull-left glyphicon glyphicon-menu-hamburger"></button>
 		<form action="${ urlFormAction }" method="get" class="pull-right col-xs-10 col-sm-8 col-md-6 col-lg-4">
 			<div class="input-group">
 				<span class="input-group-addon">&#128270;</span>

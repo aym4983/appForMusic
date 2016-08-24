@@ -41,7 +41,8 @@ public class UserDao implements IUserDao {
 	public AppUser findByUserName(String userName) throws TechnicalException {
 		return (AppUser) sessionFactory.getCurrentSession()
 				.createCriteria(AppUser.class)
-				.add(Restrictions.eq("username", userName));
+				.add(Restrictions.eq("username", userName))
+				.uniqueResult();
 	}
 
 	@Override

@@ -3,9 +3,8 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <c:url value="${ urlSignUp }" var="urlSignUp" />
-<c:url value="/login" var="login"/>
 
-<form action="${login }" method="POST" id="signin" class="col-md-4 col-md-offset-4">
+<form action="" method="POST" id="signin" class="col-md-4 col-md-offset-4">
 
     <h2 id="title-sign-in">Connexion</h2>
 
@@ -20,5 +19,5 @@
 	<p><input type="submit" name="signup" value="Connexion" class="btn btn-block btn-primary" />
 		<a href="${ urlSignUp }" class="btn btn-block btn-default">Je n'ai pas de compte.</a></p>
 	
-	<input type="hidden" name="${_csrf.parameterName}" value="${_csfr.token}"/>
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>

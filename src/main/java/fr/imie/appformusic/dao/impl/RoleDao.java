@@ -2,6 +2,7 @@ package fr.imie.appformusic.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +30,12 @@ public class RoleDao implements IRoleDao {
 	@Override
 	public Role findById(byte roleId) throws TechnicalException {
 		try {
-			return (Role) sessionFactory
+			Criteria c = sessionFactory
 					.getCurrentSession()
 					.createCriteria(Role.class)
 					.add(Restrictions.idEq(roleId));
+			Role role = (Role) c.uniqueResult();
+			return role;
 		} catch (Exception e) {
 			throw new TechnicalException(e);
 		}
@@ -41,10 +44,13 @@ public class RoleDao implements IRoleDao {
 	@Override
 	public Role findByLabel(String roleLabel) throws TechnicalException {
 		try {
-			return (Role) sessionFactory
+			Criteria c = sessionFactory
 					.getCurrentSession()
 					.createCriteria(Role.class)
 					.add(Restrictions.eq("label", roleLabel));
+			
+			Role role = (Role) c.uniqueResult();
+			return role;
 		} catch (Exception e) {
 			throw new TechnicalException(e);
 		}

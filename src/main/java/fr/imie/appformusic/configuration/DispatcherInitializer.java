@@ -1,10 +1,11 @@
 package fr.imie.appformusic.configuration;
 
 import java.util.Locale;
+import java.util.Properties;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -16,7 +17,9 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 
+import ro.isdc.wro.config.jmx.ConfigConstants;
 import ro.isdc.wro.http.ConfigurableWroFilter;
+import ro.isdc.wro.model.resource.processor.factory.ConfigurableProcessorsFactory;
 
 @Configuration
 @EnableWebMvc
@@ -68,11 +71,35 @@ public class DispatcherInitializer extends WebMvcConfigurerAdapter  {
 		registry.addInterceptor(interceptor);
     }
     
-    @Bean(name="wroFilter")
-    public ConfigurableWroFilter wroFilter (){
+    @Bean
+    org.springframework.boot.web.servlet.FilterRegistrationBean webResourceOptimizer (Environment env){
+    	org.springframework.boot.web.servlet.FilterRegistrationBean fr = new org.springframework.boot.web.servlet.FilterRegistrationBean();
     	ConfigurableWroFilter filter = new ConfigurableWroFilter();
-    	filter.setDebug(true);
-    	
-    	return filter;
+    	filter.setProperties(buildWroProperties(env));
+    	fr.setFilter(filter);
+    	fr.addUrlPatterns("/wro/*");
+    	return fr;
     }
+    
+    private static final String[] OTHER_WRO_PROP = new String[]{ ConfigurableProcessorsFactory.PARAM_PRE_PROCESSORS,
+    		ConfigurableProcessorsFactory.PARAM_POST_PROCESSORS };
+    
+    private Properties buildWroProperties(Environment env){
+    	Properties prop = new Properties();
+    	for(ConfigConstants c : ConfigConstants.values()){
+    		addProperty(env, prop, c.name());
+    	}
+    	for(String name : OTHER_WRO_PROP){
+    		addProperty(env, prop, name);
+    	}
+    	return prop;
+    }
+ 
+    private void addProperty(Environment env, Properties to, String name){
+    	String value = env.getProperty("wro." + name);
+    	if (value != null){
+    		to.put(name, value);
+    	}
+    }
+
 }

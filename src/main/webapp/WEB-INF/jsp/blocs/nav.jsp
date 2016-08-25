@@ -22,6 +22,7 @@
 				<img src="" alt="" /></a>
 		</div>
 	</header>
+
 	
 	<section>
 		<ul class="menu">
@@ -35,6 +36,7 @@
 			<li><a href="${ urlSettings }" title="Paramètres">Paramètres</a></li>
 			<li><a href="${ urlHelp }" title="Aide">Aide</a></li>
 		</ul>
+<<<<<<< Upstream, based on origin/master
 	</section>
 	<ul class="sidebar-nav">
 		<li><a href="${ urlHome }">Accueil</a></li>
@@ -42,4 +44,10 @@
 		<li><a href="${ urlPlace }">Mes Lieux</a></li>
 		<li><a href="${ urlContact }">Contact</a></li>
 	</ul>
+=======
+	
+	</section>
+
+	
+>>>>>>> 54a4816 ajouter de lieux
 </nav>

@@ -3,19 +3,13 @@ package fr.imie.appformusic.itests.scenarii;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Test;
 
+import fr.imie.appformusic.configuration.constants.Routes;
 import fr.imie.appformusic.itests.pages.SignInPage;
 import fr.imie.appformusic.itests.pages.SignUpPage;
 import fr.imie.appformusic.itests.utils.AppForMusicPageTest;
-import fr.imie.support.Browser;
-import fr.imie.support.BrowserSize;
 
+public class SignUpTest extends AppForMusicPageTest {
 
-public class SignUpTestIT extends AppForMusicPageTest {
-
-	public SignUpTestIT(Browser browser, BrowserSize size) {
-		super(browser, size);
-	}
-	
 	@Page
 	private SignUpPage signUp;
 	@Page
@@ -23,7 +17,7 @@ public class SignUpTestIT extends AppForMusicPageTest {
 	
 	@Test
 	public void testSignIn(){
-		goTo(signUp);
+		goTo(getBaseUrl()+Routes.SIGNUP);
 		signUp.isAt();
 		
 		signUp.setUsername("toto");

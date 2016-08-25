@@ -33,6 +33,7 @@ public class Role implements Serializable {
 	
 	@ManyToMany(mappedBy = "roles")
 	private Set<AppUser> users;
+
 	
 	/** Constructors **/
 	

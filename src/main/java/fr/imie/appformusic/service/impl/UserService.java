@@ -17,6 +17,7 @@ import fr.imie.appformusic.domain.Role;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.service.IUserService;
 
+
 @Service
 @Transactional
 public class UserService implements IUserService {

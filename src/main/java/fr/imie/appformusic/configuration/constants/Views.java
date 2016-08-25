@@ -20,5 +20,12 @@ public interface Views {
 	public String CALENDAR = "calendar";
 	
 	public String SEARCH = "search";
+
+	/** Vue du calendrier */
+	public String PLACE = "place";
+	
+	/** Vue d'erreyr */ 
+	public String ERROR ="error";
+
 	
 }

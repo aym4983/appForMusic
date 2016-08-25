@@ -85,6 +85,19 @@ public class AccountController {
 	    }
 		return new ModelAndView("redirect:/" + Routes.HOME);
 	}
+
+//	/**
+//	 * Traite les données soumises du formulaire de connexion.
+//	 * @param user 		L'utilisateur à connecter.
+//	 * @param request 	La requête HTTP.
+//	 * @return 			Une redirection vers la page d'accueil du site en cas de réussite, sinon vers le formulaire.
+//	 */
+//	@RequestMapping(value=Routes.SIGNIN, method=RequestMethod.POST)
+//	public ModelAndView submitSignInForm(UserForm userForm, HttpServletRequest request) {
+//		//TODO Connexion de l'utilisateur.
+//		return new ModelAndView("redirect:/" + Routes.HOME);
+//	}
+
 	
 	/**
 	 * Affiche la vue calendar
@@ -97,5 +110,11 @@ public class AccountController {
 		return mav;
 	}
 	
+	
+	/*@RequestMapping(Routes.ERROR)
+	public ModelAndView showErrorPage(Model model) {
+		ModelAndView mav = new ModelAndView(Views.ERROR);
+		return mav; 
+	}*/
 
 }

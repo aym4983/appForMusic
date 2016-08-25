@@ -13,31 +13,39 @@ import javax.persistence.Id;
 
 public class PlaceForm {
 	
-	private String publicLabel;
 	private String street;
 	private String zipcode;
 	private String city;
-	public String getLongitude() {
-		return longitude;
+	private double longitude;
+	private double latitude;
+	private String publicLabel;
+	private String type;
+
+	public String getType() {
+		return type;
 	}
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
+	public void setType(String type) {
+		this.type = type;
 	}
-	public String getLatitude() {
-		return latitude;
-	}
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
-	}
-	private String longitude;
-	private String latitude;
-	
 	public String getPublicLabel() {
 		return publicLabel;
 	}
 	public void setPublicLabel(String publicLabel) {
 		this.publicLabel = publicLabel;
 	}
+	public double getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+	public double getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
 	public String getStreet() {
 		return street;
 	}

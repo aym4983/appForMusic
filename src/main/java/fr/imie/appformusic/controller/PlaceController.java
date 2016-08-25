@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.imie.appformusic.configuration.constants.Routes;
+import fr.imie.appformusic.configuration.constants.Session;
 import fr.imie.appformusic.configuration.constants.Views;
 import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.domain.Place;
@@ -30,6 +31,9 @@ public class PlaceController {
 
 	@Autowired
 	private IPlaceService placeService;
+	
+	@Autowired
+	private IUserService userService;
 	
 	/**
 	 * 
@@ -48,16 +52,22 @@ public class PlaceController {
 	public ModelAndView submitPlaceForm(PlaceForm placeForm, HttpServletRequest request) throws BusinessException {
 		
 		// Get the user 
-		//Integer id = (Integer)request.getSession().getAttribute(Constant.CURRENT_USER);
+		String name = "test";/*(String)request.getSession().getAttribute(Session.CURRENT_NAME);*/
+		AppUser user = new AppUser();
+		user = userService.findByUserName(name);
 		
 		// Create the place
 		Place place = new Place();
+		if(placeForm.getType().contains("private")){
+			place.setPrivateLabel(placeForm.getPublicLabel());
+		}else{
+			place.setPublicLabel(placeForm.getPublicLabel());
+		}
+		
+		place.setOwner(user);
 		place.setCity(placeForm.getCity());
-		//place.setLatitude(placeForm.getLatitude());
-		//place.setLongitude(placeForm.getLongitude());
-		//place.setOwner(user);
-		//place.setPrivateLabel(placeForm.getPrivateLabel());
-		place.setPublicLabel(placeForm.getPublicLabel());
+		place.setLatitude(placeForm.getLatitude());
+		place.setLongitude(placeForm.getLongitude());
 		place.setStreet(placeForm.getStreet());
 		place.setZipcode(placeForm.getZipcode());
 		

@@ -29,10 +29,10 @@ public class Place implements Serializable {
 	@Id @GeneratedValue(strategy=GenerationType.AUTO) @Column(name="placeid")
 	private int placeId;
 	
-	@Column(name="privatelabel", length = 50, nullable = false)
+	@Column(name="privatelabel", length = 50, nullable = true)
 	private String privateLabel;
 	
-	@Column(name="publiclabel", length = 50, nullable = false)
+	@Column(name="publiclabel", length = 50, nullable = true)
 	private String publicLabel;
 	
 	@Column(name="street", length = 255, nullable = false)

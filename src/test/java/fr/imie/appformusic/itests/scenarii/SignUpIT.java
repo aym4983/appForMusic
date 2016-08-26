@@ -8,7 +8,7 @@ import fr.imie.appformusic.itests.pages.SignInPage;
 import fr.imie.appformusic.itests.pages.SignUpPage;
 import fr.imie.appformusic.itests.utils.AppForMusicPageTest;
 
-public class SignUpTest extends AppForMusicPageTest {
+public class SignUpIT extends AppForMusicPageTest {
 
 	@Page
 	private SignUpPage signUp;

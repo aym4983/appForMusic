@@ -2,7 +2,9 @@ package fr.imie.appformusic.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -28,11 +30,12 @@ public class RoleDao implements IRoleDao {
 	@Override
 	public Role findById(byte roleId) throws TechnicalException {
 		try {
-			return sessionFactory
+			Criteria c = sessionFactory
 					.getCurrentSession()
-					.createQuery("from Role where id = :roleId", Role.class)
-					.setParameter("roleId", roleId)
-					.getSingleResult();
+					.createCriteria(Role.class)
+					.add(Restrictions.idEq(roleId));
+			Role role = (Role) c.uniqueResult();
+			return role;
 		} catch (Exception e) {
 			throw new TechnicalException(e);
 		}
@@ -41,23 +44,26 @@ public class RoleDao implements IRoleDao {
 	@Override
 	public Role findByLabel(String roleLabel) throws TechnicalException {
 		try {
-			return sessionFactory
+			Criteria c = sessionFactory
 					.getCurrentSession()
-					.createQuery("from Role where label = :roleLabel", Role.class)
-					.setParameter("roleLabel", roleLabel)
-					.getSingleResult();
+					.createCriteria(Role.class)
+					.add(Restrictions.eq("label", roleLabel));
+			
+			Role role = (Role) c.uniqueResult();
+			return role;
 		} catch (Exception e) {
 			throw new TechnicalException(e);
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Role> findAll() throws TechnicalException {
 		try {
 			return sessionFactory
 					.getCurrentSession()
-					.createQuery("from Role", Role.class)
-					.getResultList();
+					.createCriteria(Role.class)
+					.list();
 		} catch (Exception e) {
 			throw new TechnicalException(e);
 		}

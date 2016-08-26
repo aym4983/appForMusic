@@ -4,7 +4,7 @@
 
 <c:url value="${ urlSignUp }" var="urlSignUp" />
 
-<form:form action="" method="post" modelAttribute="appUser" id="signin" class="col-md-4 col-md-offset-4">
+<form action="" method="POST" id="signin" class="col-md-4 col-md-offset-4">
 
     <h2 id="title-sign-in">Connexion</h2>
 
@@ -19,4 +19,5 @@
 	<p><input type="submit" name="signup" value="Connexion" class="btn btn-block btn-primary" />
 		<a href="${ urlSignUp }" class="btn btn-block btn-default">Je n'ai pas de compte.</a></p>
 	
-</form:form>
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+</form>

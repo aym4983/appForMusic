@@ -44,7 +44,7 @@ public class AccountController {
 	 * @param model Le modèle utilisé par la page. 
 	 * @return La vue du formulaire de connexion.
 	 */
-	@RequestMapping(Routes.SIGNIN)
+	@RequestMapping(value=Routes.SIGNIN, method=RequestMethod.GET)
 	public ModelAndView showSignInForm(Model model) {
 		ModelAndView mav = new ModelAndView(Views.SIGNIN);
 		mav.addObject("urlSignUp", Routes.SIGNUP);

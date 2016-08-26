@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -38,10 +39,10 @@ public class UserDao implements IUserDao {
 	
 	@Override
 	public AppUser findByUserName(String userName) throws TechnicalException {
-		return sessionFactory.getCurrentSession()
-				.createQuery("from AppUser u where u.username = :name", AppUser.class)
-				.setParameter("name", userName)
-				.getSingleResult();
+		return (AppUser) sessionFactory.getCurrentSession()
+				.createCriteria(AppUser.class)
+				.add(Restrictions.eq("username", userName))
+				.uniqueResult();
 	}
 
 	@Override
@@ -50,20 +51,22 @@ public class UserDao implements IUserDao {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<AppUser> findAllUsers() throws TechnicalException {
 		return sessionFactory.getCurrentSession()
-				.createQuery("from AppUser", AppUser.class)
-				.getResultList();
+				.createCriteria(AppUser.class)
+				.list();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<AppUser> findUsersLike(String username) throws TechnicalException {
 		List<AppUser> users = new ArrayList<AppUser>();
 		users = sessionFactory.getCurrentSession()
-				.createQuery("from AppUser u where u.username like :username", AppUser.class)
-				.setParameter("username", "%" + username + "%")
-				.getResultList();
+				.createCriteria(AppUser.class)
+				.add(Restrictions.like("username", "%"+username+"%"))
+				.list();
 		
 		for (AppUser appUser : users) {
 			for (Role role : appUser.getRoles()) {

@@ -3,8 +3,9 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <c:url value="${ urlSignIn }" var="urlSignIn" />
+<c:url var="postForm" value="/sign-up" />
 
-<form:form action="" method="post" modelAttribute="userForm" id="signup" class="col-md-4 col-md-offset-4">
+<form:form action="${postForm}" method="post" modelAttribute="userForm" id="signup" class="col-md-4 col-md-offset-4">
 
     <h2 id="title-sign-up">Inscription</h2>
 

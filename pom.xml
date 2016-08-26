@@ -149,6 +149,13 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        
+        <!-- starter qui autoconfigure wro -->
+        <dependency>
+            <groupId>eu.michael-simons</groupId>
+            <artifactId>wro4j-spring-boot-starter</artifactId>
+            <version>0.1.1</version>
+        </dependency>
 	    
 	    <!-- apache commons -->
 	    <dependency>
@@ -209,11 +216,6 @@
 	    </dependency>
 	    
 	    <!-- http://mvnrepository.com/artifact/ro.isdc.wro4j/wro4j-maven-plugin -->
-		<dependency>
-	        <groupId>ro.isdc.wro4j</groupId>
-	        <artifactId>wro4j-core</artifactId>
-	        <version>1.8.0</version>
-	    </dependency>
 	    
 	    <dependency>
 	        <groupId>ro.isdc.wro4j</groupId>

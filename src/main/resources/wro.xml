@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<groups xmlns="http://www.isdc.ro/wro"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.isdc.ro/wro wro.xsd">
+<groups xmlns="http://www.isdc.ro/wro">
         
 	<group name="common_js">
 		<js>/js/lib/jquery-2.2.4.js</js>
@@ -10,10 +8,10 @@
 		<js>/js/lib/moment.min.js</js>
 		<js>/js/lib/fullcalendar.js</js>
 		<js>/js/lib/mustache.js</js>
-		<js>/js/lib/place.js</js>
 		
 		<!-- Placer ici les js de l'application -->
-		<!-- <js>/js/app.js</js> -->
+		<js>/js/app.js</js>
+		<js>/js/place.js</js>
 	</group>
 	
 	<group name="common_css">
@@ -22,7 +20,8 @@
 		<css>/css/fullcalendar.css</css>
 		
 		<!-- Placer ici les css de l'application -->
-		<css>/css/app.css</css> -->
+		<css>/css/app.css</css>
+		<css>/css/main-menu.css</css>
 	</group>     
            
 </groups>

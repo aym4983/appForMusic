@@ -16,12 +16,7 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 	    <title><c:out value="${ pageTitle }" /> &#124; App for music</title>
 	    <link rel="stylesheet" type="text/css" href="${ commonCSS }"/>
-	    <link rel="stylesheet" type="text/css" href="./css/main-menu.css"/>
-	    <link rel="stylesheet" type="text/css" href="./css/app.css"/>
 	    <script type="text/javascript" src="${ commonJS }"></script>
-	    <script type="text/javascript" src="./js/app.js"></script>
-	    <script type ="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-	    <script type="text/javascript" src="./js/place.js"></script>
 	</head>
 	
 	<body>

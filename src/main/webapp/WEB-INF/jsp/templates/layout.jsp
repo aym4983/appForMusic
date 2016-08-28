@@ -23,7 +23,7 @@
 		<div id="main-wrapper">
 			<tiles:insertAttribute name="navigation" />
 			
-			<div id="main-container">
+			<div id="main-container" class="container-fluid">
 				<tiles:insertAttribute name="header" />
 				<tiles:insertAttribute name="body" />
 				<tiles:insertAttribute name="footer" />

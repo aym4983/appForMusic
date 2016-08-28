@@ -8,10 +8,16 @@
 	<li role="presentation"><a href="#places-map">Carte</a></li>
 </ul>
 
-<div id="places-map" class="hidden-xs col-md-8 col-lg-9">
-	
+<div style="position: relative; height: auto;" class="hidden-xs col-md-8 col-lg-9">
+	<div id="places-map"></div>
 </div>
 
 <ul id="places-list" class="col-md-4 col-lg-3">
+	<li><a href="">Lorem</a></li>
+	<li><a href="">Ipsum</a></li>
+	<li><a href="">Dolor</a></li>
+	<li><a href="">Sit</a></li>
+	<li><a href="">Amet</a></li>
+	<li><a href="">Consectetur</a></li>
 </ul>
 

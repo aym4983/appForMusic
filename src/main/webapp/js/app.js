@@ -156,7 +156,7 @@ function initCalendar (){
 			    return;
 
 			  $('#calendar').fullCalendar('changeView', 'agendaDay');
-			  $('#calendar').fullCalendar('gotoDate', date);
+			  $('#calendar').fullCalendar('gotoDate', date); 
 			  $('#calendar').fullCalendar( 'renderEvent', event);
 			},
          

@@ -31,7 +31,6 @@ body {
 
 .btn.glyphicon {
 	top: 0;
-<<<<<<< Upstream, based on origin/master
 }
 
 .result-set ul {
@@ -60,7 +59,7 @@ body {
 #places-map {
 	height: 100%;
 	position: absolute;
-
+}
 
 .hidden{
 	display:none;

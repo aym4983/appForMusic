@@ -17,6 +17,7 @@ import fr.imie.appformusic.itests.pages.HomePage;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)
+@ActiveProfiles("test")
 public class AppForMusicPageTest extends FluentTest {
 
 	@Value("${local.server.port}")

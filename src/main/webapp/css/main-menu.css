@@ -59,7 +59,7 @@ button.glyphicon {
 #account-signout,
 .menu:first-child {
 	transition-duration: 250ms;
-	transition-delay: 0s;
+	transition-delay: 100ms;
 }
 
 #account-picture {
@@ -70,6 +70,7 @@ button.glyphicon {
 
 #account-signout {
 	background-color: #999;
+	transition-delay: 0s;
 }
 
 #main-menu-toggler {
@@ -174,15 +175,10 @@ button.glyphicon {
 
 	#main-wrapper #main-menu-header::before {
 		padding-top: 56.25%;
-}
+	}
 
 	#main-menu-toggler {
 		display: none;
-	}
-	
-	#main-wrapper #account-picture,
-	#main-wrapper .menu:first-child {
-		transition-delay: 500ms;
 	}
 	
 	#main-wrapper #account-picture {

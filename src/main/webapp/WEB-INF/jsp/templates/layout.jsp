@@ -4,7 +4,11 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <c:url var="commonCSS" value="/wro/common_css.css" />
+<c:url var="appCSS" value="/css/app.css" />
+<c:url var="mainMenuCSS" value="/css/main-menu.css" />
+
 <c:url var="commonJS" value="/wro/common_js.js" />
+<c:url var="appJS" value="/js/app.js" />
 
 <!DOCTYPE html>
 
@@ -13,35 +17,29 @@
 	<head>
 	    <meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		
 	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	    
 	    <title><c:out value="${ pageTitle }" /> &#124; App for music</title>
+	    
 	    <link rel="stylesheet" type="text/css" href="${ commonCSS }"/>
+	    <link rel="stylesheet" type="text/css" href="${ appCSS }"/>
+	    <link rel="stylesheet" type="text/css" href="${ mainMenuCSS }"/>
+	    
 	    <script type="text/javascript" src="${ commonJS }"></script>
+	    <script type="text/javascript" src="${ appJS }"></script>
 	</head>
 	
 	<body>
 		<div id="main-wrapper">
 			<tiles:insertAttribute name="navigation" />
 			
-			<div id="main-container" class="container-fluid">
+			<div id="main-container">
 				<tiles:insertAttribute name="header" />
 				<tiles:insertAttribute name="body" />
 				<tiles:insertAttribute name="footer" />
 			</div>
 		</div>
-		
-		<script type="text/javascript">
-			var app = {};
-			var map;
-
-			function initGoogleMap() {
-				map = new google.maps.Map(document.getElementById("places-map"), {
-					center: new google.maps.LatLng(47.4698, -0.5593),
-					zoom: 8
-				});
-			}
-		</script>
-	    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH8dHLUHMkDTWfuiLOxhySJpQtXTp7mFU&callback=initGoogleMap"></script>
 	</body>
 	
 </html>

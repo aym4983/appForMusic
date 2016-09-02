@@ -13,6 +13,19 @@ body {
 	overflow-x: hidden;
 }
 
+#main-wrapper {
+	height: 100%;
+	position: absolute;
+	width: 100%
+}
+
+#main-container {
+	min-height: 100%;
+	margin-left: 48px;
+	position: relative;
+	width: calc(100% - 48px);
+}
+
 #main-header {
 	margin-bottom: 20px;
 }
@@ -56,11 +69,76 @@ body {
 	width: 48px;
 }
 
-#places-map {
+#places-map,
+#places-list {
 	height: 100%;
 	position: absolute;
+	transition-property: left, width;
+	transition-duration: 500ms;
+	transition-timing-function: ease-out;
 }
 
-.hidden{
-	display:none;
+#places-map {
+	width: calc(100% - 48px);
+}
+
+#places-list {
+	background-color: #fff;
+	right: 0;
+	width: 48px;
+}
+
+#places-list.toggled {
+	left: 48px;
+	width: auto;
+}
+
+#places-list-toggler,
+#places-map-toggler {
+	background-color: red;
+	border: none;
+	border-radius: 50%;
+	height: 40px;
+	left: -20px;
+	top: 20px;
+	position: absolute;
+	transition-property: width;
+	transition-duration: 500ms;
+	transition-timing-function: ease-out;
+	width: 40px;
+}
+
+#places-map-toggler {
+	display: none;
+}
+
+@media screen and (min-width: 769px) {
+
+	#main-wrapper #main-container {
+		margin-left: 272px;
+		width: calc(100% - 272px);
+	}
+
+	#places-list.toggled {
+		left: auto;
+		width: 272px;
+	}
+	
+}
+
+@media screen and (min-width: 1025px) {
+
+	#places-map {
+		width: calc(100% - 272px);
+	}
+	
+	#places-list {
+		left: auto;
+		width: 272px;
+	}
+
+	#places-list-toggler {
+		display: none;
+	}
+	
 }

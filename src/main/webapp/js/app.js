@@ -6,6 +6,15 @@ $(function() {
 	
 	initCalendar();
 	
+	$("#main-menu-toggler").on("click", function() {
+		$("#main-wrapper").toggleClass("navigable");
+	});
+	
+	$("#places-list-toggler").on("click", function() {
+		$("#places-list").toggleClass("toggled");
+		$("#places-map").toggleClass("toggled");
+	});
+	
 	$("#main-search").keyup(function(event) {
 		var $input = $(this);
 		var $form = $(this).closest("form");

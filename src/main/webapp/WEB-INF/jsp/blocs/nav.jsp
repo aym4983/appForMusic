@@ -13,8 +13,7 @@
 <nav id="main-menu">
 
 	<header id="main-menu-header">
-        <a href="#main-wrapper" title="Ouvrir le menu" id="main-menu-toggler" class="glyphicon glyphicon-menu-hamburger"></a>
-        <a href="#" title="Fermer le menu" id="main-menu-untoggler" class="glyphicon glyphicon-remove"></a>
+        <button id="main-menu-toggler" class="glyphicon glyphicon-menu-hamburger" title="Ouvrir le menu"></button>
         
 		<div id="account">
 			<a href="${ urlSignOut }" title="Déconnexion" id="account-signout"></a>
@@ -25,6 +24,9 @@
 
 	
 	<section>
+		<form action="" method="get" class="menu">
+			<p><input type="text" name="main-search" id="main-search" class="form-control" placeholder="Rechercher" /></p>
+		</form>
 		<ul class="menu">
 			<li><a href="${ urlHome }" title="Accueil">Accueil</a></li>
 		</ul>

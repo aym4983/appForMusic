@@ -2,22 +2,30 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
+<section id="places-map">
+	<script type="text/javascript">
+		var app = {};
+		var map;
 
-<ul class="nav nav-tabs visible-xs-block">
-	<li role="presentation" class="active"><a href="#places-list">Liste</a></li>
-	<li role="presentation"><a href="#places-map">Carte</a></li>
-</ul>
+		function initGoogleMap() {
+			map = new google.maps.Map(document.getElementById("places-map"), {
+				center: new google.maps.LatLng(47.4698, -0.5593),
+				zoom: 12
+			});
+		}
+	</script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH8dHLUHMkDTWfuiLOxhySJpQtXTp7mFU&callback=initGoogleMap"></script>
+</section>
 
-<div style="position: relative; height: auto;" class="hidden-xs col-md-8 col-lg-9">
-	<div id="places-map"></div>
-</div>
-
-<ul id="places-list" class="col-md-4 col-lg-3">
-	<li><a href="">Lorem</a></li>
-	<li><a href="">Ipsum</a></li>
-	<li><a href="">Dolor</a></li>
-	<li><a href="">Sit</a></li>
-	<li><a href="">Amet</a></li>
-	<li><a href="">Consectetur</a></li>
-</ul>
+<section id="places-list">
+	<button id="places-list-toggler"></button>
+	<ul>
+		<li><a href="">Lorem</a></li>
+		<li><a href="">Ipsum</a></li>
+		<li><a href="">Dolor</a></li>
+		<li><a href="">Sit</a></li>
+		<li><a href="">Amet</a></li>
+		<li><a href="">Consectetur</a></li>
+	</ul>
+</section>
 

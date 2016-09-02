@@ -8,15 +8,6 @@
 
 <header id="main-header">
 	
-	<section class="clearfix">
-		<form action="${ urlFormAction }" method="get" class="pull-right col-xs-10 col-sm-8 col-md-6 col-lg-4">
-			<div class="input-group">
-				<span class="input-group-addon">&#128270;</span>
-				<input type="text" name="main-search" id="main-search" class="form-control " />
-			</div>
-		</form>
-	</section>
-	
 	<section id="search-results" class="container-fluid clearfix">
 		<script id="mustache-tmpl-users" type="x-tmpl-mustache">
 			{{#users}}

@@ -17,6 +17,7 @@ button.glyphicon {
 #main-menu-header, 
 #main-menu-header::before,
 #account-picture, 
+#account-signout,
 .menu:first-child,
 #main-container {
 	transition-delay: 250ms;
@@ -54,26 +55,11 @@ button.glyphicon {
 	width: 0;
 }
 
-#account-signout {
-	background-color: #999;
-	transition-delay: 250ms;
-	transition-duration: 250ms;
-	transition-timing-function: ease-out;
-}
-
-#account:hover #account-signout {
-	display: block;
-	bottom: 64px;
-	height: 40px;
-	margin-left: -20px;
-	transition-delay: 0s;
-	width: 40px;
-}
-
 #account-picture,
+#account-signout,
 .menu:first-child {
 	transition-duration: 250ms;
-	transition-delay: 0s;
+	transition-delay: 100ms;
 }
 
 #account-picture {
@@ -82,8 +68,12 @@ button.glyphicon {
 	z-index: 2;
 }
 
-#main-menu-toggler,
-#main-menu-untoggler {
+#account-signout {
+	background-color: #999;
+	transition-delay: 0s;
+}
+
+#main-menu-toggler {
 	background: none;
 	border: none;
 	color: #ccc;
@@ -97,20 +87,9 @@ button.glyphicon {
 }
 
 #main-menu-toggler:hover,
-#main-menu-toggler:focus,
-#main-menu-untoggler:hover,
-#main-menu-untoggler:focus {
+#main-menu-toggler:focus {
 	background-color: #666;
 }
-
-#main-menu-toggler {
-	display: block;
-}
-
-#main-menu-untoggler {
-	display: none;
-}
-
 .menu {
 	list-style: none;
 	margin: 0 0 12px;
@@ -118,7 +97,8 @@ button.glyphicon {
 	width: 272px;
 }
 
-.menu a {
+.menu a,
+.menu p {
 	color: #ccc;
 	display: block;
 	padding: 16px;
@@ -131,64 +111,85 @@ button.glyphicon {
 	background-color: #333;
 }
 
-#main-container {
-	min-height: 100%;
-	margin-left: 0;
-	padding-left: 48px;
-	position: absolute;
-	width: 100%;
+.menu input[type=text] {
+	background-color: rgba(255, 255, 255, 0.15);
+	border: none;
+	border-bottom: 1px solid #999;
+	border-radius: 0;
 }
 
-#main-wrapper:target #main-menu,
-#main-wrapper:target #main-menu-header, 
-#main-wrapper:target #main-menu-header::before,
-#main-wrapper:target #account-picture, 
-#main-wrapper:target #main-container {
+#main-wrapper.navigable #main-menu,
+#main-wrapper.navigable #main-menu-header, 
+#main-wrapper.navigable #main-menu-header::before,
+#main-wrapper.navigable #main-container {
 	transition-delay: 0s;
 }
 
-#main-wrapper:target #main-menu,
-#main-wrapper:target #main-menu-header {
+#main-wrapper.navigable #main-menu,
+#main-wrapper.navigable #main-menu-header {
 	width: 272px;
 }
 
-#main-wrapper:target #main-menu-header::before {
+#main-wrapper.navigable #main-menu-header::before {
 	padding-top: 56.25%;
 }
 
-#main-wrapper:target #main-menu-toggler {
-	display: none;
-}
-
-#main-wrapper:target #main-menu-untoggler {
-	display: block;
-}
-
-#main-wrapper:target #account-picture,
-#main-wrapper:target .menu:first-child {
+#main-wrapper.navigable #account-picture,
+#main-wrapper.navigable #account-signout,
+#main-wrapper.navigable .menu:first-child {
 	transition-delay: 500ms;
 }
 
-#main-wrapper:target #account-picture {
+#main-wrapper.navigable #account-signout {
+	transition-delay: 750ms;
+}
+
+#main-wrapper.navigable #account-picture {
 	bottom: -48px;
 	height: 96px;
 	margin-left: -48px;
 	width: 96px;
 }
 
-#main-wrapper:target .menu:first-child {
+#main-wrapper.navigable #account-signout {
+	bottom: 64px;
+	height: 40px;
+	margin-left: -20px;
+	width: 40px;
+}
+
+#main-wrapper.navigable .menu:first-child {
 	margin-top: 60px;
 }
 
-#main-wrapper:target #main-container {
-	margin-left: 224px;
+#main-wrapper.navigable #main-container {
+	margin-left: 272px;
 }
 
 @media (min-width: 768px) {
 
-	#main-wrapper:target #main-container {
-		margin-left: 0;
-		padding-left: 272px;
+	#main-wrapper #main-menu,
+	#main-wrapper #main-menu-header {
+		width: 272px;
+	}
+
+	#main-wrapper #main-menu-header::before {
+		padding-top: 56.25%;
+	}
+
+	#main-menu-toggler {
+		display: none;
+	}
+	
+	#main-wrapper #account-picture {
+		bottom: -48px;
+		height: 96px;
+		margin-left: -48px;
+		width: 96px;
+	}
+	
+	#main-wrapper .menu:first-child {
+		margin-top: 60px;
 	}
 	
 }

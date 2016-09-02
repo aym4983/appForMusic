@@ -10,7 +10,7 @@
 		<js>/js/lib/mustache.js</js>
 		
 		<!-- Placer ici les js de l'application -->
-		<js>/js/app.js</js>
+<!-- 		<js>/js/app.js</js> -->
 		<js>/js/place.js</js>
 	</group>
 	
@@ -20,8 +20,8 @@
 		<css>/css/fullcalendar.css</css>
 		
 		<!-- Placer ici les css de l'application -->
-		<css>/css/app.css</css>
-		<css>/css/main-menu.css</css>
+<!-- 		<css>/css/app.css</css> -->
+<!-- 		<css>/css/main-menu.css</css> -->
 	</group>     
            
 </groups>

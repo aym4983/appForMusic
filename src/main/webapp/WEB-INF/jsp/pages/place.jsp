@@ -23,7 +23,7 @@
 	<button id="place-add" name="Ajouter"> Ajouter </button>
 </p>
 
-<form:form action="" method="post" modelAttribute="placeForm" id="createPlace" class="col-md-4 col-md-offset-4 hidden">
+<form:form action="/appForMusic/places" method="post" modelAttribute="placeForm" id="createPlace" class="col-md-4 col-md-offset-4 hidden">
 	<h2>Créer un lieu</h2>
 	
 	<p class="form-group">

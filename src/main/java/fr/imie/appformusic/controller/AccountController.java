@@ -1,19 +1,24 @@
 package fr.imie.appformusic.controller;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.imie.appformusic.configuration.constants.Routes;
+import fr.imie.appformusic.configuration.constants.Session;
 import fr.imie.appformusic.configuration.constants.Views;
 import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.exceptions.BusinessException;
@@ -43,11 +48,13 @@ public class AccountController {
 	 * Affiche le formulaire de connexion.
 	 * @param model Le modèle utilisé par la page. 
 	 * @return La vue du formulaire de connexion.
+	 * @throws BusinessException 
 	 */
 	@RequestMapping(value=Routes.SIGNIN, method=RequestMethod.GET)
-	public ModelAndView showSignInForm(Model model) {
+	public ModelAndView showSignInForm(HttpServletRequest request,Model model) throws BusinessException {
 		ModelAndView mav = new ModelAndView(Views.SIGNIN);
 		mav.addObject("urlSignUp", Routes.SIGNUP);
+		System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		model.addAttribute(new AppUser());
 		return mav; 
 	}
@@ -111,10 +118,10 @@ public class AccountController {
 	}
 	
 	
-	/*@RequestMapping(Routes.ERROR)
-	public ModelAndView showErrorPage(Model model) {
-		ModelAndView mav = new ModelAndView(Views.ERROR);
-		return mav; 
-	}*/
+//	@RequestMapping(Routes.ERROR)
+//	public ModelAndView showErrorPage(Model model) {
+//		ModelAndView mav = new ModelAndView(Views.ERROR);
+//		return mav; 
+//	}
 
 }

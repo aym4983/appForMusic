@@ -52,7 +52,7 @@ public class PlaceController {
 	public ModelAndView submitPlaceForm(PlaceForm placeForm, HttpServletRequest request) throws BusinessException {
 		
 		// Get the user 
-		String name = "test";/*(String)request.getSession().getAttribute(Session.CURRENT_NAME);*/
+		String name = (String)request.getSession().getAttribute(Session.CURRENT_NAME);
 		AppUser user = new AppUser();
 		user = userService.findByUserName(name);
 		
@@ -72,6 +72,6 @@ public class PlaceController {
 		place.setZipcode(placeForm.getZipcode());
 		
 		placeService.create(place);
-		return new ModelAndView("redirect:/" + Routes.PLACE);
+		return new ModelAndView("redirect:" + Routes.PLACE);
 	}
 }

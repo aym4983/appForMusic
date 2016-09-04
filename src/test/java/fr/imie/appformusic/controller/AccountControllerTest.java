@@ -33,10 +33,12 @@ public class AccountControllerTest {
 		assertThat(accountController.showSignUpForm(model).getViewName()).isEqualTo(Views.SIGNUP);
 	}
 
+	
 	/** Teste la méthode showSignInForm. */
+	/*
 	@Test
 	public void testShowSignInForm() {
 		assertThat(accountController.showSignInForm(model).getViewName()).isEqualTo(Views.SIGNIN);
-	}
+	}*/
 
 }

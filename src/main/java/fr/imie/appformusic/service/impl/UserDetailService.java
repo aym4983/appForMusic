@@ -3,6 +3,9 @@ package fr.imie.appformusic.service.impl;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.imie.appformusic.configuration.constants.Session;
 import fr.imie.appformusic.dao.IUserDao;
 import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.domain.Role;
@@ -32,8 +36,8 @@ public class UserDetailService implements UserDetailsService {
 		for (Role role : appUser.getRoles()){
 			grantedAuthority.add(new SimpleGrantedAuthority(role.getLabel()));
 		}
-		
 		User user = new User(appUser.getUsername(), appUser.getPasswordHash(),grantedAuthority);
+
 		return user;
 	}
 

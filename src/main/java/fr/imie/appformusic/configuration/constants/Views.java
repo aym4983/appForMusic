@@ -26,6 +26,9 @@ public interface Views {
 	
 	/** Vue d'erreyr */ 
 	public String ERROR ="error";
+	
+	/** Vue du profile */
+	public String PROFILE = "profile";
 
 	
 }

@@ -27,6 +27,8 @@ public class UserDetailService implements UserDetailsService {
 	@Autowired
 	private IUserDao userDao;
 	
+	HttpServletRequest request;
+	
 	@Override
 	@Transactional(readOnly=true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -37,7 +39,10 @@ public class UserDetailService implements UserDetailsService {
 			grantedAuthority.add(new SimpleGrantedAuthority(role.getLabel()));
 		}
 		User user = new User(appUser.getUsername(), appUser.getPasswordHash(),grantedAuthority);
-
+		
+		//HttpSession session = request.getSession();
+		//session.setAttribute(Session.CURRENT_NAME, appUser.getUsername());
+		
 		return user;
 	}
 

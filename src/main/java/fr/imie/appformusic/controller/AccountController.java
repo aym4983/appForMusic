@@ -54,7 +54,6 @@ public class AccountController {
 	public ModelAndView showSignInForm(HttpServletRequest request,Model model) throws BusinessException {
 		ModelAndView mav = new ModelAndView(Views.SIGNIN);
 		mav.addObject("urlSignUp", Routes.SIGNUP);
-		System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		model.addAttribute(new AppUser());
 		return mav; 
 	}
@@ -116,6 +115,15 @@ public class AccountController {
 		ModelAndView mav = new ModelAndView(Views.CALENDAR);
 		return mav;
 	}
+	
+	@RequestMapping(Routes.PROFILE)
+	public ModelAndView showProfile(Model model) throws BusinessException {
+		ModelAndView mav = new ModelAndView(Views.PROFILE);
+		AppUser user = userService.findByUserName("test");
+		mav.addObject("user",user);
+		return mav;
+	}
+
 	
 	
 //	@RequestMapping(Routes.ERROR)

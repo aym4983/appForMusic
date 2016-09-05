@@ -28,13 +28,6 @@
         <put-attribute name="body" value="/WEB-INF/jsp/pages/sign-up.jsp"/>
     </definition>
     
-    <definition name="main" extends="baseDefinition">
-        <put-attribute name="navigation" 	value="/WEB-INF/jsp/blocs/nav.jsp"/>
-        <put-attribute name="header" 		value="/WEB-INF/jsp/blocs/header.jsp"/>
-        <put-attribute name="body" 			value="/WEB-INF/jsp/pages/main.jsp"/>
-        <put-attribute name="footer" 		value=""/>
-    </definition>
-    
     <definition name="home" extends="baseDefinition">
         <put-attribute name="navigation" 	value="/WEB-INF/jsp/blocs/nav.jsp"/>
         <put-attribute name="header" 		value="/WEB-INF/jsp/blocs/header.jsp"/>

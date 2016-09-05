@@ -1,0 +1,25 @@
+
+/* 
+ *
+ */
+@CHARSET "UTF-8";
+
+#profile-header {
+	position: relative;
+}
+
+#profile-header::before {
+	content: "";
+	display: block;
+	height: 0;
+	padding-top: 42%;
+	width: 100%;
+}
+
+#profile-cover {
+	background-color: #ccc;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}

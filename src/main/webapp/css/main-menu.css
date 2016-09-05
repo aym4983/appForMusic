@@ -187,6 +187,13 @@ button.glyphicon {
 		margin-left: -48px;
 		width: 96px;
 	}
+
+	#main-wrapper #account-signout {
+		bottom: 64px;
+		height: 40px;
+		margin-left: -20px;
+		width: 40px;
+	}
 	
 	#main-wrapper .menu:first-child {
 		margin-top: 60px;

@@ -91,4 +91,19 @@ public class UserDao implements IUserDao {
 		return users;
 	}
 
+	@Override
+	public void updateUser(
+			AppUser user, 
+			String newEmail, 
+			String newPasswordHash, 
+			String newFirstName,
+			String newLastName
+	) throws TechnicalException {
+		if (null != newEmail && !newEmail.isEmpty()) user.setEmail(newEmail);
+		if (null != newPasswordHash && !newPasswordHash.isEmpty()) user.setPasswordHash(newPasswordHash);
+		if (null != newFirstName && !newFirstName.isEmpty()) user.setFirstname(newFirstName);
+		if (null != newLastName && !newLastName.isEmpty()) user.setLastname(newLastName);
+		sessionFactory.getCurrentSession().merge(user);
+	}
+
 }

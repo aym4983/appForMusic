@@ -6,6 +6,7 @@
 <c:url var="commonCSS" value="/wro/common_css.css" />
 <c:url var="appCSS" value="/css/app.css" />
 <c:url var="mainMenuCSS" value="/css/main-menu.css" />
+<c:url var="appProfileCSS" value="/css/app.profile.css" />
 
 <c:url var="commonJS" value="/wro/common_js.js" />
 <c:url var="appJS" value="/js/app.js" />
@@ -25,6 +26,7 @@
 	    <link rel="stylesheet" type="text/css" href="${ commonCSS }"/>
 	    <link rel="stylesheet" type="text/css" href="${ appCSS }"/>
 	    <link rel="stylesheet" type="text/css" href="${ mainMenuCSS }"/>
+	    <link rel="stylesheet" type="text/css" href="${ appProfileCSS }"/>
 	    
 	    <script type="text/javascript" src="${ commonJS }"></script>
 	    <script type="text/javascript" src="${ appJS }"></script>

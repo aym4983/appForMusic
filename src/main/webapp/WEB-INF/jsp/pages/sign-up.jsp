@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
-<c:url value="${ urlSignIn }" var="urlSignIn" />
+<c:url var="urlSignIn" value="/sign-in" />
 <c:url var="postForm" value="/sign-up" />
 
 <form:form action="${postForm}" method="post" modelAttribute="userForm" id="signup" class="col-md-4 col-md-offset-4">

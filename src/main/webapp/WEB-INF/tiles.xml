@@ -56,7 +56,6 @@
         <put-attribute name="footer" 		value=""/>
     </definition>
     
-    
     <definition name="place" extends="baseDefinition">
         <put-attribute name="navigation" 	value="/WEB-INF/jsp/blocs/nav.jsp"/>
    		<put-attribute name="header" 		value="/WEB-INF/jsp/blocs/header.jsp"/>

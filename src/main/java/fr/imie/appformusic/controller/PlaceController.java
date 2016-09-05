@@ -48,7 +48,8 @@ public class PlaceController {
 	public ModelAndView showMyPlaces(Model model) throws BusinessException {
 		ModelAndView mav = new ModelAndView(Views.PLACE);
 		AppUser user = userService.findByUserName("test");
-		List<Place> places;
+		List<Place> places = new ArrayList();
+
 		places = placeService.findUserPlaces(user);
 		mav.addObject("urlPlace", Routes.PLACE);
 		mav.addObject("places", Routes.PLACE);

@@ -130,7 +130,7 @@ public class AccountController {
 	}
 	
 	@RequestMapping(Routes.SUBMITPROFILE)
-	public ModelAndView submitProfile(UserModifyForm userForm, HttpServletRequest request) throws BusinessException {
+	public ModelAndView submitProfile(UserModifyForm userForm) throws BusinessException {
 		ModelAndView mav = new ModelAndView(Views.PROFILE);
 		AppUser user = userService.findByUserName(userForm.getUsername());
 		userService.updateUser(user, userForm.getUsername(), userForm.getEmail(), user.getPasswordHash(), userForm.getFirstname(), userForm.getLastname());

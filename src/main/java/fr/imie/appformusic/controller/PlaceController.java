@@ -6,8 +6,11 @@
 
 package fr.imie.appformusic.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,11 +42,16 @@ public class PlaceController {
 	 * 
 	 * @param model
 	 * @return
+	 * @throws BusinessException 
 	 */
 	@RequestMapping(Routes.PLACE)
-	public ModelAndView showMyPlaces(Model model) {
+	public ModelAndView showMyPlaces(Model model) throws BusinessException {
 		ModelAndView mav = new ModelAndView(Views.PLACE);
+		AppUser user = userService.findByUserName("test");
+		List<Place> places;
+		places = placeService.findUserPlaces(user);
 		mav.addObject("urlPlace", Routes.PLACE);
+		mav.addObject("places", Routes.PLACE);
 		model.addAttribute(new PlaceForm());
 		return mav; 
 	}

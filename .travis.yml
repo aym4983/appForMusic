@@ -1,6 +1,12 @@
 language : java
 jdk : oraclejdk8
 install : true
+
+# pour ne builder que sur les branches développeurs
+branches :
+except :
+- master
+
 script :
 - mvn clean
 - mvn install -Dspring.profiles.active=test jacoco:report coveralls:report

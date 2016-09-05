@@ -46,7 +46,7 @@ public class PlaceService implements IPlaceService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Place> findUserPlaces(AppUser user) throws BusinessException {
-		return placeDao.FindUserPlaces(user.getUsername());
+		return placeDao.FindUserPlaces(user);
 	}
 
 	@Override

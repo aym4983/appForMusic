@@ -99,6 +99,7 @@ public class AccountController {
 //		//TODO Connexion de l'utilisateur.
 //		return new ModelAndView("redirect:/" + Routes.HOME);
 //	}
+<<<<<<< Upstream, based on origin/master
 
 	
 	/**
@@ -111,6 +112,8 @@ public class AccountController {
 		ModelAndView mav = new ModelAndView(Views.CALENDAR);
 		return mav;
 	}
+=======
+>>>>>>> e7a37e3 ajout d'un panel evenement calendar
 
 	
 	

@@ -63,6 +63,9 @@ public class Place implements Serializable {
 	private Set<Borrows> borrows;
 	
 	@OneToMany(mappedBy="place")
+	private Set<Event> event;
+	
+	@OneToMany(mappedBy="place")
 	private Set<Favourites> favourites;
 	
 	@OneToMany(mappedBy="place")

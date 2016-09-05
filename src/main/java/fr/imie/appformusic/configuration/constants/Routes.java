@@ -33,11 +33,8 @@ public interface Routes {
 	/** Page d'erreur **/
 	public String ERROR = "/error";
 	
-	/** Page d'erreur **/
+	/** Page de profil */
 	public String PROFILE = "/profile";
-	
-	/** Page d'erreur **/
-	public String SUBMITPROFILE = "/submitprofile";
 
 
 }

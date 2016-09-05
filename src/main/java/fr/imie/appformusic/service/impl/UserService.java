@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,7 @@ import fr.imie.appformusic.dao.IUserDao;
 import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.domain.Role;
 import fr.imie.appformusic.exceptions.BusinessException;
+import fr.imie.appformusic.exceptions.BusinessException.Code;
 import fr.imie.appformusic.service.IUserService;
 
 
@@ -33,18 +35,17 @@ public class UserService implements IUserService {
 	public void create(AppUser user, String password, String confirmPassword) 
 			throws BusinessException {
 		if (password.equals(confirmPassword)) {
-			BCryptPasswordEncoder passEncoder = new BCryptPasswordEncoder();
 			
 			Set<Role> roles = new HashSet<Role>();
 			roles.add(roleDao.findByLabel("user"));
 			
-			user.setPasswordHash(passEncoder.encode(password));
+			user.setPasswordHash(encryptPassword(password));
 			user.setRoles(roles);
 			user.setEnabled(true);
 			
 			userDao.create(user);
 		} else {
-			throw new BusinessException(BusinessException.Code.DIFFERENT_PASSWORDS);
+			throw new BusinessException(Code.DIFFERENT_PASSWORDS);
 		}
 	}
 	
@@ -62,7 +63,7 @@ public class UserService implements IUserService {
 	@Transactional(readOnly = true)
 	public AppUser findByEmail(String email) throws BusinessException {
 		if(StringUtils.isEmpty(email)){
-			throw new BusinessException(BusinessException.Code.EMAIL_EMPTY);
+			throw new BusinessException(Code.EMAIL_EMPTY);
 		}
 		return userDao.findByEmail(email);
 	}
@@ -91,33 +92,38 @@ public class UserService implements IUserService {
 	@Transactional(rollbackFor = Throwable.class)
 	public AppUser updateUser(
 			AppUser user, 
-			String newUserName, 
 			String newEmail,
+			String oldPassword, 
 			String newPassword, 
+			String newPasswordConfirm, 
 			String newFirstName, 
 			String newLastName)
 			throws BusinessException {
+		// Les traitements de mot de passe ne sont effectués 
+		// que si un nouveau mdp est spécifié
+		if (!newPassword.isEmpty()) {
+			if (!BCrypt.checkpw(oldPassword, user.getPasswordHash()))
+				throw new BusinessException(Code.WRONG_PASSWORD);
+			
+			if (!newPassword.equals(newPasswordConfirm))
+				throw new BusinessException(Code.DIFFERENT_PASSWORDS);
+		}
 		
-		user.setEmail(newEmail);
-		user.setFirstname(newFirstName);
-		user.setLastname(newLastName);
-		userDao.update(user);
+		userDao.updateUser(user, newEmail, encryptPassword(newPassword), newFirstName, newLastName);
 		return null;
 	}
 	
 	
 	@Override
 	@Transactional(rollbackFor = Throwable.class)
-	public AppUser updateUserName(AppUser user, String newUserName)
-			throws BusinessException {
+	public AppUser updateUserName(AppUser user, String newUserName) throws BusinessException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	@Transactional(rollbackFor = Throwable.class)
-	public AppUser updateEmail(AppUser user, String newEmail)
-			throws BusinessException {
+	public AppUser updateEmail(AppUser user, String newEmail) throws BusinessException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -144,5 +150,11 @@ public class UserService implements IUserService {
 			throws BusinessException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public String encryptPassword(String password) {
+		BCryptPasswordEncoder passEncoder = new BCryptPasswordEncoder();
+		return passEncoder.encode(password);
 	}
 }

@@ -13,5 +13,6 @@ public interface IUserDao {
 	public List<AppUser> findAllUsers() throws TechnicalException;
 	public List<AppUser> findUsersLike(String username) throws TechnicalException;
 	public void update(AppUser user) throws TechnicalException;
+	public void updateUser(AppUser user, String newEmail, String newPasswordHash, String newFirstName, String newLastName);
 	
 }

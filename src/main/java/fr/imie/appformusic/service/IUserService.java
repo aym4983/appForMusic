@@ -52,7 +52,6 @@ public interface IUserService {
 	/**
 	 * Modifie les attributs spécifiés de l'utilisateur spécifié.
 	 * @param user 			L'utilisateur à modifier.
-	 * @param newUserName 	Le nouvel identifiant de l'utilisateur.
 	 * @param newEmail 		La nouvelle adresse e-mail de l'utilisateur.
 	 * @param newPassword	Le nouveau mot de passe de l'utilisateur.
 	 * @param newFirstName 	Le nouveau prénom de l'utilisateur.
@@ -61,9 +60,10 @@ public interface IUserService {
 	 */
 	public AppUser updateUser(
 			AppUser user, 
-			String newUserName, 
 			String newEmail, 
+			String oldPassword, 
 			String newPassword, 
+			String newPasswordConfirm, 
 			String newFirstName, 
 			String newLastName) 
 			throws BusinessException;
@@ -107,4 +107,11 @@ public interface IUserService {
 	 * @return 				L'utilisateur modifié.
 	 */
 	public AppUser updateLastName(AppUser user, String newLastName) throws BusinessException;
+	
+	/**
+	 * Crypte le mot de passe spécifié.
+	 * @param password Le mot de passe à crypter.
+	 * @return Le mot de passe crypté.
+	 */
+	public String encryptPassword(String password);
 }

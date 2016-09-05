@@ -1,8 +1,5 @@
 package fr.imie.appformusic.exceptions;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @SuppressWarnings("serial")
 public class BusinessException extends Exception {
 	
@@ -16,26 +13,22 @@ public class BusinessException extends Exception {
 		/** La confirmation de mot de passe est vide. */
 		PASSWORD_CONFIRM_EMPTY,
 		/** Les mots de passe sont différents. */
-		DIFFERENT_PASSWORDS
+		DIFFERENT_PASSWORDS,
+		/** Le mot de passe est faux. */
+		WRONG_PASSWORD
 	}
 
-	private List<Code> codes;
+	private Code code;
 	
 	public BusinessException(Code code) {
-		List<Code> codes = new ArrayList<Code>();
-		codes.add(code);
-		this.codes = codes;
-	}
-	
-	public BusinessException(List<Code> codes) {
-		this.codes = codes;
+		this.code = code;
 	}
 
 	/** Obtient la liste des codes de l'exception.
 	 * @return Les codes de l'exception.
 	 */
-	public List<Code> getCodes() {
-		return codes;
+	public Code getCode() {
+		return code;
 	}
 	
 }

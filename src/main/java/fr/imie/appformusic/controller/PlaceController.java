@@ -6,13 +6,9 @@
 
 package fr.imie.appformusic.controller;
 
-import java.util.ArrayList;
-
-import javax.servlet.http.HttpServletRequest;
-
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.imie.appformusic.configuration.constants.Routes;
-import fr.imie.appformusic.configuration.constants.Session;
 import fr.imie.appformusic.configuration.constants.Views;
 import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.domain.Place;
@@ -55,21 +50,20 @@ public class PlaceController {
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
 		AppUser user = new AppUser();
 		user = userService.findByUserName(name);
-		System.out.println(user.getUsername());
 		
 		List<Place> places;
 		places = placeService.findUserPlaces(user);
 		
 		mav.addObject("urlPlace", Routes.PLACE);
 		//mav.addObject("places", Routes.PLACE);
-		model.addAttribute(new PlaceForm());
+		model.addAttribute("form", new PlaceForm());
 		model.addAttribute("places", places);
 		//System.out.println("print");
 		return mav; 
 	}
 	
 	@RequestMapping(value=Routes.PLACE, method=RequestMethod.POST)
-	public ModelAndView submitPlaceForm(PlaceForm placeForm, HttpServletRequest request) throws BusinessException {
+	public ModelAndView submitPlaceForm(PlaceForm placeForm) throws BusinessException {
 		
 		// Get the user 
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();

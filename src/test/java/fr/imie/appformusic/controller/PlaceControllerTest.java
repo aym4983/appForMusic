@@ -1,9 +1,13 @@
 package fr.imie.appformusic.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.easymock.EasyMock.*;
+import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.expectLastCall;
+import static org.easymock.EasyMock.replay;
 
-import org.easymock.EasyMockRunner;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.easymock.Mock;
 import org.easymock.MockType;
 import org.easymock.TestSubject;
@@ -21,11 +25,12 @@ import org.springframework.validation.support.BindingAwareModelMap;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.imie.appformusic.configuration.constants.Routes;
-import fr.imie.appformusic.configuration.constants.Views;
+import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.domain.Place;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.form.PlaceForm;
 import fr.imie.appformusic.service.IPlaceService;
+import fr.imie.appformusic.service.IUserService;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(SecurityContextHolder.class)
@@ -44,9 +49,28 @@ public class PlaceControllerTest {
 	@Mock
 	private Authentication auth;
 	
+	@Mock(type=MockType.NICE)
+	private IUserService userServiceMock;
 	@Test
-	public void testShowMyPlace(){
+	public void testShowMyPlace() throws BusinessException{
 		Model model = new BindingAwareModelMap();
+		
+		AppUser user = new AppUser();
+		user.setUsername("test");
+		List<Place> places = new ArrayList<>();
+		Place place = new Place();
+		places.add(place);
+		
+		// comportement des mocks
+		PowerMock.mockStatic(SecurityContextHolder.class);
+		expect(SecurityContextHolder.getContext()).andReturn(securContext);
+		expect(securContext.getAuthentication()).andReturn(auth);
+		expect(auth.getName()).andReturn("test");
+		expect(userServiceMock.findByUserName("test")).andReturn(user);
+		expect(serviceMock.findUserPlaces(user)).andReturn(places);
+		
+		PowerMock.replayAll(securContext, auth, userServiceMock, serviceMock);
+		
 		ModelAndView mav = controller.showMyPlaces(model);
 		
 		assertThat(mav.getModel()).isNotNull();
@@ -82,7 +106,7 @@ public class PlaceControllerTest {
 		
 		ModelAndView mav = controller.submitPlaceForm(form);
 		
-		assertThat(mav.getViewName()).isEqualTo("redirect://" + Views.PLACE);	
+		assertThat(mav.getViewName()).isEqualTo("redirect:" + Routes.PLACE);	
 	}
 	
 }

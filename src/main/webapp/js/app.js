@@ -5,6 +5,7 @@
 $(function(){
 	
 	initCalendar();
+	initClockpicker();
 	initSearch();
 	initSearchNav();
 	
@@ -132,91 +133,124 @@ function initSearchNav() {
 	}));
 
 	
-	/** Méthode d'init pour Calendar Js */
+/** Méthode d'init pour Calendar Js */
 function initCalendar (){    
 	$('#calendar').fullCalendar({
 		 header: {
              left: 'prev,next today',
              center: 'title',
-             right: 'month,agendaWeek,agendaDay'
+             right: 'month,agendaWeek'
          },
 		lang: 'fr',
 		selectable: true,
 		editable: true,
-		loading: function(bool) {
-			if (bool) {
-				$('#loading').show();
-			}else{
-				$('#loading').hide();
-			}
-		},
 		
+		// Permet de passer de la vue mois à la vue semaine
 		dayClick: function(date, jsEvent, view) {
-			  if(view.name != 'month')
+			if(view.name != 'month'){
 			    return;
+			} else {
+				$('#calendar').fullCalendar('changeView', 'agendaWeek');
+				$('#calendar').fullCalendar('gotoDate', date); 
+				$('#calendar').fullCalendar( 'renderEvent', event);
+			}		  
+		},
 
-			  $('#calendar').fullCalendar('changeView', 'agendaDay');
-			  $('#calendar').fullCalendar('gotoDate', date); 
-			  $('#calendar').fullCalendar( 'renderEvent', event);
-			},
-         
-         selectHelper: true,
-			select: function(start, end) {
-				var title = prompt('Event Title:');
-				var eventData;
-				if (title) {
-					eventData = {
-						title: title,
-						start: start,
-						end: end
-					};
-					$('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
-				}
-				$('#calendar').fullCalendar('unselect');
-			},
-			editable: true,
-			eventLimit: true, // allow "more" link when too many events
-			events: [
-
-				{
-					title: 'Long Event',
-					start: '2016-06-07',
-					end: '2016-06-10'
-				}
-			]
+		// Ajout d'un evenement dans le calendar (title, start, end)
+        selectHelper: true,
+		select: function(start, end) {
+			var title;
+			var eventData;
+			if(start, end) {
+				eventData = {
+					title: title,
+					start: start,
+					end: end
+				};
+				$('#modalEvent').modal('show', eventData, true);
+			}
+			$('#calendar').fullCalendar('unselect');
+			
+//			var title = prompt('Nom de l\'event:');
+//			var eventData;
+//			if (title) {
+//				eventData = {
+//					title: title,
+//					start: start,
+//					end: end
+//				};
+//				$('#calendar').fullCalendar('renderEvent', eventData, true);
+//			}
+//			$('#calendar').fullCalendar('unselect');
+		},
+		events: [
+			{
+				title: 'test Event',
+				start: '2016-09-04',
+				end: '2016-06-04'
+			}
+		]
 		
 	});
 }
 
+/** timepicker pour formulaire */
+function initClockpicker (){    
+//	$('.clockpicker').clockpicker();
+
+	var input = $('#inputStartEvent').clockpicker({
+	    placement: 'bottom',
+	    align: 'left',
+	    autoclose: true,
+	    'default': 'now'
+	});
+	
+	var input = $('#inputEndEvent').clockpicker({
+	    placement: 'bottom',
+	    align: 'left',
+	    autoclose: true,
+	    'default': 'now'
+	});
+}
+
+
+//Validating Empty Field
+function check_empty() {
+	if (document.getElementById('inputStartEvent').value == "" || document.getElementById('inputEndEvent').value == "" || document.getElementById('inputTitleEvent').value == "") {
+		alert("Il manque des informations !");
+	} else {
+		document.getElementById('form-event').submit();
+		alert("Evenement créé...");
+	}
+}
 
 /** Méthode pour ajout d'un évènement */
-function addCalanderEvent(id, startdate, enddate, title){
-    var eventObject = {
-	    title: title,
-	    start: startdate,
-	    end: enddate,
-	    id: id,
-    };
-
-    $('#calendar').fullCalendar('renderEvent', eventObject, true);
-    return eventObject;
-}
+//function addCalanderEvent(id, startdate, enddate, title){
+//    var eventObject = {
+//	    title: title,
+//	    start: startdate,
+//	    end: enddate,
+//	    id: id,
+//    };
+//
+//    $('#calendar').fullCalendar('renderEvent', eventObject, true);
+//    return eventObject;
+//}
 
 
 /** Méthode pour modifier un évènement */
-function updateCalanderEvent(id, start, end, title, colour){
-    var eventObject = $('#calendar').fullCalendar( 'clientEvents', id )
-
-    if (eventObject != null){
-        eventObject.title = title;
-        eventObject.start = start;
-        eventObject.end = end;
-        eventObject.color = colour;
-
-        $('#calendar').fullCalendar( 'updateEvent', eventObject );
-    }
-    return eventObject;
-}
+//function updateCalanderEvent(id, start, end, title, colour){
+//    var eventObject = $('#calendar').fullCalendar( 'clientEvents', id )
+//
+//    if (eventObject != null){
+//        eventObject.title = title;
+//        eventObject.start = start;
+//        eventObject.end = end;
+//
+//        $('#calendar').fullCalendar( 'updateEvent', eventObject );
+//    }
+//    return eventObject;
+//}
 
 function closeMainSearch() {
 	$("#main-search-results").removeClass("toggled");

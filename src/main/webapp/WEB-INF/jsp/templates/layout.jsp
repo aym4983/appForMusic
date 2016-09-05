@@ -3,20 +3,31 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
+<<<<<<< Upstream, based on origin/master
 <c:url var="commonCSS" value="/wro/common_css.css" />
 <c:url var="appCSS" value="/css/app.css" />
 <c:url var="appHeaderCSS" value="/css/app.header.css" />
 <c:url var="appNavCSS" value="/css/app.nav.css" />
 <c:url var="appSearchCSS" value="/css/app.search.css" />
+=======
+<c:url var="commonCSS"   value="/wro/common_css.css" />
+<c:url var="appCSS"      value="/css/app.css" />
+<c:url var="mainMenuCSS" value="/css/main-menu.css" />
+>>>>>>> c23bfaa ajout d'un panel evenement calendar
 <c:url var="appProfileCSS" value="/css/app.profile.css" />
 <c:url var="placeCSS" value="/css/app.places.css" />
 <c:url var="place2CSS" value="/css/place-info.css" />
 
 
+<<<<<<< Upstream, based on origin/master
 <c:url var="commonJS" value="/wro/common_js.js" />
 <c:url var="appJS" value="/js/app.js" />
 <c:url var="place" value="/js/place.js" />
 
+=======
+<c:url var="commonJS"    value="/wro/common_js.js" />
+<c:url var="appJS"       value="/js/app.js" />
+>>>>>>> c23bfaa ajout d'un panel evenement calendar
 
 <!DOCTYPE html>
 

@@ -5,6 +5,7 @@
 		<js>/js/lib/jquery-2.2.4.js</js>
 		<js>/js/lib/bootstrap.js</js>
 		<!-- <js>/js/lib/npm.js</js>  -->
+		<js>/js/lib/bootstrap-clockpicker.js</js>
 		<js>/js/lib/moment.min.js</js>
 		<js>/js/lib/fullcalendar.js</js>
 		<js>/js/lib/mustache.js</js>
@@ -19,6 +20,10 @@
 		<css>/css/bootstrap-theme.css</css>
 		<css>/css/bootstrap.css</css>
 		<css>/css/fullcalendar.css</css>
+		<css>/css/clockpicker.css</css>
+		<css>/css/bootstrap-clockpicker.css</css>
+		<css>/css/jquery-clockpicker.css</css>
+		<css>/css/standalone.css</css>
 		
 		<!-- Placer ici les css de l'application -->
 <!-- 		<css>/css/app.css</css> -->

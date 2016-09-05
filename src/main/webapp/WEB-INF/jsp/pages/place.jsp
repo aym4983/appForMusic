@@ -83,11 +83,16 @@
 <!-- 					<em id="lon_rad" style="color:#555; font-size:0.9em;"></em> -->
 				</p>
 					
-				<p class="col-xs-10">
-					<form:label path="type" for="place-type"><strong>Type:</strong></form:label>
-					<form:radiobutton path="type" value="private"/> Privé
-					<form:radiobutton path="type" value="public" checked="true" /> Public
-				</p>
+<!-- 				<p class="col-xs-10"> -->
+<%-- 					<form:label path="type" for="place-type"><strong>Type:</strong></form:label> --%>
+<%-- 					<form:radiobutton path="type" value="private"/> Privé --%>
+<%-- 					<form:radiobutton path="type" value="public" checked="true" /> Public --%>
+<!-- 				</p> -->
+
+				<div class="form-group">
+					<form:label path="type" class="radio-inline"><form:radiobutton path="type" name="optradio" value="private" checked="true"/>Privé</form:label>
+					<form:label path="type" class="radio-inline"><form:radiobutton path="type" name="optradio"  value="public"/>Public</form:label>
+				</div>
 				
 				<p>
 					<input type="submit" name="place" value="Ajouter" class="btn btn-primary btn-sm" />

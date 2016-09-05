@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fr.imie.appformusic.dao.IPlaceDao;
+import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.domain.Place;
 import fr.imie.appformusic.exceptions.TechnicalException;
 
@@ -63,12 +64,21 @@ public class PlaceDao implements IPlaceDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Place> FindUserPlaces(String username) throws TechnicalException {
-		return sessionFactory
+	public List<Place> FindUserPlaces(AppUser user) throws TechnicalException {
+		List<Place> place = new ArrayList();
+		
+		place =  sessionFactory
 				.getCurrentSession()
 				.createCriteria(Place.class)
-				.add(Restrictions.eq("owner", username))
+				.add(Restrictions.eq("owner", user))
 				.list();
+		if(place.isEmpty())
+		{
+			System.out.println("isempty");
+		}else{
+			System.out.println("notempty");
+		}
+		return place;
 	}
 
 	@SuppressWarnings("unchecked")

@@ -1,31 +1,23 @@
 package fr.imie.appformusic.controller;
 
-import java.security.Principal;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.imie.appformusic.configuration.constants.Routes;
-import fr.imie.appformusic.configuration.constants.Session;
 import fr.imie.appformusic.configuration.constants.Views;
 import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.exceptions.BusinessException;
-import fr.imie.appformusic.form.PlaceForm;
 import fr.imie.appformusic.form.UserForm;
-import fr.imie.appformusic.form.UserModifyForm;
 import fr.imie.appformusic.service.IUserService;
 
 @Controller
@@ -34,8 +26,6 @@ public class AccountController {
 	@Autowired
 	private IUserService userService;
 	
-	private SessionFactory sessionFactory;
-
 	/**
 	 * Affiche le formulaire d'inscription.
 	 * @param model Le modèle utilisé par la page. 
@@ -117,23 +107,6 @@ public class AccountController {
 	@RequestMapping(Routes.CALENDAR)
 	public ModelAndView showCalendar(Model model) {
 		ModelAndView mav = new ModelAndView(Views.CALENDAR);
-		return mav;
-	}
-	
-	@RequestMapping(Routes.PROFILE)
-	public ModelAndView showProfile(Model model) throws BusinessException {
-		ModelAndView mav = new ModelAndView(Views.PROFILE);
-		model.addAttribute(new UserModifyForm());
-		AppUser user = userService.findByUserName("test");
-		mav.addObject("user",user);
-		return mav;
-	}
-	
-	@RequestMapping(Routes.SUBMITPROFILE)
-	public ModelAndView submitProfile(UserModifyForm userForm) throws BusinessException {
-		ModelAndView mav = new ModelAndView(Views.PROFILE);
-		AppUser user = userService.findByUserName(userForm.getUsername());
-		userService.updateUser(user, userForm.getUsername(), userForm.getEmail(), user.getPasswordHash(), userForm.getFirstname(), userForm.getLastname());
 		return mav;
 	}
 

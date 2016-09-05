@@ -46,7 +46,7 @@ public class AccountController {
 	 * @throws BusinessException 
 	 */
 	@RequestMapping(value=Routes.SIGNIN, method=RequestMethod.GET)
-	public ModelAndView showSignInForm(HttpServletRequest request,Model model) throws BusinessException {
+	public ModelAndView showSignInForm(Model model) throws BusinessException {
 		ModelAndView mav = new ModelAndView(Views.SIGNIN);
 		mav.addObject("urlSignUp", Routes.SIGNUP);
 		model.addAttribute(new AppUser());
@@ -56,13 +56,11 @@ public class AccountController {
 	/**
 	 * Traite les données soumises du formulaire d'inscription.
 	 * @param user 		L'utilisateur à créer.
-	 * @param request 	La requête HTTP.
 	 * @return 			Une redirection vers la page d'accueil du site en cas de réussite, sinon vers le formulaire.
 	 */
 	@RequestMapping(value=Routes.SIGNUP, method=RequestMethod.POST)
 	public ModelAndView submitSignUpForm(
-			UserForm userForm, 
-			HttpServletRequest request)
+			UserForm userForm)
 	throws BusinessException {
 		// mapping
 		AppUser user = new AppUser();

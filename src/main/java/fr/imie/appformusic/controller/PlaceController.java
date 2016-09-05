@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +27,6 @@ import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.domain.Place;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.form.PlaceForm;
-import fr.imie.appformusic.form.UserForm;
 import fr.imie.appformusic.service.IPlaceService;
 import fr.imie.appformusic.service.IUserService;
 
@@ -38,6 +38,7 @@ public class PlaceController {
 	
 	@Autowired
 	private IUserService userService;
+	
 	
 	/**
 	 * 
@@ -73,7 +74,7 @@ public class PlaceController {
 		// Get the user 
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
 		AppUser user = new AppUser();
-		user = userService.findByUserName(name);
+		user.setUsername(name);
 		
 		// Create the place
 		Place place = new Place();

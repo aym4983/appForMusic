@@ -3,6 +3,11 @@ package fr.imie.appformusic.service.impl;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,6 +27,7 @@ public class UserDetailService implements UserDetailsService {
 
 	@Autowired
 	private IUserDao userDao;
+	
 	
 	@Override
 	@Transactional(readOnly=true)

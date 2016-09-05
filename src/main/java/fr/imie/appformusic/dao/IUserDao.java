@@ -12,5 +12,6 @@ public interface IUserDao {
 	public AppUser findByEmail(String email) throws TechnicalException;
 	public List<AppUser> findAllUsers() throws TechnicalException;
 	public List<AppUser> findUsersLike(String username) throws TechnicalException;
+	public void update(AppUser user) throws TechnicalException;
 	
 }

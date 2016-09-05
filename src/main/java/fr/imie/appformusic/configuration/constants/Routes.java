@@ -28,10 +28,16 @@ public interface Routes {
 	public String CALENDAR = "/calendar";
 	
 	/** Page de gestion des lieux. */
-	public String PLACE = "/place";
+	public String PLACE = "/places";
 
 	/** Page d'erreur **/
 	public String ERROR = "/error";
+	
+	/** Page d'erreur **/
+	public String PROFILE = "/profile";
+	
+	/** Page d'erreur **/
+	public String SUBMITPROFILE = "/submitprofile";
 
 
 }

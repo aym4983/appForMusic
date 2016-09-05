@@ -1,5 +1,6 @@
 package fr.imie.appformusic.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.imie.appformusic.domain.AppUser;

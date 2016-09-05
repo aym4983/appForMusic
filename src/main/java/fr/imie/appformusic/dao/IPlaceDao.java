@@ -1,5 +1,6 @@
 package fr.imie.appformusic.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.imie.appformusic.domain.Place;

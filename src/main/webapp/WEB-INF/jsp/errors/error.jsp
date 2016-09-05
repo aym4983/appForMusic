@@ -7,6 +7,6 @@
 <title>Error</title>
 </head>
 <body>
-test erreur
+Access denied
 </body>
 </html>

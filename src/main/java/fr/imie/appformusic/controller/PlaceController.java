@@ -6,8 +6,11 @@
 
 package fr.imie.appformusic.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,11 +42,17 @@ public class PlaceController {
 	 * 
 	 * @param model
 	 * @return
+	 * @throws BusinessException 
 	 */
 	@RequestMapping(Routes.PLACE)
-	public ModelAndView showMyPlaces(Model model) {
+	public ModelAndView showMyPlaces(Model model) throws BusinessException {
 		ModelAndView mav = new ModelAndView(Views.PLACE);
+		AppUser user = userService.findByUserName("test");
+		List<Place> places = new ArrayList();
+
+		places = placeService.findUserPlaces(user);
 		mav.addObject("urlPlace", Routes.PLACE);
+		mav.addObject("places", Routes.PLACE);
 		model.addAttribute(new PlaceForm());
 		return mav; 
 	}
@@ -52,7 +61,7 @@ public class PlaceController {
 	public ModelAndView submitPlaceForm(PlaceForm placeForm, HttpServletRequest request) throws BusinessException {
 		
 		// Get the user 
-		String name = "test";/*(String)request.getSession().getAttribute(Session.CURRENT_NAME);*/
+		String name = (String)request.getSession().getAttribute(Session.CURRENT_NAME);
 		AppUser user = new AppUser();
 		user = userService.findByUserName(name);
 		
@@ -72,6 +81,6 @@ public class PlaceController {
 		place.setZipcode(placeForm.getZipcode());
 		
 		placeService.create(place);
-		return new ModelAndView("redirect:/" + Routes.PLACE);
+		return new ModelAndView("redirect:" + Routes.PLACE);
 	}
 }

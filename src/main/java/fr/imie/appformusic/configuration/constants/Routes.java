@@ -35,6 +35,9 @@ public interface Routes {
 	
 	/** Page d'erreur **/
 	public String PROFILE = "/profile";
+	
+	/** Page d'erreur **/
+	public String SUBMITPROFILE = "/submitprofile";
 
 
 }

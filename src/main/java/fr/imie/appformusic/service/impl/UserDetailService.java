@@ -6,6 +6,8 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,7 +18,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.imie.appformusic.configuration.constants.Session;
 import fr.imie.appformusic.dao.IUserDao;
 import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.domain.Role;
@@ -27,7 +28,6 @@ public class UserDetailService implements UserDetailsService {
 	@Autowired
 	private IUserDao userDao;
 	
-	HttpServletRequest request;
 	
 	@Override
 	@Transactional(readOnly=true)
@@ -38,11 +38,8 @@ public class UserDetailService implements UserDetailsService {
 		for (Role role : appUser.getRoles()){
 			grantedAuthority.add(new SimpleGrantedAuthority(role.getLabel()));
 		}
+		
 		User user = new User(appUser.getUsername(), appUser.getPasswordHash(),grantedAuthority);
-		
-		//HttpSession session = request.getSession();
-		//session.setAttribute(Session.CURRENT_NAME, appUser.getUsername());
-		
 		return user;
 	}
 

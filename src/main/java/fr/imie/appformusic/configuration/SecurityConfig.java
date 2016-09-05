@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 
 			.antMatchers("/wro/*", "/fonts/*", "/css/*", "/js/*", "/img/*",
-					Routes.SIGNIN, Routes.SIGNUP,
+					Routes.SIGNIN, Routes.SIGNUP, Routes.PROFILE,
 					Routes.CALENDAR,Routes.PLACE,
 					Routes.SEARCH + "/*", "/main", "/test").permitAll()
 			.anyRequest().authenticated()

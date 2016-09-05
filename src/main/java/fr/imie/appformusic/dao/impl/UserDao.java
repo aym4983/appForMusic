@@ -3,6 +3,7 @@ package fr.imie.appformusic.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ public class UserDao implements IUserDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+
 	@Autowired
 	private IRoleDao roleDao;
 
@@ -32,6 +34,18 @@ public class UserDao implements IUserDao {
 	public void create(AppUser user) throws TechnicalException {
 		try {
 			sessionFactory.getCurrentSession().persist(user);
+		} catch (Exception e) {
+			throw new TechnicalException(e);
+		}
+	}
+	
+	@Override
+	public void update(AppUser user) throws TechnicalException {
+		try {
+			
+			Session session = sessionFactory.openSession();
+			session.saveOrUpdate(user);
+			session.close();
 		} catch (Exception e) {
 			throw new TechnicalException(e);
 		}

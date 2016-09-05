@@ -97,10 +97,15 @@ public class UserService implements IUserService {
 			String newFirstName, 
 			String newLastName)
 			throws BusinessException {
-		// TODO Auto-generated method stub
+		
+		user.setEmail(newEmail);
+		user.setFirstname(newFirstName);
+		user.setLastname(newLastName);
+		userDao.update(user);
 		return null;
 	}
-
+	
+	
 	@Override
 	@Transactional(rollbackFor = Throwable.class)
 	public AppUser updateUserName(AppUser user, String newUserName)

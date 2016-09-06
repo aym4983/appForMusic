@@ -5,7 +5,7 @@ import java.util.List;
 import fr.imie.appformusic.domain.json.PlaceJson;
 import fr.imie.appformusic.domain.json.UserJson;
 
-public class GlobalSearchResponse extends Response {
+public class GlobalSearchResponse {
 
 	private List<UserJson> users;
 	private List<PlaceJson> places;

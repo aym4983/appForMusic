@@ -26,7 +26,9 @@ public class Place implements Serializable {
 	/** Members **/ 
 	private static final long serialVersionUID = 6450129037706488936L;
 	
-	@Id @GeneratedValue(strategy=GenerationType.AUTO) @Column(name="placeid")
+	@Id 
+	@GeneratedValue(strategy=GenerationType.IDENTITY) 
+	@Column(name="placeid")
 	private int placeId;
 	
 	@Column(name="privatelabel", length = 50, nullable = true)

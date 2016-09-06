@@ -29,15 +29,14 @@
 					<div class="form-group">
 						<label class="col-sm-3 control-label" for="inputStartEvent">Heure de début</label>
 						<div class="col-sm-9 clockpicker" data-placement="left" data-align="top" data-autoclose="true">
-							<input type="text" class="form-control" id="inputStartEvent" value="">
+							<input type="text" class="form-control" id="inputStartEvent" value="" />
 							<input type="hidden" id="eventStartTime" />
 						</div>
 					</div>
-
 					<div class="form-group">
 						<label class="col-sm-3 control-label" for="inputEndEvent">Heure de fin</label>
 						<div class="col-sm-9 clockpicker" data-placement="left" data-align="top" data-autoclose="true">
-							<input type="text" class="form-control" id="inputEndEvent" value="">
+							<input type="text" class="form-control" id="inputEndEvent" value="" />
 							<input type="hidden" id="eventEndTime" />
 						</div>
 					</div>

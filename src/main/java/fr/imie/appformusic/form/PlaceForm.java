@@ -15,7 +15,23 @@ public class PlaceForm {
 	private double latitude;
 	private String publicLabel;
 	private String type;
+	private String description;
+	private String image;
 
+	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
 	public String getType() {
 		return type;
 	}

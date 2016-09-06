@@ -2,7 +2,7 @@
  * Mettre dans app.js le javascript commun à toutes les pages
  */
 
-$(function() {
+$(function(){
 	
 	initCalendar();
 	initSearch();
@@ -15,6 +15,7 @@ $(function() {
 	$("#main-menu-toggler").on("click", function() {
 		$("#main-wrapper").toggleClass("navigable");
 	});
+	
 	
 	$("#places-list-toggler").on("click", function() {
 		$("#places-list").toggleClass("toggled");
@@ -129,6 +130,12 @@ function initSearchNav() {
 					break;
 		}
 	}));
+
+	
+	/** Méthode d'init pour Calendar Js */
+	function initCalendar (){
+		$('#calendar').fullCalendar();
+	}
 }
 
 function closeMainSearch() {

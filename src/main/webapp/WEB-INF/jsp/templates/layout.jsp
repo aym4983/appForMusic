@@ -12,6 +12,7 @@
 
 <c:url var="commonJS" value="/wro/common_js.js" />
 <c:url var="appJS" value="/js/app.js" />
+<c:url var="place" value="/js/place.js" />
 
 <!DOCTYPE html>
 
@@ -33,6 +34,7 @@
 	    
 	    <script type="text/javascript" src="${ commonJS }"></script>
 	    <script type="text/javascript" src="${ appJS }"></script>
+	    <script type="text/javascript" src="${ place }"></script>
 	</head>
 	
 	<body>
@@ -46,6 +48,7 @@
 				<tiles:insertAttribute name="footer" />
 			</div>
 		</div>
+	
 	</body>
 	
 </html>

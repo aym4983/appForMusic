@@ -1,6 +1,8 @@
 package fr.imie.appformusic.responses;
 
+
 public class Response<T> {
+
 	
 	private boolean succeeded;
 	private T content;

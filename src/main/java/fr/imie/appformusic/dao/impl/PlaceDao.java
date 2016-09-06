@@ -1,5 +1,9 @@
 package fr.imie.appformusic.dao.impl;
 
+
+import java.io.File;
+import java.util.ArrayList;
+ 
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -9,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import fr.imie.appformusic.dao.IPlaceDao;
 import fr.imie.appformusic.domain.AppUser;
+import fr.imie.appformusic.domain.Picture;
 import fr.imie.appformusic.domain.Place;
 import fr.imie.appformusic.exceptions.TechnicalException;
 
@@ -76,6 +81,7 @@ public class PlaceDao implements IPlaceDao {
 		} catch (Exception e) {
 			throw new TechnicalException(e);
 		}
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -92,5 +98,23 @@ public class PlaceDao implements IPlaceDao {
 			throw new TechnicalException(e);
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void delete(Place place) throws TechnicalException {
+		sessionFactory.getCurrentSession().delete(place);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void saveImage(Picture picture){
+		try {
+			sessionFactory.getCurrentSession().persist(picture);
+		} catch (Exception e) {
+			throw new TechnicalException(e);
+		}
+	}
+	
+	
 
 }

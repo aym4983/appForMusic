@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -24,6 +25,13 @@ public class DispatcherInitializer extends WebMvcConfigurerAdapter  {
 		UrlBasedViewResolver resolver = new UrlBasedViewResolver();
 		resolver.setViewClass(TilesView.class);
 		return resolver;
+	}
+	
+	@Bean
+	public CommonsMultipartResolver multipartresolver(){
+		CommonsMultipartResolver cmr = new CommonsMultipartResolver();
+		cmr.setMaxUploadSize(10000000);
+		return cmr;
 	}
 
 	@Override

@@ -6,7 +6,7 @@
 <c:url value="${ urlCalendar }" var="urlCalendar" />
 
 <h2>Calendrier</h2>
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalHorizontal">Ajouter</button>
+<!-- <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalHorizontal">Ajouter</button> -->
 <div id='calendar'></div>
 
 <!-- Modal -->
@@ -24,19 +24,23 @@
 
 			<!-- Modal Body -->
 			<div class="modal-body">
-				<form class="form-horizontal" role="form">
+				<form class="form-horizontal" role="form" id="formEvent">
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="inputStartEvent">Heure de début</label>
-						<div class="col-sm-9 clockpicker" data-placement="left" data-align="top" data-autoclose="true">
-							<input type="text" class="form-control" id="inputStartEvent" value="" />
-							<input type="hidden" id="eventStartTime" />
+						<label class="col-sm-3 control-label" for="inputDayEvent">Jour</label>						
+						<div class="col-sm-9" data-provide="datepicker">
+						    <input type="text" class="form-control" id="inputDayEvent" disabled="disabled">
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="inputEndEvent">Heure de fin</label>
-						<div class="col-sm-9 clockpicker" data-placement="left" data-align="top" data-autoclose="true">
-							<input type="text" class="form-control" id="inputEndEvent" value="" />
-							<input type="hidden" id="eventEndTime" />
+						<label class="col-sm-3 control-label" for="inputStartEvent">Début</label>
+						<div class="col-sm-9 clockpicker">
+							<input type="text" class="form-control" id="inputStartEvent" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label" for="inputEndEvent">Fin</label>
+						<div class="col-sm-9 clockpicker">
+							<input type="text" class="form-control" id="inputEndEvent" />
 						</div>
 					</div>
 					<div class="form-group">
@@ -45,13 +49,14 @@
 							<input type="text" class="form-control" id="inputTitleEvent" placeholder="Nom de l'evenement" />
 						</div>
 					</div>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				</form>
 			</div>
 
 			<!-- Modal Footer -->
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-				<button type="button" class="btn btn-primary">Enregistrer</button>
+				<button type="button" class="btn btn-primary" id="submitEvent" onclick="doSubmit()">Enregistrer</button>
 			</div>
 		</div>
 	</div>

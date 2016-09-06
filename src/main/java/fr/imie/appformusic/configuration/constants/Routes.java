@@ -7,8 +7,12 @@ package fr.imie.appformusic.configuration.constants;
  */
 public interface Routes {
 	
+	/** Racine des resultats json */
+	public String API = "/api";
+	
 	/** URL d'accueil du site. */
 	public String HOME = "/";
+	
 	/** URL de connexion. */
 	public String SIGNIN = "/sign-in";
 
@@ -35,6 +39,5 @@ public interface Routes {
 	
 	/** Page de profil */
 	public String PROFILE = "/profile";
-
 
 }

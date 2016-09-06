@@ -1,11 +1,13 @@
 package fr.imie.appformusic.responses;
 
-public abstract class Response {
+public class Response<T> {
 	
 	private boolean succeeded;
+	private T content;
 	
-	public Response() {
+	public Response(T content) {
 		succeeded = true;
+		this.content = content;
 	}
 	
 	public Response(boolean succeeded) {
@@ -18,6 +20,14 @@ public abstract class Response {
 
 	public void setSucceeded(boolean succeeded) {
 		this.succeeded = succeeded;
+	}
+	
+	public T getContent() {
+		return content;
+	}
+	
+	public void setContent(T content) {
+		this.content = content;
 	}
 
 }

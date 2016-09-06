@@ -73,9 +73,9 @@ public class SearchController {
 
 	@ResponseBody
 	@ExceptionHandler(Throwable.class)
-	public Response error(Throwable t) {
+	public Response<Boolean> error(Throwable t) {
 		logger.error(t.getMessage(), t);
-		return new Response(false);
+		return new Response<>(false);
 	}
 
 }

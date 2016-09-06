@@ -159,46 +159,45 @@ function initCalendar (){
 		// Ajout d'un evenement dans le calendar
         selectHelper: true,
 		select: function(start, end) {
-			var title;
-			var eventData;
-			if(start, end) {
-				eventData = {
-					title: title,
-					start: start,
-					end: end
-				};
-				$('#modalEvent').modal('show', eventData, true);
-			}
-			$('#calendar').fullCalendar('unselect');
+			 var day=moment(start).format('LL');
+			 start=moment(start).format('HH:mm'); 
+			 end=moment(end).format('HH:mm'); 
+			 
+			 d = document.getElementById("formEvent");
+			 d.elements["inputDayEvent"].value = day;
+			 
+			 s = document.getElementById("formEvent");
+			 s.elements["inputStartEvent"].value = start;
+			 
+			 e = document.getElementById("formEvent");
+			 e.elements["inputEndEvent"].value = end;
+		     
+		     $('#myModalHorizontal').modal('show');
 		},
 		events: [
 			{
 				title: 'test Event',
-				start: '2016-09-04',
-				end: '2016-06-04'
+				start: '2016-09-08',
+				end: '2016-09-08'
 			}
 		]
 		
 	});
 }
 
-/** timepicker pour formulaire */
-function initClockpicker (){    
-//	$('.clockpicker').clockpicker();
+$('#submitEvent').on('click', function(event) {
+    event.preventDefault();
+    doSubmit();
+});
 
-	var input = $('#inputStartEvent').clockpicker({
-	    placement: 'bottom',
-	    align: 'left',
-	    autoclose: true,
-	    'default': 'now'
-	});
-	
-	var input = $('#inputEndEvent').clockpicker({
-	    placement: 'bottom',
-	    align: 'left',
-	    autoclose: true,
-	    'default': 'now'
-	});
+
+function doSubmit() {
+    $("#myModalHorizontal").modal('hide');
+    $("#calendar").fullCalendar('renderEvent', {
+        title: $('#inputTitleEvent').val(),
+    	start: $('#inputStartEvent').val(),
+    	end: $('#inputEndEvent').val(),
+    }, true);
 }
 
 
@@ -239,25 +238,13 @@ function initClockpicker (){
 //    }
 //    return eventObject;
 //}
-<<<<<<< Upstream, based on origin/master
+
 
 function closeMainSearch() {
 	$("#main-search-results").removeClass("toggled");
 	$("#main-search-field").blur();
 }
 
-
-
-
-
-
-
-
-
-
-
-=======
->>>>>>> 0c7f0b7 add event modal
 
 
 

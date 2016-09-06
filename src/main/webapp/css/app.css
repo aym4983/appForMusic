@@ -73,7 +73,7 @@ body {
 #places-list {
 	height: 100%;
 	position: absolute;
-	transition-property: left, width;
+	transition-property: right, width;
 	transition-duration: 500ms;
 	transition-timing-function: ease-out;
 }
@@ -84,32 +84,62 @@ body {
 
 #places-list {
 	background-color: #fff;
-	right: 0;
-	width: 48px;
+	right: -224px;
+	width: 272px;
 }
 
 #places-list.toggled {
-	left: 48px;
-	width: auto;
+	right: 0;
 }
 
-#places-list-toggler,
-#places-map-toggler {
+#places-list-toggler {
 	background-color: red;
 	border: none;
 	border-radius: 50%;
 	height: 40px;
 	left: -20px;
-	top: 20px;
+	outline: none;
 	position: absolute;
+	top: 20px;
 	transition-property: width;
 	transition-duration: 500ms;
 	transition-timing-function: ease-out;
 	width: 40px;
+	z-index: 1;
 }
 
-#places-map-toggler {
-	display: none;
+#places-list ul {
+	list-style: none;
+	margin: 0;
+	max-height: 100%;
+	overflow-y: hidden;
+	padding: 0;
+	width: 100%;
+}
+
+#places-list.toggled ul {
+	overflow-y: auto;
+}
+
+#places-list li {
+	float: left;
+	padding-bottom: 50%;
+	position: relative;
+	width: 50%;
+}
+
+#places-list li > a {
+	height: 100%;
+	left: 0;
+	padding: 12px;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+#places-list li > a:hover {
+	background-color: #eee;
+	text-decoration: none;
 }
 
 @media screen and (min-width: 769px) {
@@ -117,11 +147,6 @@ body {
 	#main-wrapper #main-container {
 		margin-left: 272px;
 		width: calc(100% - 272px);
-	}
-
-	#places-list.toggled {
-		left: auto;
-		width: 272px;
 	}
 	
 }
@@ -133,7 +158,7 @@ body {
 	}
 	
 	#places-list {
-		left: auto;
+		right: 0;
 		width: 272px;
 	}
 
@@ -141,4 +166,24 @@ body {
 		display: none;
 	}
 	
+	#places-list ul {
+		overflow-y: auto;
+	}
+	
+}
+
+@media screen and (min-width: 1601px) {
+
+	#places-map {
+		width: calc(100% - 768px);
+	}
+	
+	#places-list {
+		width: 768px;
+	}
+	
+	#places-list li {
+		padding-bottom: 25%;
+		width: 25%;
+	}
 }

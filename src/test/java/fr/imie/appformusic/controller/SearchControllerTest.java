@@ -12,6 +12,8 @@ import org.easymock.Mock;
 import org.easymock.TestSubject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.ui.Model;
+import org.springframework.validation.support.BindingAwareModelMap;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.imie.appformusic.configuration.constants.Views;
@@ -19,6 +21,7 @@ import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.domain.Place;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.responses.GlobalSearchResponse;
+import fr.imie.appformusic.responses.Response;
 import fr.imie.appformusic.service.IPlaceService;
 import fr.imie.appformusic.service.IUserService;
 
@@ -35,8 +38,16 @@ public class SearchControllerTest {
 	private IPlaceService placeServiceMock;
 	
 	@Test
-	public void testInit(){
-		ModelAndView view = controller.init();
+	public void testInit() throws BusinessException{
+		List<Place> places = new ArrayList<Place>();
+		places.add(createPlace());
+		
+		expect(placeServiceMock.findAllPlaces()).andReturn(places).anyTimes();
+		replay(placeServiceMock);
+		
+		Model model = new BindingAwareModelMap();
+		ModelAndView view = controller.init(model);
+		
 		assertThat(view.getViewName()).isEqualTo(Views.SEARCH);
 	}
 
@@ -56,10 +67,10 @@ public class SearchControllerTest {
 		expect(placeServiceMock.findPlacesLike(search)).andReturn(places).anyTimes();
 		replay(placeServiceMock);
 		
-		GlobalSearchResponse response = controller.searchAll(search);
+		Response<GlobalSearchResponse> response = controller.searchAll(search);
 
-		assertThat(response.getUsers().size()).isEqualTo(1);
-		assertThat(response.getPlaces().size()).isEqualTo(1);
+		assertThat(response.getContent().getUsers().size()).isEqualTo(1);
+		assertThat(response.getContent().getPlaces().size()).isEqualTo(1);
 	}
 	
 	private AppUser createAppUser(){

@@ -56,7 +56,7 @@ public class PlaceController {
 		
 		mav.addObject("urlPlace", Routes.PLACE);
 		//mav.addObject("places", Routes.PLACE);
-		model.addAttribute("form", new PlaceForm());
+		model.addAttribute(new PlaceForm());
 		model.addAttribute("places", places);
 		//System.out.println("print");
 		return mav; 

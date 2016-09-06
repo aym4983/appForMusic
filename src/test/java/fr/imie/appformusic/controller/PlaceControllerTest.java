@@ -74,7 +74,7 @@ public class PlaceControllerTest {
 		ModelAndView mav = controller.showMyPlaces(model);
 		
 		assertThat(mav.getModel()).isNotNull();
-		assertThat(model.containsAttribute("form")).isTrue();
+		assertThat(model.containsAttribute("placeForm")).isTrue();
 	}
 	
 	@Test

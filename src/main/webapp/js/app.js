@@ -156,7 +156,7 @@ function initCalendar (){
 			}		  
 		},
 
-		// Ajout d'un evenement dans le calendar (title, start, end)
+		// Ajout d'un evenement dans le calendar
         selectHelper: true,
 		select: function(start, end) {
 			var title;
@@ -202,7 +202,7 @@ function initClockpicker (){
 }
 
 
-////Validating Empty Field
+/** Validating Empty Field */
 //function check_empty() {
 //	if (document.getElementById('inputStartEvent').value == "" || document.getElementById('inputEndEvent').value == "" || document.getElementById('inputTitleEvent').value == "") {
 //		alert("Il manque des informations !");

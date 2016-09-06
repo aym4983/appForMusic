@@ -39,8 +39,15 @@ public class SearchControllerTest {
 	
 	@Test
 	public void testInit() throws BusinessException{
+		List<Place> places = new ArrayList<Place>();
+		places.add(createPlace());
+		
+		expect(placeServiceMock.findAllPlaces()).andReturn(places).anyTimes();
+		replay(placeServiceMock);
+		
 		Model model = new BindingAwareModelMap();
 		ModelAndView view = controller.init(model);
+		
 		assertThat(view.getViewName()).isEqualTo(Views.SEARCH);
 	}
 

@@ -99,22 +99,7 @@ public class AccountController {
 //		//TODO Connexion de l'utilisateur.
 //		return new ModelAndView("redirect:/" + Routes.HOME);
 //	}
-<<<<<<< Upstream, based on origin/master
-
-	
-	/**
-	 * Affiche la vue calendar
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(Routes.CALENDAR)
-	public ModelAndView showCalendar(Model model) {
-		ModelAndView mav = new ModelAndView(Views.CALENDAR);
-		return mav;
-	}
-=======
->>>>>>> e7a37e3 ajout d'un panel evenement calendar
-
+ 
 	
 	
 //	@RequestMapping(Routes.ERROR)

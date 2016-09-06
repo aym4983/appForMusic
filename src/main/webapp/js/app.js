@@ -170,18 +170,6 @@ function initCalendar (){
 				$('#modalEvent').modal('show', eventData, true);
 			}
 			$('#calendar').fullCalendar('unselect');
-			
-//			var title = prompt('Nom de l\'event:');
-//			var eventData;
-//			if (title) {
-//				eventData = {
-//					title: title,
-//					start: start,
-//					end: end
-//				};
-//				$('#calendar').fullCalendar('renderEvent', eventData, true);
-//			}
-//			$('#calendar').fullCalendar('unselect');
 		},
 		events: [
 			{
@@ -214,15 +202,15 @@ function initClockpicker (){
 }
 
 
-//Validating Empty Field
-function check_empty() {
-	if (document.getElementById('inputStartEvent').value == "" || document.getElementById('inputEndEvent').value == "" || document.getElementById('inputTitleEvent').value == "") {
-		alert("Il manque des informations !");
-	} else {
-		document.getElementById('form-event').submit();
-		alert("Evenement créé...");
-	}
-}
+////Validating Empty Field
+//function check_empty() {
+//	if (document.getElementById('inputStartEvent').value == "" || document.getElementById('inputEndEvent').value == "" || document.getElementById('inputTitleEvent').value == "") {
+//		alert("Il manque des informations !");
+//	} else {
+//		document.getElementById('form-event').submit();
+//		alert("Evenement créé...");
+//	}
+//}
 
 /** Méthode pour ajout d'un évènement */
 //function addCalanderEvent(id, startdate, enddate, title){
@@ -251,6 +239,7 @@ function check_empty() {
 //    }
 //    return eventObject;
 //}
+<<<<<<< Upstream, based on origin/master
 
 function closeMainSearch() {
 	$("#main-search-results").removeClass("toggled");
@@ -267,6 +256,8 @@ function closeMainSearch() {
 
 
 
+=======
+>>>>>>> 0c7f0b7 add event modal
 
 
 

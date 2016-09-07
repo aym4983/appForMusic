@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <c:url value="${ urlPlace }" var="urlPlace" />
+<c:url var="urlPlaces" value="/places" />
 <script type="text/javascript">var contextPath='<c:url value="/"/>'</script>;
 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=AIzaSyBH8dHLUHMkDTWfuiLOxhySJpQtXTp7mFU"type="text/javascript"></script>
 
@@ -33,6 +34,8 @@
 <!-- 								</label> -->
 <%-- 								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
 <%-- 							</form> --%>
+								<a href="${ urlPlaces }/<c:out value="${ place.placeId }" />"><c:out value="${ place.publicLabel }" />
+				</a>
 
 <!-- 							<img src="C:\Image\Place\1.jpg" alt="no-image" style="width:150px;height:150px"> -->
 							</br>
@@ -45,9 +48,8 @@
 							</br>
 							
 							<div class="bloc-buttons">
-     					 	<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#${place.placeId}">Voir</button>
-     					 	<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="">Modifier</button>
-     					 	<button type="button" class="btn btn-info btn-sm" id="place-delete" data-toggle="modal" data-target="">Supprimer</button>
+     					 	<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#${place.placeId}">En Savoir Plus</button>
+ 
      					 	</div>
 	
 					<!-- Modal pour afficher mon lieu -->

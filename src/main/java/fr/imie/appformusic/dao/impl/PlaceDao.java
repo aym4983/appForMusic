@@ -35,9 +35,10 @@ public class PlaceDao implements IPlaceDao {
 	@Override
 	public Place findById(int placeId) throws TechnicalException {
 		try {
-			return (Place) sessionFactory
-					.getCurrentSession().createCriteria(Place.class)
-					.add(Restrictions.idEq(placeId));
+			return (Place) sessionFactory.getCurrentSession()
+					.createCriteria(Place.class)
+					.add(Restrictions.eq("placeId", placeId))
+					.uniqueResult();
 		} catch (Exception e) {
 			throw new TechnicalException(e);
 		}
@@ -102,7 +103,12 @@ public class PlaceDao implements IPlaceDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void delete(Place place) throws TechnicalException {
-		sessionFactory.getCurrentSession().delete(place);
+		try{ 
+		Place placeToDelete = findById(place.getPlaceId());
+		sessionFactory.getCurrentSession().delete(placeToDelete);
+		}catch(Exception e){
+			throw new TechnicalException(e);
+		}
 	}
 	
 	@SuppressWarnings("unchecked")

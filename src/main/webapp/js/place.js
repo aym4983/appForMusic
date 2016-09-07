@@ -25,30 +25,23 @@ action={
 		$('#createPlace').removeClass('hidden');
 	},
 	place_delete:function(){
-		var id = $(this).parent().data('id');
+		var form = $(this).closest("form");
 		$.ajax({
-			url : contextPath + 'placedelete',
+			url : contextPath + 'api/places/placedelete',
 			method : 'POST',
-			data : {
-				id: id
-			},
+			data : form.serialize(),
 			dataType : 'json',
-			success: function(response){
-				$('.placelist div[data-id='+id+']').remove();
+			success: function(data, textStatus,jqXHR ){
+				console.log(data);
+				alert("Suppression réussie!");
+				window.location.href = contextPath + "/search"
 			}
 		});
 	}
 };
 
-$(document).ready(function() {
-	  $('#media').carousel({
-	    pause: true,
-	    interval: false,
-	  });
-	});
-
 function bindActions(){
-	$('#place-delete').click(action.place_delete);
+	$('#placeinfo-delete').click(action.place_delete);
 	$('#image_form').change(action.image_upload);
 }
 

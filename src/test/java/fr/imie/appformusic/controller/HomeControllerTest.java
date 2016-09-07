@@ -12,48 +12,41 @@ import org.easymock.Mock;
 import org.easymock.TestSubject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.ui.Model;
+import org.springframework.validation.support.BindingAwareModelMap;
+import org.springframework.web.servlet.ModelAndView;
 
-import fr.imie.appformusic.controller.api.SearchController;
+import fr.imie.appformusic.configuration.constants.Views;
 import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.domain.Place;
 import fr.imie.appformusic.exceptions.BusinessException;
-import fr.imie.appformusic.responses.GlobalSearchResponse;
-import fr.imie.appformusic.responses.Response;
 import fr.imie.appformusic.service.IPlaceService;
 import fr.imie.appformusic.service.IUserService;
 
 @RunWith(EasyMockRunner.class)
-public class SearchControllerTest {
+public class HomeControllerTest {
 
 	@TestSubject
-	private SearchController controller = new SearchController();
+	private HomeController controller = new HomeController();
 	
 	@Mock
 	private IUserService userServiceMock;
 	
 	@Mock
 	private IPlaceService placeServiceMock;
-
+	
 	@Test
-	public void testSearchAllOk() throws BusinessException {
-		String search = "test";
-		
-		List<AppUser> users = new ArrayList<AppUser>();
-		users.add(createAppUser());
-		
-		expect(userServiceMock.findUsersLike(search)).andReturn(users).anyTimes();
-		replay(userServiceMock);
-		
+	public void testInit() throws BusinessException{
 		List<Place> places = new ArrayList<Place>();
 		places.add(createPlace());
 		
-		expect(placeServiceMock.findPlacesLike(search)).andReturn(places).anyTimes();
+		expect(placeServiceMock.findAllPlaces()).andReturn(places).anyTimes();
 		replay(placeServiceMock);
 		
-		Response<GlobalSearchResponse> response = controller.searchAll(search);
-
-		assertThat(response.getContent().getUsers().size()).isEqualTo(1);
-		assertThat(response.getContent().getPlaces().size()).isEqualTo(1);
+		Model model = new BindingAwareModelMap();
+		ModelAndView view = controller.init(model);
+		
+		assertThat(view.getViewName()).isEqualTo(Views.SEARCH);
 	}
 	
 	private AppUser createAppUser(){

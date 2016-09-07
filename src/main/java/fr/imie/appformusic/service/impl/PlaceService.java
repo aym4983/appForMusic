@@ -24,6 +24,12 @@ public class PlaceService implements IPlaceService {
 	public void create(Place place) throws BusinessException {
 		placeDao.create(place);
 	}
+	
+	@Override
+	@Transactional(rollbackFor = Throwable.class)
+	public void updatePlace(Place place) throws BusinessException {
+		placeDao.updatePlace(place);
+	}
 
 	@Override
 	@Transactional(readOnly = true)

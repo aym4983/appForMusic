@@ -18,5 +18,6 @@ public interface IPlaceService {
 	public List<Place> findUserPlacesLike(AppUser user, String likePrivateName) throws BusinessException;
 	public void deletePlace(Place place) throws BusinessException;
 	public void saveImage(Picture picture)throws BusinessException;
+	public void updatePlace(Place place)throws BusinessException;
 }
  

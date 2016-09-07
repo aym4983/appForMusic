@@ -154,7 +154,6 @@
 					    </div>
 					  </div>
 					</div>
-	
 			        </div>
 			       </div>	
 		</c:forEach>
@@ -176,8 +175,13 @@
         <div class="modal-body">
          	<form:form action="/appForMusic/places" method="post" modelAttribute="placeForm" id="createPlace" name="createPlace">
 				<p class="form-group">
-					<form:label path="publicLabel" for="place-publiclabel" class="form-label">Nom du lieu</form:label>
-					<form:input type="text" path="publicLabel" id="place-publiclabel" class="form-control" placeholder="Titre" required="true"/>
+					<form:label path="publicLabel" for="place-publiclabel" class="form-label">Nom public (Visible auprès de tous les utilisateurs)</form:label>
+					<form:input type="text" path="publicLabel" id="place-publiclabel" class="form-control" placeholder="Nom public" required="true"/>
+				</p>
+				
+				<p class="form-group">
+					<form:label path="privateLabel" for="place-privatelabel" class="form-label">Nom privé</form:label>
+					<form:input type="text" path="privateLabel" id="place-privatelabel" class="form-control" placeholder="Nom privé" required="true"/>
 				</p>
 				
 				<p class="form-group">
@@ -212,12 +216,6 @@
 					<form:textarea rows="10" cols="20" path="description" id="description" class="form-control"/>
 				</p>
 
-				<p class="form-group">
-					<form:label path="type" for="place-type">Type:</form:label>
-					<form:label path="type" class="radio-inline"><form:radiobutton path="type" name="optradio" value="private" checked="true"/>Privé</form:label>
-					<form:label path="type" class="radio-inline"><form:radiobutton path="type" name="optradio"  value="public"/>Public</form:label>
-				</p>
-				
 				<p class="form-group">
 					<form:label path="image" for="place-image">Image:</form:label>
 					<form:input path="image" for="place-image" id="place-image" type="file" name="place-image"/>

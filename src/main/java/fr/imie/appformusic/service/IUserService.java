@@ -50,22 +50,33 @@ public interface IUserService {
 	public void remove(AppUser user) throws BusinessException;
 	
 	/**
-	 * Modifie les attributs spécifiés de l'utilisateur spécifié.
+	 * Modifie les attributs spécifiés de l'utilisateur.
 	 * @param user 			L'utilisateur à modifier.
 	 * @param newEmail 		La nouvelle adresse e-mail de l'utilisateur.
-	 * @param newPassword	Le nouveau mot de passe de l'utilisateur.
 	 * @param newFirstName 	Le nouveau prénom de l'utilisateur.
 	 * @param newLastName 	Le nouveau nom de famille de l'utilisateur.
 	 * @return 				L'utilisateur modifié.
 	 */
-	public AppUser updateUser(
+	public AppUser updateUserInfos(
 			AppUser user, 
 			String newEmail, 
-			String oldPassword, 
-			String newPassword, 
-			String newPasswordConfirm, 
 			String newFirstName, 
 			String newLastName) 
+			throws BusinessException;
+	
+	/**
+	 * Modifie le mot de passe de l'utilisateur.
+	 * @param user 					L'utilisateur à modifier.
+	 * @param oldPassword 			L'ancien mot de passe de l'utilisateur.
+	 * @param newPassword 			Le nouveau mot de passe de l'utilisateur.
+	 * @param newPasswordConfirm 	La confirmation du nouveau mot de l'utilisateur.
+	 * @return L'utilisateur modifié.
+	 */
+	public AppUser updateUserPass(
+			AppUser user, 
+			String oldPassword, 
+			String newPassword, 
+			String newPasswordConfirm) 
 			throws BusinessException;
 	
 	/**

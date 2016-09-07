@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.imie.appformusic.configuration.constants.Routes;
@@ -38,14 +39,13 @@ public class ProfileController {
 			@PathVariable(value = "username") String username
 	) throws BusinessException {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		// Si l'utilisateur affiché est l'utilisateur authentifié
-		if (username == auth.getName()) {
-			
-		}
 		ModelAndView mav = new ModelAndView(Views.PROFILE);
 		AppUser user = userService.findByUserName(username);
+		
 		model.addAttribute("fullUserForm", new FullUserForm());
 		model.addAttribute("user", user);
+		model.addAttribute("isAuthUser", username.equals(auth.getName()));
+		
 		return mav;
 	}
 
@@ -58,14 +58,19 @@ public class ProfileController {
 	@RequestMapping(value = Routes.PROFILE + "/@{username}", method = RequestMethod.POST)
 	public ModelAndView updateMyProfile(
 			FullUserForm form,
-			@PathVariable(value = "username") String username
+			@PathVariable(value = "username") String username,
+			@RequestParam(name = "profile-update-infos", required = false) String updateInfos,
+			@RequestParam(name = "profile-update-pass", required = false) String updatePass
 	) throws BusinessException {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		AppUser user = userService.findByUserName(auth.getName());
 		
 		// Si l'utilisateur à modifier est l'utilisateur authentifié
 		if (username.equals(auth.getName())) {
-			userService.updateUser(user, form.getEmail(), form.getPassword(), form.getNewPassword(), form.getPasswordConfirm(), form.getFirstName(), form.getLastName());
+			if (updateInfos != null)
+				userService.updateUserInfos(user, form.getEmail(), form.getFirstName(), form.getLastName());
+			if (updatePass != null)
+				userService.updateUserPass(user, form.getPassword(), form.getNewPassword(), form.getPasswordConfirm());
 		}
 		
 		return new ModelAndView("redirect:" + Routes.PROFILE + "/@" + username);

@@ -106,19 +106,35 @@ public class UserDao implements IUserDao {
 	}
 
 	@Override
-	public void updateUser(
+	public void updateUserInfos(
 			AppUser user, 
 			String newEmail, 
-			String newPasswordHash, 
 			String newFirstName,
 			String newLastName
 	) throws TechnicalException {
-		if (null != newEmail && !newEmail.isEmpty()) user.setEmail(newEmail);
-		if (null != newPasswordHash && !newPasswordHash.isEmpty()) user.setPasswordHash(newPasswordHash);
-		if (null != newFirstName && !newFirstName.isEmpty()) user.setFirstname(newFirstName);
-		if (null != newLastName && !newLastName.isEmpty()) user.setLastname(newLastName);
-		
 		try {
+			if (null != newEmail && !newEmail.isEmpty())
+				user.setEmail(newEmail);
+			
+			if (null != newFirstName && !newFirstName.isEmpty()) 
+				user.setFirstname(newFirstName);
+			
+			if (null != newLastName && !newLastName.isEmpty()) 
+				user.setLastname(newLastName);
+		
+			sessionFactory.getCurrentSession().merge(user);
+		} catch (Exception e) {
+			new TechnicalException(e);
+		}
+	}
+
+	@Override
+	public void updateUserPass(
+			AppUser user, 
+			String newPasswordHash
+	) throws TechnicalException {
+		try {
+			user.setPasswordHash(newPasswordHash);
 			sessionFactory.getCurrentSession().merge(user);
 		} catch (Exception e) {
 			new TechnicalException(e);

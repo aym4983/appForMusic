@@ -1,6 +1,5 @@
 package fr.imie.appformusic.dao.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -43,10 +42,9 @@ public class PlaceDao implements IPlaceDao {
 	@Override
 	public List<Place> findAllPlaces() throws TechnicalException {
 		try {
-			List <Place> places = sessionFactory
+			return sessionFactory
 					.getCurrentSession()
 					.createCriteria(Place.class).list();
-			return places;
 		} catch (Exception e) {
 			throw new TechnicalException(e);
 		}
@@ -55,41 +53,44 @@ public class PlaceDao implements IPlaceDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Place> findPlacesLike(String likePublicLabel) throws TechnicalException {
-		return sessionFactory
-				.getCurrentSession()
-				.createCriteria(Place.class)
-				.add(Restrictions.like("publicLabel", "%"+likePublicLabel+"%"))
-				.list();
+		try {
+			return sessionFactory
+					.getCurrentSession()
+					.createCriteria(Place.class)
+					.add(Restrictions.ilike("publicLabel", "%"+likePublicLabel+"%"))
+					.list();
+		} catch (Exception e) {
+			throw new TechnicalException(e);
+		}
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Place> FindUserPlaces(AppUser user) throws TechnicalException {
-		List<Place> place = new ArrayList();
-		
-		place =  sessionFactory
-				.getCurrentSession()
-				.createCriteria(Place.class)
-				.add(Restrictions.eq("owner", user))
-				.list();
-		if(place.isEmpty())
-		{
-			System.out.println("isempty");
-		}else{
-			System.out.println("notempty");
+		try {
+			return sessionFactory
+					.getCurrentSession()
+					.createCriteria(Place.class)
+					.add(Restrictions.eq("owner", user))
+					.list();
+		} catch (Exception e) {
+			throw new TechnicalException(e);
 		}
-		return place;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Place> findUserPlacesLike(String username, String likePrivateLabel) throws TechnicalException {
+		try {
 		return sessionFactory
 				.getCurrentSession()
 				.createCriteria(Place.class)
 				.add(Restrictions.eq("owner", username))
-				.add(Restrictions.and(Restrictions.like("privateLabel", "%"+likePrivateLabel+"%")))
+				.add(Restrictions.and(Restrictions.ilike("privateLabel", "%"+likePrivateLabel+"%")))
 				.list();
+		} catch (Exception e) {
+			throw new TechnicalException(e);
+		}
 	}
 
 }

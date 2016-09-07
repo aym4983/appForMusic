@@ -17,7 +17,6 @@ button.glyphicon {
 #main-menu-header, 
 #main-menu-header::before,
 #account-picture, 
-#account-signout,
 .menu:first-child,
 #main-container {
 	transition-delay: 250ms;
@@ -26,7 +25,7 @@ button.glyphicon {
 }
 
 #main-menu {
-	background-color: #000;
+	background-color: #128AB2;
 	height: 100%;
 	overflow: hidden;
 	position: fixed;
@@ -46,17 +45,7 @@ button.glyphicon {
 	width: 100%;
 }
 
-#account-signout,
-#account-picture {
-	bottom: 0;
-	height: 0;
-	left: 50%;
-	position: absolute;
-	width: 0;
-}
-
 #account-picture,
-#account-signout,
 .menu:first-child {
 	transition-duration: 250ms;
 	transition-delay: 100ms;
@@ -65,36 +54,23 @@ button.glyphicon {
 #account-picture {
 	background-color: #666;
 	border-radius: 50%;
+	bottom: 0;
+	height: 0;
+	left: 50%;
+	position: absolute;
+	width: 0;
 	z-index: 2;
 }
 
-#account-signout {
-	background-color: #999;
-	transition-delay: 0s;
-}
-
-#main-menu-toggler {
-	background: none;
-	border: none;
-	color: #ccc;
-	height: 48px;
-	line-height: 48px;
-	position: absolute;
-	right: 0;
-	text-align: center;
-	text-decoration: none;
-	width: 48px;
-}
-
-#main-menu-toggler:hover,
-#main-menu-toggler:focus {
-	background-color: #666;
-}
 .menu {
 	list-style: none;
 	margin: 0 0 12px;
 	padding: 0;
 	width: 272px;
+}
+
+.menu .sign-out a {
+/* 	color: #FF1954; */
 }
 
 .menu a,
@@ -135,13 +111,8 @@ button.glyphicon {
 }
 
 #main-wrapper.navigable #account-picture,
-#main-wrapper.navigable #account-signout,
 #main-wrapper.navigable .menu:first-child {
 	transition-delay: 500ms;
-}
-
-#main-wrapper.navigable #account-signout {
-	transition-delay: 750ms;
 }
 
 #main-wrapper.navigable #account-picture {
@@ -149,13 +120,6 @@ button.glyphicon {
 	height: 96px;
 	margin-left: -48px;
 	width: 96px;
-}
-
-#main-wrapper.navigable #account-signout {
-	bottom: 64px;
-	height: 40px;
-	margin-left: -20px;
-	width: 40px;
 }
 
 #main-wrapper.navigable .menu:first-child {
@@ -166,7 +130,7 @@ button.glyphicon {
 	margin-left: 272px;
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 769px) {
 
 	#main-wrapper #main-menu,
 	#main-wrapper #main-menu-header {
@@ -186,13 +150,6 @@ button.glyphicon {
 		height: 96px;
 		margin-left: -48px;
 		width: 96px;
-	}
-
-	#main-wrapper #account-signout {
-		bottom: 64px;
-		height: 40px;
-		margin-left: -20px;
-		width: 40px;
 	}
 	
 	#main-wrapper .menu:first-child {

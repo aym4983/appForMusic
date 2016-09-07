@@ -1,4 +1,4 @@
-package fr.imie.appformusic.controller;
+package fr.imie.appformusic.controller.api;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,16 +6,13 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import fr.imie.appformusic.configuration.constants.Routes;
-import fr.imie.appformusic.configuration.constants.Views;
 import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.domain.Place;
 import fr.imie.appformusic.domain.json.PlaceJson;
@@ -27,7 +24,7 @@ import fr.imie.appformusic.service.IPlaceService;
 import fr.imie.appformusic.service.IUserService;
 
 @Controller
-@RequestMapping(value = Routes.SEARCH, method = RequestMethod.GET)
+@RequestMapping(value = Routes.API + Routes.SEARCH, method = RequestMethod.GET)
 public class SearchController {
 	
 	private Logger logger = Logger.getLogger(SearchController.class);
@@ -37,16 +34,6 @@ public class SearchController {
 	
 	@Autowired
 	private IPlaceService placeService;
-
-	@RequestMapping("")
-	public ModelAndView init(Model model) throws BusinessException{
-		List<PlaceJson> places = new ArrayList<>();
-		for (Place place : placeService.findAllPlaces()) {
-			places.add(new PlaceJson(place));
-		}
-		model.addAttribute("places", places);
-		return new ModelAndView(Views.SEARCH);
-	}
 
 	@ResponseBody
 	@RequestMapping("/all")

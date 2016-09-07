@@ -5,6 +5,12 @@
 $(function() {
 	
 	initCalendar();
+	initSearch();
+	initSearchNav();
+	
+	$(window).click(function() {
+		closeMainSearch();
+	});
 	
 	$("#main-menu-toggler").on("click", function() {
 		$("#main-wrapper").toggleClass("navigable");
@@ -12,42 +18,57 @@ $(function() {
 	
 	$("#places-list-toggler").on("click", function() {
 		$("#places-list").toggleClass("toggled");
-		$("#places-map").toggleClass("toggled");
 	});
 	
-	$("#main-search").keyup(function(event) {
+});
+
+/** Méthode d'init pour Calendar Js */
+function initCalendar (){
+	$('#calendar').fullCalendar();
+}
+
+function initSearch() {
+	$("#main-search-field").on("click", function(event) {
+		event.stopPropagation();
+	});
+	
+	$("#main-search-field").on("focus", function() {
+		$("#main-search-results").addClass("toggled");
+	});
+	
+	$("#main-search-field").keyup(function(event) {
 		var $input = $(this);
 		var $form = $(this).closest("form");
 		var key = event.keyCode || event.which;
 		
+		// Si le bouton Echap est pressé
+		if (key === 27) closeMainSearch();
+		
 		if ($input.val().length >= 3) {
-			console.log("search for: '" + $(this).val() + "'");
-			
-			$("#search-results").addClass("toggled");
-			
 			switch (key) {
 				//Si la flèche du haut est pressée
 				case 38:
-					$("#result-set-users li:last-child a").focus();
+					$("a", $(".result-item").last()).focus();
 					break;
 				//Si la flèche du bas est pressée
 				case 40:
-					$("#result-set-users li:first-child a").focus();
+					$("a", $(".result-item").first()).focus();
 					break;
 				default:
 					$.ajax({
-						url: $form.attr("action"),
+						url: $form.data("json-action"),
 						data: {search: $input.val()},
 						dataType: "json",
 						success: function(data, textStatus, jqXHR) {
 							if (data.succeeded) {
-								var templateUsers = $("#mustache-tmpl-users").html();
-								var templatePlaces = $("#mustache-tmpl-places").html();
-								var htmlUsers = Mustache.render(templateUsers, data);
-								var htmlPlaces = Mustache.render(templatePlaces, data);
-		
-								$("#result-set-users ul").html(htmlUsers);
-								$("#result-set-places ul").html(htmlPlaces);
+								var htmlUsers = Mustache.render($("#mustache-tmpl-users").html(), data.content);
+								var htmlPlaces = Mustache.render($("#mustache-tmpl-places").html(), data.content);
+								
+								htmlUsers += (data.content.users.length) ? Mustache.render($("#mustache-tmpl-more-users").html(), {query: $input.val()}) : '';
+								htmlPlaces += (data.content.places.length) ? Mustache.render($("#mustache-tmpl-more-places").html(), {query: $input.val()}) : '';
+								
+								$("#main-search-users").html(htmlUsers);
+								$("#main-search-places").html(htmlPlaces);
 							}
 						},
 						error: function(jqXHR, textStatus, errorThrown) {
@@ -57,52 +78,63 @@ $(function() {
 					break;
 			}
 			
-		} else $("#search-results").removeClass("toggled");
+		} else {
+			$("#main-search-users").html("");
+			$("#main-search-places").html("");
+		}
 	});
+}
 
-	$("#result-set-users").on("keyup", "a:focus", (function(event) {
+function initSearchNav() {
+	$(".result-set").on("keyup", "a:focus", (function(event) {
 		var key = event.keyCode || event.which;
 		switch (key) {
+			//échap
+			case 27:
+				closeMainSearch();
+				break;
 			//flèche de gauche
 			case 37:
-				if ($(this).closest("section").is(":last-child"))
-					$("li:first-child a", $(this).closest(".result-set").prev()).focus();
-				else $("li:first-child a", $(this).closest(".result-set").next()).focus();
 				break;
 			//flèche du haut
 			case 38:
-				if ($(this).parent().is(":first-child"))
-					$("#main-search").focus();
-				else $("a", $(this).parent().prev()).focus();
+				// Si l'élément focus est le premier parmi toutes les listes
+				if ($(this).is($("a", $(".result-set")).first()))
+					// Focus sur le champ de recherche
+					$("#main-search-field").focus();
+				// Sinon, s'il est le premier du result-set
+				else if ($(this).is($("a", $(this).parents(".result-set")).first()))
+					// Focus sur le dernier élément du précédent result-set
+					$("a", $(".result-item", $(this).parents(".result-set").prevAll()).last()).focus();
+				// Sinon focus sur le précédent élément
+				else $("a", $(this).parents(".result-item").prev()).focus();
 				break;
 			//flèche de droite
 			case 39:
-				if ($(this).closest("section").is(":first-child"))
-					$("li:first-child a", $(this).closest(".result-set").next()).focus();
-				else $("li:first-child a", $(this).closest(".result-set").prev()).focus();
 				break;
 			//flèche du bas
 			case 40:
-				if ($(this).parent().is(":last-child"))
-					$("#main-search").focus();
-				else $("a", $(this).parent().next()).focus();
+				// Si l'élément focus est le dernier parmi toutes les listes
+				if ($(this).is($("a", $(".result-set")).last()))
+					// Focus sur le champ de recherche
+					$("#main-search-field").focus();
+				// Sinon, s'il est le dernier du result-set
+				else if ($(this).is($("a", $(this).parents(".result-set")).last()))
+					// Focus sur le premier élément du result-set suivant
+					$("a", $(".result-item", $(this).parents(".result-set").nextAll()).first()).focus();
+				// Sinon focus sur l'élément suivant
+				else $("a", $(this).parents(".result-item").next()).focus();
 				break;
 				default:
 					break;
 		}
 	}));
-	
-});
-
-/** Méthode d'init pour Calendar Js */
-function initCalendar (){
-	$('#calendar').fullCalendar();
 }
 
-
-
-
-
+function closeMainSearch() {
+	$("#main-search-results").removeClass("toggled");
+	$("#main-search-field").blur();
+}
 
 
 

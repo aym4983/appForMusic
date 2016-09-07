@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <c:url var="urlSignOut" value="/sign-out" />
 <c:url var="urlProfil" value="/profile" />
@@ -13,20 +14,13 @@
 <nav id="main-menu">
 
 	<header id="main-menu-header">
-        <button id="main-menu-toggler" class="glyphicon glyphicon-menu-hamburger" title="Ouvrir le menu"></button>
-        
 		<div id="account">
-			<a href="${ urlSignOut }" title="Déconnexion" id="account-signout"></a>
-			<a id="account-picture" href="${ urlProfil }" title="Mon compte">
+			<a id="account-picture" href="${ urlProfil }/@<sec:authentication property="principal.username" />" title="Mon compte">
 				<img src="" alt="" /></a>
 		</div>
 	</header>
-
 	
 	<section>
-		<form action="" method="get" class="menu">
-			<p><input type="text" name="main-search" id="main-search" class="form-control" placeholder="Rechercher" /></p>
-		</form>
 		<ul class="menu">
 			<li><a href="${ urlHome }" title="Accueil">Accueil</a></li>
 		</ul>
@@ -37,6 +31,11 @@
 		<ul class="menu">
 			<li><a href="${ urlSettings }" title="Paramètres">Paramètres</a></li>
 			<li><a href="${ urlHelp }" title="Aide">Aide</a></li>
+		</ul>
+		<ul class="menu">
+			<li class="sign-out">
+				<a href="${ urlSignOut }" id="menu-sign-out" title="Déconnexion">Déconnexion</a>
+			</li>
 		</ul>
 	</section>
 	

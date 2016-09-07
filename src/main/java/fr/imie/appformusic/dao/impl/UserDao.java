@@ -42,7 +42,6 @@ public class UserDao implements IUserDao {
 	@Override
 	public void update(AppUser user) throws TechnicalException {
 		try {
-			
 			Session session = sessionFactory.openSession();
 			session.saveOrUpdate(user);
 			session.close();
@@ -53,10 +52,14 @@ public class UserDao implements IUserDao {
 	
 	@Override
 	public AppUser findByUserName(String userName) throws TechnicalException {
-		return (AppUser) sessionFactory.getCurrentSession()
-				.createCriteria(AppUser.class)
-				.add(Restrictions.eq("username", userName))
-				.uniqueResult();
+		try {
+			return (AppUser) sessionFactory.getCurrentSession()
+					.createCriteria(AppUser.class)
+					.add(Restrictions.eq("username", userName))
+					.uniqueResult();
+		} catch (Exception e) {
+			throw new TechnicalException(e);
+		}
 	}
 
 	@Override
@@ -68,27 +71,38 @@ public class UserDao implements IUserDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<AppUser> findAllUsers() throws TechnicalException {
-		return sessionFactory.getCurrentSession()
-				.createCriteria(AppUser.class)
-				.list();
+		try {
+			return sessionFactory.getCurrentSession()
+					.createCriteria(AppUser.class)
+					.list();
+		} catch (Exception e) {
+			throw new TechnicalException(e);
+		}
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<AppUser> findUsersLike(String username) throws TechnicalException {
+	public List<AppUser> findUsersLike(String name) throws TechnicalException {
 		List<AppUser> users = new ArrayList<AppUser>();
-		users = sessionFactory.getCurrentSession()
-				.createCriteria(AppUser.class)
-				.add(Restrictions.like("username", "%"+username+"%"))
-				.list();
-		
-		for (AppUser appUser : users) {
-			for (Role role : appUser.getRoles()) {
-				role = roleDao.findById(role.getId());
+		try {
+			users = sessionFactory.getCurrentSession()
+					.createCriteria(AppUser.class)
+					.add(Restrictions.or(
+							Restrictions.ilike("username", "%"+name+"%"),
+							Restrictions.ilike("firstname", "%"+name+"%"),
+							Restrictions.ilike("lastname", "%"+name+"%")))
+					.list();
+			
+			for (AppUser appUser : users) {
+				for (Role role : appUser.getRoles()) {
+					role = roleDao.findById(role.getId());
+				}
 			}
+			
+			return users;
+		} catch (Exception e) {
+			throw new TechnicalException(e);
 		}
-		
-		return users;
 	}
 
 	@Override
@@ -103,7 +117,12 @@ public class UserDao implements IUserDao {
 		if (null != newPasswordHash && !newPasswordHash.isEmpty()) user.setPasswordHash(newPasswordHash);
 		if (null != newFirstName && !newFirstName.isEmpty()) user.setFirstname(newFirstName);
 		if (null != newLastName && !newLastName.isEmpty()) user.setLastname(newLastName);
-		sessionFactory.getCurrentSession().merge(user);
+		
+		try {
+			sessionFactory.getCurrentSession().merge(user);
+		} catch (Exception e) {
+			new TechnicalException(e);
+		}
 	}
 
 }

@@ -15,6 +15,7 @@ body {
 
 #main-wrapper {
 	height: 100%;
+	padding-top: 48px;
 	position: absolute;
 	width: 100%
 }
@@ -26,47 +27,8 @@ body {
 	width: calc(100% - 48px);
 }
 
-#main-header {
-	margin-bottom: 20px;
-}
-
-#main-header form {
-	padding: 0;
-}
-
-#search-results {
-	display: none;
-}
-
-#search-results.toggled {
-	display: block;
-}
-
 .btn.glyphicon {
 	top: 0;
-}
-
-.result-set ul {
-	list-style: none;
-	padding: 0;
-}
-
-.result-set li a {
-	display: block;
-	text-decoration: none;
-}
-
-.result-set li a:hover,
-.result-set li a:focus {
-	background-color: #eee;
-	outline: none;
-}
-
-.result-set li img {
-	background-color: #ddd;
-	height: 48px;
-	margin-right: 8px;
-	width: 48px;
 }
 
 #places-map,
@@ -144,7 +106,11 @@ body {
 
 @media screen and (min-width: 769px) {
 
-	#main-wrapper #main-container {
+	#main-wrapper {
+		padding-top: 56px;
+	}
+	
+	#main-container {
 		margin-left: 272px;
 		width: calc(100% - 272px);
 	}

@@ -5,21 +5,36 @@
 @CHARSET "UTF-8";
 
 #profile-header {
+	overflow: hidden;
+	padding: 48px;
 	position: relative;
 }
 
-#profile-header::before {
-	content: "";
-	display: block;
-	height: 0;
-	padding-top: 42%;
-	width: 100%;
-}
-
 #profile-cover {
-	background-color: #ccc;
+	background-color: #eee;
 	height: 100%;
+	left: 0;
 	position: absolute;
 	top: 0;
 	width: 100%;
+	z-index: -1;
+}
+
+#profile-header-content {
+	align-items: center;
+	z-index: 2;
+}
+
+#profile-picture {
+	background: #ddd;
+	border-radius: 50%;
+	height: 172px;
+	margin: 0 auto 24px;
+	width: 172px;
+}
+
+#profile-header h1 {
+	font-size: 4em;
+	margin: 0;
+	text-align: center;
 }

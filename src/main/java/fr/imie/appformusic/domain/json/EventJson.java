@@ -1,17 +1,30 @@
-/*
- *@filename EventForm.java
- *@author Lila
- *@date 07 septembre 2016
-*/
+package fr.imie.appformusic.domain.json;
 
-package fr.imie.appformusic.form;
+import org.joda.time.DateTime;
 
-public class EventForm {
+import fr.imie.appformusic.domain.Event;
 
+public class EventJson {
+	
+	private int eventid;
 	private String startevent;
 	private String endevent;
 	private String titleevent;
 	
+	
+	public EventJson(Event event) {
+		eventid = event.getid();
+		startevent = event.getStartevent();
+		endevent = event.getEndevent();
+		titleevent = event.getTitleevent();
+	}
+	
+	public int getEventid() {
+		return eventid;
+	}
+	public void setEventid(int eventid) {
+		this.eventid = eventid;
+	}
 	public String getStartevent() {
 		return startevent;
 	}
@@ -30,4 +43,5 @@ public class EventForm {
 	public void setTitleevent(String titleevent) {
 		this.titleevent = titleevent;
 	}
+	
 }

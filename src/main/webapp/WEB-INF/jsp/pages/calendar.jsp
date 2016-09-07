@@ -24,39 +24,42 @@
 
 			<!-- Modal Body -->
 			<div class="modal-body">
-				<form class="form-horizontal" role="form" id="formEvent">
+				<form:form action="/appForMusic/calendar" method="POST" modelAttribute="eventForm" id="FormEvent" class="form-horizontal"  >
 					<div class="form-group">
 						<label class="col-sm-3 control-label" for="inputDayEvent">Jour</label>						
-						<div class="col-sm-9" data-provide="datepicker">
-						    <input type="text" class="form-control" id="inputDayEvent" disabled="disabled">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label" for="inputStartEvent">Début</label>
-						<div class="col-sm-9 clockpicker">
-							<input type="text" class="form-control" id="inputStartEvent" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label" for="inputEndEvent">Fin</label>
-						<div class="col-sm-9 clockpicker">
-							<input type="text" class="form-control" id="inputEndEvent" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label" for="inputTitleEvent">Titre</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" id="inputTitleEvent" placeholder="Nom de l'evenement" />
+						    <input class="form-control" id="inputDayEvent" disabled="disabled"/>
 						</div>
 					</div>
+					<div class="form-group">
+						<form:label path="startevent" class="col-sm-3 control-label" for="inputStartEvent">Début</form:label>
+						<div class="col-sm-9 clockpicker">
+							<input  class="form-control" id="inputStartEvent" />
+							<form:input path="startevent" type="hidden" id="hiddenStartEvent" />
+						</div>
+					</div>
+					<div class="form-group">
+						<form:label path="endevent" class="col-sm-3 control-label" for="inputEndEvent">Fin</form:label>
+						<div class="col-sm-9 clockpicker">
+							<input class="form-control" id="inputEndEvent" />
+							<form:input path="endevent" type="hidden" id="hiddenEndEvent" />
+						</div>
+					</div>
+					<div class="form-group">
+						<form:label path="titleevent" class="col-sm-3 control-label" for="inputTitleEvent">Titre</form:label>
+						<div class="col-sm-9">
+							<form:input path="titleevent" class="form-control" id="inputTitleEvent" placeholder="Nom de l'evenement" />
+						</div>
+					</div>
+					
+					<!-- Modal Footer -->
+					<div class="modal-footer">
+						<button type="reset" class="btn btn-default" data-dismiss="modal">Annuler</button>
+						<input type="submit" class="btn btn-primary" value="Enregistrer" onsubmit="doSubmit()"/>
+					</div>
+					
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-				</form>
-			</div>
-
-			<!-- Modal Footer -->
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-				<button type="button" class="btn btn-primary" id="submitEvent" onclick="doSubmit()">Enregistrer</button>
+				</form:form>
 			</div>
 		</div>
 	</div>

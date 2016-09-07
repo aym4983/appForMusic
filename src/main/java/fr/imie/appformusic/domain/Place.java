@@ -46,6 +46,9 @@ public class Place implements Serializable {
 	@Column(name="city", length = 50, nullable = false)
 	private String city;
 	
+	@Column(name="description", nullable = true)
+	private String description;
+
 	@Column(name="latitude", nullable = false)
 	private double latitude;
 	
@@ -69,7 +72,7 @@ public class Place implements Serializable {
 	/** Constructors **/
 	public Place(){};
 	
-	public Place(int placeId, String label, String city, String street, String zipcode, double latitude, double longitude) {
+	public Place(int placeId, String label, String city, String street, String zipcode, double latitude, double longitude, String description) {
 		super();
 		this.placeId = placeId;
 		this.privateLabel = label;
@@ -78,8 +81,17 @@ public class Place implements Serializable {
 		this.zipcode = zipcode;
 		this.latitude = latitude;
 		this.longitude = longitude;
+		this.description = description;
+	}
+	
+	public String getDescription() {
+		return description;
 	}
 
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 	public int getPlaceId() {
 		return placeId;
 	}

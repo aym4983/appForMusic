@@ -1,19 +1,18 @@
-/*
- *@filename PlaceController.java
- *@author Sakhuraah
- *@date 18 août 2016
-*/
-
 package fr.imie.appformusic.controller;
-
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.imie.appformusic.configuration.constants.Routes;
@@ -24,6 +23,7 @@ import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.form.PlaceForm;
 import fr.imie.appformusic.service.IPlaceService;
 import fr.imie.appformusic.service.IUserService;
+import fr.imie.appformusic.utils.ImageUtils;
 
 @Controller
 public class PlaceController {
@@ -35,6 +35,7 @@ public class PlaceController {
 	private IUserService userService;
 	
 	
+	private static final Logger log = Logger.getLogger(PlaceController.class);
 	/**
 	 * 
 	 * @param model
@@ -43,7 +44,8 @@ public class PlaceController {
 	 */
 	@RequestMapping(Routes.PLACE)
 	public ModelAndView showMyPlaces(Model model) throws BusinessException {
-		
+		System.out.println("print");
+		log.debug("log");
 		ModelAndView mav = new ModelAndView(Views.PLACE);
 		
 		// Get the user 
@@ -55,15 +57,21 @@ public class PlaceController {
 		places = placeService.findUserPlaces(user);
 		
 		mav.addObject("urlPlace", Routes.PLACE);
-		//mav.addObject("places", Routes.PLACE);
+
 		model.addAttribute(new PlaceForm());
 		model.addAttribute("places", places);
-		//System.out.println("print");
+		boolean ImageExists = ImageUtils.ImageExists(1);
+		if(ImageExists){
+			mav.addObject("image_path","/img/image");
+		}else{
+			mav.addObject("image_path","/img/image_default.jpg");
+		}
 		return mav; 
 	}
 	
+
 	@RequestMapping(value=Routes.PLACE, method=RequestMethod.POST)
-	public ModelAndView submitPlaceForm(PlaceForm placeForm) throws BusinessException {
+	public ModelAndView submitPlaceForm(PlaceForm placeForm) throws BusinessException, IOException {
 		
 		// Get the user 
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -84,8 +92,58 @@ public class PlaceController {
 		place.setLongitude(placeForm.getLongitude());
 		place.setStreet(placeForm.getStreet());
 		place.setZipcode(placeForm.getZipcode());
+		place.setDescription(placeForm.getDescription());
 		
 		placeService.create(place);
+    
 		return new ModelAndView("redirect:" + Routes.PLACE);
 	}
+
+	
+	@RequestMapping(value="/places/{placeId}")
+	@ResponseBody
+	public ModelAndView showPlace(Model model,@PathVariable("placeId") int placeId, HttpServletResponse response) throws BusinessException {
+		ModelAndView mav = new ModelAndView(Views.PLACEINFO);
+		
+		Place place = new Place();
+		if(placeService.findById(placeId)==null){
+			try {
+				response.sendError(HttpServletResponse.SC_NOT_FOUND);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		// Get the user 
+		String name = SecurityContextHolder.getContext().getAuthentication().getName();
+
+	
+		place = placeService.findById(placeId);
+		mav.addObject("place",place);
+		mav.addObject("urlCalendar", "/"+ Views.CALENDAR);
+		mav.addObject("utilCo", name);
+		return mav;
+		 
+	}
+	
+	@RequestMapping(value="/appForMusic/modifyplace")
+	@ResponseBody
+	public ModelAndView modifyPlace(PlaceForm placeForm) throws BusinessException {
+		ModelAndView mav = new ModelAndView(Views.PLACEINFO);
+		
+		Place place = new Place();
+		place.setCity(placeForm.getCity());
+		place.setLatitude(placeForm.getLatitude());
+		place.setLongitude(placeForm.getLongitude());
+		place.setStreet(placeForm.getStreet());
+		place.setZipcode(placeForm.getZipcode());
+		place.setDescription(placeForm.getDescription());
+		//place.setPrivateLabel(placeForm.getPrivateLabel());
+		place.setPublicLabel(placeForm.getPublicLabel());
+		
+		//placeService.update(place);
+		return mav;
+		 
+	}
+
 }

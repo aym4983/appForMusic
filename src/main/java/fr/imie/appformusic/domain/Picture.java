@@ -1,5 +1,6 @@
 package fr.imie.appformusic.domain;
 
+import java.awt.Image;
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -23,11 +24,17 @@ public class Picture implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int pictureId;
 	
-	@Column(name="path", length = 255, nullable = false)
+	@Column(name="path", length = 255, nullable = true)
 	private String path;
 	
+	/*
+	@Column(name="path", length = 255, nullable = false)
+	private String path;*/
+	
+
 	/** Constructors **/ 
-	public Picture(){}
+	public Picture(){
+	}
 	
 	public Picture(int pictureId, String path){
 		super();

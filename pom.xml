@@ -175,6 +175,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
         </dependency>
 	    
 	    <!-- apache commons -->
@@ -361,6 +362,7 @@
                 </goals>
             </execution>
         </executions>
+        <configuration><wait>60000</wait></configuration>
     </plugin>
         
     </plugins>

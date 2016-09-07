@@ -46,7 +46,7 @@ public class HomeControllerTest {
 		Model model = new BindingAwareModelMap();
 		ModelAndView view = controller.init(model);
 		
-		assertThat(view.getViewName()).isEqualTo(Views.SEARCH);
+		assertThat(view.getViewName()).isEqualTo(Views.HOME);
 	}
 	
 	private AppUser createAppUser(){

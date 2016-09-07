@@ -18,7 +18,6 @@ import javax.persistence.Table;
  * @author Tiphanie
  *
  */
-
 @Entity
 @Table(name="place")
 public class Place implements Serializable {
@@ -62,8 +61,8 @@ public class Place implements Serializable {
 	@OneToMany(mappedBy="place")
 	private Set<Borrows> borrows;
 	
-	@OneToMany(mappedBy="place")
-	private Set<Event> event;
+//	@OneToMany(mappedBy="place")
+//	private Set<Event> event;
 	
 	@OneToMany(mappedBy="place")
 	private Set<Favourites> favourites;

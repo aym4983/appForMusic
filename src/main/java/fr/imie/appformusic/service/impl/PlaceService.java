@@ -1,7 +1,10 @@
 package fr.imie.appformusic.service.impl;
 
+<<<<<<< Upstream, based on origin/master
 import java.io.File;
 import java.util.ArrayList;
+=======
+>>>>>>> 948f88c ajout des evenements en bdd
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

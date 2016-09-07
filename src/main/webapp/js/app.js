@@ -144,7 +144,6 @@ function initCalendar (){
 		lang: 'fr',
 		selectable: true,
 		editable: true,
-		
 		// Permet de passer de la vue mois à la vue semaine
 		dayClick: function(date, jsEvent, view) {
 			if(view.name != 'month'){
@@ -159,19 +158,27 @@ function initCalendar (){
 		// Ajout d'un evenement dans le calendar
         selectHelper: true,
 		select: function(start, end) {
+			 var hiddenStart=start.format();
+			 var hiddenEnd=end.format();
 			 var day=moment(start).format('LL');
 			 start=moment(start).format('HH:mm'); 
 			 end=moment(end).format('HH:mm'); 
 			 
-			 d = document.getElementById("formEvent");
+			 d = document.getElementById("FormEvent");
 			 d.elements["inputDayEvent"].value = day;
 			 
-			 s = document.getElementById("formEvent");
+			 s = document.getElementById("FormEvent");
 			 s.elements["inputStartEvent"].value = start;
 			 
-			 e = document.getElementById("formEvent");
+			 e = document.getElementById("FormEvent");
 			 e.elements["inputEndEvent"].value = end;
-		     
+			 
+			 hs = document.getElementById("FormEvent");
+			 hs.elements["hiddenStartEvent"].value = hiddenStart;
+			 
+			 he = document.getElementById("FormEvent");
+			 he.elements["hiddenEndEvent"].value = hiddenEnd;		 
+			 		     
 		     $('#myModalHorizontal').modal('show');
 		},
 		events: [
@@ -185,21 +192,42 @@ function initCalendar (){
 	});
 }
 
-$('#submitEvent').on('click', function(event) {
-    event.preventDefault();
-    doSubmit();
-});
-
-
+/** insert l'evenement */
 function doSubmit() {
+	console.log("passe ici");
     $("#myModalHorizontal").modal('hide');
     $("#calendar").fullCalendar('renderEvent', {
-        title: $('#inputTitleEvent').val(),
-    	start: $('#inputStartEvent').val(),
-    	end: $('#inputEndEvent').val(),
+    	title: $('#inputTitleEvent').val(),
+    	start: new Date($('#hiddenStartEvent').val()),
+    	end: new Date($('#hiddenEndEvent').val()),
     }, true);
+   return true;
 }
 
+
+/** timepicker pour formulaire */
+function initClockpicker (){    
+	var inputStart = $('#inputStartEvent').clockpicker({
+	    placement: 'bottom',
+	    align: 'left',
+	    autoclose: true
+	});
+	
+	var inputEnd = $('#inputEndEvent').clockpicker({
+	    placement: 'bottom',
+	    align: 'left',
+	    autoclose: true
+	});
+}
+
+/** datepicker pour formulaire */
+function initDatePicker (){
+	var inputDay = $('#inputDayEvent').datepicker({
+	    placement: 'bottom',
+	    align: 'left',
+	    autoclose: true
+	});
+}
 
 /** Validating Empty Field */
 //function check_empty() {

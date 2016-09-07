@@ -1,15 +1,15 @@
 package fr.imie.appformusic.domain;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.joda.time.DateTime;
 
 /**
  * Entity Event
@@ -23,71 +23,73 @@ public class Event implements Serializable{
 	/** Members **/ 
 	private static final long serialVersionUID = -2789957003132330594L;
 
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	@Id 
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="eventid")
+	private int eventid;
 	
-	@Column(name="title")
-	private String title;
+	@Column(name="startevent", length = 255, nullable = false)
+	private String startevent;
 	
-	@Column(name="startevent")
-	private Date startevent;
+	@Column(name="endevent", length = 255, nullable = false)
+	private String endevent;
 	
-	@Column(name="endevent")
-	private Date endevent;
+	@Column(name="titleevent", length = 255, nullable = false)
+	private String titleevent;
 	
-	@ManyToOne
-	private Place place;
+//	@ManyToOne
+//	private Place place;
 
 	/** Constructors **/ 
 	public Event(){}
 
-	public Event(long id, String title, Date startevent, Date endevent) {
+	public Event(int eventid, String startevent, String endevent, String titleevent) {
 		super();
-		this.id = id;
-		this.title = title;
+		this.eventid = eventid;
 		this.startevent = startevent;
 		this.endevent = endevent;
+		this.titleevent = titleevent;
 	}
 
 	/** Members **/ 
-	public long getId() {
-		return id;
+	public int getid() {
+		return eventid;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setid(int eventid) {
+		this.eventid = eventid;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public Date getStartevent() {
+	public String getStartevent() {
 		return startevent;
 	}
 
-	public void setStartevent(Date startevent) {
+	public void setStartevent(String startevent) {
 		this.startevent = startevent;
 	}
 
-	public Date getEndevent() {
+	public String getEndevent() {
 		return endevent;
 	}
 
-	public void setEndevent(Date endevent) {
+	public void setEndevent(String endevent) {
 		this.endevent = endevent;
 	}
 	
-	public Place getPlace() {
-		return place;
+	public String getTitleevent() {
+		return titleevent;
 	}
 
-	public void setPlace(Place place) {
-		this.place = place;
+	public void setTitleevent(String titleevent) {
+		this.titleevent = titleevent;
 	}
+
+//	public Place getPlace() {
+//		return place;
+//	}
+//
+//	public void setPlace(Place place) {
+//		this.place = place;
+//	}
 	
 }

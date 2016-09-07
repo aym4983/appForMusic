@@ -1,0 +1,1 @@
+web: java $JAVA_OPTS -Dserver.port=$PORT -Dspring.datasource.url=$DATABASE_URL -jar target/*.jar

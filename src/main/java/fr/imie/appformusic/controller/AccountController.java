@@ -3,6 +3,7 @@ package fr.imie.appformusic.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,6 +27,8 @@ public class AccountController {
 	@Autowired
 	private IUserService userService;
 	
+	private static final Logger log = Logger.getLogger(AccountController.class);
+	
 	/**
 	 * Affiche le formulaire d'inscription.
 	 * @param model Le modèle utilisé par la page. 
@@ -33,6 +36,7 @@ public class AccountController {
 	 */
 	@RequestMapping(Routes.SIGNUP)
 	public ModelAndView showSignUpForm(Model model) {
+		log.info("log info test");
 		ModelAndView mav = new ModelAndView(Views.SIGNUP);
 		mav.addObject("urlSignIn", Routes.SIGNIN);
 		model.addAttribute(new UserForm());

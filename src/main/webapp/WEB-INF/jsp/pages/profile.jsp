@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <c:url var="postForm" value="/profile/@${ username }" />
 
 <section id="profile-header">
 	<div id="profile-cover"></div>
-	<div id="profile-picture"></div>
+	<div id="profile-header-content">
+		<div id="profile-picture"></div>
+		<h1>${ user.username }</h1>
+	</div>
 </section>
 
 <form:form modelAttribute="fullUserForm" action="${ postForm }" method="post" class="form-horizontal col-md-8">

@@ -5,7 +5,9 @@
 
 <c:url var="commonCSS" value="/wro/common_css.css" />
 <c:url var="appCSS" value="/css/app.css" />
-<c:url var="mainMenuCSS" value="/css/main-menu.css" />
+<c:url var="appHeaderCSS" value="/css/app.header.css" />
+<c:url var="appNavCSS" value="/css/app.nav.css" />
+<c:url var="appSearchCSS" value="/css/app.search.css" />
 <c:url var="appProfileCSS" value="/css/app.profile.css" />
 
 <c:url var="commonJS" value="/wro/common_js.js" />
@@ -18,14 +20,15 @@
 	<head>
 	    <meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		
 	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 	    
 	    <title><c:out value="${ pageTitle }" /> &#124; App for music</title>
 	    
 	    <link rel="stylesheet" type="text/css" href="${ commonCSS }"/>
 	    <link rel="stylesheet" type="text/css" href="${ appCSS }"/>
-	    <link rel="stylesheet" type="text/css" href="${ mainMenuCSS }"/>
+	    <link rel="stylesheet" type="text/css" href="${ appHeaderCSS }"/>
+	    <link rel="stylesheet" type="text/css" href="${ appNavCSS }"/>
+	    <link rel="stylesheet" type="text/css" href="${ appSearchCSS }"/>
 	    <link rel="stylesheet" type="text/css" href="${ appProfileCSS }"/>
 	    
 	    <script type="text/javascript" src="${ commonJS }"></script>
@@ -34,10 +37,11 @@
 	
 	<body>
 		<div id="main-wrapper">
+			<tiles:insertAttribute name="header" />
+			<tiles:insertAttribute name="search" />
 			<tiles:insertAttribute name="navigation" />
 			
 			<div id="main-container">
-				<tiles:insertAttribute name="header" />
 				<tiles:insertAttribute name="body" />
 				<tiles:insertAttribute name="footer" />
 			</div>

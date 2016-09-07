@@ -37,15 +37,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 
 			.antMatchers("/wro/*", "/fonts/*", "/css/*", "/js/*", "/img/*",
-					Routes.SIGNIN, Routes.SIGNUP, Routes.PROFILE,
-					Routes.CALENDAR,Routes.PLACE,
-					Routes.SEARCH + "/*", "/main", "/test").permitAll()
+					Routes.SIGNIN, Routes.SIGNUP, 
+					Routes.CALENDAR, Routes.PLACE,
+					"/main", "/test").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.formLogin().loginPage(Routes.SIGNIN)
 			.permitAll()
 			.failureUrl("/404")
-			.defaultSuccessUrl(Routes.SEARCH, true)
+			.defaultSuccessUrl(Routes.HOME, true)
 			.usernameParameter("username")
 			.passwordParameter("password")
 			.and()

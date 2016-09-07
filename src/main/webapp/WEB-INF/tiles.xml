@@ -8,8 +8,9 @@
 	<!-- Layouts -->
 
     <definition name="baseDefinition" template="/WEB-INF/jsp/templates/layout.jsp">
-        <put-attribute name="navigation" 	value=""/>
-        <put-attribute name="header" 		value=""/>
+        <put-attribute name="header" 		value="/WEB-INF/jsp/blocs/header.jsp"/>
+        <put-attribute name="navigation" 	value="/WEB-INF/jsp/blocs/nav.jsp"/>
+        <put-attribute name="search" 		value="/WEB-INF/jsp/blocs/search.jsp"/>
         <put-attribute name="body" 			value=""/>
         <put-attribute name="footer" 		value=""/>
     </definition>
@@ -29,38 +30,23 @@
     </definition>
     
     <definition name="home" extends="baseDefinition">
-        <put-attribute name="navigation" 	value="/WEB-INF/jsp/blocs/nav.jsp"/>
-        <put-attribute name="header" 		value="/WEB-INF/jsp/blocs/header.jsp"/>
-        <put-attribute name="body" 			value="/WEB-INF/jsp/pages/home.jsp"/>
-        <put-attribute name="footer" 		value=""/>
+        <put-attribute name="body" value="/WEB-INF/jsp/pages/home.jsp"/>
     </definition>
     
     <definition name="search" extends="baseDefinition">
-        <put-attribute name="navigation" 	value="/WEB-INF/jsp/blocs/nav.jsp"/>
-        <put-attribute name="header" 		value="/WEB-INF/jsp/blocs/header.jsp"/>
-        <put-attribute name="body" 			value="/WEB-INF/jsp/pages/main.jsp"/>
-        <put-attribute name="footer" 		value=""/>
+        <put-attribute name="body" value="/WEB-INF/jsp/pages/search.jsp"/>
     </definition>
 
     <definition name="calendar" extends="baseDefinition">
-        <put-attribute name="navigation" 	value="/WEB-INF/jsp/blocs/nav.jsp"/>
-   		<put-attribute name="header" 		value="/WEB-INF/jsp/blocs/header.jsp"/>
-        <put-attribute name="body" 			value="/WEB-INF/jsp/pages/calendar.jsp"/>
-        <put-attribute name="footer" 		value=""/>
+        <put-attribute name="body" value="/WEB-INF/jsp/pages/calendar.jsp"/>
     </definition>
     
     <definition name="place" extends="baseDefinition">
-        <put-attribute name="navigation" 	value="/WEB-INF/jsp/blocs/nav.jsp"/>
-   		<put-attribute name="header" 		value="/WEB-INF/jsp/blocs/header.jsp"/>
-        <put-attribute name="body" 			value="/WEB-INF/jsp/pages/place.jsp"/>
-        <put-attribute name="footer" 		value=""/>
+        <put-attribute name="body" value="/WEB-INF/jsp/pages/place.jsp"/>
     </definition>
     
     <definition name="profile" extends="baseDefinition">
-        <put-attribute name="navigation" 	value="/WEB-INF/jsp/blocs/nav.jsp"/>
-   		<put-attribute name="header" 		value="/WEB-INF/jsp/blocs/header.jsp"/>
-        <put-attribute name="body" 			value="/WEB-INF/jsp/pages/profile.jsp"/>
-        <put-attribute name="footer" 		value=""/>
+        <put-attribute name="body" value="/WEB-INF/jsp/pages/profile.jsp"/>
     </definition>
     
 </tiles-definitions>

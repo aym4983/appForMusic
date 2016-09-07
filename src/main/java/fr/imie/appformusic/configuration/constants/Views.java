@@ -24,7 +24,7 @@ public interface Views {
 	/** Vue du calendrier */
 	public String PLACE = "place";
 	
-	/** Vue d'erreyr */ 
+	/** Vue d'erreur */ 
 	public String ERROR ="error";
 	
 	/** Vue du profile */

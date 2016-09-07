@@ -362,6 +362,7 @@
                 </goals>
             </execution>
         </executions>
+        <configuration><wait>60000</wait></configuration>
     </plugin>
         
     </plugins>

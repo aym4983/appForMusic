@@ -9,6 +9,7 @@
 <c:url var="appNavCSS" value="/css/app.nav.css" />
 <c:url var="appSearchCSS" value="/css/app.search.css" />
 <c:url var="appProfileCSS" value="/css/app.profile.css" />
+<c:url var="placeCSS" value="/css/app.places.css" />
 
 <c:url var="commonJS" value="/wro/common_js.js" />
 <c:url var="appJS" value="/js/app.js" />
@@ -31,6 +32,7 @@
 	    <link rel="stylesheet" type="text/css" href="${ appNavCSS }"/>
 	    <link rel="stylesheet" type="text/css" href="${ appSearchCSS }"/>
 	    <link rel="stylesheet" type="text/css" href="${ appProfileCSS }"/>
+	     <link rel="stylesheet" type="text/css" href="${ placeCSS }"/>
 	    
 	    <script type="text/javascript" src="${ commonJS }"></script>
 	    <script type="text/javascript" src="${ appJS }"></script>

@@ -40,6 +40,13 @@ action={
 	}
 };
 
+$(document).ready(function() {
+	  $('#media').carousel({
+	    pause: true,
+	    interval: false,
+	  });
+	});
+
 function bindActions(){
 	$('#place-delete').click(action.place_delete);
 	$('#image_form').change(action.image_upload);

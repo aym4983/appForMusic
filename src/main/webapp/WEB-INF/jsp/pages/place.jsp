@@ -26,31 +26,161 @@
 							</c:if>
 							</br>
 							
-							<form id="image_form" enctype='multipart/form-data'>
-								<label class="image" for="image_upload">
-									<img src="<c:url value="${image_path}"/>" id="image" style="width:150px;height:150px">
-									<input id="image_upload" type="file" name="image_upload"><br><br>
-								</label>
-								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-							</form>
+<%-- 							<form id="image_form" enctype='multipart/form-data'> --%>
+<!-- 								<label class="image" for="image_upload"> -->
+									<img src="<c:url value="${image_path}"/>" id="image" style="width:200px;height:150px">
+<!-- 									<input id="image_upload" type="file" name="image_upload"><br><br> -->
+<!-- 								</label> -->
+<%-- 								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
+<%-- 							</form> --%>
 
-<!-- 							<img src="no-image.jpg" alt="no-image" style="width:150px;height:150px"> -->
+<!-- 							<img src="C:\Image\Place\1.jpg" alt="no-image" style="width:150px;height:150px"> -->
 							</br>
+							
+							<div class="bloc-info">
      					 	<div class="">Rue : <c:out value="${place.street}"/></div> 
  							<div class="">Code Postal : <c:out value="${place.zipcode}"/></div> 
 							<div class="">Ville : <c:out value="${place.city}"/></div>
+							</div>
 							</br>
 							
-     					 	<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="${place.placeId}">En Savoir plus</button>
-     					 	<button type="button" id="place-delete" >Supprimer</button>
-     					 	<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="${place.placeId}">Modifier</button>
+							<div class="bloc-buttons">
+     					 	<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#${place.placeId}">Voir</button>
+     					 	<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="">Modifier</button>
+     					 	<button type="button" class="btn btn-info btn-sm" id="place-delete" data-toggle="modal" data-target="">Supprimer</button>
+     					 	</div>
+	
+					<!-- Modal pour afficher mon lieu -->
+					<div class="container">
+					  <!-- Modal -->
+					  <div class="modal fade" id='${place.placeId}' role="dialog">
+					    <div class="modal-dialog modal-lg">
+					    
+					      <!-- Modal content-->
+					      <div class="modal-content">
+					        <div class="modal-header">
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					          <h4 class="modal-title">	<c:if test="${empty place.privateLabel}">
+	    						<div><strong><c:out value="${place.publicLabel}"/></strong></div>
+								</c:if>
+								<c:if test="${not empty place.privateLabel}">
+					    			<div><strong><c:out value="${place.privateLabel}"/></strong></div>
+								</c:if></h4>
+						        </div>
+					        
+					        <div class="modal-body">
+					        <div class="container" >
+								  <div class='row'>
+								    <div class='col-md-8'>
+								      <div class="carousel slide media-carousel" id="media">
+								        <div class="carousel-inner">
+								          <div class="item  active">
+								            <div class="row">
+								              <div class="col-md-4">
+								                <a class="thumbnail" href="#"><img alt="" src="/appForMusic/img/image1.jpg" style="width:200px;height:150px"></a>
+								              </div>          
+								              <div class="col-md-4">
+								                <a class="thumbnail" href="#"><img alt="" src="/appForMusic/img/image2.jpg"style="width:200px;height:150px" ></a>
+								              </div>
+								              <div class="col-md-4">
+								                <a class="thumbnail" href="#"><img alt="" src="/appForMusic/img/image3.jpg" style="width:200px;height:150px"></a>
+								              </div>        
+								            </div>
+								          </div>
+								          <div class="item">
+								            <div class="row">
+								              <div class="col-md-4">
+								                <a class="thumbnail" href="#"><img alt="" src="/appForMusic/img/image1.jpg" style="width:200px;height:150px"></a>
+								              </div>          
+								              <div class="col-md-4">
+								                <a class="thumbnail" href="#"><img alt="" src="/appForMusic/img/image2.jpg" style="width:200px;height:150px"></a>
+								              </div>
+								              <div class="col-md-4">
+								                <a class="thumbnail" href="#"><img alt="" src="/appForMusic/img/image3.jpg" style="width:200px;height:150px"></a>
+								              </div>        
+								            </div>
+								          </div>
+								          <div class="item">
+								            <div class="row">
+								              <div class="col-md-4">
+								                <a class="thumbnail" href="#"><img alt="" src="/appForMusic/img/image1.jpg" style="width:200px;height:150px"></a>
+								              </div>          
+								              <div class="col-md-4">
+								                <a class="thumbnail" href="#"><img alt="" src="/appForMusic/img/image2.jpg" style="width:200px;height:150px"></a>
+								              </div>
+								              <div class="col-md-4">
+								                <a class="thumbnail" href="#"><img alt="" src="/appForMusic/img/image3.jpg" style="width:200px;height:150px"></a>
+								              </div>      
+								            </div>
+								          </div>
+								        </div>
+								        <a data-slide="prev" href="#media" class="left carousel-control">‹</a>
+								        <a data-slide="next" href="#media" class="right carousel-control">›</a>
+								      </div>                          
+								    </div>
+								  </div>
+								</div>
+								<p class="form-group">
+									<label path="street" for="place-street" class="form-label">Rue</label>
+									<input type="text" name="street" id="place-street" class="form-control" value="${place.street}" readonly/>
+								</p>
+				
+								<p class="form-group">
+									<label  for="place-zipcode" class="form-label">Code Postal</label>
+									<input name="zipcode" id="place-zipcode" class="form-control" value="${place.zipcode}" readonly/>
+								</p>
+				
+								<p class="form-group">
+									<label  for="place-city" class="form-label">Ville</label>
+									<input type="text" name="city"  id="place-city" class="form-control" placeholder="Ville" value="${place.city}" readonly/>
+								</p>
+								
+								
+								<p class="form-group">
+									<label  for="place-description" class="col-sm-2 control-label" >Description</label>
+									<textarea id="description" class="form-control" name="description" readonly>${place.description}</textarea>
+								</p>
+								
+								
+							 </div>
+        
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-default " data-dismiss="modal">Fermer</button>
+					        </div>
+					      </div>
+					      
+					    </div>
+					  </div>
+					</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 			        </div>
 			       </div>	
 		</c:forEach>
 	</p>
 </div>
-
 
 <div class="container">
   <!-- Modal -->
@@ -100,7 +230,7 @@
 				
 				<p class="form-group">
 					<form:label path="description" for="place-description" class="col-sm-2 control-label">Description</form:label>
-					<form:textarea path="description" id="description" class="form-control"/>
+					<form:textarea rows="10" cols="20" path="description" id="description" class="form-control"/>
 				</p>
 
 				<p class="form-group">
@@ -115,7 +245,7 @@
 				</p>
 				
 				<p class="form-group">
-					<input type="submit" name="place" value="Ajouter" class="btn btn-primary btn-sm" />
+					<input type="submit" name="place" value="Ajouter" class="btn btn-primary btn-md" />
 				</p>
 				
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

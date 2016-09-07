@@ -11,6 +11,9 @@ public class Response<T> {
 		succeeded = true;
 		this.content = content;
 	}
+	public Response() {
+		succeeded = true;
+	}
 	
 	public Response(boolean succeeded) {
 		this.succeeded = succeeded;

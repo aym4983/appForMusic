@@ -1,12 +1,8 @@
 /* 
  *
  */
+ 
 @CHARSET "UTF-8";
-
-a.glyphicon,
-button.glyphicon {
-	top: 0;
-}
 
 #main-menu,
 #main-menu-header {
@@ -28,6 +24,7 @@ button.glyphicon {
 	background-color: #128AB2;
 	height: 100%;
 	overflow: hidden;
+	overflow-y: auto;
 	position: fixed;
 	z-index: 1;
 }
@@ -128,6 +125,7 @@ button.glyphicon {
 
 #main-wrapper.navigable #main-container {
 	margin-left: 272px;
+	pointer-events: none;
 }
 
 @media screen and (min-width: 769px) {
@@ -154,6 +152,10 @@ button.glyphicon {
 	
 	#main-wrapper .menu:first-child {
 		margin-top: 60px;
+	}
+	
+	#main-container {
+		pointer-events: auto;
 	}
 	
 }

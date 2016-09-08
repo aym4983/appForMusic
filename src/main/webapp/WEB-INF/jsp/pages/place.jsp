@@ -5,8 +5,11 @@
 
 <c:url value="${ urlPlace }" var="urlPlace" />
 <c:url var="urlPlaces" value="/places" />
-<script type="text/javascript">var contextPath='<c:url value="/"/>'</script>;
+<script type="text/javascript">var contextPath='<c:url value="/"/>'</script>
 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=AIzaSyBH8dHLUHMkDTWfuiLOxhySJpQtXTp7mFU"type="text/javascript"></script>
+<div id="alert_placeholder">
+<div id="snoAlertBox" class="alert alert-success" data-alert="alert">Now Update your Search</div>
+</div>
 
 <div class="container">
 	<h2>Mes Lieux <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Ajouter un lieu</button></h2>

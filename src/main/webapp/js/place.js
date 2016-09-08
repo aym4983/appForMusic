@@ -33,8 +33,10 @@ action={
 			dataType : 'json',
 			success: function(data, textStatus,jqXHR ){
 				console.log(data);
-				alert("Suppression réussie!");
-				window.location.href = contextPath + "/search"
+				$('#deleteModal').modal('hide');
+				window.location.href = contextPath + "places";
+				 $("#snoAlertBox").fadeIn();
+				   closeSnoAlertBox();
 			}
 		});
 	},
@@ -59,12 +61,34 @@ action={
 		        	//alert( "latitude : " + results[0].geometry.location.lat() );
 		          	//alert( "longitude : " + results[0].geometry.location.lng() );
 		        } else {
-		          alert('Geocode was not successful for the following reason: ' + status);
+		          //alert('Geocode was not successful for the following reason: ' + status);
 		        }
 		      });   
 	    }
 	}
 };
+
+function closeSnoAlertBox(){
+	window.setTimeout(function () {
+	  $("#snoAlertBox").fadeOut(300)
+	}, 3000);
+} 
+
+function showInfo(container, message) {
+    container.append(
+    $('<div>', {
+        class: 'alert alert-info',
+        html: message
+    }).append(
+    $('<button>', {
+        type: 'button',
+        class: 'close',
+        html: '&times',
+        click: function () {
+            $(this).parent().remove();
+        }
+    })));
+}
 
 function bindActions(){
 	$('#placeinfo-delete').click(action.place_delete);

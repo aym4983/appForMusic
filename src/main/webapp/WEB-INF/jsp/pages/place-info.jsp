@@ -44,45 +44,44 @@
 								title: $(this).data("place-label")
 						});
 					}
-
  		</script>
 	</div>
 
 	<c:if test="${utilCo eq place.owner.username}">
-		<p class="col-md-6">
+		<p class="col-md-11">
 			<label for="placeinfo-privateLabel" class="form-label">Nom privé (Visible que pour le propriétaire)</label>
 			<input type="text" name="placeinfo-privateLabel" id="placeinfo-privateLabel" class="form-control" value="${place.privateLabel}" readonly/>
 		</p>
 		</c:if> 
 		
-		<div class="col-md-6">
+		<div class="col-md-11">
 			<label for="placeinfo-publicLabel" class="form-label">Nom publique</label>
 			<input type="text" name="placeinfo-publicLabel" id="placeinfo-publicLabel" class="form-control" value="${place.publicLabel}" readonly/>
 		</div>
 		
-		<div class="col-md-4">
+		<div class="col-md-11">
 			<label class="form-label">Rue</label>
 			<input type="text" name="placeinfo-street" id="placeinfo-street" class="form-control" value="${place.street}" readonly/>
 		</div>
 						
-		<div class="col-md-2">
+		<div class="col-md-11">
 			<label class="form-label">Code Postal</label>
 			<input name="placeinfo-zipcode" id="placeinfo-zipcode" class="form-control" value="${place.zipcode}" readonly/>
 		</div>
 		
-		<div class="col-md-5">
+		<div class="col-md-11">
 			<label  for="placeinfo-city" class="form-label">Ville</label>
 			<input type="text" name="placeinfo-city"  id="placeinfo-city" class="form-control" value="${place.city}" readonly/>
 		</div>
 							
-		<div class="col-md-7">
+		<div class="col-md-11">
 			<label  for="placeinfo-description" class="control-label" >Description</label>
 			<textarea cols="15" rows="10" id="placeinfo-description" class="form-control" name="placeinfo-description" readonly>${place.description}</textarea>
-		</div>
+		</div></br>
 </div>
 
 <div class="place-action">
-	<p class="col-md-7">
+	<div class="col-md-7">
 		<c:if test="${utilCo eq place.owner.username}">
 			<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="" href="${ urlCalendar }">Calendrier</button>
 	    	<button type="button" class="btn btn-info btn-sm" id="place-delete" data-toggle="modal" data-target="#modifyModal">Modifier</button>
@@ -92,7 +91,7 @@
 	    <c:if test="${utilCo ne place.owner.username}">
 			<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="" href="${ urlCalendar }">Réserver</button>
 		</c:if> 
-	</p>
+	</div>
 </div>
 
 <div class="place-notation">

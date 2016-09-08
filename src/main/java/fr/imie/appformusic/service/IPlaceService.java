@@ -12,6 +12,7 @@ public interface IPlaceService {
 	public void create(Place place) throws BusinessException;
 	public Place findById(int placeId) throws BusinessException;
 	public List<Place> findAllPlaces() throws BusinessException;
+	public List<Place> findPlacesNear(double lat, double lng, int offset, int limit) throws BusinessException;
 	public List<Place> findPlacesLike(String likePublicName) throws BusinessException;
 	public List<Place> findUserPlaces(AppUser user) throws BusinessException;
 	public List<Place> findUserPlacesLike(AppUser user, String likePrivateName) throws BusinessException;

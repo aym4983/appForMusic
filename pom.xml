@@ -294,6 +294,7 @@
 		          <exclude>fr/imie/appformusic/utils/*</exclude>
 		          <exclude>fr/imie/appformusic/domain/json/*</exclude>
 		          <exclude>fr/imie/appformusic/form/*</exclude>
+		          <exclude>fr/imie/appformusic/responses/*</exclude>
 		      </excludes>
 		    </configuration>
 		    <executions>

@@ -8,5 +8,5 @@ package fr.imie.appformusic.configuration.constants;
 
 public interface Image {
 	public String AVATAR_PATH="C:/Image";
-	public String IMAGE_PATH="C:/Image/Place";
+	public String IMAGE_PATH_DEV="C:/PROGRAMJAVA/‎image/place";
 }

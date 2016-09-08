@@ -13,9 +13,9 @@
 		<js>/js/lib/fr.js</js>	
 		<js>/js/lib/mustache.js</js>
 		<js>/js/lib/jquery.validate.min.js</js>
-<!-- 		<js>/js/place.js</js>  -->
-<!-- 		<js>/js/app.js</js> -->
-		
+		<!-- Placer ici les js de l'application -->
+		<js>/js/app.js</js>
+        <js>/js/calendar.js</js>		
 	</group>
 	
 	<group name="common_css">

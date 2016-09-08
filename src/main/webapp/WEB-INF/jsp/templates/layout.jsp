@@ -35,7 +35,6 @@
 	    <link rel="stylesheet" type="text/css" href="${ appPageProfileCSS }"/>
 	    
 	    <script type="text/javascript" src="${ commonJS }"></script>
-	    <script type="text/javascript" src="${ appJS }"></script>
 	    <script type="text/javascript" src="${ place }"></script>
 	</head>
 	
@@ -47,9 +46,11 @@
 			
 			<div id="main-container">
 				<tiles:insertAttribute name="body" />
-				<tiles:insertAttribute name="footer" />
+				<tiles:insertAttribute name="footer" />				
 			</div>
 		</div>
+	
+	<script type="text/javascript"><tiles:insertAttribute name="initJs"></tiles:insertAttribute></script>
 	
 	</body>
 	

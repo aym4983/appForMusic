@@ -90,7 +90,7 @@ public class ImageUtils {
 	
 	/***** Image Place ******/ 
 	public static byte[] getPlaceImage(Integer placeid){
-		File file = new File(Image.IMAGE_PATH, Integer.toString(placeid));
+		File file = new File(Image.IMAGE_PATH_DEV, Integer.toString(placeid));
 				if(!file.exists()){
 					return null;
 				}
@@ -102,16 +102,16 @@ public class ImageUtils {
 	}
 	
 	public static String getImagePath(Integer placeid) {
-		return String.format("%s/%s", Image.IMAGE_PATH, placeid);
+		return String.format("%s/%s", Image.IMAGE_PATH_DEV, placeid);
 	}
 	
 	public static boolean ImageExists(Integer placeid){
-		return new File(Image.IMAGE_PATH, placeid.toString()).exists();
+		return new File(Image.IMAGE_PATH_DEV, placeid.toString()).exists();
 	}
 	
 	public static void storeImage(InputStream image, int placeid) throws FileNotFoundException{
 		try{
-			OutputStream output = new FileOutputStream(new File(Image.IMAGE_PATH, Integer.toString(placeid)));
+			OutputStream output = new FileOutputStream(new File(Image.IMAGE_PATH_DEV, Integer.toString(placeid)));
 			
 			try{
 				byte[] buffer = new byte[1024];
@@ -134,7 +134,7 @@ public class ImageUtils {
 	}
 	
 	public static boolean readImage(OutputStream output, int placeid){
-		File file = new File(Image.IMAGE_PATH, Integer.toString(placeid));
+		File file = new File(Image.IMAGE_PATH_DEV, Integer.toString(placeid));
 		if(!file.exists()){
 			return false;
 		}

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import fr.imie.appformusic.dao.IEventDao;
 import fr.imie.appformusic.domain.Event;
-import fr.imie.appformusic.domain.Place;
 import fr.imie.appformusic.exceptions.TechnicalException;
 
 @Repository

@@ -18,8 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.multipart.MultipartFile;
 
 import fr.imie.appformusic.responses.ImageResponse;
 import fr.imie.appformusic.responses.Response;
@@ -33,8 +32,7 @@ public class ImageController {
 	
 	@RequestMapping(value="/uploadimage", method=RequestMethod.POST)
 	@ResponseBody
-	public ImageResponse imageUpload(@RequestParam("image_upload") CommonsMultipartFile multipart) throws IOException{
-		System.out.println("printimagecontroller");
+	public ImageResponse imageUpload(@RequestParam("image_upload") MultipartFile multipart) throws IOException{
 		log.debug("logimagecontroller");
 		InputStream input = multipart.getInputStream();
 		int placeid = 1;

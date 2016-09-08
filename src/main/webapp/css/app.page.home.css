@@ -1,0 +1,145 @@
+
+/* 
+ *
+ */
+@CHARSET "UTF-8";
+
+#places-map,
+#places-list,
+#places-list-toggler {
+	transition-duration: 500ms;
+	transition-timing-function: ease-out;
+}
+
+#places-map,
+#places-list {
+	height: 100%;
+	position: absolute;
+}
+
+#places-map {
+	width: calc(100% - 48px);
+}
+
+#places-list {
+	background-color: #fff;
+	right: -224px;
+	width: 272px;
+}
+
+#places-list.toggled {
+	right: 0;
+}
+
+#places-list-toggler {
+	background: #CCC014; /* Adobe Color CC, règle "Triade" autour de DeepSkyBlue */
+	border: none;
+	border-radius: 50%;
+	box-shadow: none;
+	color: white;
+	height: 40px;
+	left: -20px;
+	outline: none;
+	position: absolute;
+	top: 20px;
+	width: 40px;
+	z-index: 1;
+}
+
+#places-list-toggler:focus,
+#places-list-toggler:hover {
+	background: #B2A709; /* Adobe Color CC, règle "Triade" autour de DeepSkyBlue */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	height: 48px;
+	left: -24px;
+	outline: none;
+	top: 16px;
+	transition-duration: 100ms;
+	width: 48px;
+}
+
+#places-list-toggler:active {
+	background: #FF1954; /* Adobe Color CC, règle "Triade" autour de DeepSkyBlue */
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+	height: 40px;
+	left: -20px;
+	top: 20px;
+	width: 40px;
+}
+
+#places-list ul {
+	list-style: none;
+	margin: 0;
+	max-height: 100%;
+	overflow-y: hidden;
+	padding: 0;
+	pointer-events: none;
+	width: 100%;
+}
+
+#places-list.toggled ul {
+	pointer-events: auto;
+}
+
+#places-list.toggled ul {
+	overflow-y: auto;
+}
+
+.place-item {
+	float: left;
+	padding-bottom: 50%;
+	position: relative;
+	width: 50%;
+}
+
+.place-item a {
+	height: 100%;
+	left: 0;
+	padding: 12px;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.place-item a:hover {
+	background-color: #eee;
+	text-decoration: none;
+}
+
+@media screen and (min-width: 1025px) {
+
+	#places-map {
+		width: calc(100% - 272px);
+	}
+	
+	#places-list {
+		right: 0;
+		width: 272px;
+	}
+
+	#places-list-toggler {
+		display: none;
+	}
+	
+	#places-list ul {
+		overflow-y: auto;
+		pointer-events: auto;
+	}
+	
+}
+
+@media screen and (min-width: 1601px) {
+
+	#places-map {
+		width: calc(100% - 768px);
+	}
+	
+	#places-list {
+		width: 768px;
+	}
+	
+	.place-item a {
+		padding-bottom: 25%;
+		width: 25%;
+	}
+}

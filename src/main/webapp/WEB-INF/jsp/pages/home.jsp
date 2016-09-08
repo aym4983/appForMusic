@@ -11,7 +11,8 @@
 	<button id="places-list-toggler"></button>
 	<ul>
 		<c:forEach items="${ places }" var="place">
-			<li data-place-id="<c:out value="${ place.placeId }" />" 
+			<li class="place-item"
+				data-place-id="<c:out value="${ place.placeId }" />" 
 				data-place-lat="<c:out value="${ place.latitude }" />" 
 				data-place-lng="<c:out value="${ place.longitude }" />"
 				data-place-label="<c:out value="${ place.publicLabel }" />">

@@ -291,6 +291,9 @@
 		          <exclude>fr/imie/appformusic/configuration/*</exclude>
 		          <exclude>fr/imie/appformusic/exceptions/*</exclude>
 		          <exclude>fr/imie/appformusic/dao/entities/*</exclude>
+		          <exclude>fr/imie/appformusic/utils/*</exclude>
+		          <exclude>fr/imie/appformusic/domain/json/*</exclude>
+		          <exclude>fr/imie/appformusic/form/*</exclude>
 		      </excludes>
 		    </configuration>
 		    <executions>

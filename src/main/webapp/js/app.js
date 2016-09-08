@@ -207,6 +207,7 @@ function doSubmit() {
     }, true);
    return true;
 }
+
 function initHomePlacesList() {
 	$("#places-list").on("mouseover", ".place-item", function() {
 		homeMap.map.panTo({lat: Number.parseFloat($(this).data("place-lat")), lng: Number.parseFloat($(this).data("place-lng"))});

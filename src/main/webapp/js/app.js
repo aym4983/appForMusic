@@ -130,7 +130,9 @@ function initSearchNav() {
 				default:
 					break;
 		}
-	}));
+	}))
+}
+
 
 	
 /** Méthode d'init pour Calendar Js */

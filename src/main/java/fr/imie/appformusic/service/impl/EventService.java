@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.imie.appformusic.dao.IEventDao;
 import fr.imie.appformusic.domain.Event;
+import fr.imie.appformusic.domain.Place;
 import fr.imie.appformusic.exceptions.BusinessException;
 import fr.imie.appformusic.service.IEventService;
 
@@ -33,6 +34,11 @@ public class EventService implements IEventService {
 	@Transactional(readOnly = true)
 	public List<Event> findAllEvents() throws BusinessException {
 		return eventDao.findAllEvents();
+	}
+	@Override
+	@Transactional(rollbackFor = Throwable.class)
+	public void deleteEvent(Event event) throws BusinessException {
+		eventDao.delete(event);
 	}
 	
 }

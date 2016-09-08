@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import fr.imie.appformusic.dao.IEventDao;
 import fr.imie.appformusic.domain.Event;
+import fr.imie.appformusic.domain.Place;
 import fr.imie.appformusic.exceptions.TechnicalException;
 
 @Repository
@@ -46,6 +47,17 @@ public class EventDao implements IEventDao {
 					.createCriteria(Event.class).list();
 			return events;
 		} catch (Exception e) {
+			throw new TechnicalException(e);
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void delete(Event event) throws TechnicalException {
+		try{ 
+		Event eventToDelete = findById(event.getid());
+		sessionFactory.getCurrentSession().delete(eventToDelete);
+		}catch(Exception e){
 			throw new TechnicalException(e);
 		}
 	}

@@ -1,18 +1,5 @@
 package fr.imie.appformusic.service.impl;
-<<<<<<< HEAD
 
-=======
-
-<<<<<<< Upstream, based on origin/master
->>>>>>> refs/remotes/origin/master_lila
-import java.io.File;
-<<<<<<< HEAD
-import java.util.ArrayList;
-=======
-import java.util.ArrayList;
-=======
->>>>>>> 948f88c ajout des evenements en bdd
->>>>>>> refs/remotes/origin/master_lila
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

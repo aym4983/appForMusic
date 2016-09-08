@@ -35,6 +35,7 @@ public class EventService implements IEventService {
 	public List<Event> findAllEvents() throws BusinessException {
 		return eventDao.findAllEvents();
 	}
+	
 	@Override
 	@Transactional(rollbackFor = Throwable.class)
 	public void deleteEvent(Event event) throws BusinessException {

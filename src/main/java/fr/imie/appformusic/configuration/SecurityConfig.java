@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.formLogin().loginPage(Routes.SIGNIN)
 			.permitAll()
-			.failureUrl("/404")
+			.failureUrl(Routes.SIGNIN + "?error=bad-login")
 			.defaultSuccessUrl(Routes.HOME, true)
 			.usernameParameter("username")
 			.passwordParameter("password")

@@ -90,26 +90,32 @@ public class UserService implements IUserService {
 
 	@Override
 	@Transactional(rollbackFor = Throwable.class)
-	public AppUser updateUser(
+	public AppUser updateUserInfos(
 			AppUser user, 
 			String newEmail,
+			String newFirstName, 
+			String newLastName
+	) throws BusinessException {
+		userDao.updateUserInfos(user, newEmail, newFirstName, newLastName);
+		return null;
+	}
+
+	@Override
+	@Transactional(rollbackFor = Throwable.class)
+	public AppUser updateUserPass(
+			AppUser user, 
 			String oldPassword, 
 			String newPassword, 
-			String newPasswordConfirm, 
-			String newFirstName, 
-			String newLastName)
-			throws BusinessException {
-		// Les traitements de mot de passe ne sont effectués 
-		// que si un nouveau mdp est spécifié
-		if (!newPassword.isEmpty()) {
-			if (!BCrypt.checkpw(oldPassword, user.getPasswordHash()))
-				throw new BusinessException(Code.WRONG_PASSWORD);
-			
-			if (!newPassword.equals(newPasswordConfirm))
-				throw new BusinessException(Code.DIFFERENT_PASSWORDS);
-		}
+			String newPasswordConfirm
+	) throws BusinessException {
+
+		if (!BCrypt.checkpw(oldPassword, user.getPasswordHash()))
+			throw new BusinessException(Code.WRONG_PASSWORD);
 		
-		userDao.updateUser(user, newEmail, encryptPassword(newPassword), newFirstName, newLastName);
+		if (!newPassword.equals(newPasswordConfirm))
+			throw new BusinessException(Code.DIFFERENT_PASSWORDS);
+		
+		userDao.updateUserPass(user, encryptPassword(newPassword));
 		return null;
 	}
 	

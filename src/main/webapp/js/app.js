@@ -5,9 +5,6 @@ var homeMap = {};
 
 $(function(){
 	
-	initCalendar();
-	initUpdateCalendar();
-	initClockpicker();
 	initSearch();
 	initSearchNav();
 	initHomePlacesList();
@@ -135,65 +132,6 @@ function closeMainSearch() {
 	$("#main-search-field").blur();
 }
 	
-/** Méthode d'init pour Calendar Js */
-function initCalendar (){    
-	$('#calendar').fullCalendar({
-		 header: {
-             left: 'prev,next today',
-             center: 'title',
-             right: 'month,agendaWeek'
-         },
-		lang: 'fr',
-		selectable: true,
-		editable: true,
-		// Permet de passer de la vue mois à la vue semaine
-		dayClick: function(date, jsEvent, view) {
-			if(view.name != 'month'){
-			    return;
-			} else {
-				$('#calendar').fullCalendar('changeView', 'agendaWeek');
-				$('#calendar').fullCalendar('gotoDate', date); 
-				$('#calendar').fullCalendar( 'renderEvent', event);
-			}		  
-		},
-
-		// Ajout d'un evenement dans le calendar
-        selectHelper: true,
-		select: function(start, end) {
-			 var hiddenStart=start.format();
-			 var hiddenEnd=end.format();
-			 var day=moment(start).format('LL');
-			 start=moment(start).format('HH:mm'); 
-			 end=moment(end).format('HH:mm'); 
-			 
-			 d = document.getElementById("FormEvent");
-			 d.elements["inputDayEvent"].value = day;
-			 
-			 s = document.getElementById("FormEvent");
-			 s.elements["inputStartEvent"].value = start;
-			 
-			 e = document.getElementById("FormEvent");
-			 e.elements["inputEndEvent"].value = end;
-			 
-			 hs = document.getElementById("FormEvent");
-			 hs.elements["hiddenStartEvent"].value = hiddenStart;
-			 
-			 he = document.getElementById("FormEvent");
-			 he.elements["hiddenEndEvent"].value = hiddenEnd;		 
-			 		     
-		     $('#myModalHorizontal').modal('show');
-		},
-		events: [
-			{
-				title: 'test Event',
-				start: '2016-09-08',
-				end: '2016-09-08'
-			}
-		]
-		
-	});
-}
-
 /** insert l'evenement */
 //function doSubmit() {
 //	$("#myModalHorizontal").modal('hide');
@@ -205,33 +143,6 @@ function initCalendar (){
 //	return true;  
 //}
 
-/** récupère ts les events de la bdd et les affiche */
-
-function initUpdateCalendar() {
-	$("#FormEvent").submit(function(event){
-		event.preventDefault();
-		
-		$.ajax({
-			url: contextPath + "/calendar",
-			method : 'POST',
-			data : $(this).serialize(),
-			dataType : 'json',
-			success: function(data){
-				console.log(data);
-				for(var i=0; i<data.length; i ++){
-					$("#calendar").fullCalendar('renderEvent', {
-						start : data[i].startevent,
-						end : data[i].endevent,
-						title : data[i].titleevent
-					});
-				}
-			}
-		})
-		
-		$("#myModalHorizontal").modal('hide');
-		
-	});
-}
 
 function initHomeMap() {
 	homeMap.map = new google.maps.Map(document.getElementById("places-map"), {
@@ -278,31 +189,6 @@ function initHomePlacesList() {
 	
 	$("#places-list").on("mouseout", ".place-item", function() {
 		homeMap.markers[$(this).data("place-id")].setAnimation(null);
-	});
-}
-
-
-/** timepicker pour formulaire */
-function initClockpicker (){    
-	var inputStart = $('#inputStartEvent').clockpicker({
-	    placement: 'bottom',
-	    align: 'left',
-	    autoclose: true
-	});
-	
-	var inputEnd = $('#inputEndEvent').clockpicker({
-	    placement: 'bottom',
-	    align: 'left',
-	    autoclose: true
-	});
-}
-
-/** datepicker pour formulaire */
-function initDatePicker (){
-	var inputDay = $('#inputDayEvent').datepicker({
-	    placement: 'bottom',
-	    align: 'left',
-	    autoclose: true
 	});
 }
 

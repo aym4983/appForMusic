@@ -48,7 +48,7 @@ public class EventController {
 	 * @throws BusinessException
 	 */
 	@RequestMapping(value=Routes.CALENDAR, method=RequestMethod.POST)
-	public ModelAndView submitEventForm(EventForm eventForm) throws BusinessException {
+	public void submitEventForm(EventForm eventForm) throws BusinessException {
 				
 		// create event
 		Event event = new Event();
@@ -59,6 +59,5 @@ public class EventController {
 		event.setTitleevent(eventForm.getTitleevent());
 		
 		eventService.create(event);
-		return new ModelAndView("redirect:" + Routes.CALENDAR);
 	}
 }

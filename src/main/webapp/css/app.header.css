@@ -7,7 +7,6 @@
 #main-wrapper,
 #main-header,
 #main-search-field {
-/* 	transition-property: height, padding-top, width; */
 	transition-duration: 500ms;
 	transition-timing-function: ease-out;
 }
@@ -20,6 +19,7 @@
 	position: fixed;
 	top: 0;
 	width: 100%;
+	z-index: 1000;
 }
 
 #main-menu-toggler {

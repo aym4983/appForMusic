@@ -116,10 +116,14 @@ public class PlaceController {
 
 	
 		place = placeService.findById(placeId);
-		model.addAttribute(new ModifyPlaceForm());
-		model.addAttribute("place",place);
-		model.addAttribute("urlCalendar", "/"+ Views.CALENDAR);
-		model.addAttribute("utilCo", name);
+		mav.addObject("place",place);
+		mav.addObject("urlCalendar", "/"+ Views.CALENDAR);
+		mav.addObject("utilCo", name);
+		
+		ModifyPlaceForm m = new ModifyPlaceForm();
+		m.setDescription(place.getDescription());
+		model.addAttribute(m);
+		
 		return mav;
 		 
 	}

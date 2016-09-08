@@ -39,34 +39,45 @@ action={
 		});
 	},
 	place_localisation:function(){
+		
 		var codepostal = document.getElementById('place-zipcode').value;
 	    var ville =  document.getElementById('place-city').value;
 	    var rue =  document.getElementById('place-street').value;
 	    
-	    address = rue + " " + codepostal + " "+ ville; 
-	    
-	    console.log(address);
-	    
-	    var geocoder = new google.maps.Geocoder();
-	   
-	    geocoder.geocode({'address': address}, function(results, status) {
-	        if (status === google.maps.GeocoderStatus.OK) {
-	        	//document.getElementById('latitude').value = results[0].geometry.location.lat();
-	        	//document.getElementById('longitude').value = results[0].geometry.location.lng();
-	        	alert( "latitude : " + results[0].geometry.location.lat() );
-	          	alert( "longitude : " + results[0].geometry.location.lng() );
-	        } else {
-	          alert('Geocode was not successful for the following reason: ' + status);
-	        }
-	      });   
+	    if(codepostal!=="" && ville!=="" && rue!=="")
+	    {
+		    address = rue + " " + codepostal + " "+ ville; 
+		    
+		    console.log(address);
+		    
+		    var geocoder = new google.maps.Geocoder();
+		   
+		    geocoder.geocode({'address': address}, function(results, status) {
+		        if (status === google.maps.GeocoderStatus.OK) {
+		        	document.getElementById('latitude').value = results[0].geometry.location.lat();
+		        	document.getElementById('longitude').value = results[0].geometry.location.lng();
+		        	//alert( "latitude : " + results[0].geometry.location.lat() );
+		          	//alert( "longitude : " + results[0].geometry.location.lng() );
+		        } else {
+		          alert('Geocode was not successful for the following reason: ' + status);
+		        }
+		      });   
+	    }
 	}
-	
 };
 
 function bindActions(){
 	$('#placeinfo-delete').click(action.place_delete);
 	$('#image_form').change(action.image_upload);
 	//$('#modifier').click(action.place_localisation);
+	$('#place-street').click(action.place_localisation);
+	$('#place-zipcode').click(action.place_localisation);
+	$('#place-city').click(action.place_localisation);
+	$('#place-publiclabel').click(action.place_localisation);
+	$('#place-privatelabel').click(action.place_localisation);
+	$('#description').click(action.place_localisation);
+	$('#place-image').click(action.place_localisation);
+	$('#ajouter').click(action.place_localisation);
 }
 
 $(bindActions);

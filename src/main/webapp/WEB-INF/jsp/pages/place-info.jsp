@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <c:url value="${ urlPlceInfo }" var="urlPlaceInfo" />
 <c:url value="${ urlCalendar }" var="urlCalendar" />
@@ -145,53 +146,53 @@
 				</div>
 	
 				<div class="modal-body">
-					<form:form action="/appForMusic/modifyplace" method="POST" modelAttribute="ModifyPlaceForm" id="ModifyPlaceForm" name="modifyPlace">
-						<p class="form-group">
-							<form:label path="publicLabel" for="place-publiclabel" class="form-label">Nom public (Visible auprès de tous les utilisateurs)</form:label>
-							<form:input type="text" path="publicLabel" id="place-publiclabel" class="form-control" placeholder="Nom public" value="<c:out value="${place.privateLabel}"/>"/>
-						</p>
+					<form:form action="/appForMusic/modifyplace" method="post" modelAttribute="modifyPlaceForm" id="modifyPlace" name="modifyPlace">
+						<div class="form-group">
+							<form:label path="publicLabel" for="place-publiclabel" class="control-label">Nom public (Visible auprès de tous les utilisateurs)</form:label>
+ 							<form:input path="publicLabel" type="text" id="place-publiclabel" class="form-control" value="${place.publicLabel}"/>
+						</div>
 					
-<!-- 					<p class="form-group"> -->
-<%-- 						<form:label path="privateLabel" for="place-privatelabel" class="form-label">Nom privé</form:label> --%>
-<%-- 						<form:input type="text" path="privateLabel" id="place-privatelabel" class="form-control" placeholder="Nom privé" required="true" value="${place.publicLabel}"/> --%>
-<!-- 					</p> -->
+					<p class="form-group">
+						<form:label path="privateLabel" for="place-privatelabel" class="form-label">Nom privé</form:label>
+						<form:input path="privateLabel" type="text" id="place-privatelabel" class="form-control" placeholder="Nom privé" required="true" value="${place.privateLabel}"/>
+					</p>
 					
-<!-- 					<p class="form-group"> -->
-<%-- 						<form:label path="street" for="place-street" class="form-label">Rue</form:label> --%>
-<%-- 						<form:input type="text" name="street" path="street" id="place-street" class="form-control" placeholder="Rue" required="true" value="${place.street}"/> --%>
-<!-- 					</p> -->
+					<p class="form-group">
+						<form:label path="street" for="place-street" class="form-label">Rue</form:label>
+						<form:input path="street" type="text" name="street"  id="place-street" class="form-control" placeholder="Rue" required="true" value="${place.street}"/>
+					</p>
 	
-<!-- 					<p class="form-group"> -->
-<%-- 						<form:label path="zipcode" for="place-zipcode" class="form-label">Code Postal</form:label> --%>
-<%-- 						<form:input type="number" name="zipcode" path="zipcode"  id="place-zipcode" class="form-control" placeholder="Code Postal" required="true" value="${place.zipcode}"/> --%>
-<!-- 					</p> -->
+					<p class="form-group">
+						<form:label path="zipcode" for="place-zipcode" class="form-label">Code Postal</form:label>
+						<form:input path="zipcode" type="number" name="zipcode"  id="place-zipcode" class="form-control" placeholder="Code Postal" required="true" value="${place.zipcode}"/>
+					</p>
 	
-<!-- 					<p class="form-group"> -->
-<%-- 						<form:label path="city" for="place-city" class="form-label">Ville</form:label> --%>
-<%-- 						<form:input type="text" name="city" path="city" id="place-city" class="form-control" placeholder="Ville" required="true" value="${place.street}"/> --%>
-<!-- 					</p> -->
+					<p class="form-group">
+						<form:label path="city" for="place-city" class="form-label">Ville</form:label>
+						<form:input path="city" type="text" name="city"  id="place-city" class="form-control" placeholder="Ville" required="true" value="${place.city}"/>
+					</p>
 					
-<!-- 					<p class="form-group"> -->
-<%-- 						<form:label path="latitude" for="place-latitude" class="col-sm-2 control-label">Latitude:</form:label> --%>
-<%-- 						<form:input type="text" path="latitude" id="latitude" class="form-control" readonly="true"/> --%>
-<!-- 					</p> -->
+					<p class="form-group">
+<%-- 						<form:label path="latitude" for="place-latitude" class="control-label">Latitude:</form:label> --%>
+						<form:input path="latitude" type="hidden" id="latitude" class="form-control"/>
+					</p>
 							
-<!-- 					<p class="form-group"> -->
-<%-- 						<form:label path="longitude" for="place-latitude" class="col-sm-2 control-label">Longitude:</form:label> --%>
-<%-- 						<form:input type="text" path="longitude" id="longitude" class="form-control" readonly="true"/> --%>
-<!-- 					</p> -->
+					<p class="form-group">
+<%-- 						<form:label path="longitude" for="place-latitude" class="control-label">Longitude:</form:label> --%>
+						<form:input path="longitude" type="hidden"  id="longitude" class="form-control"/>
+					</p>
 					
-<!-- 					<p class="form-group"> -->
-<%-- 						<form:label path="description" for="place-description" class="col-sm-2 control-label">Description</form:label> --%>
-<%-- 						<form:textarea rows="10" cols="20" path="description" id="description" class="form-control"/> --%>
-<!-- 					</p> -->
+					<p class="form-group">
+						<form:label path="description" for="place-description" class="control-label">Description</form:label>
+						<form:textarea path="description" id="description" class="form-control" rows="10" cols="20"/>
+					</p>
 					
-						<p class="form-group">
-							<input type="submit" name="modifier" value="Modifier" class="btn btn-primary btn-md" />
-						</p>
+					<form:input type="hidden" path="placeId" name="placeId" id="placeId" class="form-control" value="${place.placeId}"/>
 					
-<%-- 					<form:input type='hidden' path="placeId" name="placeId" id="placeId" class="form-control" value="${place.placeId}"/> --%>
-						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					<p class="form-group">
+						<input type="submit" id="modifier" name="modifier" value="Modifier" class="btn btn-primary btn-md"/>
+					</p>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				</form:form>
 				</div>
 			

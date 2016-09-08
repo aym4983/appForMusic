@@ -34,8 +34,7 @@
 <!-- 								</label> -->
 <%-- 								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
 <%-- 							</form> --%>
-								<a href="${ urlPlaces }/<c:out value="${ place.placeId }" />"><c:out value="${ place.publicLabel }" />
-				</a>
+<%-- 								<a href="${ urlPlaces }/<c:out value="${ place.placeId }" />"><c:out value="${ place.publicLabel }" /></a> --%>
 
 <!-- 							<img src="C:\Image\Place\1.jpg" alt="no-image" style="width:150px;height:150px"> -->
 							</br>
@@ -48,7 +47,7 @@
 							</br>
 							
 							<div class="bloc-buttons">
-     					 	<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#${place.placeId}">En Savoir Plus</button>
+     					 	<a href="${ urlPlaces }/<c:out value="${ place.placeId }" />">En Savoir Plus</a>
  
      					 	</div>
 	
@@ -174,56 +173,56 @@
         
         <div class="modal-body">
          	<form:form action="/appForMusic/places" method="post" modelAttribute="placeForm" id="createPlace" name="createPlace">
-				<p class="form-group">
+				<div class="form-group">
 					<form:label path="publicLabel" for="place-publiclabel" class="form-label">Nom public (Visible auprès de tous les utilisateurs)</form:label>
 					<form:input type="text" path="publicLabel" id="place-publiclabel" class="form-control" placeholder="Nom public" required="true"/>
-				</p>
+				</div>
 				
-				<p class="form-group">
+				<div class="form-group">
 					<form:label path="privateLabel" for="place-privatelabel" class="form-label">Nom privé</form:label>
 					<form:input type="text" path="privateLabel" id="place-privatelabel" class="form-control" placeholder="Nom privé" required="true"/>
-				</p>
+				</div>
 				
-				<p class="form-group">
+				<div class="form-group">
 					<form:label path="street" for="place-street" class="form-label">Rue</form:label>
 					<form:input type="text" name="street" path="street" id="place-street" class="form-control" placeholder="Rue" required="true"/>
-				</p>
+				</div>
 
-				<p class="form-group">
+				<div class="form-group">
 					<form:label path="zipcode" for="place-zipcode" class="form-label">Code Postal</form:label>
 					<form:input type="number" name="zipcode" path="zipcode"  id="place-zipcode" class="form-control" placeholder="Code Postal" required="true"/>
-				</p>
+				</div>
 
-				<p class="form-group">
+				<div class="form-group">
 					<form:label path="city" for="place-city" class="form-label">Ville</form:label>
 					<form:input type="text" name="city" path="city" id="place-city" class="form-control" placeholder="Ville" required="true"/>
-				</p>
+				</div>
 				
-				<p class="form-group">
+				<div class="form-group">
 					<form:label path="latitude" for="place-latitude" class="col-sm-2 control-label">Latitude:</form:label>
-					<form:input type="text" path="latitude" id="lat" class="form-control" readonly="true"/>
+					<form:input type="text" path="latitude" id="latitude" class="form-control" readonly="true"/>
 <!-- 				<em id="lat_rad" style="color:#555; font-size:0.9em;"></em> -->
-				</p>
+				</div>
 						
-				<p class="form-group">
+				<div class="form-group">
 					<form:label path="longitude" for="place-latitude" class="col-sm-2 control-label">Longitude:</form:label>
-					<form:input type="text" path="longitude" id="lon" class="form-control" readonly="true"/>
+					<form:input type="text" path="longitude" id="longitude" class="form-control" readonly="true"/>
 <!-- 					<em id="lon_rad" style="color:#555; font-size:0.9em;"></em> -->
-				</p>
+				</div>
 				
-				<p class="form-group">
+				<div class="form-group">
 					<form:label path="description" for="place-description" class="col-sm-2 control-label">Description</form:label>
 					<form:textarea rows="10" cols="20" path="description" id="description" class="form-control"/>
-				</p>
+				</div>
 
-				<p class="form-group">
+				<div class="form-group">
 					<form:label path="image" for="place-image">Image:</form:label>
 					<form:input path="image" for="place-image" id="place-image" type="file" name="place-image"/>
-				</p>
+				</div>
 				
-				<p class="form-group">
-					<input type="submit" name="place" value="Ajouter" class="btn btn-primary btn-md" />
-				</p>
+				<div class="form-group">
+					<input type="submit" id="ajouter" name="ajouter" value="Ajouter" class="btn btn-primary btn-md" />
+				</div>
 				
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			</form:form>        

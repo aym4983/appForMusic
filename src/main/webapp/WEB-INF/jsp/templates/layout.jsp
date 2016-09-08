@@ -12,8 +12,6 @@
 <c:url var="appPageHomeCSS" value="/css/app.page.profile.css" />
 
 <c:url var="commonJS" value="/wro/common_js.js" />
-<c:url var="appJS" value="/js/app.js" />
-<c:url var="place" value="/js/place.js" />
 
 <!DOCTYPE html>
 
@@ -35,8 +33,6 @@
 	    <link rel="stylesheet" type="text/css" href="${ appPageProfileCSS }"/>
 	    
 	    <script type="text/javascript" src="${ commonJS }"></script>
-	    <script type="text/javascript" src="${ appJS }"></script>
-	    <script type="text/javascript" src="${ place }"></script>
 	</head>
 	
 	<body>
@@ -47,9 +43,12 @@
 			
 			<div id="main-container">
 				<tiles:insertAttribute name="body" />
-				<tiles:insertAttribute name="footer" />
+				<tiles:insertAttribute name="footer" />				
 			</div>
 		</div>
+	
+	<script type="text/javascript"><tiles:insertAttribute name="initSearchJs"/></script> 
+	<script type="text/javascript"><tiles:insertAttribute name="initJs"/></script>
 	
 	</body>
 	

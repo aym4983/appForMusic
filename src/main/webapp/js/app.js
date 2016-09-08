@@ -5,16 +5,7 @@ var homeMap = {};
 
 $(function(){
 	
-	initCalendar();
-	initUpdateCalendar();
-	initClockpicker();
-	initSearch();
-	initSearchNav();
 	initHomePlacesList();
-	
-	$(window).click(function() {
-		closeMainSearch();
-	});
 	
 	$("#main-menu-toggler").on("click", function() {
 		$("#main-wrapper").toggleClass("navigable");
@@ -25,174 +16,6 @@ $(function(){
 	});
 	
 });
-
-function initSearch() {
-	$("#main-search-field").on("click", function(event) {
-		event.stopPropagation();
-	});
-	
-	$("#main-search-field").on("focus", function() {
-		$("#main-search-results").addClass("toggled");
-	});
-	
-	$("#main-search-field").keyup(function(event) {
-		var $input = $(this);
-		var $form = $(this).closest("form");
-		var key = event.keyCode || event.which;
-		
-		// Si le bouton Echap est pressé
-		if (key === 27) closeMainSearch();
-		
-		if ($input.val().length >= 3) {
-			switch (key) {
-				//Si la flèche du haut est pressée
-				case 38:
-					$("a", $(".result-item").last()).focus();
-					break;
-				//Si la flèche du bas est pressée
-				case 40:
-					$("a", $(".result-item").first()).focus();
-					break;
-				default:
-					$.ajax({
-						url: $form.data("json-action"),
-						data: {search: $input.val()},
-						dataType: "json",
-						success: function(data, textStatus, jqXHR) {
-							if (data.succeeded) {
-								var htmlUsers = Mustache.render($("#mustache-tmpl-users").html(), data.content);
-								var htmlPlaces = Mustache.render($("#mustache-tmpl-places").html(), data.content);
-								
-								htmlUsers += (data.content.users.length) ? Mustache.render($("#mustache-tmpl-more-users").html(), {query: $input.val()}) : '';
-								htmlPlaces += (data.content.places.length) ? Mustache.render($("#mustache-tmpl-more-places").html(), {query: $input.val()}) : '';
-								
-								$("#main-search-users").html(htmlUsers);
-								$("#main-search-places").html(htmlPlaces);
-							}
-						},
-						error: function(jqXHR, textStatus, errorThrown) {
-							console.log(jqXHR)
-						}
-					});
-					break;
-			}
-			
-		} else {
-			$("#main-search-users").html("");
-			$("#main-search-places").html("");
-		}
-	});
-}
-
-function initSearchNav() {
-	$(".result-set").on("keyup", "a:focus", (function(event) {
-		var key = event.keyCode || event.which;
-		switch (key) {
-			//échap
-			case 27:
-				closeMainSearch();
-				break;
-			//flèche de gauche
-			case 37:
-				break;
-			//flèche du haut
-			case 38:
-				// Si l'élément focus est le premier parmi toutes les listes
-				if ($(this).is($("a", $(".result-set")).first()))
-					// Focus sur le champ de recherche
-					$("#main-search-field").focus();
-				// Sinon, s'il est le premier du result-set
-				else if ($(this).is($("a", $(this).parents(".result-set")).first()))
-					// Focus sur le dernier élément du précédent result-set
-					$("a", $(".result-item", $(this).parents(".result-set").prevAll()).last()).focus();
-				// Sinon focus sur le précédent élément
-				else $("a", $(this).parents(".result-item").prev()).focus();
-				break;
-			//flèche de droite
-			case 39:
-				break;
-			//flèche du bas
-			case 40:
-				// Si l'élément focus est le dernier parmi toutes les listes
-				if ($(this).is($("a", $(".result-set")).last()))
-					// Focus sur le champ de recherche
-					$("#main-search-field").focus();
-				// Sinon, s'il est le dernier du result-set
-				else if ($(this).is($("a", $(this).parents(".result-set")).last()))
-					// Focus sur le premier élément du result-set suivant
-					$("a", $(".result-item", $(this).parents(".result-set").nextAll()).first()).focus();
-				// Sinon focus sur l'élément suivant
-				else $("a", $(this).parents(".result-item").next()).focus();
-				break;
-				default:
-					break;
-		}
-	}))
-}
-
-function closeMainSearch() {
-	$("#main-search-results").removeClass("toggled");
-	$("#main-search-field").blur();
-}
-	
-/** Méthode d'init pour Calendar Js */
-function initCalendar (){    
-	$('#calendar').fullCalendar({
-		 header: {
-             left: 'prev,next today',
-             center: 'title',
-             right: 'month,agendaWeek'
-         },
-		lang: 'fr',
-		selectable: true,
-		editable: true,
-		// Permet de passer de la vue mois à la vue semaine
-		dayClick: function(date, jsEvent, view) {
-			if(view.name != 'month'){
-			    return;
-			} else {
-				$('#calendar').fullCalendar('changeView', 'agendaWeek');
-				$('#calendar').fullCalendar('gotoDate', date); 
-				$('#calendar').fullCalendar( 'renderEvent', event);
-			}		  
-		},
-
-		// Ajout d'un evenement dans le calendar
-        selectHelper: true,
-		select: function(start, end) {
-			 var hiddenStart=start.format();
-			 var hiddenEnd=end.format();
-			 var day=moment(start).format('LL');
-			 start=moment(start).format('HH:mm'); 
-			 end=moment(end).format('HH:mm'); 
-			 
-			 d = document.getElementById("FormEvent");
-			 d.elements["inputDayEvent"].value = day;
-			 
-			 s = document.getElementById("FormEvent");
-			 s.elements["inputStartEvent"].value = start;
-			 
-			 e = document.getElementById("FormEvent");
-			 e.elements["inputEndEvent"].value = end;
-			 
-			 hs = document.getElementById("FormEvent");
-			 hs.elements["hiddenStartEvent"].value = hiddenStart;
-			 
-			 he = document.getElementById("FormEvent");
-			 he.elements["hiddenEndEvent"].value = hiddenEnd;		 
-			 		     
-		     $('#myModalHorizontal').modal('show');
-		},
-		events: [
-			{
-				title: 'test Event',
-				start: '2016-09-08',
-				end: '2016-09-08'
-			}
-		]
-		
-	});
-}
 
 /** insert l'evenement */
 //function doSubmit() {
@@ -205,33 +28,6 @@ function initCalendar (){
 //	return true;  
 //}
 
-/** récupère ts les events de la bdd et les affiche */
-
-function initUpdateCalendar() {
-	$("#FormEvent").submit(function(event){
-		event.preventDefault();
-		
-		$.ajax({
-			url: contextPath + "/calendar",
-			method : 'POST',
-			data : $(this).serialize(),
-			dataType : 'json',
-			success: function(data){
-				console.log(data);
-				for(var i=0; i<data.length; i ++){
-					$("#calendar").fullCalendar('renderEvent', {
-						start : data[i].startevent,
-						end : data[i].endevent,
-						title : data[i].titleevent
-					});
-				}
-			}
-		})
-		
-		$("#myModalHorizontal").modal('hide');
-		
-	});
-}
 
 function initHomeMap() {
 	homeMap.map = new google.maps.Map(document.getElementById("places-map"), {
@@ -278,31 +74,6 @@ function initHomePlacesList() {
 	
 	$("#places-list").on("mouseout", ".place-item", function() {
 		homeMap.markers[$(this).data("place-id")].setAnimation(null);
-	});
-}
-
-
-/** timepicker pour formulaire */
-function initClockpicker (){    
-	var inputStart = $('#inputStartEvent').clockpicker({
-	    placement: 'bottom',
-	    align: 'left',
-	    autoclose: true
-	});
-	
-	var inputEnd = $('#inputEndEvent').clockpicker({
-	    placement: 'bottom',
-	    align: 'left',
-	    autoclose: true
-	});
-}
-
-/** datepicker pour formulaire */
-function initDatePicker (){
-	var inputDay = $('#inputDayEvent').datepicker({
-	    placement: 'bottom',
-	    align: 'left',
-	    autoclose: true
 	});
 }
 

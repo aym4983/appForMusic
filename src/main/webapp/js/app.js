@@ -1,6 +1,7 @@
 /*
  * Mettre dans app.js le javascript commun à toutes les pages
  */
+var homeMap = {};
 
 $(function(){
 	
@@ -8,6 +9,7 @@ $(function(){
 	initClockpicker();
 	initSearch();
 	initSearchNav();
+	initHomePlacesList();
 	
 	$(window).click(function() {
 		closeMainSearch();
@@ -205,6 +207,16 @@ function doSubmit() {
     }, true);
    return true;
 }
+function initHomePlacesList() {
+	$("#places-list").on("mouseover", ".place-item", function() {
+		homeMap.map.panTo({lat: Number.parseFloat($(this).data("place-lat")), lng: Number.parseFloat($(this).data("place-lng"))});
+		homeMap.markers[$(this).data("place-id")].setAnimation(google.maps.Animation.BOUNCE);
+	});
+	
+	$("#places-list").on("mouseout", ".place-item", function() {
+		homeMap.markers[$(this).data("place-id")].setAnimation(null);
+	});
+}
 
 
 /** timepicker pour formulaire */
@@ -274,6 +286,8 @@ function closeMainSearch() {
 	$("#main-search-results").removeClass("toggled");
 	$("#main-search-field").blur();
 }
+
+
 
 
 

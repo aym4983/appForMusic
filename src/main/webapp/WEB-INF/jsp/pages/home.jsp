@@ -23,26 +23,5 @@
 		</c:forEach>
 	</ul>
 </section>
-<script type="text/javascript">
-	var app = {};
-	var map;
 
-	function initGoogleMap() {
-		map = new google.maps.Map(document.getElementById("places-map"), {
-			center: {lat: 47.4698, lng: -0.5593},
-			zoom: 12
-		});
-
-		$("#places-list li").each(function() {
-			new google.maps.Marker({
-				position: {
-					lat: Number.parseFloat($(this).data("place-lat")), 
-					lng: Number.parseFloat($(this).data("place-lng"))
-				},
-				map: map,
-				title: $(this).data("place-label")
-			});
-		});
-	}
-</script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH8dHLUHMkDTWfuiLOxhySJpQtXTp7mFU&callback=initGoogleMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH8dHLUHMkDTWfuiLOxhySJpQtXTp7mFU&callback=initHomeMap"></script>

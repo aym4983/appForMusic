@@ -15,7 +15,9 @@
 		<js>/js/lib/jquery.validate.min.js</js>
 		<!-- Placer ici les js de l'application -->
 		<js>/js/app.js</js>
-        <js>/js/calendar.js</js>		
+        <js>/js/calendar.js</js>
+        <js>/js/place.js</js>
+        <js>/js/search.js</js>		
 	</group>
 	
 	<group name="common_css">

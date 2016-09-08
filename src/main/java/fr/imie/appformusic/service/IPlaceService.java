@@ -18,3 +18,4 @@ public interface IPlaceService {
 	public void deletePlace(Place place) throws BusinessException;
 	public void saveImage(Picture picture)throws BusinessException;
 }
+ 

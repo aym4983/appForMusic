@@ -31,7 +31,7 @@ public class PlaceDao implements IPlaceDao {
 			throw new TechnicalException(e);
 		}
 	}
-
+ 
 	@Override
 	public Place findById(int placeId) throws TechnicalException {
 		try {

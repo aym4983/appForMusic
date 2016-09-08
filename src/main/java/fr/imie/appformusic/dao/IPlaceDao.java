@@ -17,4 +17,4 @@ public interface IPlaceDao {
 	public List<Place> FindUserPlaces(AppUser user) throws TechnicalException;
 	public List<Place> findUserPlacesLike(String username, String likePrivateName) throws TechnicalException;
 	public void saveImage(Picture picture);
-}
+} 

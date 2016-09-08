@@ -6,6 +6,7 @@ var homeMap = {};
 $(function(){
 	
 	initCalendar();
+	initUpdateCalendar();
 	initClockpicker();
 	initSearch();
 	initSearchNav();
@@ -19,17 +20,11 @@ $(function(){
 		$("#main-wrapper").toggleClass("navigable");
 	});
 	
-	
 	$("#places-list-toggler").on("click", function() {
 		$("#places-list").toggleClass("toggled");
 	});
 	
 });
-
-/** Méthode d'init pour Calendar Js */
-function initCalendar (){
-	$('#calendar').fullCalendar();
-}
 
 function initSearch() {
 	$("#main-search-field").on("click", function(event) {
@@ -135,7 +130,10 @@ function initSearchNav() {
 	}))
 }
 
-
+function closeMainSearch() {
+	$("#main-search-results").removeClass("toggled");
+	$("#main-search-field").blur();
+}
 	
 /** Méthode d'init pour Calendar Js */
 function initCalendar (){    
@@ -197,15 +195,42 @@ function initCalendar (){
 }
 
 /** insert l'evenement */
-function doSubmit() {
-	console.log("passe ici");
-    $("#myModalHorizontal").modal('hide');
-    $("#calendar").fullCalendar('renderEvent', {
-    	title: $('#inputTitleEvent').val(),
-    	start: new Date($('#hiddenStartEvent').val()),
-    	end: new Date($('#hiddenEndEvent').val()),
-    }, true);
-   return true;
+//function doSubmit() {
+//	$("#myModalHorizontal").modal('hide');
+//	$("#calendar").fullCalendar('renderEvent', {
+//	    title: $('#inputTitleEvent').val(),
+//	    start: new Date($('#hiddenStartEvent').val()),
+//	    end: new Date($('#hiddenEndEvent').val()),
+//	}, true);
+//	return true;  
+//}
+
+/** récupère ts les events de la bdd et les affiche */
+
+function initUpdateCalendar() {
+	$("#FormEvent").submit(function(event){
+		event.preventDefault();
+		
+		$.ajax({
+			url: contextPath + "/calendar",
+			method : 'POST',
+			data : $(this).serialize(),
+			dataType : 'json',
+			success: function(data){
+				console.log(data);
+				for(var i=0; i<data.length; i ++){
+					$("#calendar").fullCalendar('renderEvent', {
+						start : data[i].startevent,
+						end : data[i].endevent,
+						title : data[i].titleevent
+					});
+				}
+			}
+		})
+		
+		$("#myModalHorizontal").modal('hide');
+		
+	});
 }
 
 function initHomeMap() {
@@ -318,12 +343,6 @@ function initDatePicker (){
 //    }
 //    return eventObject;
 //}
-
-
-function closeMainSearch() {
-	$("#main-search-results").removeClass("toggled");
-	$("#main-search-field").blur();
-}
 
 
 

@@ -14,6 +14,8 @@ insert into user_role (username, role_id) values ('lila', 		1);
 insert into user_role (username, role_id) values ('loic', 		1);
 insert into user_role (username, role_id) values ('tiphanie', 	1);
 
+insert into event (startevent, endevent, titleevent) values ('2016-09-09T09:00:00', '2016-09-09T12:00:00', 'titleBdd');
+
 insert into place (city, latitude, longitude, privatelabel, publiclabel, street, zipcode, owner, description) values ('Angers', 47.4126973, -0.5584802, 'Mon premier lieu', 	'Bulle Turbo', 			'', '49100', 'test','Description');
 insert into place (city, latitude, longitude, privatelabel, publiclabel, street, zipcode, owner, description) values ('Angers', 47.4626837, -0.5084230, 'Mon deuxième lieu', 	'Veau Authentique', 	'', '49100', 'test','Description');
 insert into place (city, latitude, longitude, privatelabel, publiclabel, street, zipcode, owner, description) values ('Angers', 47.4812072, -0.5062932, 'Mon troisième lieu', 	'Animal Absolu', 		'', '49100', 'test','Description');

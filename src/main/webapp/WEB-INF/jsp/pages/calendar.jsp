@@ -2,12 +2,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
+<script type="text/javascript">var contextPath='<c:url value="/"/>'</script>
+
 
 <c:url value="${ urlCalendar }" var="urlCalendar" />
 
 <h2>Calendrier</h2>
 <!-- <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalHorizontal">Ajouter</button> -->
-<div id='calendar'></div>
+<div id='calendar'>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="myModalHorizontal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -35,7 +38,7 @@
 						<form:label path="startevent" class="col-sm-3 control-label" for="inputStartEvent">Début</form:label>
 						<div class="col-sm-9 clockpicker">
 							<input  class="form-control" id="inputStartEvent" />
-							<form:input path="startevent" type="hidden" id="hiddenStartEvent" />
+							<form:input path="startevent" type="text" id="hiddenStartEvent" />
 						</div>
 					</div>
 					<div class="form-group">
@@ -55,7 +58,7 @@
 					<!-- Modal Footer -->
 					<div class="modal-footer">
 						<button type="reset" class="btn btn-default" data-dismiss="modal">Annuler</button>
-						<input type="submit" class="btn btn-primary" value="Enregistrer" onsubmit="doSubmit()"/>
+						<input type="submit" class="btn btn-primary" name="SaveEvent" value="Enregistrer" id="submitEvent"/>
 					</div>
 					
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

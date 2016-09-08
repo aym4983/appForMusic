@@ -5,6 +5,7 @@ import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.expectLastCall;
 import static org.easymock.EasyMock.replay;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,7 +79,7 @@ public class PlaceControllerTest {
 	}
 	
 	@Test
-	public void testSubmitPlaceForm() throws BusinessException{
+	public void testSubmitPlaceForm() throws BusinessException, IOException{
 		
 		Place place = new Place();
 		PlaceForm form = new PlaceForm();

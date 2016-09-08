@@ -49,4 +49,11 @@
         <put-attribute name="body" value="/WEB-INF/jsp/pages/profile.jsp"/>
     </definition>
     
+     <definition name="place-info" extends="baseDefinition">
+        <put-attribute name="navigation" 	value="/WEB-INF/jsp/blocs/nav.jsp"/>
+   		<put-attribute name="header" 		value="/WEB-INF/jsp/blocs/header.jsp"/>
+        <put-attribute name="body" 			value="/WEB-INF/jsp/pages/place-info.jsp"/>
+        <put-attribute name="footer" 		value=""/>
+    </definition>
+    
 </tiles-definitions>

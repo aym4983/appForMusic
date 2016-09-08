@@ -30,4 +30,7 @@ public interface Views {
 	/** Vue du profile */
 	public String PROFILE = "profile";
 	
+	/** Vue du profile */
+	public String PLACEINFO = "place-info";
+	
 }

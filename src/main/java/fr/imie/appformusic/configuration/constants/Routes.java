@@ -40,4 +40,5 @@ public interface Routes {
 	/** Page de profil */
 	public String PROFILE = "/profile";
 
+
 }

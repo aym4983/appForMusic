@@ -13,6 +13,7 @@ public interface IPlaceDao {
 	public void delete(Place place) throws TechnicalException;
 	public Place findById(int placeId) throws TechnicalException;
 	public List<Place> findAllPlaces() throws TechnicalException;
+	public List<Place> findPlacesNear(double lat, double lng, int offset, int limit) throws TechnicalException;
 	public List<Place> findPlacesLike(String likePublicName) throws TechnicalException;
 	public List<Place> FindUserPlaces(AppUser user) throws TechnicalException;
 	public List<Place> findUserPlacesLike(String username, String likePrivateName) throws TechnicalException;

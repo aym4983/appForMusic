@@ -39,6 +39,12 @@ public class PlaceService implements IPlaceService {
 
 	@Override
 	@Transactional(readOnly = true)
+	public List<Place> findPlacesNear(double lat, double lng, int offset, int limit) throws BusinessException {
+		return placeDao.findPlacesNear(lat, lng, offset, limit);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
 	public List<Place> findPlacesLike(String likePublicName) throws BusinessException {
 		return placeDao.findPlacesLike(likePublicName);
 	}

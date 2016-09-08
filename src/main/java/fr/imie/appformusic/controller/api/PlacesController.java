@@ -39,10 +39,12 @@ public class PlacesController {
 	@RequestMapping("/near")
 	public Response<List<PlaceJson>> getPlacesNear(
 			@RequestParam(name = "lat") double lat,
-			@RequestParam(name = "lng") double lng
+			@RequestParam(name = "lng") double lng,
+			@RequestParam(name = "offset") int offset,
+			@RequestParam(name = "limit") int limit
 	) throws BusinessException {
 		List<PlaceJson> places = new ArrayList<PlaceJson>();
-		for (Place place : placeService.findAllPlaces()) {
+		for (Place place : placeService.findPlacesNear(lat, lng, offset, limit)) {
 			places.add(new PlaceJson(place));
 		}
 		return new Response<>(places);

@@ -54,6 +54,24 @@ public class PlaceDao implements IPlaceDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	public List<Place> findPlacesNear(double lat, double lng, int offset, int limit) throws TechnicalException {
+		// TODO Auto-generated method stub
+		try {
+			String hql = "FROM Place "
+					+ "ORDER BY SQRT(POWER(latitude - :originLat, 2) + POWER(longitude - :originLng, 2))";
+			return sessionFactory
+					.getCurrentSession()
+					.createQuery(hql)
+					.setParameter("originLat", lat)
+					.setParameter("originLng", lng)
+					.list();
+		} catch (Exception e) {
+			throw new TechnicalException(e);
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
 	public List<Place> findPlacesLike(String likePublicLabel) throws TechnicalException {
 		try {
 			return sessionFactory

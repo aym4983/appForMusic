@@ -1,6 +1,7 @@
 /*
  * Mettre dans app.js le javascript commun à toutes les pages
  */
+var homeMap = {};
 
 $(function(){
 	
@@ -8,6 +9,7 @@ $(function(){
 	initClockpicker();
 	initSearch();
 	initSearchNav();
+	initHomePlacesList();
 	
 	$(window).click(function() {
 		closeMainSearch();
@@ -206,6 +208,54 @@ function doSubmit() {
    return true;
 }
 
+function initHomeMap() {
+	homeMap.map = new google.maps.Map(document.getElementById("places-map"), {
+		center: {lat: 47.4698, lng: -0.5593},
+		zoom: 12
+	});
+	
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(function(position) {
+			var pos = {
+				lat: position.coords.latitude, 
+				lng: position.coords.longitude
+			}
+			
+			new google.maps.InfoWindow({
+				map: homeMap.map, 
+				position: pos,
+				content: "Vous êtes ici."
+			});
+			
+			homeMap.map.panTo(pos);
+		});
+	}
+	
+	homeMap.markers = {};
+
+	$("#places-list li").each(function() {
+		homeMap.markers[$(this).data("place-id")] = new google.maps.Marker({
+			position: {
+				lat: Number.parseFloat($(this).data("place-lat")), 
+				lng: Number.parseFloat($(this).data("place-lng"))
+			},
+			map: homeMap.map,
+			title: $(this).data("place-label")
+		});
+	});
+}
+
+function initHomePlacesList() {
+	$("#places-list").on("mouseover", ".place-item", function() {
+		homeMap.map.panTo({lat: Number.parseFloat($(this).data("place-lat")), lng: Number.parseFloat($(this).data("place-lng"))});
+		homeMap.markers[$(this).data("place-id")].setAnimation(google.maps.Animation.BOUNCE);
+	});
+	
+	$("#places-list").on("mouseout", ".place-item", function() {
+		homeMap.markers[$(this).data("place-id")].setAnimation(null);
+	});
+}
+
 
 /** timepicker pour formulaire */
 function initClockpicker (){    
@@ -274,6 +324,8 @@ function closeMainSearch() {
 	$("#main-search-results").removeClass("toggled");
 	$("#main-search-field").blur();
 }
+
+
 
 
 

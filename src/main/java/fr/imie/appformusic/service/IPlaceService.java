@@ -1,7 +1,5 @@
 package fr.imie.appformusic.service;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import fr.imie.appformusic.domain.AppUser;
@@ -20,3 +18,4 @@ public interface IPlaceService {
 	public void deletePlace(Place place) throws BusinessException;
 	public void saveImage(Picture picture)throws BusinessException;
 }
+ 

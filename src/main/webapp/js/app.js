@@ -5,6 +5,7 @@
 $(function(){
 	
 	initCalendar();
+	initClockpicker();
 	initSearch();
 	initSearchNav();
 	
@@ -129,29 +130,150 @@ function initSearchNav() {
 				default:
 					break;
 		}
-	}));
+	}))
+}
+
 
 	
-	/** Méthode d'init pour Calendar Js */
-	function initCalendar (){
-		$('#calendar').fullCalendar();
-	}
+/** Méthode d'init pour Calendar Js */
+function initCalendar (){    
+	$('#calendar').fullCalendar({
+		 header: {
+             left: 'prev,next today',
+             center: 'title',
+             right: 'month,agendaWeek'
+         },
+		lang: 'fr',
+		selectable: true,
+		editable: true,
+		// Permet de passer de la vue mois à la vue semaine
+		dayClick: function(date, jsEvent, view) {
+			if(view.name != 'month'){
+			    return;
+			} else {
+				$('#calendar').fullCalendar('changeView', 'agendaWeek');
+				$('#calendar').fullCalendar('gotoDate', date); 
+				$('#calendar').fullCalendar( 'renderEvent', event);
+			}		  
+		},
+
+		// Ajout d'un evenement dans le calendar
+        selectHelper: true,
+		select: function(start, end) {
+			 var hiddenStart=start.format();
+			 var hiddenEnd=end.format();
+			 var day=moment(start).format('LL');
+			 start=moment(start).format('HH:mm'); 
+			 end=moment(end).format('HH:mm'); 
+			 
+			 d = document.getElementById("FormEvent");
+			 d.elements["inputDayEvent"].value = day;
+			 
+			 s = document.getElementById("FormEvent");
+			 s.elements["inputStartEvent"].value = start;
+			 
+			 e = document.getElementById("FormEvent");
+			 e.elements["inputEndEvent"].value = end;
+			 
+			 hs = document.getElementById("FormEvent");
+			 hs.elements["hiddenStartEvent"].value = hiddenStart;
+			 
+			 he = document.getElementById("FormEvent");
+			 he.elements["hiddenEndEvent"].value = hiddenEnd;		 
+			 		     
+		     $('#myModalHorizontal').modal('show');
+		},
+		events: [
+			{
+				title: 'test Event',
+				start: '2016-09-08',
+				end: '2016-09-08'
+			}
+		]
+		
+	});
 }
+
+/** insert l'evenement */
+function doSubmit() {
+	console.log("passe ici");
+    $("#myModalHorizontal").modal('hide');
+    $("#calendar").fullCalendar('renderEvent', {
+    	title: $('#inputTitleEvent').val(),
+    	start: new Date($('#hiddenStartEvent').val()),
+    	end: new Date($('#hiddenEndEvent').val()),
+    }, true);
+   return true;
+}
+
+
+/** timepicker pour formulaire */
+function initClockpicker (){    
+	var inputStart = $('#inputStartEvent').clockpicker({
+	    placement: 'bottom',
+	    align: 'left',
+	    autoclose: true
+	});
+	
+	var inputEnd = $('#inputEndEvent').clockpicker({
+	    placement: 'bottom',
+	    align: 'left',
+	    autoclose: true
+	});
+}
+
+/** datepicker pour formulaire */
+function initDatePicker (){
+	var inputDay = $('#inputDayEvent').datepicker({
+	    placement: 'bottom',
+	    align: 'left',
+	    autoclose: true
+	});
+}
+
+/** Validating Empty Field */
+//function check_empty() {
+//	if (document.getElementById('inputStartEvent').value == "" || document.getElementById('inputEndEvent').value == "" || document.getElementById('inputTitleEvent').value == "") {
+//		alert("Il manque des informations !");
+//	} else {
+//		document.getElementById('form-event').submit();
+//		alert("Evenement créé...");
+//	}
+//}
+
+/** Méthode pour ajout d'un évènement */
+//function addCalanderEvent(id, startdate, enddate, title){
+//    var eventObject = {
+//	    title: title,
+//	    start: startdate,
+//	    end: enddate,
+//	    id: id,
+//    };
+//
+//    $('#calendar').fullCalendar('renderEvent', eventObject, true);
+//    return eventObject;
+//}
+
+
+/** Méthode pour modifier un évènement */
+//function updateCalanderEvent(id, start, end, title, colour){
+//    var eventObject = $('#calendar').fullCalendar( 'clientEvents', id )
+//
+//    if (eventObject != null){
+//        eventObject.title = title;
+//        eventObject.start = start;
+//        eventObject.end = end;
+//
+//        $('#calendar').fullCalendar( 'updateEvent', eventObject );
+//    }
+//    return eventObject;
+//}
+
 
 function closeMainSearch() {
 	$("#main-search-results").removeClass("toggled");
 	$("#main-search-field").blur();
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

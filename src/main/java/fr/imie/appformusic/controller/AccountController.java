@@ -99,19 +99,7 @@ public class AccountController {
 //		//TODO Connexion de l'utilisateur.
 //		return new ModelAndView("redirect:/" + Routes.HOME);
 //	}
-
-	
-	/**
-	 * Affiche la vue calendar
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(Routes.CALENDAR)
-	public ModelAndView showCalendar(Model model) {
-		ModelAndView mav = new ModelAndView(Views.CALENDAR);
-		return mav;
-	}
-
+ 
 	
 	
 //	@RequestMapping(Routes.ERROR)

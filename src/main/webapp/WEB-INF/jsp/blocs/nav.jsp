@@ -10,6 +10,7 @@
 <c:url var="urlPlaces" value="/places" />
 <c:url var="urlSettings" value="/settings" />
 <c:url var="urlHelp" value="/help" />
+<c:url var="urlCalendar" value="/calendar" />
 
 <nav id="main-menu">
 
@@ -27,6 +28,7 @@
 		<ul class="menu">
 			<li><a href="${ urlContacts }" title="Contacts">Contacts</a></li>
 			<li><a href="${ urlPlaces }" title="Lieux">Lieux</a></li>
+			<li><a href="${ urlCalendar }" title="Calendar">Calendrier</a></li>
 		</ul>
 		<ul class="menu">
 			<li><a href="${ urlSettings }" title="Paramètres">Paramètres</a></li>
@@ -38,5 +40,4 @@
 			</li>
 		</ul>
 	</section>
-	
 </nav>

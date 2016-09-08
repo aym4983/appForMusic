@@ -1,7 +1,5 @@
 package fr.imie.appformusic.dao;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import fr.imie.appformusic.domain.AppUser;
@@ -19,4 +17,4 @@ public interface IPlaceDao {
 	public List<Place> FindUserPlaces(AppUser user) throws TechnicalException;
 	public List<Place> findUserPlacesLike(String username, String likePrivateName) throws TechnicalException;
 	public void saveImage(Picture picture);
-}
+} 

@@ -30,23 +30,38 @@
     </definition>
     
     <definition name="home" extends="baseDefinition">
-        <put-attribute name="body" value="/WEB-INF/jsp/pages/home.jsp"/>
+       <put-attribute name="navigation" 	value="/WEB-INF/jsp/blocs/nav.jsp"/>
+        <put-attribute name="header" 		value="/WEB-INF/jsp/blocs/header.jsp"/>
+        <put-attribute name="body" 			value="/WEB-INF/jsp/pages/home.jsp"/>
+        <put-attribute name="footer" 		value=""/>
     </definition>
     
     <definition name="search" extends="baseDefinition">
-        <put-attribute name="body" value="/WEB-INF/jsp/pages/search.jsp"/>
+         <put-attribute name="navigation" 	value="/WEB-INF/jsp/blocs/nav.jsp"/>
+        <put-attribute name="header" 		value="/WEB-INF/jsp/blocs/header.jsp"/>
+        <put-attribute name="body" 			value="/WEB-INF/jsp/pages/main.jsp"/>
+        <put-attribute name="footer" 		value=""/>
     </definition>
 
     <definition name="calendar" extends="baseDefinition">
-        <put-attribute name="body" value="/WEB-INF/jsp/pages/calendar.jsp"/>
+         <put-attribute name="navigation" 	value="/WEB-INF/jsp/blocs/nav.jsp"/>
+   		<put-attribute name="header" 		value="/WEB-INF/jsp/blocs/header.jsp"/>
+        <put-attribute name="body" 			value="/WEB-INF/jsp/pages/calendar.jsp"/>
+        <put-attribute name="footer" 		value=""/>
     </definition>
     
     <definition name="place" extends="baseDefinition">
-        <put-attribute name="body" value="/WEB-INF/jsp/pages/place.jsp"/>
+        <put-attribute name="navigation" 	value="/WEB-INF/jsp/blocs/nav.jsp"/>
+   		<put-attribute name="header" 		value="/WEB-INF/jsp/blocs/header.jsp"/>
+        <put-attribute name="body" 			value="/WEB-INF/jsp/pages/place.jsp"/>
+        <put-attribute name="footer" 		value=""/>
     </definition>
     
     <definition name="profile" extends="baseDefinition">
-        <put-attribute name="body" value="/WEB-INF/jsp/pages/profile.jsp"/>
+       <put-attribute name="navigation" 	value="/WEB-INF/jsp/blocs/nav.jsp"/>
+   		<put-attribute name="header" 		value="/WEB-INF/jsp/blocs/header.jsp"/>
+        <put-attribute name="body" 			value="/WEB-INF/jsp/pages/profile.jsp"/>
+        <put-attribute name="footer" 		value=""/>
     </definition>
     
      <definition name="place-info" extends="baseDefinition">

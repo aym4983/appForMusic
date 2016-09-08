@@ -8,7 +8,7 @@
 <c:url var="urlPlace" value="/place" />
 
 <header id="main-header">
-	<button id="main-menu-toggler" class="btn btn-default glyphicon glyphicon-menu-hamburger"></button>
+	<button id="main-menu-toggler" class="glyphicon glyphicon-menu-hamburger"></button>
 	<form id="main-search-form" action="${ urlFormAction }" method="get" data-json-action="${ urlJsonAction }">
 		<input type="text" id="main-search-field" name="q" placeholder="Rechercher" autocomplete="off" />
 	</form>

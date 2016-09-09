@@ -4,13 +4,6 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <c:url var="commonCSS" value="/wro/common_css.css" />
-<c:url var="appCSS" value="/css/app.css" />
-<c:url var="appHeaderCSS" value="/css/app.header.css" />
-<c:url var="appNavCSS" value="/css/app.nav.css" />
-<c:url var="appSearchCSS" value="/css/app.search.css" />
-<c:url var="appPageProfileCSS" value="/css/app.page.home.css" />
-<c:url var="appPageHomeCSS" value="/css/app.page.profile.css" />
-
 <c:url var="commonJS" value="/wro/common_js.js" />
 
 <!DOCTYPE html>
@@ -25,12 +18,6 @@
 	    <title><c:out value="${ pageTitle }" /> &#124; App for music</title>
 	    
 	    <link rel="stylesheet" type="text/css" href="${ commonCSS }"/>
-	    <link rel="stylesheet" type="text/css" href="${ appCSS }"/>
-	    <link rel="stylesheet" type="text/css" href="${ appHeaderCSS }"/>
-	    <link rel="stylesheet" type="text/css" href="${ appNavCSS }"/>
-	    <link rel="stylesheet" type="text/css" href="${ appSearchCSS }"/>
-	    <link rel="stylesheet" type="text/css" href="${ appPageHomeCSS }"/>
-	    <link rel="stylesheet" type="text/css" href="${ appPageProfileCSS }"/>
 	    
 	    <script type="text/javascript" src="${ commonJS }"></script>
 	</head>

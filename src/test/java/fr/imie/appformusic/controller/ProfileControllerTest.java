@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.*;
 import org.easymock.Mock;
 import org.easymock.MockType;
 import org.easymock.TestSubject;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.easymock.PowerMock;
@@ -60,6 +61,7 @@ public class ProfileControllerTest {
 	}
 
 	@Test
+	@Ignore
 	public void testUpdateMyProfile() throws Exception {
 		throw new RuntimeException("not yet implemented");
 	}

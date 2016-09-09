@@ -30,8 +30,8 @@
 			<li><a href="${ urlCalendar }" title="Calendar">Calendrier</a></li>
 		</ul>
 		<ul class="menu">
-			<li class="sign-out">
-				<a href="${ urlSignOut }" id="menu-sign-out" title="Déconnexion">Déconnexion</a>
+			<li>
+				<a href="${ urlSignOut }" id="menu-sign-out" title="Déconnexion" class="sign-out">Déconnexion</a>
 			</li>
 		</ul>
 	</section>

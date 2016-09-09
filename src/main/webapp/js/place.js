@@ -104,4 +104,6 @@ function bindActions(){
 	$('#ajouter').click(action.place_localisation);
 }
 
+
+
 $(bindActions);

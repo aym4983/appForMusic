@@ -2,17 +2,23 @@ package fr.imie.appformusic.dao.impl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import fr.imie.appformusic.controller.EventController;
 import fr.imie.appformusic.dao.IEventDao;
+import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.domain.Event;
+import fr.imie.appformusic.domain.Place;
 import fr.imie.appformusic.exceptions.TechnicalException;
 
 @Repository
 public class EventDao implements IEventDao {
+	
+	private static final Logger log = Logger.getLogger(EventController.class);
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -36,6 +42,21 @@ public class EventDao implements IEventDao {
 			throw new TechnicalException(e);
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Event> FindPlaceEvent(Place place) throws TechnicalException {
+		try {
+			return sessionFactory
+					.getCurrentSession()
+					.createCriteria(Event.class)
+					.add(Restrictions.eq("place", place))
+					.list();
+		} catch (Exception e) {
+			throw new TechnicalException(e);
+		}
+
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -45,8 +66,11 @@ public class EventDao implements IEventDao {
 					.getCurrentSession()
 					.createCriteria(Event.class).list();
 			return events;
+			
 		} catch (Exception e) {
+			log.debug(e.getMessage());
 			throw new TechnicalException(e);
+			
 		}
 	}
 	

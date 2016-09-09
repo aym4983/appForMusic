@@ -77,19 +77,26 @@ app.calendar = {
 				event.preventDefault();
 				
 				$.ajax({
-					url: contextPath + "/calendar",
+					url: contextPath + "calendar",
 					method : 'POST',
 					data : $(this).serialize(),
-					dataType : 'json',
 					success: function(data){
 						console.log(data);
-						for(var i=0; i<data.length; i ++){
-							$("#calendar").fullCalendar('renderEvent', {
-								start : data[i].startevent,
-								end : data[i].endevent,
-								title : data[i].titleevent
-							});
+						if(data.succeeded){
+							for(var i=0; i<data.content.length; i ++){
+								$("#calendar").fullCalendar('renderEvent', {
+									start : data.content[i].startevent,
+									end : data.content[i].endevent,
+									title : data.content[i].titleevent
+								});
+							}
 						}
+					},
+					error:function(xhr, resp, status){
+						console.log(resp);
+						console.log(xhr);
+						console.log(status);
+						
 					}
 				})
 				

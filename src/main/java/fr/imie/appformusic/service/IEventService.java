@@ -5,6 +5,7 @@ import java.util.List;
 import fr.imie.appformusic.domain.Event;
 import fr.imie.appformusic.domain.Place;
 import fr.imie.appformusic.exceptions.BusinessException;
+import fr.imie.appformusic.exceptions.TechnicalException;
 
 public interface IEventService {
 
@@ -12,4 +13,5 @@ public interface IEventService {
 	public Event findById(int eventid) throws BusinessException;
 	public List<Event> findAllEvents() throws BusinessException;
 	public void deleteEvent(Event event) throws BusinessException;
+	public List<Event> FindPlaceEvent(Place place) throws BusinessException;
 }

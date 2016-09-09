@@ -61,6 +61,7 @@
 						<input type="submit" class="btn btn-primary" name="SaveEvent" value="Enregistrer" id="submitEvent"/>
 					</div>
 					
+					<form:input type="hidden" id="placeId" path="placeId" class="form-control" name="placeId" value="${place.placeId}"/>
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				</form:form>
 			</div>

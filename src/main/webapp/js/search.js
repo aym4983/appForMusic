@@ -9,7 +9,6 @@ app.search = {
 		init : function(){
 			app.search.initSearch();
 			app.search.initSearchNav();
-			$(window).click(app.search.closeMainSearch());
 		},
 		
 		initSearch : function() {
@@ -116,9 +115,11 @@ app.search = {
 			}))
 		},
 		
-		closeMainSearch : function() {
-			$("#main-search-results").removeClass("toggled");
-			$("#main-search-field").blur();
-		}
-		
 }
+
+function closeMainSearch() {
+	console.log("bind");
+	$("#main-search-results").removeClass("toggled");
+	$("#main-search-field").blur();
+}
+$(window).click(closeMainSearch());

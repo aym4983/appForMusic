@@ -37,6 +37,7 @@
 		<css>/css/app.page.profile.css</css>
         <css>/css/app.places.css</css>
         <css>/css/app.search.css</css>		
+        <css>/css/place-info.css</css>
 	</group>     
            
 </groups>

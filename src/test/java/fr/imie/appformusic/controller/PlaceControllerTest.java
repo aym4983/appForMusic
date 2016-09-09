@@ -52,6 +52,7 @@ public class PlaceControllerTest {
 	
 	@Mock(type=MockType.NICE)
 	private IUserService userServiceMock;
+	
 	@Test
 	public void testShowMyPlace() throws BusinessException{
 		Model model = new BindingAwareModelMap();

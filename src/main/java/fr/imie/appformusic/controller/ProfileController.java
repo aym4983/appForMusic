@@ -1,7 +1,5 @@
 package fr.imie.appformusic.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,7 +32,6 @@ public class ProfileController {
 	 */
 	@RequestMapping(Routes.PROFILE + "/@{username}")
 	public ModelAndView showUserProfile(
-			HttpServletRequest request,
 			Model model,
 			@PathVariable(value = "username") String username
 	) throws BusinessException {

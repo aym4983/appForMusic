@@ -25,7 +25,9 @@
 	height: 100%;
 	overflow: hidden;
 	overflow-y: auto;
+	padding-top: 48px;
 	position: fixed;
+	top: 0;
 	z-index: 1;
 }
 
@@ -130,8 +132,12 @@
 
 @media screen and (min-width: 769px) {
 
-	#main-wrapper #main-menu,
-	#main-wrapper #main-menu-header {
+	#main-menu {
+		padding-top: 56px;
+	}
+
+	#main-menu,
+	#main-menu-header {
 		width: 272px;
 	}
 

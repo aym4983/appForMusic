@@ -26,13 +26,8 @@
 			<li><a href="${ urlHome }" title="Accueil">Accueil</a></li>
 		</ul>
 		<ul class="menu">
-			<li><a href="${ urlContacts }" title="Contacts">Contacts</a></li>
 			<li><a href="${ urlPlaces }" title="Lieux">Lieux</a></li>
 			<li><a href="${ urlCalendar }" title="Calendar">Calendrier</a></li>
-		</ul>
-		<ul class="menu">
-			<li><a href="${ urlSettings }" title="Paramètres">Paramètres</a></li>
-			<li><a href="${ urlHelp }" title="Aide">Aide</a></li>
 		</ul>
 		<ul class="menu">
 			<li class="sign-out">

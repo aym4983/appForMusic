@@ -69,16 +69,15 @@
 }
 
 .menu .sign-out:hover {
-/* 	color: #FF1954; */
 	background: #FF1954;
 }
 
-.menu a,
-.menu p {
+.menu a {
 	color: #fff;
 	display: block;
 	padding: 16px;
 	padding-left: 48px;
+	position: relative;
 	text-decoration: none;
 	transition: 100ms ease-out;
 }
@@ -92,11 +91,32 @@
 	background-color: rgba(0, 0, 0, 0.25);
 }
 
-.menu input[type=text] {
-	background-color: rgba(255, 255, 255, 0.15);
-	border: none;
-	border-bottom: 1px solid #999;
-	border-radius: 0;
+.menu a::before {
+	content: '';
+	font-family: 'Glyphicons Halflings';
+	height: 48px;
+	left: 0;
+	line-height: 48px;
+	position: absolute;
+	text-align: center;
+	top: 0;
+	width: 48px;
+}
+
+.menu .home::before {
+	content: '\e021';
+}
+
+.menu .place::before {
+	content: '\e062';
+}
+
+.menu .calendar::before {
+	content: '\e109';
+}
+
+.menu .sign-out::before {
+	content: '\e163';
 }
 
 #main-wrapper.navigable #main-menu,
@@ -166,6 +186,7 @@
 		margin-top: 60px;
 	}
 	
+	#main-wrapper.navigable #main-container,
 	#main-container {
 		pointer-events: auto;
 	}

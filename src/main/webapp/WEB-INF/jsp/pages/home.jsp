@@ -17,7 +17,8 @@
 			data-place-lng="{{longitude}}"
 			data-place-label="{{publicLabel}}">
 			<a href="${ urlPlaces }/{{placeId}}">
-				{{publicLabel}}
+				{{publicLabel}}<br />
+				{{distance.value}}
 			</a>
 		</li>
 		{{/content}}

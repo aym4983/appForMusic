@@ -78,10 +78,21 @@ function reloadHomePlaces(position) {
 			offset: 0,
 			limit: 50
 		},
-		success: function(data) {
-			if (data.succeeded) {
+		success: function(resp) {
+			if (resp.succeeded) {
+				for (var i = 0; i < resp.content.length ; i++) {
+					resp.content[i].distance = $.get({
+						url: "https://maps.googleapis.com/maps/api/distancematrix/json",
+						data: {
+							key: "AIzaSyBH8dHLUHMkDTWfuiLOxhySJpQtXTp7mFU", 
+							origins: (position.lat).toString() + "," + (position.lng).toString(),
+							destinations: (resp.content[i].latitude).toString() + "," + (resp.content[i].longitude).toString()
+						},
+						success: function(d) { return d.rows[0].elements[0].distance }
+					});
+				}
 				var tmpl = $("#place-item-template").html();
-				$("#places-list ul").html(Mustache.render(tmpl, data));
+				$("#places-list ul").html(Mustache.render(tmpl, resp));
 			}
 		}
 	});

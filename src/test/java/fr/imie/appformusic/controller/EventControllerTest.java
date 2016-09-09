@@ -25,29 +25,4 @@ public class EventControllerTest {
 	@TestSubject
 	private EventController controller = new EventController();
 	
-	@Test
-	public void testShowCalendar() throws Exception {
-		BindingAwareModelMap model = new BindingAwareModelMap();
-		
-		//ModelAndView mav = controller.showCalendar(model);
-		//assertThat(mav.getViewName()).isEqualTo("calendar");
-		//assertThat(model.containsKey("eventForm")).isTrue();
-	}
-
-	@Test
-	public void testSubmitEventForm() throws Exception {
-		EventForm form = new EventForm();
-		form.setTitleevent("test");
-		form.setStartevent("01/02/2016");
-		form.setEndevent("02/02/2016");
-		
-		Event ev = new Event();
-		
-		service.create(ev);
-		EasyMock.expectLastCall();
-		EasyMock.replay(service);
-		
-		controller.submitEventForm(form);
-	}
-
 }

@@ -6,17 +6,7 @@
 
 package fr.imie.appformusic.form;
 
-public class PlaceForm {
-	private String street;
-	private String zipcode;
-	private String city;
-	private double longitude;
-	private double latitude;
-	private String publicLabel;
-	private String privateLabel;
-	private String description;
-	private String image;
-	
+public class ModifyPlaceForm {
 	public String getStreet() {
 		return street;
 	}
@@ -65,10 +55,21 @@ public class PlaceForm {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getImage() {
-		return image;
+	public int getPlaceId() {
+		return placeId;
 	}
-	public void setImage(String image) {
-		this.image = image;
+	public void setPlaceId(int placeId) {
+		this.placeId = placeId;
 	}
+	private String street;
+	private String zipcode;
+	private String city;
+	private double longitude;
+	private double latitude;
+	private String publicLabel;
+	private String privateLabel;
+	private String description;
+	private int placeId;
+	
+	
 }

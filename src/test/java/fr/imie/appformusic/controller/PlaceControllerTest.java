@@ -89,7 +89,6 @@ public class PlaceControllerTest {
 		form.setPublicLabel("place test");
 		form.setLongitude(987654);
 		form.setStreet("rue");
-		form.setType("type");
 		form.setZipcode("49000");
 		
 		PowerMock.mockStatic(SecurityContextHolder.class);

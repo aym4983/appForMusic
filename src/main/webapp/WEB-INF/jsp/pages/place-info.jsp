@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <c:url value="${ urlPlceInfo }" var="urlPlaceInfo" />
 <c:url value="${ urlCalendar }" var="urlCalendar" />
@@ -26,7 +27,7 @@
 			<script type="text/javascript">
 					var app = {};
 					var map;
-				
+
 					function initGoogleMap() {
 						map = new google.maps.Map(document.getElementById("place-map"), {
 							center: {lat: <c:out value="${place.latitude}"/>, lng: <c:out value="${place.longitude}"/>},
@@ -47,40 +48,40 @@
 	</div>
 
 	<c:if test="${utilCo eq place.owner.username}">
-		<p class="col-md-6">
-			<label for="place-street" class="form-label">Nom privé (Visible que pour le propriétaire)</label>
-			<input type="text" name="street" id="place-street" class="form-control" value="${place.privateLabel}" readonly/>
+		<p class="col-md-11">
+			<label for="placeinfo-privateLabel" class="form-label">Nom privé (Visible que pour le propriétaire)</label>
+			<input type="text" name="placeinfo-privateLabel" id="placeinfo-privateLabel" class="form-control" value="${place.privateLabel}" readonly/>
 		</p>
 		</c:if> 
 		
-		<div class="col-md-6">
-			<label for="place-street" class="form-label">Nom publique</label>
-			<input type="text" name="street" id="place-street" class="form-control" value="${place.publicLabel}" readonly/>
-		</div>
-
-		<div class="col-md-4">
-			<label class="form-label">Rue</label>
-			<input type="text" name="street" id="place-street" class="form-control" value="${place.street}" readonly/>
-		</div>
-						
-		<div class="col-md-2">
-			<label class="form-label">Code Postal</label>
-			<input name="zipcode" id="place-zipcode" class="form-control" value="${place.zipcode}" readonly/>
+		<div class="col-md-11">
+			<label for="placeinfo-publicLabel" class="form-label">Nom publique</label>
+			<input type="text" name="placeinfo-publicLabel" id="placeinfo-publicLabel" class="form-control" value="${place.publicLabel}" readonly/>
 		</div>
 		
-		<div class="col-md-5">
-			<label  for="place-city" class="form-label">Ville</label>
-			<input type="text" name="city"  id="place-city" class="form-control" placeholder="Ville" value="${place.city}" readonly/>
+		<div class="col-md-11">
+			<label class="form-label">Rue</label>
+			<input type="text" name="placeinfo-street" id="placeinfo-street" class="form-control" value="${place.street}" readonly/>
+		</div>
+						
+		<div class="col-md-11">
+			<label class="form-label">Code Postal</label>
+			<input name="placeinfo-zipcode" id="placeinfo-zipcode" class="form-control" value="${place.zipcode}" readonly/>
+		</div>
+		
+		<div class="col-md-11">
+			<label  for="placeinfo-city" class="form-label">Ville</label>
+			<input type="text" name="placeinfo-city"  id="placeinfo-city" class="form-control" value="${place.city}" readonly/>
 		</div>
 							
-		<div class="col-md-7">
-			<label  for="place-description" class="control-label" >Description</label>
-			<textarea cols="15" rows="10" id="description" class="form-control" name="description" readonly>${place.description}</textarea>
-		</div>
+		<div class="col-md-11">
+			<label  for="placeinfo-description" class="control-label" >Description</label>
+			<textarea cols="15" rows="10" id="placeinfo-description" class="form-control" name="placeinfo-description" readonly>${place.description}</textarea>
+		</div></br>
 </div>
 
 <div class="place-action">
-	<p class="col-md-7">
+	<div class="col-md-7">
 		<c:if test="${utilCo eq place.owner.username}">
 			<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="" href="${ urlCalendar }">Calendrier</button>
 	    	<button type="button" class="btn btn-info btn-sm" id="place-delete" data-toggle="modal" data-target="#modifyModal">Modifier</button>
@@ -90,7 +91,7 @@
 	    <c:if test="${utilCo ne place.owner.username}">
 			<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="" href="${ urlCalendar }">Réserver</button>
 		</c:if> 
-	</p>
+	</div>
 </div>
 
 <div class="place-notation">
@@ -144,41 +145,54 @@
 				</div>
 	
 				<div class="modal-body">
-					<form:form action="" modelAttribute="">
-				  		<div class="form-group">
-							<label for="place-street" class="form-label">Nom privé</label>
-							<input type="text" name="street" id="place-street" class="form-control" value="${place.privateLabel}" required/>
-						</div>
-
+					<form:form action="/appForMusic/modifyplace" method="post" modelAttribute="modifyPlaceForm" id="modifyPlace" name="modifyPlace">
 						<div class="form-group">
-							<label for="place-street" class="form-label">Nom publique</label>
-							<input type="text" name="street" id="place-street" class="form-control" value="${place.publicLabel}" required/>
+							<form:label path="publicLabel" for="place-publiclabel" class="control-label">Nom public (Visible auprès de tous les utilisateurs)</form:label>
+ 							<form:input path="publicLabel" type="text" id="place-publiclabel" class="form-control" value="${place.publicLabel}"/>
 						</div>
-
-						<div class="form-group">
-							<label class="form-label">Rue</label>
-							<input type="text" name="street" id="place-street" class="form-control" value="${place.street}" required/>
-						</div>
-						
-						<div class="form-group">
-							<label class="form-label">Code Postal</label>
-							<input name="zipcode" id="place-zipcode" class="form-control" value="${place.zipcode}" required/>
-						</div>
-		
-						<div class="form-group">
-							<label  for="place-city" class="form-label">Ville</label>
-							<input type="text" name="city"  id="place-city" class="form-control" placeholder="Ville" value="${place.city}" required/>
-						</div>
+					
+					<p class="form-group">
+						<form:label path="privateLabel" for="place-privatelabel" class="form-label">Nom privé</form:label>
+						<form:input path="privateLabel" type="text" id="place-privatelabel" class="form-control" placeholder="Nom privé" required="true" value="${place.privateLabel}"/>
+					</p>
+					
+					<p class="form-group">
+						<form:label path="street" for="place-street" class="form-label">Rue</form:label>
+						<form:input path="street" type="text" name="street"  id="place-street" class="form-control" placeholder="Rue" required="true" value="${place.street}"/>
+					</p>
+	
+					<p class="form-group">
+						<form:label path="zipcode" for="place-zipcode" class="form-label">Code Postal</form:label>
+						<form:input path="zipcode" type="number" name="zipcode"  id="place-zipcode" class="form-control" placeholder="Code Postal" required="true" value="${place.zipcode}"/>
+					</p>
+	
+					<p class="form-group">
+						<form:label path="city" for="place-city" class="form-label">Ville</form:label>
+						<form:input path="city" type="text" name="city"  id="place-city" class="form-control" placeholder="Ville" required="true" value="${place.city}"/>
+					</p>
+					
+					<p class="form-group">
+<%-- 						<form:label path="latitude" for="place-latitude" class="control-label">Latitude:</form:label> --%>
+						<form:input path="latitude" type="hidden" id="latitude" class="form-control"/>
+					</p>
 							
-						<div class="form-group">
-							<label  for="place-description" class="control-label" >Description</label>
-							<textarea cols="15" rows="10" id="description" class="form-control" name="description" required>${place.description}</textarea>
-						</div>
-						
-						<input type="submit" name="place" value="Modifier" class="btn btn-primary btn-md" />
-				  		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-				  	</form:form>
-
+					<p class="form-group">
+<%-- 						<form:label path="longitude" for="place-latitude" class="control-label">Longitude:</form:label> --%>
+						<form:input path="longitude" type="hidden"  id="longitude" class="form-control"/>
+					</p>
+					
+					<p class="form-group">
+						<form:label path="description" for="place-description" class="control-label">Description</form:label>
+						<form:textarea path="description" id="description" class="form-control" rows="10" cols="20"/>
+					</p>
+					
+					<form:input type="hidden" path="placeId" name="placeId" id="placeId" class="form-control" value="${place.placeId}"/>
+					
+					<p class="form-group">
+						<input type="submit" id="modifier" name="modifier" value="Modifier" class="btn btn-primary btn-md"/>
+					</p>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				</form:form>
 				</div>
 			
 				<div class="modal-footer">
@@ -188,7 +202,9 @@
 		</div>
 	</div>
 </div>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH8dHLUHMkDTWfuiLOxhySJpQtXTp7mFU&callback=initGoogleMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH8dHLUHMkDTWfuiLOxhySJpQtXTp7mFU&callback=initGoogleMap"></script>
+
+
 
 
 				  

@@ -20,6 +20,7 @@ import fr.imie.appformusic.configuration.constants.Views;
 import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.domain.Place;
 import fr.imie.appformusic.exceptions.BusinessException;
+import fr.imie.appformusic.form.ModifyPlaceForm;
 import fr.imie.appformusic.form.PlaceForm;
 import fr.imie.appformusic.service.IPlaceService;
 import fr.imie.appformusic.service.IUserService;
@@ -80,12 +81,8 @@ public class PlaceController {
 		
 		// Create the place
 		Place place = new Place();
-		if(placeForm.getType().contains("private")){
-			place.setPrivateLabel(placeForm.getPublicLabel());
-		}else{
-			place.setPublicLabel(placeForm.getPublicLabel());
-		}
-		
+		place.setPrivateLabel(placeForm.getPublicLabel());
+		place.setPublicLabel(placeForm.getPublicLabel());
 		place.setOwner(user);
 		place.setCity(placeForm.getCity());
 		place.setLatitude(placeForm.getLatitude());
@@ -122,27 +119,43 @@ public class PlaceController {
 		mav.addObject("place",place);
 		mav.addObject("urlCalendar", "/"+ Views.CALENDAR);
 		mav.addObject("utilCo", name);
+		
+		ModifyPlaceForm m = new ModifyPlaceForm();
+		m.setDescription(place.getDescription());
+		model.addAttribute(m);
+		
 		return mav;
 		 
 	}
 	
-	@RequestMapping(value="/appForMusic/modifyplace")
+	@RequestMapping(value="/modifyplace", method=RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView modifyPlace(PlaceForm placeForm) throws BusinessException {
-		ModelAndView mav = new ModelAndView(Views.PLACEINFO);
+	public ModelAndView modifyPlace(ModifyPlaceForm placeForm) throws BusinessException {
+
+		log.debug("modifyplace");
+		// Get the user 
+		String name = SecurityContextHolder.getContext().getAuthentication().getName();
+		AppUser user = new AppUser();
+		user = userService.findByUserName(name);
 		
+		// Create the place
+		log.debug(placeForm.getPlaceId());
 		Place place = new Place();
+		place.setPlaceId(placeForm.getPlaceId());
+		place.setPrivateLabel(placeForm.getPrivateLabel());
+		place.setPublicLabel(placeForm.getPublicLabel());
+		place.setOwner(user);
 		place.setCity(placeForm.getCity());
 		place.setLatitude(placeForm.getLatitude());
 		place.setLongitude(placeForm.getLongitude());
 		place.setStreet(placeForm.getStreet());
 		place.setZipcode(placeForm.getZipcode());
 		place.setDescription(placeForm.getDescription());
-		//place.setPrivateLabel(placeForm.getPrivateLabel());
-		place.setPublicLabel(placeForm.getPublicLabel());
 		
-		//placeService.update(place);
-		return mav;
+		log.debug(place.getPlaceId());
+		placeService.updatePlace(place);
+		
+		return new ModelAndView("redirect:/places/"+place.getPlaceId());
 		 
 	}
 

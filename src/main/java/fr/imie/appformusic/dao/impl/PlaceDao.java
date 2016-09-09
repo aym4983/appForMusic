@@ -127,6 +127,16 @@ public class PlaceDao implements IPlaceDao {
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	public void updatePlace(Place place) throws TechnicalException {
+		try{ 
+			sessionFactory.getCurrentSession().merge(place);
+		}catch(Exception e){
+			throw new TechnicalException(e);
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
 	public void saveImage(Picture picture){
 		try {
 			sessionFactory.getCurrentSession().persist(picture);

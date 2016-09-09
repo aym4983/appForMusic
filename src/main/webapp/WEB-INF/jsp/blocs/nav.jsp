@@ -23,11 +23,11 @@
 	
 	<section>
 		<ul class="menu">
-			<li><a href="${ urlHome }" title="Accueil">Accueil</a></li>
+			<li><a href="${ urlHome }" title="Accueil" class="home">Accueil</a></li>
 		</ul>
 		<ul class="menu">
-			<li><a href="${ urlPlaces }" title="Lieux">Lieux</a></li>
-			<li><a href="${ urlCalendar }" title="Calendar">Calendrier</a></li>
+			<li><a href="${ urlPlaces }" title="Lieux" class="place">Lieux</a></li>
+			<li><a href="${ urlCalendar }" title="Calendar" class="calendar">Calendrier</a></li>
 		</ul>
 		<ul class="menu">
 			<li>

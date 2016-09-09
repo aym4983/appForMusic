@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import fr.imie.appformusic.configuration.constants.Misc;
 import fr.imie.appformusic.configuration.constants.Routes;
 import fr.imie.appformusic.configuration.constants.Views;
 import fr.imie.appformusic.domain.Place;
@@ -27,7 +28,7 @@ public class HomeController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView init(Model model) throws BusinessException {
 		List<PlaceJson> places = new ArrayList<>();
-		for (Place place : placeService.findAllPlaces()) {
+		for (Place place : placeService.findPlacesNear(Misc.DEFAULT_LAT, Misc.DEFAULT_LNG, 0, 50)) {
 			places.add(new PlaceJson(place));
 		}
 		model.addAttribute("places", places);

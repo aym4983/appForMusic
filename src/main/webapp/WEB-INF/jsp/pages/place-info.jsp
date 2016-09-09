@@ -25,7 +25,6 @@
 			
 			</div>
 			<script type="text/javascript">
-					var app = {};
 					var map;
 
 					function initGoogleMap() {

@@ -25,7 +25,9 @@
 	height: 100%;
 	overflow: hidden;
 	overflow-y: auto;
+	padding-top: 48px;
 	position: fixed;
+	top: 0;
 	z-index: 1;
 }
 
@@ -66,22 +68,28 @@
 	width: 272px;
 }
 
-.menu .sign-out a {
+.menu .sign-out:hover {
 /* 	color: #FF1954; */
+	background: #FF1954;
 }
 
 .menu a,
 .menu p {
-	color: #ccc;
+	color: #fff;
 	display: block;
 	padding: 16px;
 	padding-left: 48px;
 	text-decoration: none;
+	transition: 100ms ease-out;
 }
 
 .menu a:hover,
 .menu a:focus {
-	background-color: #333;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.menu a:active {
+	background-color: rgba(0, 0, 0, 0.25);
 }
 
 .menu input[type=text] {
@@ -130,8 +138,12 @@
 
 @media screen and (min-width: 769px) {
 
-	#main-wrapper #main-menu,
-	#main-wrapper #main-menu-header {
+	#main-menu {
+		padding-top: 56px;
+	}
+
+	#main-menu,
+	#main-menu-header {
 		width: 272px;
 	}
 

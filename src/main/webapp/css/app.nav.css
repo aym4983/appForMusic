@@ -44,6 +44,16 @@
 	width: 100%;
 }
 
+#main-menu-cover {
+	border: none;
+	height: 100%;
+	left: 0;
+	object-fit: cover;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
 #account-picture,
 .menu:first-child {
 	transition-duration: 250ms;

@@ -3,6 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <c:url var="urlSignOut" value="/sign-out" />
+<c:url var="urlImg" value="/img" />
 <c:url var="urlProfil" value="/profile" />
 <c:url var="urlHome" value="/" />
 <c:url var="urlPlaces" value="/places" />
@@ -15,6 +16,7 @@
 <nav id="main-menu">
 
 	<header id="main-menu-header">
+		<img id="main-menu-cover" src="${ urlImg }/default-cover-320.jpg" alt="" />
 		<div id="account">
 			<a id="account-picture" href="${ urlProfil }/@<sec:authentication property="principal.username" />" title="Mon compte">
 				<img src="" alt="" /></a>

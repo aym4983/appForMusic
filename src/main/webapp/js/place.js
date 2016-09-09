@@ -16,7 +16,7 @@ action={
 					
 			},
 			error:function(xhr, resp, status){
-				alert(resp);
+				console.log(resp);
 			}
 		});
 	},

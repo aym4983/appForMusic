@@ -79,7 +79,7 @@ public class EventServiceTest {
 	public void testDeleteEvent() throws Exception {
 		Event ev = new Event();
 		
-		daoMock.delete(ev);
+		daoMock.deleteEvent(ev);
 		expectLastCall();
 		
 		service.deleteEvent(ev);

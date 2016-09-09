@@ -76,7 +76,7 @@ public class EventDao implements IEventDao {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public void delete(Event event) throws TechnicalException {
+	public void deleteEvent(Event event) throws TechnicalException {
 		try{ 
 		Event eventToDelete = findById(event.getid());
 		sessionFactory.getCurrentSession().delete(eventToDelete);

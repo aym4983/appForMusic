@@ -69,6 +69,35 @@
 	</div>
 </div>
 
+<!-- Modal pour supprimer un lieu -->
+<div class="container">
+	<div class="modal fade" id='deleteEvent' role="dialog">
+		<div class="modal-dialog modal-lg">
+			<form class="modal-content" action="" id="formEventDelete" method="post">
+				<div class="modal-header">
+					 <h4 class="modal-title"> Suppression d'un evenement</h4>
+				</div>
+				 
+				<div class="modal-body">
+					<p class="form-group">
+				  		<label class="control-label" >Etes-vous sûr de vouloir supprimer l'évenement ? </label>
+				  	</p>
+				  	
+				  	<p class="form-group">
+				  		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				  		<input type="hidden" name="eventid" value="${calendar.eventid}"/>
+					</p>
+				</div>
+				 
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger btn-sm" id="event-delete" onclick="eventDelete()">Supprimer</button>
+					<button type="button" class="btn btn-default " data-dismiss="modal">Annuler</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
 
 
 

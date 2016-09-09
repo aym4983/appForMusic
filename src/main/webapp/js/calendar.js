@@ -33,6 +33,14 @@ app.calendar = {
 						$('#calendar').fullCalendar( 'renderEvent', jsEvent);
 					}		  
 				},
+				eventResize: function(event,start, end,revertFunc) {
+					if (!confirm("Valider la modification ?")) {
+						revertFunc();
+					}
+				},
+				eventClick:function(){	
+					 $('#deleteEvent').modal('show');
+				},
 
 				// Ajout d'un evenement dans le calendar
 		        selectHelper: true,
@@ -59,16 +67,9 @@ app.calendar = {
 					 he.elements["hiddenEndEvent"].value = hiddenEnd;		 
 					 		     
 				     $('#myModalHorizontal').modal('show');
-				},
-				events: [
-					{
-						title: 'test Event',
-						start: '2016-09-08',
-						end: '2016-09-08'
-					}
-				]
-				
+				}
 			});
+			app.calendar.renderAllEvents();
 		},
 		
 		/** récupère ts les events de la bdd et les affiche */
@@ -126,6 +127,42 @@ app.calendar = {
 			    placement: 'bottom',
 			    align: 'left',
 			    autoclose: true
+			});
+		},
+		
+		eventDelete : function(){
+			$.ajax({
+				url : contextPath + 'calendar/eventdelete',
+				method : 'POST',
+				data : form.serialize(),
+				dataType : 'json',
+				success: function(data, textStatus,jqXHR ){
+					alert("Suppression réussie!");
+				}
+			});
+			$("#formEventDelete").modal('hide');
+		},
+		
+
+		renderAllEvents: function() { 
+			var result = new Array();
+			$.ajax({
+				url: contextPath + "calendar/get",
+				method : 'GET',
+				success: function(data){
+					for(var i=0; i<data.length; i ++){
+						$("#calendar").fullCalendar('renderEvent', {
+							start : data[i].startevent,
+							end : data[i].endevent,
+							title : data[i].titleevent
+						});
+					}
+				},
+				error: function(xhr, resp, statuts){
+					console.log(xhr);
+					console.log(resp);
+					console.log(statuts);
+				}	
 			});
 		}
 		

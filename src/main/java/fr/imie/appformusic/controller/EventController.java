@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import fr.imie.appformusic.configuration.constants.Routes;
 import fr.imie.appformusic.configuration.constants.Views;
+import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.domain.Event;
 import fr.imie.appformusic.domain.Place;
 import fr.imie.appformusic.domain.json.EventJson;
@@ -125,5 +126,20 @@ public class EventController {
 	public Response<Boolean> error(Throwable t) {
 		log.error(t.getMessage(), t);
 		return new Response<>(false);
+	}
+	
+	@RequestMapping(value=Routes.CALENDAR +"/get")
+	public @ResponseBody List<Event> getEvent() throws BusinessException {
+		return eventService.findAllEvents();
+	}
+	
+		
+	@RequestMapping(value="/eventdelete", method=RequestMethod.POST)
+	@ResponseBody
+	public Response<Boolean> deleteEvent(@RequestParam("eventid") int eventId) throws BusinessException {
+		Event event = eventService.findById(eventId);
+		eventService.deleteEvent(event);
+		
+		return new Response<>(true);
 	}
 }

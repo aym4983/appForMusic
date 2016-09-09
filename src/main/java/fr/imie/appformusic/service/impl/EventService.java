@@ -45,7 +45,7 @@ public class EventService implements IEventService {
 	@Override
 	@Transactional(rollbackFor = Throwable.class)
 	public void deleteEvent(Event event) throws BusinessException {
-		eventDao.delete(event);
+		eventDao.deleteEvent(event);
 	}
 	
 }

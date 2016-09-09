@@ -4,9 +4,16 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <c:url var="postForm" value="/profile/@${ username }" />
+<c:url var="urlImg" value="/img" />
 
 <section id="profile-header">
-	<div id="profile-cover"></div>
+	<picture>
+		<source srcset="${ urlImg }/default-cover-1080.jpg" media="(min-width: 960px)" />
+		<source srcset="${ urlImg }/default-cover-1024.jpg" media="(min-width: 640px)" />
+		<source srcset="${ urlImg }/default-cover-640.jpg" media="(min-width: 480px)" />
+		<source srcset="${ urlImg }/default-cover-480.jpg" media="(min-width: 320px)" />
+		<img id="profile-cover" src="${ urlImg }/default-cover-320.jpg" alt="" />
+	</picture>
 	<div id="profile-header-content">
 		<div id="profile-picture"></div>
 		<h1>${ username }</h1>

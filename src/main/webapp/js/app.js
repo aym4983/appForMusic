@@ -17,6 +17,7 @@ $(function(){
 	
 });
 
+<<<<<<< Upstream, based on origin/master
 /** insert l'evenement */
 //function doSubmit() {
 //	$("#myModalHorizontal").modal('hide');
@@ -28,6 +29,35 @@ $(function(){
 //	return true;  
 //}
 
+=======
+/** récupère ts les events de la bdd et les affiche */
+
+function initUpdateCalendar() {
+	$("#FormEvent").submit(function(event){
+		event.preventDefault();
+		
+		$.ajax({
+			url: contextPath + "/calendar",
+			method : 'POST',
+			data : $(this).serialize(),
+			dataType : 'json',
+			success: function(data){
+				console.log(data);
+				for(var i=0; i<data.length; i ++){
+					$("#calendar").fullCalendar('renderEvent', {
+						start : data[i].startevent,
+						end : data[i].endevent,
+						title : data[i].titleevent
+					});
+				}
+			}
+		})
+		
+		$("#myModalHorizontal").modal('hide');
+		
+	});
+}
+>>>>>>> f8aaad5 modif calendar
 
 function initHomeMap() {
 	homeMap.map = new google.maps.Map(document.getElementById("places-map"), {

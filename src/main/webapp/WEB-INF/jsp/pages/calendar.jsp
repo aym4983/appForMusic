@@ -38,7 +38,7 @@
 						<form:label path="startevent" class="col-sm-3 control-label" for="inputStartEvent">Début</form:label>
 						<div class="col-sm-9 clockpicker">
 							<input  class="form-control" id="inputStartEvent" />
-							<form:input path="startevent" type="text" id="hiddenStartEvent" />
+							<form:input path="startevent" type="hidden" id="hiddenStartEvent" />
 						</div>
 					</div>
 					<div class="form-group">

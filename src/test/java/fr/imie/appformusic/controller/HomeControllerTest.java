@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.support.BindingAwareModelMap;
 import org.springframework.web.servlet.ModelAndView;
 
+import fr.imie.appformusic.configuration.constants.Misc;
 import fr.imie.appformusic.configuration.constants.Views;
 import fr.imie.appformusic.domain.AppUser;
 import fr.imie.appformusic.domain.Place;
@@ -40,7 +41,7 @@ public class HomeControllerTest {
 		List<Place> places = new ArrayList<Place>();
 		places.add(createPlace());
 		
-		expect(placeServiceMock.findAllPlaces()).andReturn(places).anyTimes();
+		expect(placeServiceMock.findPlacesNear(Misc.DEFAULT_LAT, Misc.DEFAULT_LNG, 0, 50)).andReturn(places).anyTimes();
 		replay(placeServiceMock);
 		
 		Model model = new BindingAwareModelMap();

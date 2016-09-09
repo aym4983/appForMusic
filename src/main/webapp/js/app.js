@@ -42,6 +42,8 @@ function initHomeMap() {
 				lng: position.coords.longitude
 			}
 			
+			reloadHomePlaces(pos);
+			
 			new google.maps.InfoWindow({
 				map: homeMap.map, 
 				position: pos,
@@ -53,17 +55,7 @@ function initHomeMap() {
 	}
 	
 	homeMap.markers = {};
-
-	$("#places-list li").each(function() {
-		homeMap.markers[$(this).data("place-id")] = new google.maps.Marker({
-			position: {
-				lat: Number.parseFloat($(this).data("place-lat")), 
-				lng: Number.parseFloat($(this).data("place-lng"))
-			},
-			map: homeMap.map,
-			title: $(this).data("place-label")
-		});
-	});
+	resetHomeMarkers(homeMap.map, homeMap.markers);
 }
 
 function initHomePlacesList() {
@@ -74,6 +66,40 @@ function initHomePlacesList() {
 	
 	$("#places-list").on("mouseout", ".place-item", function() {
 		homeMap.markers[$(this).data("place-id")].setAnimation(null);
+	});
+}
+
+function reloadHomePlaces(position) {
+	$.ajax({
+		url: $("#places-list").data("url-places-near"),
+		data: {
+			lat: position.lat, 
+			lng: position.lng,
+			offset: 0,
+			limit: 50
+		},
+		success: function(data) {
+			if (data.succeeded) {
+				var tmpl = $("#place-item-template").html();
+				$("#places-list ul").html(Mustache.render(tmpl, data));
+			}
+		}
+	});
+}
+
+function resetHomeMarkers(map, markers) {
+	for (marker in markers) {
+		marker.setMap(null);
+	}
+	$("#places-list li").each(function() {
+		markers[$(this).data("place-id")] = new google.maps.Marker({
+			position: {
+				lat: Number.parseFloat($(this).data("place-lat")), 
+				lng: Number.parseFloat($(this).data("place-lng"))
+			},
+			map: map,
+			title: $(this).data("place-label")
+		});
 	});
 }
 

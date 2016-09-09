@@ -7,8 +7,21 @@
 
 <section id="places-map"></section>
 
-<section id="places-list">
+<section id="places-list" data-url-places-near="${ urlPlacesNear }">
 	<button id="places-list-toggler"></button>
+	<script id="place-item-template" type="x-tmpl-mustache">
+		{{#content}}
+		<li class="place-item"
+			data-place-id="{{placeId}}"
+			data-place-lat="{{latitude}}" 
+			data-place-lng="{{longitude}}"
+			data-place-label="{{publicLabel}}">
+			<a href="${ urlPlaces }/{{placeId}}">
+				{{publicLabel}}
+			</a>
+		</li>
+		{{/content}}
+	</script>
 	<ul>
 		<c:forEach items="${ places }" var="place">
 			<li class="place-item"

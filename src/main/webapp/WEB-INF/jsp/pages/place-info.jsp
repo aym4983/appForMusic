@@ -82,13 +82,13 @@
 <div class="place-action">
 	<div class="col-md-7">
 		<c:if test="${utilCo eq place.owner.username}">
-			<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="" href="${ urlCalendar }">Calendrier</button>
+			<a href="/appForMusic/calendar/<c:out value="${ place.placeId }" />"><button type="button" id="affiche" class="btn btn-info btn-sm">Calendrier</button></a>
 	    	<button type="button" class="btn btn-info btn-sm" id="place-delete" data-toggle="modal" data-target="#modifyModal">Modifier</button>
 	    	<button type="button" class="btn btn-info btn-sm" id="place-delete" data-toggle="modal" data-target="#deleteModal">Supprimer</button>
 	    </c:if>
 	    
 	    <c:if test="${utilCo ne place.owner.username}">
-			<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="" href="${ urlCalendar }">Réserver</button>
+			<a href="/appForMusic/calendar/<c:out value="${ place.placeId }" />"><button type="button" id="reserve" class="btn btn-info btn-sm">Réserver</button></a>
 		</c:if> 
 	</div>
 </div>
@@ -121,7 +121,7 @@
 				  	
 				  	<p class="form-group">
 				  		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-				  		<input type="hidden" name="id" value="${place.placeId}"/>
+				  		<input type="hidden" name="id" id="placeId" value="${place.placeId}"/>
 					  	<button type="button" class="btn btn-danger btn-sm" id="placeinfo-delete">Supprimer le lieu</button>
 					</p>
 				</div>

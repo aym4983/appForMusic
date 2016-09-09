@@ -37,6 +37,12 @@ public class EventService implements IEventService {
 	}
 	
 	@Override
+	@Transactional(readOnly = true)
+	public List<Event> FindPlaceEvent(Place place) throws BusinessException{
+		return eventDao.FindPlaceEvent(place);
+	}
+	
+	@Override
 	@Transactional(rollbackFor = Throwable.class)
 	public void deleteEvent(Event event) throws BusinessException {
 		eventDao.delete(event);

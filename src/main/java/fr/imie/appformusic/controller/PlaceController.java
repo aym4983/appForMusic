@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -45,8 +46,7 @@ public class PlaceController {
 	 */
 	@RequestMapping(Routes.PLACE)
 	public ModelAndView showMyPlaces(Model model) throws BusinessException {
-		System.out.println("print");
-		log.debug("log");
+
 		ModelAndView mav = new ModelAndView(Views.PLACE);
 		
 		// Get the user 
@@ -158,5 +158,4 @@ public class PlaceController {
 		return new ModelAndView("redirect:/places/"+place.getPlaceId());
 		 
 	}
-
 }

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.joda.time.DateTime;
@@ -37,8 +39,17 @@ public class Event implements Serializable{
 	@Column(name="titleevent", length = 255, nullable = false)
 	private String titleevent;
 	
-//	@ManyToOne
-//	private Place place;
+	@ManyToOne
+	@JoinColumn(name="place", nullable = false)
+	private Place place;
+
+	public Place getPlace() {
+		return place;
+	}
+
+	public void setPlace(Place place) {
+		this.place = place;
+	}
 
 	/** Constructors **/ 
 	public Event(){}

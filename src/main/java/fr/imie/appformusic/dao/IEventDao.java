@@ -12,5 +12,7 @@ public interface IEventDao {
 	public Event findById(int eventid) throws TechnicalException;
 	public List<Event> findAllEvents() throws TechnicalException;
 	public void delete(Event event) throws TechnicalException;
+	//public Event findByPlace(Place place) throws TechnicalException;
+	public List<Event> FindPlaceEvent(Place place) throws TechnicalException;
 	
 }

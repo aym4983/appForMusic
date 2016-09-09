@@ -10,6 +10,8 @@ public class EventJson {
 	private String startevent;
 	private String endevent;
 	private String titleevent;
+	private PlaceJson place;
+
 	
 	
 	public EventJson(Event event) {
@@ -17,8 +19,16 @@ public class EventJson {
 		startevent = event.getStartevent();
 		endevent = event.getEndevent();
 		titleevent = event.getTitleevent();
+		place = new PlaceJson(event.getPlace());
 	}
 	
+	public PlaceJson getPlace() {
+		return place;
+	}
+
+	public void setPlace(PlaceJson place) {
+		this.place = place;
+	}
 	public int getEventid() {
 		return eventid;
 	}

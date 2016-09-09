@@ -11,7 +11,15 @@ public class EventForm {
 	private String startevent;
 	private String endevent;
 	private String titleevent;
+	private int placeId;
 	
+	
+	public int getPlaceId() {
+		return placeId;
+	}
+	public void setPlaceId(int placeId) {
+		this.placeId = placeId;
+	}
 	public String getStartevent() {
 		return startevent;
 	}
